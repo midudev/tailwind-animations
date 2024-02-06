@@ -20,6 +20,9 @@ dependencies:
   typescript:
     specifier: ^5.3.3
     version: 5.3.3
+  wc-toast:
+    specifier: 1.3.1
+    version: 1.3.1
 
 packages:
 
@@ -4021,6 +4024,10 @@ packages:
 
   /vscode-uri@3.0.8:
     resolution: {integrity: sha512-AyFQ0EVmsOZOlAnxoFOGOq1SQDWAB7C6aqMGS23svWAllfOaxbuFvcT8D1i8z3Gyn8fraVeZNNmN6e9bxxXkKw==}
+    dev: false
+
+  /wc-toast@1.3.1:
+    resolution: {integrity: sha512-losZzhPY6PyVbzTvslLGFnHJ5X0RtBVruGROBGii8gQx6mGXPTt477xC0oRNHR+O7eB1GlzoJw/sBCHB4LOSag==}
     dev: false
 
   /web-namespaces@2.0.1:
