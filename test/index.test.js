@@ -7,7 +7,7 @@ describe('tailwindcss-animations plugins', () => {
       content: '<div class="animate-zoom-in">Hello</div>'
     })
 
-    expect(css).toMatch('@keyframes zoom-in{0%{opacity:0;transform:scale(.5)}100%{opacity:1;transform:scale(1)}}.animate-zoom-in{animation:zoom-in 0.6s ease-out}')
+    expect(css).toMatch('@keyframes zoom-in{0%{opacity:0;transform:scale(.5)}100%{opacity:1;transform:scale(1)}}.animate-zoom-in{animation:zoom-in 0.6s ease-out both}')
   })
 
   it('use a predefined animation delay', async () => {
