@@ -1,7 +1,7 @@
 # Tailwind CSS animations
 
 - [] Hacer un README increíble
-- [] Copiar código al hacer click
+- [x] Copiar código al hacer click
 - [] play-state animation
 - [] steps de las animations
 - [] animation-iteration-count (none, once, infinite, twice, thrice)
