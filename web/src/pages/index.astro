@@ -7,6 +7,7 @@ const { animation } = theme
 ---
 
 <Layout title="midudev Tailwind CSS Animations Plugin: Community-Powered Animation Magic">
+  <wc-toast></wc-toast>
   <main class="pb-20">
     <header
       class="max-w-4xl mx-auto flex items-center justify-center py-10 flex-col"
@@ -40,6 +41,7 @@ const { animation } = theme
 
 <script>
   import theme from "../../../src/theme.js"
+  import { toast } from "wc-toast"
 
   const $articles = document.querySelectorAll("article")
 
@@ -66,6 +68,12 @@ const { animation } = theme
         const animationValue = animation[animationKey as keyof typeof animation];
 
         navigator.clipboard.writeText(animationValue)
+        
+        toast("Copied to clipboard!", {
+          theme: {
+            type: "light",
+          }
+        })
       }
     })
   })
