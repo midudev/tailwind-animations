@@ -5,6 +5,10 @@
 [![en](https://img.shields.io/badge/lang-en-red.svg)](./README.md)
 [![es](https://img.shields.io/badge/lang-es-yellow.svg)](./README.es.md)
 
+![GitHub stars](https://img.shields.io/github/stars/midudev/tailwind-animations)
+![GitHub PRs](https://img.shields.io/github/issues-pr/midudev/tailwind-animations)
+![GitHub issues](https://img.shields.io/github/issues/midudev/tailwind-animations)
+
 ![web](./lib/imgs/web.png)
 
 ![Tailwind
