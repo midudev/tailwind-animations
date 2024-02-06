@@ -1,0 +1,26 @@
+{
+  "name": "@midudev/tailwind-animations",
+  "version": "0.0.3",
+  "description": "Tailwind CSS plugin to add animations to your website",
+  "main": "./src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "Miguel Ángel Durán (@midudev) & su maravillosa comunidad",
+  "license": "ISC",
+  "devDependencies": {
+    "postcss": "8.4.34",
+    "standard": "17.1.0",
+    "tailwindcss": "3.4.1",
+    "@csstools/postcss-minify": "1.1.0",
+    "vitest": "1.2.2"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^3.0.0"
+  },
+  "eslintConfig": {
+    "extends": "standard"
+  }
+}
