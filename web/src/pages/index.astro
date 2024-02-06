@@ -39,6 +39,8 @@ const { animation } = theme
 </Layout>
 
 <script>
+  import theme from "../../../src/theme.js"
+
   const $articles = document.querySelectorAll("article")
 
   $articles.forEach(($article) => {
@@ -54,6 +56,17 @@ const { animation } = theme
 
     $article.addEventListener("mouseleave", () => {
       $box.classList.remove(animationClass)
+    })
+
+    $article.addEventListener("click", () => {
+      const { animation } = theme
+      const animationKey = $article.getAttribute("data-class");
+
+      if (animationKey && animation[animationKey as keyof typeof animation]) {
+        const animationValue = animation[animationKey as keyof typeof animation];
+
+        navigator.clipboard.writeText(animationValue)
+      }
     })
   })
 </script>
