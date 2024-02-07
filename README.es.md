@@ -32,7 +32,7 @@ información.
 
 ## POR HACER
 
-- [X] Hacer un README increíble (se puede mejorar todavía)
+- [X] Hacer un README increíble
 - [X] Copiar código al hacer click
 - [ ] play-state animation
 - [ ] steps de las animations

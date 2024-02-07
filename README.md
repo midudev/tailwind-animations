@@ -31,7 +31,7 @@ Visit the [website](https://github.com/midudev/tailwind-animations) to get more 
 
 ## TODO
 
-- [X] Write an awesome readme (can be improved)
+- [X] Write an awesome readme
 - [X] Copy to clipboard on click
 - [ ] play-state animation
 - [ ] animations steps
