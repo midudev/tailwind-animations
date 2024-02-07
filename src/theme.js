@@ -429,6 +429,8 @@ export default {
     400: '400ms',
     500: '500ms',
     700: '700ms',
+    800: '800ms',
+    900: '900ms',
     1000: '1000ms'
   },
   animationDuration: {
@@ -447,6 +449,8 @@ export default {
     400: '400ms',
     500: '500ms',
     700: '700ms',
+    800: '800ms',
+    900: '900ms',
     1000: '1000ms'
   },
   animationIterationCount: {
