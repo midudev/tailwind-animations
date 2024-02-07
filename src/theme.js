@@ -43,7 +43,7 @@ export default {
     'contract-horizontally': 'contract-horizontally 0.6s ease-out both',
     'expand-vertically': 'expand-vertically 0.6s ease-out both',
     'contract-vertically': 'contract-vertically 0.6s ease-out both',
-    'fade-in-up': 'fade-in-up 0.6s ease-in-out both both',
+    'fade-in-up': 'fade-in-up 0.6s ease-in-out both',
     'fade-in-down': 'fade-in-down 0.6s ease-in-out both',
     'fade-in-left': 'fade-in-left 0.6s ease-in-out both',
     'fade-in-right': 'fade-in-right 0.6s ease-in-out both',
