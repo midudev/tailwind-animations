@@ -7,7 +7,8 @@ const pluginCreator = api => {
 
   const dynamicUtils = {
     'animate-delay': { css: 'animation-delay', values: theme('animationDelay') },
-    'animate-duration': { css: 'animation-duration', values: theme('animationDuration') }
+    'animate-duration': { css: 'animation-duration', values: theme('animationDuration') },
+    'animate-fill-mode': { css: 'animation-fill-mode', values: theme('animationFillMode') },
   }
 
   Object.entries(dynamicUtils).forEach(([name, { css, values }]) => {
