@@ -8,8 +8,9 @@ import CopyIcon from '@components/icons/copy.astro'
 const { animation } = theme
 ---
 
-<Layout title='Welcome to Astro.'>
-  <main class='pb-20'>
+<Layout title="midudev Tailwind CSS Animations Plugin: Community-Powered Animation Magic">
+  <wc-toast></wc-toast>
+  <main class="pb-20">
     <header
       class='max-w-4xl mx-auto flex items-center justify-center py-10 flex-col'
     >
@@ -60,7 +61,7 @@ const { animation } = theme
 </Layout>
 
 <script>
-  const $articles = document.querySelectorAll('article')
+  import { toast } from "wc-toast"
 
   $articles.forEach(($article) => {
     const animationKey = $article.getAttribute('data-class')
@@ -75,6 +76,20 @@ const { animation } = theme
 
     $article.addEventListener('mouseleave', () => {
       $box.classList.remove(animationClass)
+    })
+
+    $article.addEventListener("click", () => {
+      const animationKey = $article.getAttribute("data-class");
+      const CLASS_PREFIX = "animate-";
+      const ANIMATION_TO_COPY = CLASS_PREFIX + animationKey;
+
+      navigator.clipboard.writeText(ANIMATION_TO_COPY);
+      
+      toast("Copied to clipboard!", {
+        theme: {
+          type: "light",
+        }
+      });
     })
   })
 </script>
