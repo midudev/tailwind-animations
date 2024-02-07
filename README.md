@@ -12,8 +12,8 @@
 ![web](./lib/imgs/web.jpg)
 
 ![Tailwind
-CSS](https://img.shields.io/badge/Tailwind%20CSS-2.2.7-blue?style=for-the-badge&logo=tailwind-css)
-![Astro](https://img.shields.io/badge/Astro-0.23.0-blue?style=for-the-badge&logo=astro)
+CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.1-blue?style=for-the-badge&logo=tailwind-css)
+![Astro](https://img.shields.io/badge/Astro-4.3.3-blue?style=for-the-badge&logo=astro)
 
 Get your animations easily done with only Tailwind CSS classes.
 
