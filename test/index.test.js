@@ -73,4 +73,12 @@ describe('tailwindcss-animations plugins', () => {
 
     expect(css).toMatch('.animate-iteration-count-\\[10\\]{animation-iteration-count:10}')
   })
+
+  it('use a custom animation direction', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-direction-reverse">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-direction-reverse{animation-direction:reverse}')
+  })
 })

@@ -36,6 +36,18 @@ const pluginCreator = api => {
     },
     '.animate-linear': {
       'animation-timing-function': 'linear'
+    },
+    '.animate-direction-normal': {
+      'animation-direction': 'normal'
+    },
+    '.animate-direction-reverse': {
+      'animation-direction': 'reverse'
+    },
+    '.animate-direction-alternate': {
+      'animation-direction': 'alternate'
+    },
+    '.animate-direction-alternate-reverse': {
+      'animation-direction': 'alternate-reverse'
     }
   })
 }
