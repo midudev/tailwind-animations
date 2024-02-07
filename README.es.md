@@ -26,7 +26,7 @@ Visita la [web](https://github.com/midudev/tailwind-animations) para obtener má
 
 - [X] Hacer un README increíble (se puede mejorar todavía)
 - [X] Copiar código al hacer click
-- [ ] play-state animation
+- [X] play-state animation
 - [ ] steps de las animations
 - [X] animation-iteration-count (none, once, infinite, twice, thrice)
 - [X] animation-fill-mode (none, forwards, backwards, both)
