@@ -449,10 +449,17 @@ export default {
     700: '700ms',
     1000: '1000ms'
   },
+  animationIterationCount: {
+    none: '0',
+    once: '1',
+    twice: '2',
+    thrice: '3',
+    infinite: 'infinite'
+  },
   animationFillMode: {
     none: 'none',
     forwards: 'forwards',
     backwards: 'backwards',
     both: 'both'
-  },
+  }
 }
