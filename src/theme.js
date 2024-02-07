@@ -1,6 +1,6 @@
 export default {
   animation: {
-    'background-shine': 'background-shine 2s linear infinite both',
+    'blurred-fade-in': 'blurred-fade-in 0.9s ease-in-out both',
     'fade-in': 'fade-in 0.6s ease-in both',
     'fade-out': 'fade-out 0.6s ease-out both',
     'slide-in-top': 'slide-in-top 0.6s ease-out both',
@@ -61,7 +61,6 @@ export default {
     'slide-rotate-in': 'slide-rotate-in 0.6s ease-out both',
     'slide-rotate-out': 'slide-rotate-out 0.6s ease-out both',
     heartbeat: 'heartbeat 0.6s ease-out both',
-    'blurred-fade-in': 'blurred-fade-in 0.9s ease-in-out both',
     'horizontal-vibration': 'horizontal-vibration 0.3s linear infinite both',
     'rotational-wave': 'rotational-wave 2s ease-in-out infinite both',
     skew: 'skew 0.5s ease-in-out both',
@@ -72,6 +71,7 @@ export default {
     'slide-up-fade': 'slide-up-fade 0.6s ease-out both',
     'bounce-fade-in': 'bounce-fade-in 0.6s ease-out both',
     'swing-drop-in': 'swing-drop-in 0.6s ease-out both',
+    'background-shine': 'background-shine 2s linear infinite both',
     'pulse-fade-in': 'pulse-fade-in 0.6s ease-out both'
   },
   keyframes: {
@@ -454,5 +454,5 @@ export default {
     forwards: 'forwards',
     backwards: 'backwards',
     both: 'both'
-  },
+  }
 }
