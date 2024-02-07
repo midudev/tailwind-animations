@@ -6,8 +6,14 @@ describe('tailwindcss-animations plugins', () => {
     const css = await generatePluginCSS({
       content: '<div class="animate-zoom-in">Hello</div>'
     })
-
     expect(css).toMatch('@keyframes zoom-in{0%{opacity:0;transform:scale(.5)}100%{opacity:1;transform:scale(1)}}.animate-zoom-in{animation:zoom-in 0.6s ease-out both}')
+  })
+
+  it('use fade in up animation', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-fade-in-up">Hello</div>'
+    })
+    expect(css).toMatch('@keyframes fade-in-up{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}.animate-fade-in-up{animation:fade-in-up 0.6s ease-in-out both}')
   })
 
   it('use a predefined animation delay', async () => {
@@ -57,6 +63,29 @@ describe('tailwindcss-animations plugins', () => {
 
     expect(css).toMatch('.animate-linear{animation-timing-function:linear}')
   })
+
+  it('use a custom animation iteration count', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-iteration-count-twice">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-iteration-count-twice{animation-iteration-count:2}')
+  })
+
+  it('use a custom animation iteration count with an arbitrary value', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-iteration-count-[10]">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-iteration-count-\\[10\\]{animation-iteration-count:10}')
+  })
+
+  it('use a custom animation direction', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-direction-reverse">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-direction-reverse{animation-direction:reverse}')
 
   it('use a fill mode animation', async () => {
     const css = await generatePluginCSS({
