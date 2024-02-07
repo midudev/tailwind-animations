@@ -60,7 +60,7 @@ describe('tailwindcss-animations plugins', () => {
 
   it('use a fill mode animation', async () => {
     const css = await generatePluginCSS({
-      content: '<div class="animate-zoom-in animate-fill-mode-forwards">Hello</div>'
+      content: '<div class="animate-fill-mode-forwards">Hello</div>'
     })
 
     expect(css).toMatch('.animate-fill-mode-forwards{animation-fill-mode:forwards}')
