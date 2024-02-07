@@ -4,44 +4,51 @@ import Layout from '@layouts/Layout.astro'
 import theme from '../../../src/theme.js'
 
 import CopyIcon from '@components/icons/copy.astro'
+import Copy from '@components/icons/copy.astro'
 
 const { animation } = theme
 ---
 
-<Layout title="midudev Tailwind CSS Animations Plugin: Community-Powered Animation Magic">
+<Layout
+  title='midudev Tailwind CSS Animations Plugin: Community-Powered Animation Magic'
+>
   <wc-toast></wc-toast>
-  <main class="pb-20">
+  <main class='pb-20'>
     <header
       class='max-w-4xl mx-auto flex items-center justify-center py-10 flex-col'
     >
-      <h1 class="font-semibold text-4xl pt-10">tailwind css animations</h1>
-      <h2 class="font-medium opacity-70">the plugin that you need! =)</h2>
-      <div class="mt-10">
-        <code>npm install @midudev/tailwind-animations</code>
-
+      <span
+        class='inline-flex justify-center items-center rounded bg-black/10 font-medium px-2 py-1 text-xs'
+        >v.0.0.3</span
+      >
+      <h1 class='font-semibold text-4xl'>tailwind css animations</h1>
+      <h2 class='font-medium opacity-70'>the plugin that you need! =)</h2>
+      <div class='mt-10'>
         <div
-          class='flex flex-col text-center items-center w-full max-w-md p-4 bg-gray-300 rounded-md shadow-md'
+          class='flex text-center items-center w-full max-w-md pl-4 pr-1 py-1 bg-black/50 backdrop-blur text-white rounded-full gap-x-2'
         >
           <pre
-            class='text-sm text-gray-800 flex'>
+            class='text-sm flex'>
             <code>npm install @midudev/tailwind-animations</code>
           </pre>
           <button
-            class='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none hover:bg-primary/90 h-10 px-4 py-2 mt-4'
+            class='inline-flex items-center justify-center whitespace-nowrap rounded-full bg-white/10 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none size-7'
             onclick="navigator.clipboard.writeText('npm install @midudev/tailwind-animations'); alert('Shipped into the clipboard :D ⛵');"
           >
-            Copy to Clipboard
+            <Copy />
           </button>
         </div>
       </div>
     </header>
 
-    <section class='max-w-4xl m-auto grid grid-cols-3 gap-4'>
+    <section
+      class='px-4 max-w-4xl m-auto grid grid-cols-2 sm:grid-cols-3 gap-4'
+    >
       {
         Object.keys(animation).map((animationKey) => {
           return (
             <article
-              class='animate-duration-1000 col-span-1 border rounded border-[#092635] hover:border-gray-600 hover:shadow transition cursor-crosshair relative'
+              class='animate-duration-1000 col-span-1 border rounded border-gray-200 hover:border-gray-400 hover:shadow transition cursor-crosshair relative bg-white/10 backdrop-blur-sm'
               data-class={animationKey}
             >
               <div class='p-4 flex gap-4 items-center justify-center flex-col w-full h-full'>
@@ -59,11 +66,25 @@ const { animation } = theme
         })
       }
     </section>
+
+    <footer
+      class='max-w-2xl text-sm pt-20 pb-10 mx-auto text-center px-4 opacity-60 flex justify-center items-center'
+    >
+      <p>
+        Based on <a
+          href='https://animation.ibelick.com/'
+          target='_blank'
+          rel='noopener noreferrer'>Julien Thibeaut Tailwind animations</a
+        >
+      </p>
+    </footer>
   </main>
 </Layout>
 
 <script>
-  import { toast } from "wc-toast"
+  import { toast } from 'wc-toast'
+
+  const $articles = document.querySelectorAll('article')
 
   $articles.forEach(($article) => {
     const animationKey = $article.getAttribute('data-class')
@@ -80,18 +101,18 @@ const { animation } = theme
       $box.classList.remove(animationClass)
     })
 
-    $article.addEventListener("click", () => {
-      const animationKey = $article.getAttribute("data-class");
-      const CLASS_PREFIX = "animate-";
-      const ANIMATION_TO_COPY = CLASS_PREFIX + animationKey;
+    $article.addEventListener('click', () => {
+      const animationKey = $article.getAttribute('data-class')
+      const CLASS_PREFIX = 'animate-'
+      const ANIMATION_TO_COPY = CLASS_PREFIX + animationKey
 
-      navigator.clipboard.writeText(ANIMATION_TO_COPY);
-      
-      toast("Copied to clipboard!", {
+      navigator.clipboard.writeText(ANIMATION_TO_COPY)
+
+      toast('Copied to clipboard!', {
         theme: {
-          type: "light",
+          type: 'light'
         }
-      });
+      })
     })
   })
 </script>
