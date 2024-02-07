@@ -6,8 +6,14 @@ describe('tailwindcss-animations plugins', () => {
     const css = await generatePluginCSS({
       content: '<div class="animate-zoom-in">Hello</div>'
     })
-
     expect(css).toMatch('@keyframes zoom-in{0%{opacity:0;transform:scale(.5)}100%{opacity:1;transform:scale(1)}}.animate-zoom-in{animation:zoom-in 0.6s ease-out both}')
+  })
+
+  it('use fade in up animation', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-fade-in-up">Hello</div>'
+    })
+    expect(css).toMatch('@keyframes fade-in-up{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}.animate-fade-in-up{animation:fade-in-up 0.6s ease-in-out both}')
   })
 
   it('use a predefined animation delay', async () => {
