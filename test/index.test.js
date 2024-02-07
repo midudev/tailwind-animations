@@ -80,5 +80,12 @@ describe('tailwindcss-animations plugins', () => {
     })
 
     expect(css).toMatch('.animate-direction-reverse{animation-direction:reverse}')
+
+  it('use a fill mode animation', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-fill-mode-forwards">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-fill-mode-forwards{animation-fill-mode:forwards}')
   })
 })

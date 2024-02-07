@@ -455,5 +455,11 @@ export default {
     twice: '2',
     thrice: '3',
     infinite: 'infinite'
+  },
+  animationFillMode: {
+    none: 'none',
+    forwards: 'forwards',
+    backwards: 'backwards',
+    both: 'both'
   }
 }
