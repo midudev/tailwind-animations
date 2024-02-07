@@ -456,8 +456,8 @@ export default {
   animationSteps: {
     none: '0 ',
     retro: '8',
-    modern: '16',
-    normal: '24'
+    normal: '16',
+    modern: '24'
   },
   animationIterationCount: {
     none: '0',
