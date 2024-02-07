@@ -9,7 +9,7 @@
 ![GitHub PRs](https://img.shields.io/github/issues-pr/midudev/tailwind-animations)
 ![GitHub issues](https://img.shields.io/github/issues/midudev/tailwind-animations)
 
-![web](./lib/imgs/web.png)
+![web](./lib/imgs/web.jpg)
 
 ![Tailwind
 CSS](https://img.shields.io/badge/Tailwind%20CSS-2.2.7-blue?style=for-the-badge&logo=tailwind-css)
