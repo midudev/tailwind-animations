@@ -1,9 +1,9 @@
 ---
-import Layout from "../layouts/Layout.astro"
+import Layout from "../layouts/Layout.astro";
 
-import theme from "../../../src/theme.js"
+import theme from "../../../src/theme.js";
 
-const { animation } = theme
+const { animation } = theme;
 ---
 
 <Layout title="Welcome to Astro.">
@@ -14,7 +14,7 @@ const { animation } = theme
       <h1 class="font-semibold text-4xl pt-10">tailwind css animations</h1>
       <h2 class="font-medium opacity-70">the plugin that you need! =)</h2>
       <div class="mt-10">
-        <code>npm install @midudev/tailwindcss-animations</code>
+        <code>npm install @midudev/tailwind-animations</code>
       </div>
     </header>
 
@@ -31,7 +31,7 @@ const { animation } = theme
                 <h3 class="font-semibold text-xs opacity-80">{animationKey}</h3>
               </div>
             </article>
-          )
+          );
         })
       }
     </section>
@@ -39,21 +39,21 @@ const { animation } = theme
 </Layout>
 
 <script>
-  const $articles = document.querySelectorAll("article")
+  const $articles = document.querySelectorAll("article");
 
   $articles.forEach(($article) => {
-    const animationKey = $article.getAttribute("data-class")
-    const animationClass = `animate-${animationKey}`
-    const $box = $article.querySelector("span")
+    const animationKey = $article.getAttribute("data-class");
+    const animationClass = `animate-${animationKey}`;
+    const $box = $article.querySelector("span");
 
-    if ($box == null) return
+    if ($box == null) return;
 
     $article.addEventListener("mouseenter", () => {
-      $box.classList.add(animationClass)
-    })
+      $box.classList.add(animationClass);
+    });
 
     $article.addEventListener("mouseleave", () => {
-      $box.classList.remove(animationClass)
-    })
-  })
+      $box.classList.remove(animationClass);
+    });
+  });
 </script>
