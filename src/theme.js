@@ -453,6 +453,12 @@ export default {
     900: '900ms',
     1000: '1000ms'
   },
+  animationSteps: {
+    none: '0 ',
+    retro: '8',
+    modern: '16',
+    normal: '24'
+  },
   animationIterationCount: {
     none: '0',
     once: '1',
