@@ -28,8 +28,8 @@ Visita la [web](https://github.com/midudev/tailwind-animations) para obtener má
 - [X] Copiar código al hacer click
 - [ ] play-state animation
 - [ ] steps de las animations
-- [ ] animation-iteration-count (none, once, infinite, twice, thrice)
-- [ ] animation-fill-mode (none, forwards, backwards, both)
+- [X] animation-iteration-count (none, once, infinite, twice, thrice)
+- [X] animation-fill-mode (none, forwards, backwards, both)
 - [ ] animation-direction (normal, reverse, alternate, alternate-reverse)
 - [ ] animation-timing-function (ease, ease-in, ease-out, ease-in-out, linear, cubic-bezier)
 - [ ] animation-iteration-count (number, infinite)
