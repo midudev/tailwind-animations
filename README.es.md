@@ -6,7 +6,7 @@
 [![es](https://img.shields.io/badge/lang-es-yellow.svg)](./README.es.md)
 
 ![GitHub stars](https://img.shields.io/github/stars/midudev/tailwind-animations)
-![GitHub Contributors](https://img.shields.io/github/contributors/midudev/tailwind-animations)
+![GitHub Forks](https://img.shields.io/github/forks/midudev/tailwind-animations)
 ![GitHub PRs](https://img.shields.io/github/issues-pr/midudev/tailwind-animations)
 ![GitHub issues](https://img.shields.io/github/issues/midudev/tailwind-animations)
 ![GitHub Contributors](https://img.shields.io/github/contributors/midudev/tailwind-animations)
