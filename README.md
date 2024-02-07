@@ -17,6 +17,7 @@
 CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.1-blue?style=for-the-badge&logo=tailwind-css)
 ![Astro](https://img.shields.io/badge/Astro-4.3.3-orange?style=for-the-badge&logo=astro)
 
+
 Get your animations easily done with only Tailwind CSS classes.
 
 Visit the [website](https://github.com/midudev/tailwind-animations) to get more information.

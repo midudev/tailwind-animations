@@ -4,7 +4,6 @@ import Layout from '@layouts/Layout.astro'
 import theme from '../../../src/theme.js'
 
 import CopyIcon from '@components/icons/copy.astro'
-import Copy from '@components/icons/copy.astro'
 
 const { animation } = theme
 ---
@@ -32,10 +31,10 @@ const { animation } = theme
             <code>npm install @midudev/tailwind-animations</code>
           </pre>
           <button
+            id='copyNpmInstall'
             class='inline-flex items-center justify-center whitespace-nowrap rounded-full bg-white/10 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none size-7'
-            onclick="navigator.clipboard.writeText('npm install @midudev/tailwind-animations'); alert('Shipped into the clipboard :D ⛵');"
           >
-            <Copy />
+            <CopyIcon />
           </button>
         </div>
       </div>
@@ -48,17 +47,14 @@ const { animation } = theme
         Object.keys(animation).map((animationKey) => {
           return (
             <article
-              class='animate-duration-1000 col-span-1 border rounded border-gray-200 hover:border-gray-400 hover:shadow transition cursor-crosshair relative bg-white/10 backdrop-blur-sm'
+              class='animate-duration-1000 col-span-1 border rounded border-gray-200 hover:border-gray-400 hover:shadow transition-colors cursor-crosshair relative bg-white/10 backdrop-blur-sm'
               data-class={animationKey}
             >
               <div class='p-4 flex gap-4 items-center justify-center flex-col w-full h-full'>
                 <span class='w-16 h-16 bg-zinc-600 rounded-md flex items-center justify-center' />
-                <h3 class='font-semibold text-xs opacity-80'>{animationKey}</h3>
+                <p class='font-semibold text-sm opacity-80'>{animationKey}</p>
               </div>
-              <button
-                class='absolute top-1 right-2'
-                onclick={`navigator.clipboard.writeText('animate-${animationKey}'); `}
-              >
+              <button class='absolute top-2 right-2'>
                 <CopyIcon />
               </button>
             </article>
@@ -102,17 +98,26 @@ const { animation } = theme
     })
 
     $article.addEventListener('click', () => {
-      const animationKey = $article.getAttribute('data-class')
-      const CLASS_PREFIX = 'animate-'
-      const ANIMATION_TO_COPY = CLASS_PREFIX + animationKey
-
-      navigator.clipboard.writeText(ANIMATION_TO_COPY)
-
+      navigator.clipboard.writeText(animationClass)
       toast('Copied to clipboard!', {
         theme: {
           type: 'light'
         }
       })
+    })
+  })
+
+  const $copyNpmInstall = document.getElementById(
+    'copyNpmInstall'
+  ) as HTMLButtonElement
+
+  $copyNpmInstall.addEventListener('click', () => {
+    const npmCommand = 'npm install @midudev/tailwind-animations'
+    navigator.clipboard.writeText(npmCommand)
+    toast('Copied to clipboard!', {
+      theme: {
+        type: 'light'
+      }
     })
   })
 </script>
