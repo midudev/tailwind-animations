@@ -50,6 +50,12 @@ const pluginCreator = api => {
     },
     '.animate-direction-alternate-reverse': {
       'animation-direction': 'alternate-reverse'
+    },
+    '.animate-play-running': {
+      'animation-play-state': 'running'
+    },
+    '.animate-play-paused': {
+      'animation-play-state': 'paused'
     }
   })
 }
