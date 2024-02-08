@@ -19,7 +19,7 @@ CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.1-blue?style=for-the-badge&
 
 Obten animaciones de CSS con una sola clase de Tailwind!
 
-Visita la [web](https://github.com/midudev/tailwind-animations) para obtener más
+Visita la [web](https://tailwindcss-animations.vercel.app/) para obtener más
 información.
 
 ## Instalación
