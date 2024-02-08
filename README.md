@@ -19,22 +19,30 @@ CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.1-blue?style=for-the-badge&
 
 Get your animations easily done with only Tailwind CSS classes.
 
-Visit the [website](https://tailwindcss-animations.vercel.app/) to get more information.
-
-## Installation
-
-Install the package with your favorite package manager:
+Visit the [website](https://github.com/midudev/tailwind-animations) to get more information.
 </div>
 
-```sh
+## Installation :book:
+#### Package install
+> Install the package with your favorite package manager:
+=======
+Visit the [website](https://tailwindcss-animations.vercel.app/) to get more information.
+
+- npm
+```bash
 $ npm install @midudev/tailwind-animations
-$ pnpm add @midudev/tailwind-animations
+```
+- pnpm
+```bash
+$ pnpm install @midudev/tailwind-animations
+```
+- yarn
+```bash
 $ yarn add @midudev/tailwind-animations
 ```
 
-<div align="center">
-Use the plugin in your Tailwind configuration:
-</div>
+#### Plugin Implementation
+> Use the plugin in your Tailwind CSS project:
 
 ```js
 // tailwind.config.mjs
@@ -49,10 +57,10 @@ export default {
 ```
 
 <div align="center">
+## Usage :gear:
+#### Example
 
-## Usage
-
-Here are some simple examples of how to use this plugin and its animations:
+> Here are some simple examples of how to use this plugin and its animations:
 
 </div>
 
@@ -66,10 +74,11 @@ Here are some simple examples of how to use this plugin and its animations:
 </div>
 ```
 
+
+## Contributors 👑
+
 <div align="center">
-
-## Contributors
-
+  
 <a href="https://github.com/midudev/tailwind-animations/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=midudev/tailwind-animations" />
 </a>
