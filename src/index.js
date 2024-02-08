@@ -9,7 +9,8 @@ const pluginCreator = api => {
     'animate-delay': { css: 'animation-delay', values: theme('animationDelay') },
     'animate-duration': { css: 'animation-duration', values: theme('animationDuration') },
     'animate-iteration-count': { css: 'animation-iteration-count', values: theme('animationIterationCount') },
-    'animate-fill-mode': { css: 'animation-fill-mode', values: theme('animationFillMode') }
+    'animate-fill-mode': { css: 'animation-fill-mode', values: theme('animationFillMode') },
+    'animate-bezier': { css: 'animation-timing-function', values: theme('animationCubicBezier') }
   }
 
   Object.entries(dynamicUtils).forEach(([name, { css, values }]) => {

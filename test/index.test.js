@@ -64,6 +64,24 @@ describe('tailwindcss-animations plugins', () => {
     expect(css).toMatch('.animate-linear{animation-timing-function:linear}')
   })
 
+  it('use a bezier curve as a timing function animation', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-bezier-sine-in">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-bezier-sine-in{animation-timing-function:cubic-bezier(0.12,0,0.39,0)}')
+  })
+
+  it('use a custom bezier curve as a timing function animation', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-bezier-[cubic-bezier(0,0,0,0)]">Hello</div>'
+    })
+
+    expect(css).toMatch(
+      '.animate-bezier-\\[cubic-bezier\\(0\\2c 0\\2c 0\\2c 0\\)\\]{animation-timing-function:cubic-bezier(0,0,0,0)}'
+    )
+  })
+
   it('use a custom animation iteration count', async () => {
     const css = await generatePluginCSS({
       content: '<div class="animate-iteration-count-twice">Hello</div>'
