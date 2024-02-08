@@ -49,9 +49,11 @@ export default {
 ```
 
 <div align="center">
+
 ## Usage
 
 Here are some simple examples of how to use this plugin and its animations:
+
 </div>
 
 ```html
