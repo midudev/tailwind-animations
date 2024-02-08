@@ -21,13 +21,10 @@ Get your animations easily done with only Tailwind CSS classes.
 
 Visit the [website](https://github.com/midudev/tailwind-animations) to get more information.
 </div>
-
-<div align="center">
   
 ## Installation :book:
-#### Package install
 
-</div>
+#### Package install
 
 > Install the package with your favorite package manager:
 =======
@@ -61,15 +58,11 @@ export default {
 }
 ```
 
-<div align="center">
-
 ## Usage :gear:
 
 #### Example
 
 > Here are some simple examples of how to use this plugin and its animations:
-
-</div>
 
 ```html
 <div class="animate-fade-in">
@@ -81,14 +74,8 @@ export default {
 </div>
 ```
 
-</div>
-
-<div align="center">
-
 ## Contributors 👑
   
 <a href="https://github.com/midudev/tailwind-animations/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=midudev/tailwind-animations" />
 </a>
-
-</div>
