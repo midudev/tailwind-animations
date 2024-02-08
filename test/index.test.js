@@ -95,4 +95,15 @@ describe('tailwindcss-animations plugins', () => {
 
     expect(css).toMatch('.animate-fill-mode-forwards{animation-fill-mode:forwards}')
   })
+
+  it('use a play state animation play', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-play-paused">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-play-paused{animation-play-state:paused}')
+  })
+
+
+
 })

@@ -33,7 +33,7 @@ Visit the [website](https://github.com/midudev/tailwind-animations) to get more 
 
 - [X] Write an awesome readme
 - [X] Copy to clipboard on click
-- [ ] play-state animation
+- [X] play-state animation
 - [ ] animations steps
 - [X] animation-iteration-count (none, once, infinite, twice, thrice)
 - [X] animation-fill-mode (none, forwards, backwards, both)
