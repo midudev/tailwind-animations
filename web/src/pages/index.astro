@@ -4,6 +4,7 @@ import Layout from '@layouts/Layout.astro'
 import theme from '../../../src/theme.js'
 
 import CopyIcon from '@components/icons/copy.astro'
+import { Code } from 'astro:components'
 
 const { animation } = theme
 ---
@@ -23,12 +24,37 @@ const { animation } = theme
       <h1 class='text-4xl font-semibold'>tailwind css animations</h1>
       <h2 class='font-medium opacity-70'>the plugin that you need! =)</h2>
       <div class='mt-10'>
+        <span class='mb-1 text-xs font-semibold opacity-50'
+          >1. Install the dependency</span
+        >
         <div
-          class='flex w-full max-w-md items-center gap-x-2 rounded-full bg-black/50 py-1 pl-4 pr-1 text-center text-white backdrop-blur'
+          class='flex w-full max-w-md items-center justify-between gap-x-2 rounded-xl bg-[#1e1e1e] py-1 pl-4 pr-1 text-center text-white backdrop-blur'
         >
           <pre
             class='flex text-sm'>
-            <code>npm install @midudev/tailwind-animations</code>
+            <Code code='npm install @midudev/tailwind-animations' theme="dark-plus" />
+          </pre>
+          <button
+            id='copyNpmInstall'
+            class='ring-offset-background focus-visible:ring-ring inline-flex size-7 items-center justify-center whitespace-nowrap rounded-full bg-white/10 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none'
+          >
+            <CopyIcon />
+          </button>
+        </div>
+        <span class='mb-1 mt-4 block text-left text-xs font-semibold opacity-50'
+          >2. Add to your configuration</span
+        >
+        <div
+          class='flex w-full max-w-md items-center gap-x-2 rounded bg-[#1e1e1e] py-2 pl-4 pr-2 text-center text-white backdrop-blur'
+        >
+          <pre
+            class='flex text-left text-xs'>
+            <Code theme="dark-plus" lang="js" code={`import animations from '@midudev/tailwind-animations'
+
+export default {
+  // ...rest of the options
+  plugins: [animations],
+}`} />
           </pre>
           <button
             id='copyNpmInstall'
