@@ -22,6 +22,8 @@ Obten animaciones de CSS con una sola clase de Tailwind!
 Visita la [web](https://tailwindcss-animations.vercel.app/) para obtener más
 información.
 
+</div>
+
 ## Instalación
 
 Instala el paquete con tu gestor de paquetes favorito:
@@ -35,6 +37,7 @@ $ yarn add @midudev/tailwind-animations
 Usa el plugin en tu configuración de Tailwind:
 
 ```js
+
 // tailwind.config.mjs
 import animations from '@midudev/tailwind-animations'
 
@@ -44,6 +47,7 @@ export default {
     animations
   ],
 }
+
 ```
 
 ## Uso
@@ -65,5 +69,3 @@ Este plugin trae varias clases de utilidad así como varias animaciones CSS list
 <a href="https://github.com/midudev/tailwind-animations/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=midudev/tailwind-animations" />
 </a>
-
-</div>
