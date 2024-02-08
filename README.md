@@ -24,6 +24,7 @@ Visit the [website](https://github.com/midudev/tailwind-animations) to get more 
 ## Installation
 
 Install the package with your favorite package manager:
+</div>
 
 ```sh
 $ npm install @midudev/tailwind-animations
@@ -31,7 +32,9 @@ $ pnpm add @midudev/tailwind-animations
 $ yarn add @midudev/tailwind-animations
 ```
 
+<div align="center">
 Use the plugin in your Tailwind configuration:
+</div>
 
 ```js
 // tailwind.config.mjs
@@ -45,9 +48,11 @@ export default {
 }
 ```
 
+<div align="center">
 ## Usage
 
 Here are some simple examples of how to use this plugin and its animations:
+</div>
 
 ```html
 <div class="animate-fade-in">
@@ -58,6 +63,8 @@ Here are some simple examples of how to use this plugin and its animations:
   Slow animation after 300ms to slide in from bottom
 </div>
 ```
+
+<div align="center">
 
 ## Contributors
 
