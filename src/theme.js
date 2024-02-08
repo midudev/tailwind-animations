@@ -71,7 +71,6 @@ export default {
     'slide-up-fade': 'slide-up-fade 0.6s ease-out both',
     'bounce-fade-in': 'bounce-fade-in 0.6s ease-out both',
     'swing-drop-in': 'swing-drop-in 0.6s ease-out both',
-    'background-shine': 'background-shine 2s linear infinite both',
     'pulse-fade-in': 'pulse-fade-in 0.6s ease-out both'
   },
   keyframes: {
