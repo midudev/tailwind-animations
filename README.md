@@ -25,6 +25,8 @@ Visit the [website](https://github.com/midudev/tailwind-animations) to get more 
 ## Installation :book:
 #### Package install
 > Install the package with your favorite package manager:
+=======
+Visit the [website](https://tailwindcss-animations.vercel.app/) to get more information.
 
 - npm
 ```bash
@@ -38,9 +40,9 @@ $ pnpm install @midudev/tailwind-animations
 ```bash
 $ yarn add @midudev/tailwind-animations
 ```
----
+
 #### Plugin Implementation
-> Use the plugin in your Tailwindcss project:
+> Use the plugin in your Tailwind CSS project:
 
 ```js
 // tailwind.config.mjs
@@ -54,11 +56,13 @@ export default {
 }
 ```
 
-
+<div align="center">
 ## Usage :gear:
 #### Example
+
 > Here are some simple examples of how to use this plugin and its animations:
 
+</div>
 
 ```html
 <div class="animate-fade-in">
@@ -73,7 +77,10 @@ export default {
 
 ## Contributors 👑
 
+<div align="center">
+  
 <a href="https://github.com/midudev/tailwind-animations/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=midudev/tailwind-animations" />
 </a>
 
+</div>
