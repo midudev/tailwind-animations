@@ -21,6 +21,44 @@ Get your animations easily done with only Tailwind CSS classes.
 
 Visit the [website](https://github.com/midudev/tailwind-animations) to get more information.
 
+## Installation
+
+Install the package with your favorite package manager:
+
+```sh
+$ npm install @midudev/tailwind-animations
+$ pnpm add @midudev/tailwind-animations
+$ yarn add @midudev/tailwind-animations
+```
+
+Use the plugin in your Tailwind configuration:
+
+```js
+// tailwind.config.mjs
+import animations from '@midudev/tailwind-animations'
+
+export default {
+  // rest of the options
+  plugins: [
+    animations
+  ],
+}
+```
+
+## Usage
+
+Here are some simple examples of how to use this plugin and its animations:
+
+```html
+<div class="animate-fade-in">
+  Fade in box
+</div>
+
+<div class="animate-slide-in-bottom animate-delay-300 animate-duration-slow">
+  Slow animation after 300ms to slide in from bottom
+</div>
+```
+
 ## Contributors
 
 <a href="https://github.com/midudev/tailwind-animations/graphs/contributors">
