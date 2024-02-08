@@ -9,30 +9,30 @@ const { animation } = theme
 ---
 
 <Layout
-  title='midudev Tailwind CSS Animations Plugin: Community-Powered Animation Magic'
+  title='Tailwind CSS Animations Plugin: Community-Powered Animation Magic'
 >
   <wc-toast></wc-toast>
   <main class='pb-20'>
     <header
-      class='max-w-4xl mx-auto flex items-center justify-center py-10 flex-col'
+      class='mx-auto flex max-w-4xl flex-col items-center justify-center py-10'
     >
       <span
-        class='inline-flex justify-center items-center rounded bg-black/10 font-medium px-2 py-1 text-xs'
+        class='inline-flex items-center justify-center rounded bg-black/10 px-2 py-1 text-xs font-medium'
         >v.0.0.4</span
       >
-      <h1 class='font-semibold text-4xl'>tailwind css animations</h1>
+      <h1 class='text-4xl font-semibold'>tailwind css animations</h1>
       <h2 class='font-medium opacity-70'>the plugin that you need! =)</h2>
       <div class='mt-10'>
         <div
-          class='flex text-center items-center w-full max-w-md pl-4 pr-1 py-1 bg-black/50 backdrop-blur text-white rounded-full gap-x-2'
+          class='flex w-full max-w-md items-center gap-x-2 rounded-full bg-black/50 py-1 pl-4 pr-1 text-center text-white backdrop-blur'
         >
           <pre
-            class='text-sm flex'>
+            class='flex text-sm'>
             <code>npm install @midudev/tailwind-animations</code>
           </pre>
           <button
             id='copyNpmInstall'
-            class='inline-flex items-center justify-center whitespace-nowrap rounded-full bg-white/10 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none size-7'
+            class='ring-offset-background focus-visible:ring-ring inline-flex size-7 items-center justify-center whitespace-nowrap rounded-full bg-white/10 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none'
           >
             <CopyIcon />
           </button>
@@ -41,20 +41,20 @@ const { animation } = theme
     </header>
 
     <section
-      class='px-4 max-w-4xl m-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4'
+      class='m-auto grid max-w-4xl grid-cols-2 gap-4 px-4 sm:grid-cols-3 lg:grid-cols-4'
     >
       {
         Object.keys(animation).map((animationKey) => {
           return (
             <article
-              class='animate-duration-1000 col-span-1 border rounded border-gray-200 hover:border-gray-400 hover:shadow transition-colors cursor-crosshair relative bg-white/10 backdrop-blur-sm'
+              class='relative col-span-1 cursor-crosshair rounded border border-gray-200 bg-white/10 backdrop-blur-sm transition-colors animate-duration-1000 hover:border-gray-400 hover:shadow'
               data-class={animationKey}
             >
-              <div class='p-4 flex gap-4 items-center justify-center flex-col w-full h-full'>
-                <span class='w-16 h-16 bg-zinc-600 rounded-md flex items-center justify-center' />
-                <p class='font-semibold text-sm opacity-80'>{animationKey}</p>
+              <div class='flex h-full w-full flex-col items-center justify-center gap-4 p-4'>
+                <span class='flex h-16 w-16 items-center justify-center rounded-md bg-zinc-600' />
+                <p class='text-sm font-semibold opacity-80'>{animationKey}</p>
               </div>
-              <button class='absolute top-2 right-2'>
+              <button class='absolute right-2 top-2'>
                 <CopyIcon />
               </button>
             </article>
@@ -64,7 +64,7 @@ const { animation } = theme
     </section>
 
     <footer
-      class='max-w-2xl text-sm pt-20 pb-10 mx-auto text-center px-4 opacity-60 flex justify-center items-center'
+      class='mx-auto flex max-w-2xl items-center justify-center px-4 pb-10 pt-20 text-center text-sm opacity-60'
     >
       <p>
         Based on <a
