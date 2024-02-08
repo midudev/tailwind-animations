@@ -5,6 +5,7 @@ import theme from '../../../src/theme.js'
 
 import CopyIcon from '@components/icons/copy.astro'
 import { Code } from 'astro:components'
+import Github from '@components/icons/github.astro'
 
 const { animation } = theme
 ---
@@ -17,10 +18,19 @@ const { animation } = theme
     <header
       class='mx-auto flex max-w-4xl flex-col items-center justify-center py-10'
     >
-      <span
-        class='inline-flex items-center justify-center rounded bg-black/10 px-2 py-1 text-xs font-medium'
-        >v.0.0.4</span
+      <div
+        class='flex items-center justify-center gap-x-2 *:inline-flex *:items-center *:justify-center *:rounded *:bg-black/10 *:px-2 *:py-1 *:text-xs *:font-medium'
       >
+        <span>v.0.0.4</span>
+        <a
+          href='https://github.com/midudev/tailwind-animations'
+          target='_blank'
+          rel='noopener noreferrer'
+          class='transition-colors ease-in-out hover:bg-black/20'
+        >
+          <Github class='size-4' />
+        </a>
+      </div>
       <h1 class='text-4xl font-semibold'>tailwind css animations</h1>
       <h2 class='font-medium opacity-70'>the plugin that you need! =)</h2>
       <div class='mt-10'>
