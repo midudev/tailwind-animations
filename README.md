@@ -20,18 +20,27 @@ CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.1-blue?style=for-the-badge&
 Get your animations easily done with only Tailwind CSS classes.
 
 Visit the [website](https://github.com/midudev/tailwind-animations) to get more information.
+</div>
 
-## Installation
+## Installation :book:
+#### Package install
+> Install the package with your favorite package manager:
 
-Install the package with your favorite package manager:
-
-```sh
+- npm
+```bash
 $ npm install @midudev/tailwind-animations
-$ pnpm add @midudev/tailwind-animations
+```
+- pnpm
+```bash
+$ pnpm install @midudev/tailwind-animations
+```
+- yarn
+```bash
 $ yarn add @midudev/tailwind-animations
 ```
-
-Use the plugin in your Tailwind configuration:
+---
+#### Plugin Implementation
+> Use the plugin in your Tailwindcss project:
 
 ```js
 // tailwind.config.mjs
@@ -45,9 +54,11 @@ export default {
 }
 ```
 
-## Usage
 
-Here are some simple examples of how to use this plugin and its animations:
+## Usage :gear:
+#### Example
+> Here are some simple examples of how to use this plugin and its animations:
+
 
 ```html
 <div class="animate-fade-in">
@@ -59,10 +70,10 @@ Here are some simple examples of how to use this plugin and its animations:
 </div>
 ```
 
-## Contributors
+
+## Contributors 👑
 
 <a href="https://github.com/midudev/tailwind-animations/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=midudev/tailwind-animations" />
 </a>
 
-</div>
