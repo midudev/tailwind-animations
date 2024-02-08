@@ -22,8 +22,13 @@ Get your animations easily done with only Tailwind CSS classes.
 Visit the [website](https://github.com/midudev/tailwind-animations) to get more information.
 </div>
 
+<div align="center">
+  
 ## Installation :book:
 #### Package install
+
+</div>
+
 > Install the package with your favorite package manager:
 =======
 Visit the [website](https://tailwindcss-animations.vercel.app/) to get more information.
@@ -76,10 +81,11 @@ export default {
 </div>
 ```
 
-
-## Contributors 👑
+</div>
 
 <div align="center">
+
+## Contributors 👑
   
 <a href="https://github.com/midudev/tailwind-animations/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=midudev/tailwind-animations" />
