@@ -1,4 +1,6 @@
-<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="32" height="32">
+    
     <style>
         path { fill: #000; }
         @media (prefers-color-scheme: dark) {
