@@ -25,6 +25,7 @@ const { version } = pkg
       >
         <span>v.{version}</span>
         <a
+          aria-label="View website repository on GitHub"
           href='https://github.com/midudev/tailwind-animations'
           target='_blank'
           rel='noopener noreferrer'
@@ -48,6 +49,7 @@ const { version } = pkg
           </pre>
           <button
             id='copyNpmInstall'
+            aria-label="Copy npm install command"
             class='ring-offset-background focus-visible:ring-ring inline-flex size-7 items-center justify-center whitespace-nowrap rounded-full bg-white/10 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none'
           >
             <CopyIcon />
@@ -86,7 +88,7 @@ export default {
                 <span class='flex h-16 w-16 items-center justify-center rounded-md bg-zinc-600' />
                 <p class='text-sm font-semibold opacity-80'>{animationKey}</p>
               </div>
-              <button class='absolute right-2 top-2'>
+              <button aria-label={`Copy ${animationKey.split("-").join(" ")} animation`} class='absolute right-2 top-2'>
                 <CopyIcon />
               </button>
             </article>
