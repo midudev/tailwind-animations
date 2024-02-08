@@ -29,16 +29,3 @@ información.
 </a>
 
 </div>
-
-## POR HACER
-
-- [X] Hacer un README increíble
-- [X] Copiar código al hacer click
-- [X] steps de las animations
-- [X] play-state animation
-- [ ] steps de las animations
-- [X] animation-iteration-count (none, once, infinite, twice, thrice)
-- [X] animation-fill-mode (none, forwards, backwards, both)
-- [X] animation-direction (normal, reverse, alternate, alternate-reverse)
-- [X] animation-timing-function (ease, ease-in, ease-out, ease-in-out, linear, cubic-bezier)
-- [ ] animation-iteration-count (number, infinite)
