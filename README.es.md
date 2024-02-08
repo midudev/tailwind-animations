@@ -34,6 +34,7 @@ información.
 
 - [X] Hacer un README increíble
 - [X] Copiar código al hacer click
+- [X] steps de las animations
 - [X] play-state animation
 - [ ] steps de las animations
 - [X] animation-iteration-count (none, once, infinite, twice, thrice)

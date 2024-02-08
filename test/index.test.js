@@ -96,6 +96,21 @@ describe('tailwindcss-animations plugins', () => {
     expect(css).toMatch('.animate-fill-mode-forwards{animation-fill-mode:forwards}')
   })
 
+  it('use not custom animation steps', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-steps-retro">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-steps-retro{animation-timing-function:steps(8)}')
+  })
+  it('use a custom animation steps', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-steps-[33]">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-steps-\\[33\\]{animation-timing-function:steps(33)}')
+  })
+
   it('use a play state animation play', async () => {
     const css = await generatePluginCSS({
       content: '<div class="animate-play-paused">Hello</div>'
@@ -103,7 +118,4 @@ describe('tailwindcss-animations plugins', () => {
 
     expect(css).toMatch('.animate-play-paused{animation-play-state:paused}')
   })
-
-
-
 })
