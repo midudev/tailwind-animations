@@ -64,6 +64,24 @@ describe('tailwindcss-animations plugins', () => {
     expect(css).toMatch('.animate-linear{animation-timing-function:linear}')
   })
 
+  it('use a bezier curve as a timing function animation', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-bezier-sine-in">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-bezier-sine-in{animation-timing-function:cubic-bezier(0.12,0,0.39,0)}')
+  })
+
+  it('use a custom bezier curve as a timing function animation', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-bezier-[cubic-bezier(0,0,0,0)]">Hello</div>'
+    })
+
+    expect(css).toMatch(
+      '.animate-bezier-\\[cubic-bezier\\(0\\2c 0\\2c 0\\2c 0\\)\\]{animation-timing-function:cubic-bezier(0,0,0,0)}'
+    )
+  })
+
   it('use a custom animation iteration count', async () => {
     const css = await generatePluginCSS({
       content: '<div class="animate-iteration-count-twice">Hello</div>'
@@ -94,5 +112,28 @@ describe('tailwindcss-animations plugins', () => {
     })
 
     expect(css).toMatch('.animate-fill-mode-forwards{animation-fill-mode:forwards}')
+  })
+
+  it('use not custom animation steps', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-steps-retro">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-steps-retro{animation-timing-function:steps(8)}')
+  })
+  it('use a custom animation steps', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-steps-[33]">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-steps-\\[33\\]{animation-timing-function:steps(33)}')
+  })
+
+  it('use a play state animation play', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-play-paused">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-play-paused{animation-play-state:paused}')
   })
 })

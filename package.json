@@ -5,7 +5,10 @@
   "main": "./src/index.js",
   "type": "module",
   "scripts": {
-    "test": "vitest"
+    "lint": "standard ./src",
+    "lint:fix": "standard --fix ./src",
+    "test": "vitest",
+    "test:ci": "vitest run"
   },
   "keywords": [],
   "author": "Miguel Ángel Durán (@midudev) & su maravillosa comunidad",
