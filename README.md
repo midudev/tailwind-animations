@@ -27,8 +27,6 @@ Visit the [website](https://github.com/midudev/tailwind-animations) to get more 
 #### Package install
 
 > Install the package with your favorite package manager:
-=======
-Visit the [website](https://tailwindcss-animations.vercel.app/) to get more information.
 
 - npm
 ```bash
