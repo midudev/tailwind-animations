@@ -10,6 +10,7 @@ const pluginCreator = api => {
     'animate-duration': { css: 'animation-duration', values: theme('animationDuration') },
     'animate-iteration-count': { css: 'animation-iteration-count', values: theme('animationIterationCount') },
     'animate-fill-mode': { css: 'animation-fill-mode', values: theme('animationFillMode') },
+    'animate-bezier': { css: 'animation-timing-function', values: theme('animationCubicBezier') },
     'animate-steps': { css: 'animation-timing-function', values: theme('animationSteps'), generateValue: value => `steps(${value})` }
   }
 
