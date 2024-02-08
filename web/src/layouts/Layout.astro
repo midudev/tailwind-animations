@@ -10,10 +10,20 @@ const { title } = Astro.props
 <html lang='en'>
   <head>
     <meta charset='UTF-8' />
-    <meta name='description' content='Astro description' />
+    <meta
+      name='description'
+      content='Tailwind plugin to add easily animations to your website'
+    />
     <meta name='viewport' content='width=device-width' />
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <meta name='generator' content={Astro.generator} />
+    <meta name='theme-color' content='#0099ff' />
+    <meta name='og:title' content={title} />
+    <meta
+      name='og:description'
+      content='Tailwind plugin to add easily animations to your website'
+    />
+    <meta name='og:image' content='/og.jpg' />
+    <meta name='twitter:card' content='summary_large_image' />
     <title>{title}</title>
   </head>
   <body>
