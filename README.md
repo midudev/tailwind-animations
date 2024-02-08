@@ -57,7 +57,9 @@ export default {
 ```
 
 <div align="center">
+
 ## Usage :gear:
+
 #### Example
 
 > Here are some simple examples of how to use this plugin and its animations:
