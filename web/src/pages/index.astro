@@ -150,6 +150,25 @@ export default {
 
   const $animateAll: HTMLInputElement = document.querySelector('#animate')!
 
+  // functions to use as events handlers
+  // created to add and remove the events depending on the toggle
+  function handleMouseEnter(this:HTMLElement) {
+    const animationKey = this.getAttribute('data-class')    
+    const animationClass = `animate-${animationKey}`
+    const $box = this.querySelector('span')
+    if ($box == null) return
+    $box.classList.add(animationClass)
+    
+  }
+  function handleMouseLeave(this:HTMLElement): void{
+    const animationKey = this.getAttribute('data-class')    
+    const animationClass = `animate-${animationKey}`
+    const $box = this.querySelector('span')
+    if ($box == null) return
+    $box.classList.remove(animationClass)
+  }
+
+
   $animateAll.addEventListener('change', () => {
     $articles.forEach(($article) => {
       const animationKey = $article.getAttribute('data-class')
@@ -159,9 +178,13 @@ export default {
       if ($box == null) return
 
       if ($animateAll.checked) {
+        $article.removeEventListener('mouseenter',  handleMouseEnter)
+        $article.removeEventListener('mouseleave',  handleMouseLeave)
         $box.classList.add(animationClass)
         $box.style.animationIterationCount = 'infinite'
       } else {
+        $article.addEventListener('mouseenter',  handleMouseEnter)
+        $article.addEventListener('mouseleave', handleMouseLeave)
         $box.classList.remove(animationClass)
         $box.style.animationIterationCount = 'unset'
       }
@@ -171,17 +194,9 @@ export default {
   $articles.forEach(($article) => {
     const animationKey = $article.getAttribute('data-class')
     const animationClass = `animate-${animationKey}`
-    const $box = $article.querySelector('span')
 
-    if ($box == null) return
-
-    $article.addEventListener('mouseenter', () => {
-      $box.classList.add(animationClass)
-    })
-
-    $article.addEventListener('mouseleave', () => {
-      $box.classList.remove(animationClass)
-    })
+    $article.addEventListener('mouseenter',  handleMouseEnter)
+    $article.addEventListener('mouseleave', handleMouseLeave)
 
     $article.addEventListener('click', () => {
       navigator.clipboard.writeText(animationClass)
