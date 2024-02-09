@@ -1,5 +1,3 @@
-<div align="center">
-
 # Awesome Tailwind Animations
 
 [![en](https://img.shields.io/badge/lang-en-red.svg)](./README.md)
@@ -67,5 +65,3 @@ Here are some simple examples of how to use this plugin and its animations:
 <a href="https://github.com/midudev/tailwind-animations/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=midudev/tailwind-animations" />
 </a>
-
-</div>
