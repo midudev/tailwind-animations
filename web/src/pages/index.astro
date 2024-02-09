@@ -150,6 +150,24 @@ export default {
 
   const $animateAll: HTMLInputElement = document.querySelector('#animate')!
 
+  $animateAll.addEventListener('change', () => {
+    $articles.forEach(($article) => {
+      const animationKey = $article.getAttribute('data-class')
+      const animationClass = `animate-${animationKey}`
+      const $box = $article.querySelector('span')
+
+      if ($box == null) return
+
+      if ($animateAll.checked) {
+        $box.classList.add(animationClass)
+        $box.style.animationIterationCount = 'infinite'
+      } else {
+        $box.classList.remove(animationClass)
+        $box.style.animationIterationCount = 'unset'
+      }
+    })
+  })
+
   $articles.forEach(($article) => {
     const animationKey = $article.getAttribute('data-class')
     const animationClass = `animate-${animationKey}`
@@ -163,16 +181,6 @@ export default {
 
     $article.addEventListener('mouseleave', () => {
       $box.classList.remove(animationClass)
-    })
-
-    $animateAll.addEventListener('change', () => {
-      if ($animateAll.checked) {
-        $box.classList.add(animationClass)
-        $box.style.animationIterationCount = 'infinite'
-      } else {
-        $box.classList.remove(animationClass)
-        $box.style.animationIterationCount = 'unset'
-      }
     })
 
     $article.addEventListener('click', () => {
