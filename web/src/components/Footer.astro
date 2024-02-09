@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets'
+import logo from '@assets/images/logo.png'
+---
+
+<footer class='relative bg-andromeeda-700'>
+  <svg
+    class='absolute top-0 -mt-5 h-6 w-full text-andromeeda-700'
+    preserveAspectRatio='none'
+    viewBox='0 0 1440 54'
+  >
+    <path
+      fill='currentColor'
+      d='M0 22L120 16.7C240 11 480 1.00001 720 0.700012C960 1.00001 1200 11 1320 16.7L1440 22V54H1320C1200 54 960 54 720 54C480 54 240 54 120 54H0V22Z'
+    ></path>
+  </svg>
+  <div
+    class='relative mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 lg:pt-24'
+  >
+    <div class='lg:flex lg:items-end lg:justify-between'>
+      <div>
+        <div class='flex justify-center'>
+          <Image
+            src={logo}
+            alt='Banner Of Tailwind CSS Animations Plugin'
+            format='webp'
+            class='mb-4 mix-blend-screen'
+            draggable='false'
+            height={150}
+          />
+        </div>
+        <div class='mx-auto max-w-md text-center leading-relaxed lg:text-left'>
+          <h3 class='text-gray-500'>
+            Tailwind plugin to add easily animations to your website
+          </h3>
+          <span class='text-gray-500'>Based on</span>
+          <a
+            class='text-gray-400 underline duration-300 hover:text-gray-300'
+            href='https://animation.ibelick.com/'
+            target='_blank'
+            rel='noopener noreferrer'>Julien Thibeaut Tailwind animations</a
+          >
+        </div>
+      </div>
+    </div>
+    <p class='mt-12 text-center text-sm text-gray-500 lg:text-right'>
+      Copyright &copy; {new Date().getFullYear()}. All rights reserved.
+    </p>
+  </div>
+</footer>

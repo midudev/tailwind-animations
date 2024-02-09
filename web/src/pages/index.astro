@@ -1,13 +1,13 @@
 ---
+import Codex from '@components/codex/Codex.astro'
 import Layout from '@layouts/Layout.astro'
+import Github from '@components/icons/Github.astro'
+import Card from '@components/Card.astro'
+import { Image } from 'astro:assets'
+import banner from '@assets/images/banner.png'
 
 import pkg from '../../../package.json'
 import theme from '../../../src/theme.js'
-
-import CopyIcon from '@components/icons/copy.astro'
-import { Code } from 'astro:components'
-import Github from '@components/icons/github.astro'
-
 const { animation } = theme
 const { version } = pkg
 ---
@@ -16,140 +16,80 @@ const { version } = pkg
   title='Tailwind CSS Animations Plugin: Community-Powered Animation Magic'
 >
   <wc-toast></wc-toast>
-  <main class='pb-20'>
-    <header
-      class='mx-auto flex max-w-4xl flex-col items-center justify-center py-10'
-    >
-      <div
-        class='flex items-center justify-center gap-x-2 *:inline-flex *:items-center *:justify-center *:rounded *:bg-black/10 *:px-2 *:py-1 *:text-xs *:font-medium'
-      >
-        <span>v.{version}</span>
-        <a
-          href='https://github.com/midudev/tailwind-animations'
-          target='_blank'
-          rel='noopener noreferrer'
-          class='transition-colors ease-in-out hover:bg-black/20'
-        >
-          <Github class='size-4' />
-        </a>
-      </div>
-      <h1 class='text-4xl font-semibold'>tailwind css animations</h1>
-      <h2 class='font-medium opacity-70'>the plugin that you need! =)</h2>
-      <div class='mt-10'>
-        <span class='mb-1 text-xs font-semibold opacity-50'
-          >1. Install the dependency</span
-        >
-        <div
-          class='flex w-full max-w-md items-center justify-between gap-x-2 rounded-xl bg-[#1e1e1e] py-1 pl-4 pr-1 text-center text-white backdrop-blur'
-        >
-          <pre
-            class='flex text-sm'>
-            <Code code='npm install @midudev/tailwind-animations' theme="dark-plus" />
-          </pre>
-          <button
-            id='copyNpmInstall'
-            class='ring-offset-background focus-visible:ring-ring inline-flex size-7 items-center justify-center whitespace-nowrap rounded-full bg-white/10 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none'
+  <main class='pb-32'>
+    <header class='mx-auto flex flex-col items-center justify-center py-10'>
+      <div class='flex flex-col items-end justify-center gap-x-2'>
+        <Image
+          src={banner}
+          alt='Banner Of Tailwind CSS Animations Plugin'
+          format='webp'
+          class='mb-4 mix-blend-screen scale-110'
+          draggable='false'
+          height={350}
+        />
+        <h1 class='sr-only'>tailwind css animations</h1>
+        <div class='-mt-10 sm:-mt-20 flex gap-x-2'>
+          <h2 class='select-none font-medium opacity-70'>
+            the plugin that you need! =)
+          </h2>
+          <span
+            class='inline-flex select-none items-center justify-center rounded-lg bg-[#23262E] px-2 py-1 text-xs font-medium'
+            >v.{version}</span
           >
-            <CopyIcon />
-          </button>
+          <a
+            href='https://github.com/midudev/tailwind-animations'
+            target='_blank'
+            aria-label='Github repository'
+            title='Github repository'
+            rel='noopener noreferrer'
+            class='inline-flex select-none items-center justify-center rounded-lg bg-[#23262E] px-2 py-1 text-xs font-medium'
+          >
+            <Github class='size-4' />
+          </a>
         </div>
-        <span class='mb-1 mt-4 block text-left text-xs font-semibold opacity-50'
-          >2. Add to your configuration</span
-        >
-        <div
-          class='flex w-full max-w-md items-center gap-x-2 rounded-xl bg-[#1e1e1e] py-3 pl-4 pr-4 text-center text-white backdrop-blur'
-        >
-          <pre
-            class='flex text-left text-xs'>
-            <Code theme="dark-plus" lang="js" code={`import animations from '@midudev/tailwind-animations'
+      </div>
+      <div class='mt-10 max-w-full'>
+        <Codex
+          label='1. Install the dependency'
+          style='bg-andromeeda-500'
+          theme='andromeeda'
+          code='npm install @midudev/tailwind-animations'
+          CopyToClipboard
+        />
+        <Codex
+          label='2. Add to your configuration'
+          style='bg-andromeeda-500'
+          theme='andromeeda'
+          lang='js'
+          code={`import animations from '@midudev/tailwind-animations'
 
 export default {
   // ...rest of the options
   plugins: [animations],
-}`} />
-          </pre>
-        </div>
+}`}
+          CopyToClipboard
+        />
       </div>
     </header>
 
     <section
-      class='m-auto grid max-w-4xl grid-cols-2 gap-4 px-4 sm:grid-cols-3 lg:grid-cols-4'
+      id='cards-container'
+      class='group/card m-auto grid grid-cols-responsive-175 gap-4'
     >
       {
-        Object.keys(animation).map((animationKey) => {
-          return (
-            <article
-              class='relative col-span-1 cursor-crosshair rounded border border-gray-200 bg-white/10 backdrop-blur-sm transition-colors animate-duration-1000 hover:border-gray-400 hover:shadow'
-              data-class={animationKey}
-            >
-              <div class='flex h-full w-full flex-col items-center justify-center gap-4 p-4'>
-                <span class='flex h-16 w-16 items-center justify-center rounded-md bg-zinc-600' />
-                <p class='text-sm font-semibold opacity-80'>{animationKey}</p>
-              </div>
-              <button class='absolute right-2 top-2'>
-                <CopyIcon />
-              </button>
-            </article>
-          )
-        })
+        Object.keys(animation).map((animationKey) => (
+          <Card animationKey={animationKey} />
+        ))
       }
     </section>
-
-    <footer
-      class='mx-auto flex max-w-2xl items-center justify-center px-4 pb-10 pt-20 text-center text-sm opacity-60'
-    >
-      <p>
-        Based on <a
-          href='https://animation.ibelick.com/'
-          target='_blank'
-          rel='noopener noreferrer'>Julien Thibeaut Tailwind animations</a
-        >
-      </p>
-    </footer>
   </main>
 </Layout>
 
-<script>
-  import { toast } from 'wc-toast'
-
-  const $articles = document.querySelectorAll('article')
-
-  $articles.forEach(($article) => {
-    const animationKey = $article.getAttribute('data-class')
-    const animationClass = `animate-${animationKey}`
-    const $box = $article.querySelector('span')
-
-    if ($box == null) return
-
-    $article.addEventListener('mouseenter', () => {
-      $box.classList.add(animationClass)
-    })
-
-    $article.addEventListener('mouseleave', () => {
-      $box.classList.remove(animationClass)
-    })
-
-    $article.addEventListener('click', () => {
-      navigator.clipboard.writeText(animationClass)
-      toast('Copied to clipboard!', {
-        theme: {
-          type: 'light'
-        }
-      })
-    })
-  })
-
-  const $copyNpmInstall = document.getElementById(
-    'copyNpmInstall'
-  ) as HTMLButtonElement
-
-  $copyNpmInstall.addEventListener('click', () => {
-    const npmCommand = 'npm install @midudev/tailwind-animations'
-    navigator.clipboard.writeText(npmCommand)
-    toast('Copied to clipboard!', {
-      theme: {
-        type: 'light'
-      }
-    })
-  })
-</script>
+<style is:global>
+  html::-webkit-scrollbar {
+    @apply w-2 bg-andromeeda-700;
+  }
+  html::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-cyan-500;
+  }
+</style>

@@ -1,0 +1,73 @@
+---
+import CopyIcon from '@components/icons/Copy.astro'
+
+interface Props {
+  animationKey: string
+}
+
+const { animationKey } = Astro.props
+---
+
+<article
+  id='card-children'
+  class='card relative flex aspect-square cursor-pointer flex-col overflow-hidden rounded-2xl bg-andromeeda-400 animate-duration-1000 before:absolute before:left-0 before:top-0 before:z-[3] before:h-full before:w-full before:rounded-[inherit] before:opacity-0 before:blur-xl before:transition-opacity before:duration-300 before:content-[""] before:[background:radial-gradient(400px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.2),transparent_40%)] after:absolute after:left-0 after:top-0 after:z-[1] after:h-full after:w-full after:rounded-[inherit] after:opacity-0 after:transition-opacity after:duration-300 after:content-[""] after:[background:radial-gradient(300px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.6),transparent_40%)] before:hover:opacity-100 group-hover/card:after:opacity-100'
+  data-class={animationKey}
+>
+  <div
+    class='card-content absolute inset-[1px] z-[2] flex flex-col rounded-[inherit] bg-andromeeda-500 p-2'
+  >
+    <div
+      class='z-10 flex h-full w-full flex-col items-center justify-center gap-4 p-4'
+    >
+      <span
+        class='z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-andromeeda-200 shadow-[0_0_0.5rem_0.1rem] shadow-andromeeda-200/30'
+      ></span>
+      <p class='text-sm font-semibold opacity-80'>{animationKey}</p>
+    </div>
+    <button class='absolute right-3 top-3'>
+      <CopyIcon />
+    </button>
+  </div>
+</article>
+
+<script>
+  import { copyToClipboard } from '@utils/utils'
+
+  const $articles = document.querySelectorAll('article')
+
+  $articles.forEach(($article) => {
+    const animationKey = $article.getAttribute('data-class')
+    const animationClass = `animate-${animationKey}`
+    const $box = $article.querySelector('span') as HTMLSpanElement
+
+    $article.addEventListener('mouseenter', () => {
+      $box.classList.add(animationClass)
+    })
+
+    $article.addEventListener('mouseleave', () => {
+      $box.classList.remove(animationClass)
+    })
+
+    $article.addEventListener('click', () => {
+      copyToClipboard(animationClass)
+    })
+  })
+
+  const $cardsContainer = document.getElementById(
+    'cards-container'
+  ) as HTMLDivElement
+  const $cardsChildren = document.querySelectorAll(
+    '#card-children'
+  ) as NodeListOf<HTMLDivElement>
+
+  $cardsContainer.onmousemove = (e) => {
+    $cardsChildren.forEach(($card) => {
+      const rect = $card.getBoundingClientRect(),
+        x = e.clientX - rect.left,
+        y = e.clientY - rect.top
+
+      $card.style.setProperty('--mouse-x', `${x}px`)
+      $card.style.setProperty('--mouse-y', `${y}px`)
+    })
+  }
+</script>

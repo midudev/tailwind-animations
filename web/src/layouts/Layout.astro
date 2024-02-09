@@ -1,41 +1,86 @@
 ---
+import '@fontsource/poppins'
+import Footer from '@components/Footer.astro'
+import ScrollToTop from '@components/ScrollToTop.astro'
+import { SEO } from 'astro-seo'
+import Background from '@components/Background.astro'
 interface Props {
   title: string
 }
 
 const { title } = Astro.props
+const url = Astro.url
+const description = 'Tailwind plugin to add easily animations to your website'
 ---
 
-<!doctype html>
 <html lang='en'>
   <head>
     <meta charset='UTF-8' />
-    <meta
-      name='description'
-      content='Tailwind plugin to add easily animations to your website'
+    <SEO
+      {title}
+      {description}
+      openGraph={{
+        image: {
+          url: `${url}cover.png`,
+          type: 'image/webp',
+          width: 1200,
+          height: 630,
+          alt: 'Cover Tailwind CSS Animations Plugin'
+        },
+        basic: {
+          title: title,
+          type: 'website',
+          image: `${url}cover.png`
+        }
+      }}
+      twitter={{
+        title: title,
+        image: `${url}cover.png`,
+        creator: '@marcosbonilla29',
+        description: description,
+        site: `${url}`,
+        card: 'summary_large_image',
+        imageAlt: 'Cover Tailwind CSS Animations Plugin'
+      }}
+      extend={{
+        link: [{ rel: 'icon', href: '/favicon.png' }],
+        meta: [
+          {
+            name: 'viewport',
+            content: 'width=device-width, initial-scale=1.0'
+          },
+          {
+            name: 'twitter:image',
+            content: `${url}cover.png`
+          },
+          { name: 'twitter:title', content: title },
+          { name: 'twitter:description', content: description },
+          {
+            name: 'keywords',
+            content:
+              'tailwind, css, plugin, ui, ux, animation, animations, tailwindcss, astro, react, vue, svelte, transition'
+          },
+          { name: 'language', content: 'english' },
+          { name: 'apple-mobile-web-app-capable', content: 'yes' },
+          { name: 'robots', content: 'index, follow' },
+          {
+            name: 'apple-mobile-web-app-status-bar-style',
+            content: 'black-translucent'
+          },
+          { httpEquiv: 'cache-control', content: 'no-cache' },
+          { httpEquiv: 'expires', content: '180' },
+          { name: 'theme-color', content: '#202020' },
+          { name: 'msapplication-navbutton-color', content: '#202020' }
+        ]
+      }}
     />
-    <meta name='viewport' content='width=device-width' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <meta name='theme-color' content='#0099ff' />
-    <meta name='og:title' content={title} />
-    <meta
-      name='og:description'
-      content='Tailwind plugin to add easily animations to your website'
-    />
-    <meta name='og:image' content='/og.jpg' />
-    <meta name='twitter:card' content='summary_large_image' />
-    <title>{title}</title>
   </head>
-  <body>
-    <div
-      class='absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]'
-    >
-      <div
-        class='absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-sky-400 opacity-20 blur-[100px]'
-      >
-      </div>
+  <body class='overflow-x-hidden bg-andromeeda-600 font-[Poppins] text-white'>
+    <div class='m-auto max-w-4xl px-6 sm:px-8'>
+      <slot />
     </div>
-    <slot />
+    <ScrollToTop />
+    <Footer />
+    <Background />
   </body>
 </html>
-<style is:global></style>

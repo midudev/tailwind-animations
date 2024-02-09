@@ -1,0 +1,45 @@
+<div id='container' class='absolute left-0 top-0 z-50 pointer-events-none'></div>
+
+<style is:global>
+  .particle {
+    @apply absolute rounded-full bg-cyan-500;
+  }
+</style>
+
+<script>
+  const $container = document.getElementById('container') as HTMLDivElement
+
+  Array.from({ length: 15 }).forEach((_, i) => {
+    const $particle = document.createElement('div') as HTMLDivElement
+    $particle.className = 'particle'
+
+    const size = Math.random() * 2 + 1.5 + 'px'
+    const opacity = String(Math.random())
+    const duration = Math.random() * 60 + 's'
+    const delay = Math.random() * -1 + 's'
+    const startTransform = `translate3d(${Math.random() * 100}vw, ${Math.random() * 100}vh, ${Math.random() * 100}px)`
+    const endTransform = `translate3d(${Math.random() * 100}vw, ${Math.random() * 100}vh, ${Math.random() * 100}px)`
+
+    $particle.style.width = size
+    $particle.style.height = size
+    $particle.style.opacity = opacity
+    $particle.style.animationDuration = duration
+    $particle.style.animationDelay = delay
+    $particle.style.transform = startTransform
+
+    $container.appendChild($particle)
+
+    const animation = $particle.animate(
+      [{ transform: startTransform }, { transform: endTransform }],
+      {
+        duration: parseInt(duration) * 1000,
+        iterations: Infinity,
+        delay: parseInt(delay) * 1000
+      }
+    )
+
+    animation.onfinish = () => {
+      $container.removeChild($particle)
+    }
+  })
+</script>

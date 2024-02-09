@@ -71,18 +71,14 @@ export default {
     'slide-up-fade': 'slide-up-fade 0.6s ease-out both',
     'bounce-fade-in': 'bounce-fade-in 0.6s ease-out both',
     'swing-drop-in': 'swing-drop-in 0.6s ease-out both',
-    'background-shine': 'background-shine 2s linear infinite both',
-    'pulse-fade-in': 'pulse-fade-in 0.6s ease-out both'
+    'pulse-fade-in': 'pulse-fade-in 0.6s ease-out both',
+    'color-shift': 'color-shift 3s linear infinite',
+    'slide-flip': 'slide-flip 2s infinite both',
+    'scale-jump': 'scale-jump 1s both',
+    'rotate-skew': 'rotate-skew 2s infinite both',
+    levitate: 'levitate 2s ease-in-out infinite alternate'
   },
   keyframes: {
-    'background-shine': {
-      from: {
-        backgroundPosition: '0 0'
-      },
-      to: {
-        backgroundPosition: '-200% 0'
-      }
-    },
     'fade-in': {
       '0%': { opacity: '0' },
       '100%': { opacity: '1' }
@@ -416,6 +412,28 @@ export default {
       '0%': { transform: 'scale(0.9)', opacity: '0' },
       '50%': { transform: 'scale(1.05)', opacity: '0.5' },
       '100%': { transform: 'scale(1)', opacity: '1' }
+    },
+    'color-shift': {
+      '0%': { backgroundColor: 'red', filter: 'hue-rotate(0deg)' },
+      '100%': { backgroundColor: 'red', filter: 'hue-rotate(360deg)' }
+    },
+    'slide-flip': {
+      '0%': { transform: 'translateX(-100px) rotate(0deg)' },
+      '50%': { transform: 'translateX(0px) rotate(180deg)' },
+      '100%': { transform: 'translateX(100px) rotate(360deg)' }
+    },
+    'scale-jump': {
+      '0%, 100%': { transform: 'scale(1) translateY(0)' },
+      '50%': { transform: 'scale(1.5) translateY(-20px)' }
+    },
+    'rotate-skew': {
+      '0%': { transform: 'rotate(0deg) skew(0deg)' },
+      '50%': { transform: 'rotate(180deg) skew(20deg)' },
+      '100%': { transform: 'rotate(360deg) skew(0deg)' }
+    },
+    levitate: {
+      '0%': { transform: 'translateY(0)' },
+      '100%': { transform: 'translateY(-10px)' }
     }
   },
   animationDelay: {
@@ -426,11 +444,19 @@ export default {
     200: '200ms',
     250: '250ms',
     300: '300ms',
+    350: '350ms',
     400: '400ms',
+    450: '450ms',
     500: '500ms',
+    550: '550ms',
+    600: '600ms',
+    650: '650ms',
     700: '700ms',
+    750: '750ms',
     800: '800ms',
+    850: '850ms',
     900: '900ms',
+    950: '950ms',
     1000: '1000ms'
   },
   animationDuration: {
@@ -446,11 +472,19 @@ export default {
     200: '200ms',
     250: '250ms',
     300: '300ms',
+    350: '350ms',
     400: '400ms',
+    450: '450ms',
     500: '500ms',
+    550: '550ms',
+    600: '600ms',
+    650: '650ms',
     700: '700ms',
+    750: '750ms',
     800: '800ms',
+    850: '850ms',
     900: '900ms',
+    950: '950ms',
     1000: '1000ms'
   },
   animationSteps: {

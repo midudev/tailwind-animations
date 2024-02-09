@@ -11,17 +11,20 @@
 ![GitHub issues](https://img.shields.io/github/issues/midudev/tailwind-animations)
 ![GitHub Contributors](https://img.shields.io/github/contributors/midudev/tailwind-animations)
 
-![web](./lib/imgs/web.jpg)
+![web](./lib/images/screenshot.png)
 
 ![Tailwind
 CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.1-blue?style=for-the-badge&logo=tailwind-css)
-![Astro](https://img.shields.io/badge/Astro-4.3.3-orange?style=for-the-badge&logo=astro)
+![Astro
+](https://img.shields.io/badge/Astro-4.3.3-orange?style=for-the-badge&logo=astro)
+
+## 🌐 Overview
 
 Get your animations easily done with only Tailwind CSS classes.
 
 Visit the [website](https://github.com/midudev/tailwind-animations) to get more information.
 
-## Installation
+## 🚀 Installation
 
 Install the package with your favorite package manager:
 
@@ -45,7 +48,7 @@ export default {
 }
 ```
 
-## Usage
+## 💡 Usage
 
 Here are some simple examples of how to use this plugin and its animations:
 
@@ -59,7 +62,7 @@ Here are some simple examples of how to use this plugin and its animations:
 </div>
 ```
 
-## Contributors
+## 👥 Contributors
 
 <a href="https://github.com/midudev/tailwind-animations/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=midudev/tailwind-animations" />

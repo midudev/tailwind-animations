@@ -8,6 +8,12 @@
       ],
       "@layouts/*": [
         "src/layouts/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
       ]
     },
   }

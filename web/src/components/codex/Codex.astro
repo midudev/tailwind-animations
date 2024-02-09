@@ -1,0 +1,62 @@
+---
+import { Code } from 'astro:components'
+import CopyIcon from '@components/icons/Copy.astro'
+import { twMerge } from 'tailwind-merge'
+import type { ThemeType, LanguageType } from './codex.type'
+
+interface Props {
+  code: string
+  style?: string
+  theme?: ThemeType
+  lang?: LanguageType
+  label?: string
+  CopyToClipboard?: boolean
+}
+
+const { code, theme, style, label, lang, CopyToClipboard } = Astro.props
+---
+
+<span class='mb-1 select-none text-xs font-semibold opacity-50'>{label}</span>
+<div
+  id='snippet'
+  class={twMerge(
+    'flex text-sm w-full items-center justify-between gap-x-2 rounded-2xl bg-andromeeda-500 py-1 pl-4 pr-1 text-white',
+    style
+  )}
+>
+  <Code code={code} lang={lang} theme={theme} />
+  {
+    CopyToClipboard ? (
+      <button
+        title='Copy to clipboard'
+        class='copy mt-auto grid size-7 place-items-center rounded-full bg-white/10 text-sm'
+      >
+        <CopyIcon />
+      </button>
+    ) : null
+  }
+</div>
+
+<style is:global>
+  pre,
+  code {
+    @apply text-wrap;
+  }
+</style>
+
+<script>
+  import { copyToClipboard } from '@utils/utils'
+
+  const $snippets = document.querySelectorAll(
+    '#snippet'
+  ) as NodeListOf<HTMLButtonElement>
+
+  $snippets.forEach(($snippet) => {
+    const $copy = $snippet.querySelector('.copy') as HTMLButtonElement
+    const $code = $snippet.querySelector('pre code') as HTMLPreElement
+
+    $copy.addEventListener('click', () => {
+      copyToClipboard($code.textContent as string)
+    })
+  })
+</script>
