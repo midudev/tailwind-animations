@@ -7,6 +7,7 @@ import theme from '../../../src/theme.js'
 import CopyIcon from '@components/icons/copy.astro'
 import { Code } from 'astro:components'
 import Github from '@components/icons/github.astro'
+import ToggleTheme from '@components/ToggleTheme.astro'
 
 const { animation } = theme
 const { version } = pkg
@@ -23,6 +24,7 @@ const { version } = pkg
       <div
         class='flex items-center justify-center gap-x-2 *:inline-flex *:items-center *:justify-center *:rounded *:bg-black/10 *:px-2 *:py-1 *:text-xs *:font-medium'
       >
+      <ToggleTheme />
         <span>v.{version}</span>
         <a
           aria-label='View website repository on GitHub'
