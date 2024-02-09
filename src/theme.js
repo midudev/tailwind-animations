@@ -17,7 +17,7 @@ export default {
     bouncing: 'bouncing 1s ease-in-out both',
     swing: 'swing 1s ease-in-out both',
     wobble: 'wobble 1s ease-in-out both',
-    pulsar: 'pulsar 1s ease-in-out both',
+    pulsing: 'pulsing 1s ease-in-out both',
     shake: 'shake 0.5s ease-in-out both',
     tada: 'tada 1s ease-in-out both',
     jump: 'jump 1s ease-in-out both',
@@ -153,7 +153,7 @@ export default {
       '75%': { transform: 'translateX(-5%)' },
       '100%': { transform: 'translateX(0)' }
     },
-    pulsar: {
+    pulsing: {
       '0%': { transform: 'scale(1)' },
       '50%': { transform: 'scale(1.1)' },
       '100%': { transform: 'scale(1)' }
