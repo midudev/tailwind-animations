@@ -30,15 +30,15 @@ Visit the [website](https://tailwindcss-animations.vercel.app/) to get more info
 
 - npm
 ```bash
-$ npm install @midudev/tailwind-animations
+npm install @midudev/tailwind-animations
 ```
 - pnpm
 ```bash
-$ pnpm install @midudev/tailwind-animations
+pnpm install @midudev/tailwind-animations
 ```
 - yarn
 ```bash
-$ yarn add @midudev/tailwind-animations
+yarn add @midudev/tailwind-animations
 ```
 
 #### Plugin Implementation
