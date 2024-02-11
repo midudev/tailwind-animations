@@ -147,25 +147,36 @@ export default {
   import { toast } from 'wc-toast'
 
   const $articles = document.querySelectorAll('article')
+  const $animateAll = document.querySelector<HTMLInputElement>('#animate')!
 
-  const $animateAll: HTMLInputElement = document.querySelector('#animate')!
-
-  $articles.forEach(($article) => {
-    const animationKey = $article.getAttribute('data-class')
+  function handleMouseEnter(event) {
+    const animationKey = event.currentTarget.getAttribute('data-class')
     const animationClass = `animate-${animationKey}`
-    const $box = $article.querySelector('span')
+    const $box = event.currentTarget.querySelector('span')
 
     if ($box == null) return
 
-    $article.addEventListener('mouseenter', () => {
-      $box.classList.add(animationClass)
-    })
+    $box.classList.add(animationClass)
+  }
 
-    $article.addEventListener('mouseleave', () => {
-      $box.classList.remove(animationClass)
-    })
+  function handleMouseLeave(event) {
+    const animationKey = event.currentTarget.getAttribute('data-class')
+    const animationClass = `animate-${animationKey}`
+    const $box = event.currentTarget.querySelector('span')
 
-    $animateAll.addEventListener('change', () => {
+    if ($box == null) return
+
+    $box.classList.remove(animationClass)
+  }
+
+  function handleToggleChange() {
+    $articles.forEach(($article) => {
+      const animationKey = $article.getAttribute('data-class')
+      const animationClass = `animate-${animationKey}`
+      const $box = $article.querySelector('span')
+
+      if ($box == null) return
+
       if ($animateAll.checked) {
         $box.classList.add(animationClass)
         $box.style.animationIterationCount = 'infinite'
@@ -174,8 +185,24 @@ export default {
         $box.style.animationIterationCount = 'unset'
       }
     })
+  }
 
+  function handleCopyNpmInstall() {
+    const npmCommand = 'npm install @midudev/tailwind-animations'
+    navigator.clipboard.writeText(npmCommand)
+    toast('Copied to clipboard!', {
+      theme: {
+        type: 'light'
+      }
+    })
+  }
+
+  $articles.forEach(($article) => {
+    $article.addEventListener('mouseenter', handleMouseEnter)
+    $article.addEventListener('mouseleave', handleMouseLeave)
     $article.addEventListener('click', () => {
+      const animationKey = $article.getAttribute('data-class')
+      const animationClass = `animate-${animationKey}`
       navigator.clipboard.writeText(animationClass)
       toast('Copied to clipboard!', {
         theme: {
@@ -185,17 +212,9 @@ export default {
     })
   })
 
-  const $copyNpmInstall = document.getElementById(
-    'copyNpmInstall'
-  ) as HTMLButtonElement
+  $animateAll.addEventListener('change', handleToggleChange)
 
-  $copyNpmInstall.addEventListener('click', () => {
-    const npmCommand = 'npm install @midudev/tailwind-animations'
-    navigator.clipboard.writeText(npmCommand)
-    toast('Copied to clipboard!', {
-      theme: {
-        type: 'light'
-      }
-    })
-  })
+  const $copyNpmInstall = document.getElementById('copyNpmInstall') as HTMLButtonElement
+  $copyNpmInstall.addEventListener('click', handleCopyNpmInstall)
 </script>
+
