@@ -146,9 +146,9 @@ export default {
       '75%': { transform: 'translateX(-5%)' },
       '100%': { transform: 'translateX(0)' }
     },
-    pulse: {
-      '0%, 100%': { transform: 'opacity: 1' },
-      '50%': { transform: 'opacity: 0.5' }
+    'pulse': {
+      '0%, 100%': { opacity: '1' },
+      '50%': { opacity: '0.5' }
     },
     pulsing: {
       '0%': { transform: 'scale(1)' },
