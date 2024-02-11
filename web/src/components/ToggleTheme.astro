@@ -1,0 +1,111 @@
+---
+import SunIcon from "./icons/sun.astro"
+import MoonIcon from "./icons/moon.astro"
+import SystemIcon from "./icons/system.astro"
+
+const THEMES = ["Light", "Dark", "System"]
+---
+
+<div class="relative">
+  <button
+    id="theme-toggle-btn"
+    class="appearance-none border-none flex hover:scale-110 transition"
+  >
+    <span class="sr-only">Choose a theme</span>
+    <SunIcon id="light" class="theme-toggle-icon size-4 transition-all" />
+    <MoonIcon
+      id="dark"
+      class="theme-toggle-icon absolute size-4 transition-all" />
+    <SystemIcon
+      id="system"
+      class="theme-toggle-icon absolute size-4 transition-all" />
+  </button>
+  <div
+    id="themes-menu"
+    class="absolute opacity-0 scale-80 top-8 right-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white/90 dark:bg-zinc-900/70 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md z-50"
+  >
+    <ul>
+      {
+        THEMES.map((theme) => (
+          <li class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
+            {theme}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+
+<style>
+  #themes-menu.open {
+    animation: scale-up-center 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  @keyframes scale-up-center {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  let remove: (() => void) | null = null
+  const matchMedia = window.matchMedia("(prefers-color-scheme: dark)")
+  const themesMenu = document.getElementById("themes-menu")
+
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined") {
+      return localStorage.getItem("theme") ?? "system"
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light"
+  }
+
+  const updateIcon = (themePreference: string) => {
+    document.querySelectorAll(".theme-toggle-icon").forEach((element) => {
+      (element as HTMLElement).style.scale = element.id === themePreference ? "1" : "0"
+    })
+  }
+
+  const updateTheme = () => {
+    if (remove != null) {
+      remove()
+    }
+    matchMedia.addEventListener("change", updateTheme)
+    remove = () => {
+      matchMedia.removeEventListener("change", updateTheme)
+    }
+
+    const themePreference = getThemePreference()
+    const isDark =
+      themePreference === "dark" ||
+      (themePreference === "system" && matchMedia.matches)
+
+    updateIcon(themePreference)
+    document.documentElement.classList[isDark ? "add" : "remove"]("dark")
+  }
+
+  updateTheme()
+
+  document.addEventListener("click", () => themesMenu?.classList.remove("open"))
+
+  document.getElementById("theme-toggle-btn")!.addEventListener("click", (e) => {
+    e.stopPropagation()
+    const isClosed = !themesMenu?.classList.contains("open")
+    themesMenu?.classList[isClosed ? "add" : "remove"]("open")
+  })
+
+  document.querySelectorAll(".themes-menu-option").forEach((element) => {
+    element.addEventListener("click", (e) => {
+      localStorage.setItem("theme", (e.target as HTMLElement).innerText.toLowerCase().trim())
+      updateTheme()
+    })
+  })
+
+</script>
