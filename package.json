@@ -1,6 +1,6 @@
 {
   "name": "@midudev/tailwind-animations",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Tailwind CSS plugin to add animations to your website",
   "main": "./src/index.js",
   "type": "module",
