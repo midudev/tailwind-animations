@@ -1,3 +1,4 @@
 /node_modules
 pnpm-lock.yaml
 bun.lockb
+package-lock.json
