@@ -85,7 +85,7 @@ export default {
           class="rtl:peer-checked:after:-translate-x- peer h-8 w-16 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-7 after:w-7 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-zinc-600 peer-checked:after:translate-x-[31px] peer-checked:after:border-white peer-focus:outline-none dark:bg-zinc-300"
         >
         </div>
-        <span class='ms-3 text-xl font-medium text-gray-900 dark:text-gray-200'>Animate all</span>
+        <span class='ms-3 text-xl font-medium text-gray-900'>Animate all</span>
       </label>
     </section>  
     <section class='mb-6 grid grid-flow-col gap-6 columns-4 items-center justify-center'>
@@ -221,7 +221,7 @@ export default {
     })
   })
 
-  $duration.addEventListener("change", (event) => {
+  $duration.addEventListener('change', (event) => {
     const target = event.target as HTMLSelectElement;
     $articles.forEach(($article) => {
       const $box = $article.querySelector('span')
@@ -230,7 +230,7 @@ export default {
     })
   });
 
-  $steps.addEventListener("change", (event) => {
+  $steps.addEventListener('change', (event) => {
     const target = event.target as HTMLSelectElement;
     $articles.forEach(($article) => {
       const $box = $article.querySelector('span')
@@ -239,7 +239,7 @@ export default {
     })
   });
 
-  $delay.addEventListener("change", (event) => {
+  $delay.addEventListener('change', (event) => {
     const target = event.target as HTMLSelectElement;
     $articles.forEach(($article) => {
       const $box = $article.querySelector('span')
