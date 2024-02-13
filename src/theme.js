@@ -81,7 +81,7 @@ export default {
     },
     'fade-out': {
       '0%': { opacity: '1' },
-      '100%': { opacity: '0' }
+      '100%': { opacity: '0', display: 'none' }
     },
     'slide-in-top': {
       '0%': { transform: 'translateY(-20px)' },
@@ -93,11 +93,11 @@ export default {
     },
     'slide-out-top': {
       '0%': { transform: 'translateY(0)' },
-      '100%': { transform: 'translateY(-20px)' }
+      '100%': { transform: 'translateY(-20px)', display: 'none' }
     },
     'slide-out-bottom': {
       '0%': { transform: 'translateY(0)' },
-      '100%': { transform: 'translateY(20px)' }
+      '100%': { transform: 'translateY(20px)', display: 'none' }
     },
     'zoom-in': {
       '0%': { opacity: '0', transform: 'scale(.5)' },
@@ -105,7 +105,7 @@ export default {
     },
     'zoom-out': {
       '0%': { opacity: '1', transform: 'scale(1)' },
-      '100%': { opacity: '0', transform: 'scale(.5)' }
+      '100%': { opacity: '0', transform: 'scale(.5)', display: 'none' }
     },
     'rotate-90': {
       '0%': { transform: 'rotate(0deg)' },
@@ -191,7 +191,7 @@ export default {
     },
     'roll-out': {
       '0%': { transform: 'translateX(0) rotate(0)' },
-      '100%': { transform: 'translateX(20px) rotate(120deg)' }
+      '100%': { transform: 'translateX(20px) rotate(120deg)', display: 'none' }
     },
     float: {
       '0%': { transform: 'translateY(0)' },
@@ -232,11 +232,11 @@ export default {
     },
     'slide-out-left': {
       '0%': { transform: 'translateX(0)' },
-      '100%': { transform: 'translateX(-20px)' }
+      '100%': { transform: 'translateX(-20px)', display: 'none' }
     },
     'slide-out-right': {
       '0%': { transform: 'translateX(0)' },
-      '100%': { transform: 'translateX(20px)' }
+      '100%': { transform: 'translateX(20px)', display: 'none' }
     },
     'spin-clockwise': {
       '0%': { transform: 'rotate(0deg)' },
@@ -299,19 +299,19 @@ export default {
     },
     'fade-out-up': {
       '0%': { opacity: '1', transform: 'translateY(0)' },
-      '100%': { opacity: '0', transform: 'translateY(-20px)' }
+      '100%': { opacity: '0', transform: 'translateY(-20px)', display: 'none' }
     },
     'fade-out-down': {
       '0%': { opacity: '1', transform: 'translateY(0)' },
-      '100%': { opacity: '0', transform: 'translateY(20px)' }
+      '100%': { opacity: '0', transform: 'translateY(20px)', display: 'none' }
     },
     'fade-out-left': {
       '0%': { opacity: '1', transform: 'translateX(0)' },
-      '100%': { opacity: '0', transform: 'translateX(-20px)' }
+      '100%': { opacity: '0', transform: 'translateX(-20px)', display: 'none' }
     },
     'fade-out-right': {
       '0%': { opacity: '1', transform: 'translateX(0)' },
-      '100%': { opacity: '0', transform: 'translateX(20px)' }
+      '100%': { opacity: '0', transform: 'translateX(20px)', display: 'none' }
     },
     sway: {
       '0%': { transform: 'rotate(0deg)' },
@@ -328,11 +328,11 @@ export default {
     },
     'flip-out-x': {
       '0%': { opacity: '1', transform: 'rotateY(0deg)' },
-      '100%': { opacity: '0', transform: 'rotateY(90deg)' }
+      '100%': { opacity: '0', transform: 'rotateY(90deg)', display: 'none' }
     },
     'flip-out-y': {
       '0%': { opacity: '1', transform: 'rotateX(0deg)' },
-      '100%': { opacity: '0', transform: 'rotateX(90deg)' }
+      '100%': { opacity: '0', transform: 'rotateX(90deg)', display: 'none' }
     },
     'rotate-in': {
       '0%': { opacity: '0', transform: 'rotate(-90deg)' },
@@ -340,7 +340,7 @@ export default {
     },
     'rotate-out': {
       '0%': { opacity: '1', transform: 'rotate(0deg)' },
-      '100%': { opacity: '0', transform: 'rotate(90deg)' }
+      '100%': { opacity: '0', transform: 'rotate(90deg)', display: 'none' }
     },
     'slide-rotate-in': {
       '0%': { opacity: '0', transform: 'translateX(-20px) rotate(-90deg)' },
@@ -348,7 +348,7 @@ export default {
     },
     'slide-rotate-out': {
       '0%': { opacity: '1', transform: 'translateX(0) rotate(0deg)' },
-      '100%': { opacity: '0', transform: 'translateX(20px) rotate(90deg)' }
+      '100%': { opacity: '0', transform: 'translateX(20px) rotate(90deg)', display: 'none' }
     },
     heartbeat: {
       '0%': { transform: 'scale(1)' },
