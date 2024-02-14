@@ -29,6 +29,7 @@ export default {
     flash: 'flash 1s ease-in-out both',
     jiggle: 'jiggle 0.5s ease-in-out both',
     'rubber-band': 'rubber-band 1s ease-in-out both',
+    scale: 'scale 0.6s ease-out both',
     'slide-in-left': 'slide-in-left 0.6s ease-out both',
     'slide-in-right': 'slide-in-right 0.6s ease-out both',
     'slide-out-left': 'slide-out-left 0.6s ease-out both',
@@ -221,6 +222,10 @@ export default {
       '65%': { transform: 'scale(0.95)' },
       '75%': { transform: 'scale(1.05)' },
       '100%': { transform: 'scale(1)' }
+    },
+    scale: {
+      '0%': { transform: 'scale(1)' },
+      '100%': { transform: 'scale(1.10)' }
     },
     'slide-in-left': {
       '0%': { transform: 'translateX(-20px)' },
