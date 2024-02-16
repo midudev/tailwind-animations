@@ -73,6 +73,9 @@ export default {
     'bounce-fade-in': 'bounce-fade-in 0.6s ease-out both',
     'swing-drop-in': 'swing-drop-in 0.6s ease-out both',
     'pulse-fade-in': 'pulse-fade-in 0.6s ease-out both',
+    'impulse-rotation-right': 'impulse-rotation-right 1s ease-in-out both',
+    'impulse-rotation-left': 'impulse-rotation-left 1s ease-in-out both',
+    dancing: 'dancing 1s ease-in-out both',
     pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
   },
   keyframes: {
@@ -417,6 +420,23 @@ export default {
       '0%': { transform: 'scale(0.9)', opacity: '0' },
       '50%': { transform: 'scale(1.05)', opacity: '0.5' },
       '100%': { transform: 'scale(1)', opacity: '1' }
+    },
+    'impulse-rotation-right': {
+      '0%': { transform: 'rotate(0deg)' },
+      '50%': { transform: 'rotate(-40deg)' },
+      '100%': { transform: 'rotate(360deg)' }
+    },
+    'impulse-rotation-left': {
+      '0%': { transform: 'rotate(0deg)' },
+      '50%': { transform: 'rotate(40deg)' },
+      '100%': { transform: 'rotate(-360deg)' }
+    },
+    dancing: {
+      '0%': { transform: 'skew(0deg)' },
+      '25%': { transform: 'skew(-40deg)' },
+      '50%': { transform: 'skew(40deg)' },
+      '75%': { transform: 'skew(-40deg)' },
+      '100%': { transform: 'skew(0deg)' }
     }
   },
   animationDelay: {
