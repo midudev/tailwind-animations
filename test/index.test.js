@@ -136,4 +136,11 @@ describe('tailwindcss-animations plugins', () => {
 
     expect(css).toMatch('.animate-play-paused{animation-play-state:paused}')
   })
+
+  it('use fade out animation', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-fade-out">Hello</div>'
+    })
+    expect(css).toMatch('@keyframes fade-out{0%{opacity:1}100%{opacity:0;display:none}}.animate-fade-out{animation:fade-out 0.6s ease-out both}')
+  })
 })
