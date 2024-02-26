@@ -1,6 +1,16 @@
 import createPlugin from 'tailwindcss/plugin.js'
 import theme from './theme.js'
 
+// Predefined animations in same element
+function singleTimeline (value) {
+  if (value === 'single-timeline') {
+    return '--single-timeline;\n  animation-timeline: --single-timeline'
+  }
+  // Custom animation named timeline
+  if (value.startsWith('var(')) return value.slice(4, -1)
+  return value
+}
+
 /** @type {import('tailwindcss/types/config').PluginCreator} */
 const pluginCreator = api => {
   const { theme, matchUtilities, addUtilities } = api
@@ -11,7 +21,13 @@ const pluginCreator = api => {
     'animate-iteration-count': { css: 'animation-iteration-count', values: theme('animationIterationCount') },
     'animate-fill-mode': { css: 'animation-fill-mode', values: theme('animationFillMode') },
     'animate-bezier': { css: 'animation-timing-function', values: theme('animationCubicBezier') },
-    'animate-steps': { css: 'animation-timing-function', values: theme('animationSteps'), generateValue: value => `steps(${value})` }
+    'animate-steps': { css: 'animation-timing-function', values: theme('animationSteps'), generateValue: value => `steps(${value})` },
+    'animate-range': { css: 'animation-range', values: theme('animationRange'), generateValue: value => value },
+    timeline: { css: 'animation-timeline', values: theme('timeline'), generateValue: value => singleTimeline(value) },
+    'scroll-timeline': { css: 'scroll-timeline-name', values: theme('scrollTimeline'), generateValue: (value) => singleTimeline(value) },
+    'view-timeline': { css: 'view-timeline-name', values: theme('viewTimeline'), generateValue: (value) => singleTimeline(value) },
+    'scroll-timeline-axis': { css: 'scroll-timeline-axis', values: theme('scrollTimelineAxis') },
+    'view-timeline-axis': { css: 'view-timeline-axis', values: theme('viewTimelineAxis') }
   }
 
   Object.entries(dynamicUtils).forEach(([name, { css, values, generateValue }]) => {
