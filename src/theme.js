@@ -538,10 +538,10 @@ export default {
     view: 'view()'
   },
   scrollTimeline: {
-    single: 'single-timeline'
+    single: '--single-timeline'
   },
   viewTimeline: {
-    single: 'single-timeline'
+    single: '--single-timeline'
   },
   scrollTimelineAxis: {
     block: 'block',
@@ -554,5 +554,11 @@ export default {
     inline: 'inline',
     x: 'x',
     y: 'y'
+  },
+  scrollAnimation: {
+    single: '--single-timeline'
+  },
+  viewAnimation: {
+    single: '--single-timeline'
   }
 }

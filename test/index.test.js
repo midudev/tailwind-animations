@@ -182,7 +182,7 @@ describe('tailwindcss-animations plugins', () => {
       content: '<div class="scroll-timeline-single">Hello</div>'
     })
 
-    expect(css).toMatch('.scroll-timeline-single{scroll-timeline-name:--single-timeline; animation-timeline: --single-timeline}')
+    expect(css).toMatch('.scroll-timeline-single{scroll-timeline-name:--single-timeline}')
   })
 
   it('use a view timeline single', async () => {
@@ -190,7 +190,15 @@ describe('tailwindcss-animations plugins', () => {
       content: '<div class="view-timeline-single">Hello</div>'
     })
 
-    expect(css).toMatch('.view-timeline-single{view-timeline-name:--single-timeline; animation-timeline: --single-timeline}')
+    expect(css).toMatch('.view-timeline-single{view-timeline-name:--single-timeline}')
+  })
+
+  it('use a view timeline custom name', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="view-timeline-[--test-view]">Hello</div>'
+    })
+
+    expect(css).toMatch('.view-timeline-\\[--test-view\\]{view-timeline-name:--test-view}')
   })
 
   it('use a timeline range', async () => {
@@ -231,5 +239,29 @@ describe('tailwindcss-animations plugins', () => {
     })
 
     expect(css).toMatch('.view-timeline-axis-y{view-timeline-axis:y}')
+  })
+
+  it('use view animation timeline in same element', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="view-animate-single">Hello</div>'
+    })
+
+    expect(css).toMatch('.view-animate-single{view-timeline-name:--single-timeline; animation-timeline: --single-timeline}')
+  })
+
+  it('use scroll animation timeline in same element', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="scroll-animate-single">Hello</div>'
+    })
+
+    expect(css).toMatch('.scroll-animate-single{scroll-timeline-name:--single-timeline; animation-timeline: --single-timeline}')
+  })
+
+  it('use scroll animation timeline in same element with custom name', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="scroll-animate-[--test-timeline-scroll]">Hello</div>'
+    })
+
+    expect(css).toMatch('.scroll-animate-\\[--test-timeline-scroll\\]{scroll-timeline-name:--test-timeline-scroll; animation-timeline: --test-timeline-scroll}')
   })
 })
