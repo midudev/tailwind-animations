@@ -518,5 +518,47 @@ export default {
     'back-in': 'cubic-bezier(0.6,-0.28,0.735,0.045)',
     'back-out': 'cubic-bezier(0.175,0.885,0.32,1.275)',
     'back-in-out': 'cubic-bezier(0.68,-0.55,0.265,1.55)'
+  },
+  animationRange: {
+    normal: 'normal',
+    cover: 'cover',
+    contain: 'contain',
+    entry: 'entry',
+    exit: 'exit',
+    gradual: '10% 90%',
+    moderate: '20% 80%',
+    brisk: '30% 70%',
+    rapid: '40% 60%'
+  },
+  timeline: {
+    none: 'none',
+    auto: 'auto',
+    single: '--single-timeline',
+    scroll: 'scroll()',
+    view: 'view()'
+  },
+  scrollTimeline: {
+    single: '--single-timeline'
+  },
+  viewTimeline: {
+    single: '--single-timeline'
+  },
+  scrollTimelineAxis: {
+    block: 'block',
+    inline: 'inline',
+    x: 'x',
+    y: 'y'
+  },
+  viewTimelineAxis: {
+    block: 'block',
+    inline: 'inline',
+    x: 'x',
+    y: 'y'
+  },
+  scrollAnimation: {
+    single: '--single-timeline'
+  },
+  viewAnimation: {
+    single: '--single-timeline'
   }
 }
