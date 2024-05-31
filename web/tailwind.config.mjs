@@ -1,5 +1,5 @@
-import animations from '../src/index.js'
-import theme from '../src/theme.js'
+import animations from '@midudev/tailwind-animations'
+import theme from '@midudev/tailwind-animations/theme'
 
 const { animation } = theme
 
