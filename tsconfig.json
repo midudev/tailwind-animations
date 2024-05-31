@@ -1,0 +1,11 @@
+{
+    "include": ["src/**/*"],
+    "compilerOptions": {
+      "allowJs": true,
+      "declaration": true,
+      "outDir": "dist",
+      "module": "commonjs",
+      "declarationMap": true,
+      "esModuleInterop": true
+    }
+  }

@@ -19,6 +19,7 @@
     "wc-toast": "1.3.1"
   },
   "devDependencies": {
+    "@midudev/tailwind-animations": "workspace:../",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "9.1.0",
