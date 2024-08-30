@@ -77,7 +77,7 @@ export default {
     'impulse-rotation-left': 'impulse-rotation-left 1s ease-in-out both',
     dancing: 'dancing 1s ease-in-out both',
     pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-    jelly: `jelly 0.5s ease-out forwards`,
+    jelly: `jelly 1s ease-out forwards`,
   },
   keyframes: {
     'fade-in': {
@@ -440,10 +440,14 @@ export default {
       '100%': { transform: 'skew(0deg)' }
     },
     jelly: {
-      '0%': {transform: 'scale(1, 1)'},
-      '40%': {transform: 'scale(1.1, 0.9)'},
-      '80%': {transform: 'scale(0.95, 1.05)'},
-      '100%': {transform: 'scale(1, 1)'},
+      '0%': { transform: 'scale(1, 1)' },
+      '20%': { transform: 'scale(1.25, 0.75)' }, 
+      '40%': { transform: 'scale(0.75, 1.25)' }, 
+      '60%': { transform: 'scale(1.15, 0.85)' },  
+      '75%': { transform: 'scale(0.95, 1.05)' }, 
+      '85%': { transform: 'scale(1.05, 0.95)' },  
+      '92%': { transform: 'scale(1, 1.02)' },   
+      '100%': { transform: 'scale(1, 1)' },    
     },
   },
   animationDelay: {
