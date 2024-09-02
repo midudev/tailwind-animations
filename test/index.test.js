@@ -136,4 +136,132 @@ describe('tailwindcss-animations plugins', () => {
 
     expect(css).toMatch('.animate-play-paused{animation-play-state:paused}')
   })
+
+  it('use a animation timeline none or auto', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="timeline-none">Hello</div>'
+    })
+
+    expect(css).toMatch('.timeline-none{animation-timeline:none}')
+  })
+
+  it('use a animation timeline single', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="timeline-single">Hello</div>'
+    })
+
+    expect(css).toMatch('.timeline-single{animation-timeline:--single-timeline}')
+  })
+
+  it('use a animation timeline scroll', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="timeline-scroll">Hello</div>'
+    })
+
+    expect(css).toMatch('.timeline-scroll{animation-timeline:scroll()}')
+  })
+
+  it('use a animation timeline scroll custom', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="timeline-[scroll(20%)]">Hello</div>'
+    })
+
+    expect(css).toMatch('.timeline-\\[scroll\\(20\\%\\)\\]{animation-timeline:scroll(20%)}')
+  })
+
+  it('use a animation timeline custom name', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="timeline-[--test]">Hello</div>'
+    })
+
+    expect(css).toMatch('.timeline-\\[--test\\]{animation-timeline:--test}')
+  })
+
+  it('use a scroll timeline single', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="scroll-timeline-single">Hello</div>'
+    })
+
+    expect(css).toMatch('.scroll-timeline-single{scroll-timeline-name:--single-timeline}')
+  })
+
+  it('use a view timeline single', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="view-timeline-single">Hello</div>'
+    })
+
+    expect(css).toMatch('.view-timeline-single{view-timeline-name:--single-timeline}')
+  })
+
+  it('use a view timeline custom name', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="view-timeline-[--test-view]">Hello</div>'
+    })
+
+    expect(css).toMatch('.view-timeline-\\[--test-view\\]{view-timeline-name:--test-view}')
+  })
+
+  it('use a timeline range', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-range-cover">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-range-cover{animation-range:cover}')
+  })
+
+  it('use a timeline range porcentual', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-range-moderate">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-range-moderate{animation-range:20% 80%}')
+  })
+
+  it('use a timeline range custom', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-range-[12%_65%]">Hello</div>'
+    })
+
+    expect(css).toMatch('.animate-range-\\[12\\%_65\\%\\]{animation-range:12% 65%}')
+  })
+
+  it('use a scroll timeline axis', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="scroll-timeline-axis-block">Hello</div>'
+    })
+
+    expect(css).toMatch('.scroll-timeline-axis-block{scroll-timeline-axis:block}')
+  })
+
+  it('use a view timeline axis', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="view-timeline-axis-y">Hello</div>'
+    })
+
+    expect(css).toMatch('.view-timeline-axis-y{view-timeline-axis:y}')
+  })
+
+  it('use view animation timeline in same element', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="view-animate-single">Hello</div>'
+    })
+
+    expect(css).toMatch('.view-animate-single{view-timeline-name:--single-timeline; animation-timeline: --single-timeline}')
+  })
+
+  it('use scroll animation timeline in same element', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="scroll-animate-single">Hello</div>'
+    })
+
+    expect(css).toMatch('.scroll-animate-single{scroll-timeline-name:--single-timeline; animation-timeline: --single-timeline}')
+  })
+
+  it('use scroll animation timeline in same element with custom name', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="scroll-animate-[--test-timeline-scroll]">Hello</div>'
+    })
+
+    expect(css).toMatch('.scroll-animate-\\[--test-timeline-scroll\\]{scroll-timeline-name:--test-timeline-scroll; animation-timeline: --test-timeline-scroll}')
+  })
 })

@@ -76,7 +76,8 @@ export default {
     'impulse-rotation-right': 'impulse-rotation-right 1s ease-in-out both',
     'impulse-rotation-left': 'impulse-rotation-left 1s ease-in-out both',
     dancing: 'dancing 1s ease-in-out both',
-    pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+    pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+    jelly: `jelly 1s ease-out forwards`,
   },
   keyframes: {
     'fade-in': {
@@ -437,7 +438,17 @@ export default {
       '50%': { transform: 'skew(40deg)' },
       '75%': { transform: 'skew(-40deg)' },
       '100%': { transform: 'skew(0deg)' }
-    }
+    },
+    jelly: {
+      '0%': { transform: 'scale(1, 1)' },
+      '20%': { transform: 'scale(1.25, 0.75)' }, 
+      '40%': { transform: 'scale(0.75, 1.25)' }, 
+      '60%': { transform: 'scale(1.15, 0.85)' },  
+      '75%': { transform: 'scale(0.95, 1.05)' }, 
+      '85%': { transform: 'scale(1.05, 0.95)' },  
+      '92%': { transform: 'scale(1, 1.02)' },   
+      '100%': { transform: 'scale(1, 1)' },    
+    },
   },
   animationDelay: {
     none: '0ms',
@@ -518,5 +529,47 @@ export default {
     'back-in': 'cubic-bezier(0.6,-0.28,0.735,0.045)',
     'back-out': 'cubic-bezier(0.175,0.885,0.32,1.275)',
     'back-in-out': 'cubic-bezier(0.68,-0.55,0.265,1.55)'
+  },
+  animationRange: {
+    normal: 'normal',
+    cover: 'cover',
+    contain: 'contain',
+    entry: 'entry',
+    exit: 'exit',
+    gradual: '10% 90%',
+    moderate: '20% 80%',
+    brisk: '30% 70%',
+    rapid: '40% 60%'
+  },
+  timeline: {
+    none: 'none',
+    auto: 'auto',
+    single: '--single-timeline',
+    scroll: 'scroll()',
+    view: 'view()'
+  },
+  scrollTimeline: {
+    single: '--single-timeline'
+  },
+  viewTimeline: {
+    single: '--single-timeline'
+  },
+  scrollTimelineAxis: {
+    block: 'block',
+    inline: 'inline',
+    x: 'x',
+    y: 'y'
+  },
+  viewTimelineAxis: {
+    block: 'block',
+    inline: 'inline',
+    x: 'x',
+    y: 'y'
+  },
+  scrollAnimation: {
+    single: '--single-timeline'
+  },
+  viewAnimation: {
+    single: '--single-timeline'
   }
 }
