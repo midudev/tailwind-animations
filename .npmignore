@@ -1,3 +1,8 @@
+.github/*
 test/*
 web/*
 web/README.md
+lib/imgs/web.jpg
+pnpm-workspace.yaml
+README.es.md
+README.md
