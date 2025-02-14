@@ -65,6 +65,7 @@ export default {
     'horizontal-vibration': 'horizontal-vibration 0.3s linear infinite both',
     'rotational-wave': 'rotational-wave 2s ease-in-out infinite both',
     skew: 'skew 0.5s ease-in-out both',
+    'skew-right': 'skew-right 0.5s ease-in-out both',
     'vertical-bounce': 'vertical-bounce 0.6s ease-in-out both',
     'horizontal-bounce': 'horizontal-bounce 0.6s ease-in-out both',
     tilt: 'tilt 0.6s ease-in-out both',
@@ -387,6 +388,10 @@ export default {
     skew: {
       '0%': { transform: 'skew(0deg)' },
       '100%': { transform: 'skew(20deg)' }
+    },
+    'skew-right': {
+      '0%': { transform: 'skew(0deg)' },
+      '100%': { transform: 'skew(-20deg)' }
     },
     'vertical-bounce': {
       '0%, 100%': { transform: 'translateY(0)' },
