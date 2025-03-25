@@ -19,55 +19,55 @@ const { version } = pkg
   <wc-toast></wc-toast>
   <main class='pb-20'>
     <header
-      class='mx-auto flex max-w-4xl flex-col items-center justify-center py-10'
+      class='mx-auto flex max-w-4xl flex-col items-center justify-center py-12'
     >
       <div
-        class='flex items-center justify-center gap-x-2 *:inline-flex *:items-center *:justify-center *:rounded *:bg-black/10 *:px-2 *:py-1 *:text-xs *:font-medium'
+        class='flex items-center justify-center gap-4'
       >
-      <ToggleTheme />
-        <span>v.{version}</span>
+        <ToggleTheme />
+        <span class="font-mono font-medium tracking-tight text-xs">v.{version}</span>
         <a
           aria-label='View website repository on GitHub'
           href='https://github.com/midudev/tailwind-animations'
           target='_blank'
-          rel='noopener noreferrer'
-          class='transition-colors ease-in-out hover:bg-black/20'
+          rel='noopener noreferrer' title='GitHub'
+          class='p-1 rounded-md text-gray-700 border border-gray-200 dark:text-gray-300 dark:border-gray-700 transition ease-in-out hover:bg-gray-200 dark:hover:bg-gray-700'
         >
-          <Github class='size-4' />
+          <Github class='size-5' />
         </a>
       </div>
-      <h1 class='text-center text-4xl font-semibold'>
+      <h1 class='mt-12 font-semibold text-center text-4xl'>
         tailwind css animations
       </h1>
-      <h2 class='font-medium opacity-70'>the plugin that you need! =)</h2>
+      <h2 class='mt-2 font-medium opacity-70 text-lg'>the plugin that you need! =)</h2>
       <div class='mt-10 px-2 sm:px-0'>
-        <span class='mb-1 text-xs font-semibold opacity-50'
+        <span class='mb-4 text-xs font-medium opacity-60'
           >1. Install the dependency</span
         >
         <div
-          class='flex w-full max-w-md items-center justify-between gap-x-2 rounded-xl bg-[#1e1e1e] py-1 pl-4 pr-1 text-center text-white backdrop-blur'
+          class='flex w-full max-w-md items-center justify-between gap-x-2 rounded-md bg-gray-800 py-1 pl-4 pr-1 text-center backdrop-blur'
         >
           <pre
             class='flex text-sm'>
-            <Code wrap={true} code='npm install @midudev/tailwind-animations' theme="dark-plus" />
+            <Code wrap={true} code='npm install @midudev/tailwind-animations' theme="dracula" />
           </pre>
           <button
             id='copyNpmInstall'
-            aria-label='Copy npm install command'
-            class='ring-offset-background focus-visible:ring-ring inline-flex size-7 items-center justify-center whitespace-nowrap rounded-full bg-white/10 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none'
+            aria-label='Copy npm install command' title='Copy'
+            class='my-1 mr-2 inline-flex size-7 items-center justify-center whitespace-nowrap rounded-full text-gray-100 bg-gray-950/60 text-sm font-medium transition focus-visible:outline-none disabled:pointer-events-none'
           >
             <CopyIcon />
           </button>
         </div>
-        <span class='mb-1 mt-4 block text-left text-xs font-semibold opacity-50'
+        <span class='mb-2 mt-4 block text-left text-xs font-medium opacity-60'
           >2. Add to your configuration</span
         >
         <div
-          class='flex w-full max-w-md items-center gap-x-2 rounded-xl bg-[#1e1e1e] py-3 pl-4 pr-4 text-center text-white backdrop-blur'
+          class='flex w-full max-w-md items-center gap-x-2 rounded-md bg-gray-800 py-3 pl-4 pr-4 text-center backdrop-blur'
         >
           <pre
             class='flex text-left text-xs'>
-            <Code wrap={true} theme="dark-plus" lang="js" code={`import animations from '@midudev/tailwind-animations'
+            <Code wrap={true} theme="dracula" lang="js" code={`import animations from '@midudev/tailwind-animations'
 
 export default {
   // ...rest of the options
@@ -78,40 +78,41 @@ export default {
       </div>
     </header>
 
-    <section class='mb-6 flex items-center justify-center'>
-      <label class='relative inline-flex cursor-pointer items-center'>
-        <input type='checkbox' value='' class='peer sr-only' id='animate' />
-        <div
-          class="rtl:peer-checked:after:-translate-x peer h-8 w-16 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:size-7 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-zinc-600 peer-checked:after:translate-x-[32px] peer-checked:after:border-white peer-focus:outline-none dark:bg-zinc-300"
-        >
-        </div>
-        <span class='ms-3 text-xl font-medium text-gray-900 dark:text-gray-100'>Animate all</span>
-      </label>
-    </section>  
-    <section class='mb-6 grid md:grid-flow-col grid-flow-row gap-6 columns-4 items-center justify-center sticky top-0 z-10 pt-2' id="option-inputs">
-      <label for="duration" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+    <section class='mb-8 grid md:grid-flow-col grid-flow-row gap-6 columns-4 items-center justify-center sticky top-0 z-10 py-2' id="option-inputs">
+      <label for="duration" class="block font-mono text-xs font-medium text-gray-800 dark:text-gray-200">
         Duration
-        <select name="duration" id="duration" class="mt-2 bg-gray-50 min-w-36 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+        <select name="duration" id="duration" class="mt-1 bg-gray-50 min-w-32 border border-gray-200 text-xs rounded-lg block w-full p-2 dark:bg-gray-900 dark:border-gray-700 placeholder-opacity-80">
           {Object.entries(animationDuration).map(([key, value])=> {
             return (<option value={value}>{key}</option>)
           })}
         </select>
       </label>
-      <label for="delay" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+      <label for="delay" class="block font-mono text-xs font-medium text-gray-800 dark:text-gray-200">
         Delay
-        <select name="delay" id="delay" class="mt-2 bg-gray-50 min-w-36 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+        <select name="delay" id="delay" class="mt-1 bg-gray-50 min-w-32 border border-gray-200 text-xs rounded-lg block w-full p-2 dark:bg-gray-900 dark:border-gray-700 placeholder-opacity-80">
           {Object.entries(animationDelay).map(([key, value])=> {
             return (<option value={value}>{key}</option>)
           })}
         </select>
       </label>
-      <label for="steps" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+      <label for="steps" class="block font-mono text-xs font-medium text-gray-800 dark:text-gray-200">
         Steps
-        <select name="steps" id="steps" class="mt-2 bg-gray-50 min-w-36 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+        <select name="steps" id="steps" class="mt-1 bg-gray-50 min-w-32 border border-gray-200 text-xs rounded-lg block w-full p-2 dark:bg-gray-900 dark:border-gray-700 placeholder-opacity-80">
           {Object.entries(animationSteps).map(([key, value])=> {
             return (<option value={value}>{key}</option>)
           })}
         </select>
+      </label>
+      <label class='flex flex-col gap-2 font-mono text-xs font-medium text-gray-800 dark:text-gray-200'>
+        Animate all
+        <div
+          class="relative inline h-6 w-12 cursor-pointer rounded-full border bg-gray-50 border-gray-200 dark:border-gray-700 dark:bg-gray-900 transition"
+        >
+          <input class="peer sr-only" id="animate" type="checkbox" value='' />
+          <span
+            class="absolute inset-y-0 start-0 mx-1 mt-[3px] size-4 rounded-full bg-gray-500 ring-[6px] ring-inset ring-gray-300 dark:ring-gray-700 transition-all peer-checked:start-7 peer-checked:w-2 peer-checked:bg-gray-900 dark:peer-checked:bg-gray-100 peer-checked:ring-transparent"
+          ></span>
+        </div>
       </label>
     </section>
 
@@ -122,16 +123,16 @@ export default {
         Object.keys(animation).map((animationKey) => {
           return (
             <article
-              class='relative col-span-1 cursor-crosshair rounded border border-gray-200 bg-white/10 backdrop-blur-sm transition-colors animate-duration-1000 hover:border-gray-400 hover:shadow'
+              class='relative col-span-1 cursor-crosshair rounded-md border border-gray-200 dark:border-gray-800 backdrop-blur-sm transition-colors animate-duration-1000 hover:shadow'
               data-class={animationKey}
             >
-              <div class='flex h-full w-full flex-col items-center justify-center gap-4 p-4'>
-                <span class='flex h-16 w-16 items-center justify-center rounded-md bg-zinc-600' />
+              <div class='flex h-full w-full flex-col items-center justify-center gap-4 p-6'>
+                <span class='flex h-16 w-16 items-center justify-center rounded-md bg-gray-900 dark:bg-gray-300' />
                 <p class='text-sm font-semibold opacity-80'>{animationKey}</p>
               </div>
               <button
                 aria-label={`Copy ${animationKey.split('-').join(' ')} animation`}
-                class='absolute right-2 top-2'
+                class='absolute right-2.5 top-2.5'
               >
                 <CopyIcon />
               </button>
@@ -147,7 +148,7 @@ export default {
       <p>
         Based on <a
           href='https://animation.ibelick.com/'
-          target='_blank'
+          target='_blank' class="underline"
           rel='noopener noreferrer'>Julien Thibeaut Tailwind animations</a
         >
       </p>
@@ -155,18 +156,17 @@ export default {
       <p>
         Created by <a
           href='https://twitter.com/midudev'
-          target='_blank'
+          target='_blank' class="underline"
           rel='noopener noreferrer'>Midudev</a
         >
         and his precious <a
           href='https://github.com/midudev/tailwind-animations'
           target='_blank'
-          rel='noopener noreferrer'
+          rel='noopener noreferrer' class="underline"
         >
-          community❤</a
-        >
+          community</a
+        > ❤
       </p>
-      
     </footer>
   </main>
 </Layout>
@@ -290,6 +290,6 @@ export default {
 
 <style>
   .is-sticky {
-    @apply bg-zinc-900/65 backdrop-blur-sm;
+    @apply bg-gray-50/90 dark:bg-gray-950/90 backdrop-blur py-4;
   }
 </style>
