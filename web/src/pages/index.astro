@@ -67,12 +67,9 @@ const { version } = pkg
         >
           <pre
             class='flex text-left text-xs'>
-            <Code wrap={true} theme="dark-plus" lang="js" code={`import animations from '@midudev/tailwind-animations'
-
-export default {
-  // ...rest of the options
-  plugins: [animations],
-}`} />
+            <Code wrap={true} theme="dark-plus" lang="js" code={`@import 'tailwindcss';
+...
+@plugin "@midudev/tailwind-animations";`} />
           </pre>
         </div>
       </div>
