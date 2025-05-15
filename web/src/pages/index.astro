@@ -67,12 +67,10 @@ const { version } = pkg
         >
           <pre
             class='flex text-left text-xs'>
-            <Code wrap={true} theme="dracula" lang="js" code={`import animations from '@midudev/tailwind-animations'
+            
+            <Code wrap={true} theme="dracula" lang="js" code={`@import 'tailwindcss';
 
-export default {
-  // ...rest of the options
-  plugins: [animations],
-}`} />
+@plugin "@midudev/tailwind-animations";`} />
           </pre>
         </div>
       </div>
@@ -155,7 +153,7 @@ export default {
 
       <p>
         Created by <a
-          href='https://twitter.com/midudev'
+          href='https://x.com/midudev'
           target='_blank' class="underline"
           rel='noopener noreferrer'>Midudev</a
         >
