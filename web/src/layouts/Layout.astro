@@ -26,7 +26,9 @@ const { title } = Astro.props
     <meta name='twitter:card' content='summary_large_image' />
     <title>{title}</title>
   </head>
-  <body class="relative text-gray-950 bg-gray-50 dark:text-gray-50 dark:bg-gray-950 antialiased">
+  <body
+    class='relative bg-gray-50 text-gray-950 antialiased dark:bg-gray-950 dark:text-gray-50'
+  >
     <slot />
   </body>
 </html>
