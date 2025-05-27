@@ -45,7 +45,7 @@ yarn add @midudev/tailwind-animations
 > Use the plugin in your Tailwind CSS project:
 
 ```js
-// tailwind.config.mjs
+// tailwind.config.mjs (for Tailwind CSS 3.*)
 import animations from '@midudev/tailwind-animations'
 
 export default {
@@ -54,6 +54,13 @@ export default {
     animations
   ],
 }
+```
+
+```css
+/* globals.css (for Tailwind CSS 4.*) */
+@import "tailwindcss";
+
+@plugin '@midudev/tailwind-animations';
 ```
 
 ## Usage :gear:
