@@ -17,30 +17,33 @@ const { version } = pkg
   title='Tailwind CSS Animations Plugin: Community-Powered Animation Magic'
 >
   <wc-toast></wc-toast>
-  <main class='pb-20'>
+  <main class='pb-12'>
     <header
       class='mx-auto flex max-w-4xl flex-col items-center justify-center py-12'
     >
-      <div
-        class='flex items-center justify-center gap-4'
-      >
+      <div class='flex items-center justify-center gap-4'>
         <ToggleTheme />
-        <span class="font-mono font-medium tracking-tight text-xs">v.{version}</span>
+        <span class='font-mono text-xs font-medium tracking-tighter'
+          >v.{version}</span
+        >
         <a
           aria-label='View website repository on GitHub'
           href='https://github.com/midudev/tailwind-animations'
           target='_blank'
-          rel='noopener noreferrer' title='GitHub'
-          class='p-1 rounded-md text-gray-700 border border-gray-200 dark:text-gray-300 dark:border-gray-700 transition ease-in-out hover:bg-gray-200 dark:hover:bg-gray-700'
+          rel='noopener noreferrer'
+          title='GitHub'
+          class='rounded-md border border-gray-200 p-1 text-gray-700 transition ease-in-out hover:bg-gray-200 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700'
         >
           <Github class='size-5' />
         </a>
       </div>
-      <h1 class='mt-12 font-semibold text-center text-4xl'>
+      <h1 class='mt-12 text-center text-4xl font-semibold'>
         tailwind css animations
       </h1>
-      <h2 class='mt-2 font-medium opacity-70 text-lg'>the plugin that you need! =)</h2>
-      <div class='mt-10 px-2 sm:px-0'>
+      <h2 class='mt-2 text-lg font-medium opacity-70'>
+        the plugin that you need! =)
+      </h2>
+      <div class='mt-10 px-4 sm:px-0'>
         <span class='mb-4 text-xs font-medium opacity-60'
           >1. Install the dependency</span
         >
@@ -53,8 +56,9 @@ const { version } = pkg
           </pre>
           <button
             id='copyNpmInstall'
-            aria-label='Copy npm install command' title='Copy'
-            class='my-1 mr-2 inline-flex size-7 items-center justify-center whitespace-nowrap rounded-full text-gray-100 bg-gray-950/60 text-sm font-medium transition focus-visible:outline-none disabled:pointer-events-none'
+            aria-label='Copy npm install command'
+            title='Copy'
+            class='my-1 mr-2 inline-flex size-7 items-center justify-center whitespace-nowrap rounded-full bg-gray-950/60 text-sm font-medium text-gray-100 transition focus-visible:outline-none disabled:pointer-events-none'
           >
             <CopyIcon />
           </button>
@@ -76,39 +80,71 @@ const { version } = pkg
       </div>
     </header>
 
-    <section class='mb-8 grid md:grid-flow-col grid-flow-row gap-6 columns-4 items-center justify-center sticky top-0 z-10 py-2' id="option-inputs">
-      <label for="duration" class="block font-mono text-xs font-medium text-gray-800 dark:text-gray-200">
+    <section
+      class='sticky left-0 top-0 z-50 mb-8 flex flex-wrap items-center justify-center gap-4 px-6 py-2 sm:gap-6'
+      id='option-inputs'
+    >
+      <label
+        for='duration'
+        class='block font-mono text-xs font-medium text-gray-800 dark:text-gray-200'
+      >
         Duration
-        <select name="duration" id="duration" class="mt-1 bg-gray-50 min-w-32 border border-gray-200 text-xs rounded-lg block w-full p-2 dark:bg-gray-900 dark:border-gray-700 placeholder-opacity-80">
-          {Object.entries(animationDuration).map(([key, value])=> {
-            return (<option value={value}>{key}</option>)
-          })}
+        <select
+          name='duration'
+          id='duration'
+          class='mt-1 block w-full min-w-32 rounded-lg border border-gray-200 bg-gray-50 p-2 text-xs placeholder-opacity-80 dark:border-gray-700 dark:bg-gray-900'
+        >
+          {
+            Object.entries(animationDuration).map(([key, value]) => {
+              return <option value={value}>{key}</option>
+            })
+          }
         </select>
       </label>
-      <label for="delay" class="block font-mono text-xs font-medium text-gray-800 dark:text-gray-200">
+      <label
+        for='delay'
+        class='block font-mono text-xs font-medium text-gray-800 dark:text-gray-200'
+      >
         Delay
-        <select name="delay" id="delay" class="mt-1 bg-gray-50 min-w-32 border border-gray-200 text-xs rounded-lg block w-full p-2 dark:bg-gray-900 dark:border-gray-700 placeholder-opacity-80">
-          {Object.entries(animationDelay).map(([key, value])=> {
-            return (<option value={value}>{key}</option>)
-          })}
+        <select
+          name='delay'
+          id='delay'
+          class='mt-1 block w-full min-w-32 rounded-lg border border-gray-200 bg-gray-50 p-2 text-xs placeholder-opacity-80 dark:border-gray-700 dark:bg-gray-900'
+        >
+          {
+            Object.entries(animationDelay).map(([key, value]) => {
+              return <option value={value}>{key}</option>
+            })
+          }
         </select>
       </label>
-      <label for="steps" class="block font-mono text-xs font-medium text-gray-800 dark:text-gray-200">
+      <label
+        for='steps'
+        class='block font-mono text-xs font-medium text-gray-800 dark:text-gray-200'
+      >
         Steps
-        <select name="steps" id="steps" class="mt-1 bg-gray-50 min-w-32 border border-gray-200 text-xs rounded-lg block w-full p-2 dark:bg-gray-900 dark:border-gray-700 placeholder-opacity-80">
-          {Object.entries(animationSteps).map(([key, value])=> {
-            return (<option value={value}>{key}</option>)
-          })}
+        <select
+          name='steps'
+          id='steps'
+          class='mt-1 block w-full min-w-32 rounded-lg border border-gray-200 bg-gray-50 p-2 text-xs placeholder-opacity-80 dark:border-gray-700 dark:bg-gray-900'
+        >
+          {
+            Object.entries(animationSteps).map(([key, value]) => {
+              return <option value={value}>{key}</option>
+            })
+          }
         </select>
       </label>
-      <label class='flex flex-col gap-2 font-mono text-xs font-medium text-gray-800 dark:text-gray-200'>
+      <label
+        class='flex flex-col gap-2 font-mono text-xs font-medium text-gray-800 dark:text-gray-200'
+      >
         Animate all
         <div
-          class="relative inline h-6 w-12 cursor-pointer rounded-full border bg-gray-50 border-gray-200 dark:border-gray-700 dark:bg-gray-900 transition"
+          class='relative inline h-6 w-12 cursor-pointer rounded-full border border-gray-200 bg-gray-50 transition dark:border-gray-700 dark:bg-gray-900'
         >
-          <input class="peer sr-only" id="animate" type="checkbox" value='' />
+          <input class='peer sr-only' id='animate' type='checkbox' value='' />
           <span
-            class="absolute inset-y-0 start-0 mx-1 mt-[3px] size-4 rounded-full bg-gray-500 ring-[6px] ring-inset ring-gray-300 dark:ring-gray-700 transition-all peer-checked:start-7 peer-checked:w-2 peer-checked:bg-gray-900 dark:peer-checked:bg-gray-100 peer-checked:ring-transparent"
+            class='absolute inset-y-0 start-0 mx-1 mt-[3px] size-4 rounded-full bg-gray-500 ring-[6px] ring-inset ring-gray-300 transition-all peer-checked:start-7 peer-checked:w-2 peer-checked:bg-gray-900 peer-checked:ring-transparent dark:ring-gray-700 dark:peer-checked:bg-gray-100'
           ></span>
         </div>
       </label>
@@ -121,7 +157,7 @@ const { version } = pkg
         Object.keys(animation).map((animationKey) => {
           return (
             <article
-              class='relative col-span-1 cursor-crosshair rounded-md border border-gray-200 dark:border-gray-800 backdrop-blur-sm transition-colors animate-duration-1000 hover:shadow'
+              class='relative col-span-1 cursor-crosshair rounded-md border border-gray-200 backdrop-blur-sm transition-colors animate-duration-1000 hover:shadow dark:border-gray-800'
               data-class={animationKey}
             >
               <div class='flex h-full w-full flex-col items-center justify-center gap-4 p-6'>
@@ -141,12 +177,13 @@ const { version } = pkg
     </section>
 
     <footer
-      class='mx-auto flex flex-col max-w-2xl items-center justify-center px-4 pb-10 pt-20 text-center text-sm opacity-60'
+      class='mx-auto flex max-w-2xl flex-col items-center justify-center text-pretty px-6 pt-20 text-center text-sm text-gray-600 dark:text-gray-400'
     >
       <p>
         Based on <a
           href='https://animation.ibelick.com/'
-          target='_blank' class="underline"
+          target='_blank'
+          class='text-gray-800 dark:text-gray-200'
           rel='noopener noreferrer'>Julien Thibeaut Tailwind animations</a
         >
       </p>
@@ -154,16 +191,19 @@ const { version } = pkg
       <p>
         Created by <a
           href='https://x.com/midudev'
-          target='_blank' class="underline"
+          target='_blank'
+          class='text-gray-800 dark:text-gray-200'
           rel='noopener noreferrer'>Midudev</a
         >
         and his precious <a
           href='https://github.com/midudev/tailwind-animations'
           target='_blank'
-          rel='noopener noreferrer' class="underline"
+          rel='noopener noreferrer'
+          class='text-gray-800 dark:text-gray-200'
         >
           community</a
-        > ❤
+        >
+        <span class='text-purple-900 dark:text-purple-500'>❤</span>
       </p>
     </footer>
   </main>
@@ -182,16 +222,15 @@ const { version } = pkg
 
   // functions to use as events handlers
   // created to add and remove the events depending on the toggle
-  function handleMouseEnter(this:HTMLElement) {
-    const animationKey = this.getAttribute('data-class')    
+  function handleMouseEnter(this: HTMLElement) {
+    const animationKey = this.getAttribute('data-class')
     const animationClass = `animate-${animationKey}`
     const $box = this.querySelector('span')
     if ($box == null) return
     $box.classList.add(animationClass)
-    
   }
-  function handleMouseLeave(this:HTMLElement): void{
-    const animationKey = this.getAttribute('data-class')    
+  function handleMouseLeave(this: HTMLElement): void {
+    const animationKey = this.getAttribute('data-class')
     const animationClass = `animate-${animationKey}`
     const $box = this.querySelector('span')
     if ($box == null) return
@@ -207,12 +246,12 @@ const { version } = pkg
       if ($box == null) return
 
       if ($animateAll.checked) {
-        $article.removeEventListener('mouseenter',  handleMouseEnter)
-        $article.removeEventListener('mouseleave',  handleMouseLeave)
+        $article.removeEventListener('mouseenter', handleMouseEnter)
+        $article.removeEventListener('mouseleave', handleMouseLeave)
         $box.classList.add(animationClass)
         $box.style.animationIterationCount = 'infinite'
       } else {
-        $article.addEventListener('mouseenter',  handleMouseEnter)
+        $article.addEventListener('mouseenter', handleMouseEnter)
         $article.addEventListener('mouseleave', handleMouseLeave)
         $box.classList.remove(animationClass)
         $box.style.animationIterationCount = 'unset'
@@ -221,38 +260,37 @@ const { version } = pkg
   })
 
   $duration.addEventListener('change', (event) => {
-    const target = event.target as HTMLSelectElement;
+    const target = event.target as HTMLSelectElement
     $articles.forEach(($article) => {
       const $box = $article.querySelector('span')
       if ($box == null) return
       $box.style.animationDuration = target.value
     })
-  });
+  })
 
   $steps.addEventListener('change', (event) => {
-    const target = event.target as HTMLSelectElement;
+    const target = event.target as HTMLSelectElement
     $articles.forEach(($article) => {
       const $box = $article.querySelector('span')
       if ($box == null) return
       $box.style.animationTimingFunction = `steps(${target.value})`
     })
-  });
+  })
 
   $delay.addEventListener('change', (event) => {
-    const target = event.target as HTMLSelectElement;
+    const target = event.target as HTMLSelectElement
     $articles.forEach(($article) => {
       const $box = $article.querySelector('span')
       if ($box == null) return
       $box.style.animationDelay = target.value
     })
-  });
-
+  })
 
   $articles.forEach(($article) => {
     const animationKey = $article.getAttribute('data-class')
     const animationClass = `animate-${animationKey}`
 
-    $article.addEventListener('mouseenter',  handleMouseEnter)
+    $article.addEventListener('mouseenter', handleMouseEnter)
     $article.addEventListener('mouseleave', handleMouseLeave)
 
     $article.addEventListener('click', () => {
@@ -288,6 +326,6 @@ const { version } = pkg
 
 <style>
   .is-sticky {
-    @apply bg-gray-50/90 dark:bg-gray-950/90 backdrop-blur py-4;
+    @apply bg-gray-50/90 py-4 backdrop-blur dark:bg-gray-950/90;
   }
 </style>
