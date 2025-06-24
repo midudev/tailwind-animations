@@ -17,13 +17,13 @@ const { version } = pkg
   title='Tailwind CSS Animations Plugin: Community-Powered Animation Magic'
 >
   <wc-toast></wc-toast>
-  <main class='pb-20'>
+  <main class='pb-12'>
     <header
       class='mx-auto flex max-w-4xl flex-col items-center justify-center py-12'
     >
       <div class='flex items-center justify-center gap-4'>
         <ToggleTheme />
-        <span class='font-mono text-xs font-medium tracking-tight'
+        <span class='font-mono text-xs font-medium tracking-tighter'
           >v.{version}</span
         >
         <a
@@ -43,7 +43,7 @@ const { version } = pkg
       <h2 class='mt-2 text-lg font-medium opacity-70'>
         the plugin that you need! =)
       </h2>
-      <div class='mt-10 px-2 sm:px-0'>
+      <div class='mt-10 px-4 sm:px-0'>
         <span class='mb-4 text-xs font-medium opacity-60'
           >1. Install the dependency</span
         >
@@ -81,7 +81,7 @@ const { version } = pkg
     </header>
 
     <section
-      class='sticky top-0 z-10 mb-8 grid columns-4 grid-flow-row items-center justify-center gap-6 py-2 md:grid-flow-col'
+      class='sticky top-0 left-0 z-50 mb-8 flex flex-wrap items-center justify-center gap-4 px-6 py-2 sm:gap-6'
       id='option-inputs'
     >
       <label
@@ -177,13 +177,13 @@ const { version } = pkg
     </section>
 
     <footer
-      class='mx-auto flex max-w-2xl flex-col items-center justify-center px-4 pt-20 pb-10 text-center text-sm opacity-60'
+      class='mx-auto flex max-w-2xl flex-col items-center justify-center px-6 pt-20 text-center text-sm text-pretty text-gray-600 dark:text-gray-400'
     >
       <p>
         Based on <a
           href='https://animation.ibelick.com/'
           target='_blank'
-          class='underline'
+          class='text-gray-800 dark:text-gray-200'
           rel='noopener noreferrer'>Julien Thibeaut Tailwind animations</a
         >
       </p>
@@ -192,17 +192,18 @@ const { version } = pkg
         Created by <a
           href='https://x.com/midudev'
           target='_blank'
-          class='underline'
+          class='text-gray-800 dark:text-gray-200'
           rel='noopener noreferrer'>Midudev</a
         >
         and his precious <a
           href='https://github.com/midudev/tailwind-animations'
           target='_blank'
           rel='noopener noreferrer'
-          class='underline'
+          class='text-gray-800 dark:text-gray-200'
         >
           community</a
-        > ❤
+        >
+        <span class='text-purple-900 dark:text-purple-500'>❤</span>
       </p>
     </footer>
   </main>
