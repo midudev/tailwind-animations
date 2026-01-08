@@ -78,6 +78,6 @@ const pluginCreator = api => {
 }
 
 /** @type {import('tailwindcss/types/config').Config} */
-const pluginConfig = { theme }
+const pluginConfig = { theme: { extend: theme } }
 
 export default createPlugin(pluginCreator, pluginConfig)
