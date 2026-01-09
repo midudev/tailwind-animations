@@ -1,4 +1,7 @@
 ---
+import '@fontsource-variable/geist-mono'
+import '../styles/index.css'
+
 interface Props {
   title: string
 }
@@ -25,24 +28,25 @@ const { title } = Astro.props
     <meta name='og:image' content='/og.jpg' />
     <meta name='twitter:card' content='summary_large_image' />
     <title>{title}</title>
+
+    <script is:inline>
+      const getThemePreference = () => {
+        if (
+          typeof localStorage !== 'undefined' &&
+          localStorage.getItem('theme')
+        ) {
+          return localStorage.getItem('theme')
+        }
+        return 'dark'
+      }
+
+      const isDark = getThemePreference() === 'dark'
+      document.documentElement.classList.toggle('dark', isDark)
+    </script>
   </head>
   <body
-    class='relative bg-gray-50 text-gray-950 antialiased dark:bg-gray-950 dark:text-gray-50'
+    class='relative min-h-screen bg-white text-slate-900 transition-colors duration-300 dark:bg-[#050505] dark:text-slate-50'
   >
     <slot />
   </body>
 </html>
-
-<style is:global>
-  @import 'tailwindcss';
-
-  @font-face {
-    font-family: 'Figtree';
-    src: url('/fonts/Figtree.ttf');
-  }
-
-  @font-face {
-    font-family: 'Geist Mono';
-    src: url('/fonts/GeistMono.ttf');
-  }
-</style>
