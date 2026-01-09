@@ -1,0 +1,44 @@
+---
+interface Props {
+  class?: string
+  iconClass?: string
+}
+
+const { class: className, iconClass } = Astro.props
+---
+
+<div
+  class:list={[
+    'flex items-center justify-center rounded-xl bg-blue-500 shadow-lg shadow-blue-500/20 transition-all duration-300',
+    className
+  ]}
+>
+  <svg
+    class:list={[
+      'text-white drop-shadow-[0_1px_2px_rgba(30,58,138,0.5)]',
+      iconClass
+    ]}
+    viewBox='0 0 24 24'
+    fill='currentColor'
+  >
+    <path d='M13 2L3 14h9l-1 8 10-10h-9l1-8z'></path>
+  </svg>
+</div>
+
+<style is:global>
+  @keyframes float-subtle {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 0.95;
+    }
+    50% {
+      transform: translateY(-2px) scale(1.02);
+      opacity: 1;
+    }
+  }
+
+  .animate-float-subtle {
+    animation: float-subtle 4s ease-in-out infinite;
+  }
+</style>
