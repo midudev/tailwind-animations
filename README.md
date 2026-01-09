@@ -119,6 +119,7 @@ This plugin also brings a utility class to animate elements based on their posit
 </p>
 </div>
 ```
+
 > Example extracted from [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/view-timeline)
 
 ## Contributors 👑
