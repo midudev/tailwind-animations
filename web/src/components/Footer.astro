@@ -1,0 +1,194 @@
+---
+import Github from './icons/github.astro'
+import Logo from './Logo.astro'
+
+const currentYear = new Date().getFullYear()
+
+const FOOTER_LINKS = [
+  {
+    title: 'Documentation',
+    links: [
+      { name: 'Installation', href: '#install-command' },
+      { name: 'Usage', href: '#option-inputs' },
+      {
+        name: 'Utility Classes',
+        href: 'https://github.com/midudev/tailwind-animations#utility-classes'
+      },
+      {
+        name: 'Customizing',
+        href: 'https://github.com/midudev/tailwind-animations#customization'
+      }
+    ]
+  },
+  {
+    title: 'Community',
+    links: [
+      {
+        name: 'Contributors',
+        href: 'https://github.com/midudev/tailwind-animations/graphs/contributors'
+      },
+      {
+        name: 'GitHub Issues',
+        href: 'https://github.com/midudev/tailwind-animations/issues'
+      },
+      {
+        name: 'Discussions',
+        href: 'https://github.com/midudev/tailwind-animations/discussions'
+      },
+      { name: 'Discord', href: 'https://discord.gg/midudev' }
+    ]
+  },
+  {
+    title: 'Links',
+    links: [
+      {
+        name: 'npm Package',
+        href: 'https://npm.im/@midudev/tailwind-animations'
+      },
+      { name: 'Midu.dev', href: 'https://midu.dev' },
+      { name: 'Twitch', href: 'https://twitch.tv/midudev' },
+      { name: 'YouTube', href: 'https://youtube.com/midudev' }
+    ]
+  }
+]
+---
+
+<footer
+  class='relative mt-32 overflow-hidden border-t border-slate-200 bg-slate-50/50 pt-20 pb-10 dark:border-slate-800 dark:bg-[#080808]/50'
+>
+  <!-- Decorative Background Elements -->
+  <div
+    class='absolute top-0 left-1/2 h-px w-full -translate-x-1/2 bg-linear-to-r from-transparent via-blue-500/20 to-transparent dark:via-blue-500/10'
+  >
+  </div>
+  <div
+    class='absolute -top-24 left-1/4 size-64 rounded-full bg-blue-500/5 blur-[100px] dark:bg-blue-600/5'
+  >
+  </div>
+  <div
+    class='absolute right-1/4 -bottom-24 size-64 rounded-full bg-blue-500/5 blur-[100px] dark:bg-blue-600/5'
+  >
+  </div>
+
+  <div class='relative mx-auto max-w-6xl px-4 lg:px-8'>
+    <div class='grid grid-cols-1 gap-12 lg:grid-cols-12'>
+      <!-- Brand & Info -->
+      <div class='group flex flex-col gap-6 lg:col-span-5'>
+        <div class='flex items-center gap-3'>
+          <Logo
+            class='size-10 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-500/40'
+            iconClass='size-6 animate-float-subtle group-hover:animate-pulse'
+          />
+          <span
+            class='text-2xl font-bold tracking-tight text-slate-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400'
+          >
+            Tailwind <span class='text-blue-500'>Animations</span>
+          </span>
+        </div>
+
+        <p
+          class='max-w-sm text-base leading-relaxed text-slate-600 dark:text-slate-400'
+        >
+          Elevate your user experience with high-performance animations. Open
+          source, community-driven, and designed for Tailwind CSS.
+        </p>
+
+        <div class='flex items-center gap-5'>
+          <a
+            href='https://github.com/midudev/tailwind-animations'
+            target='_blank'
+            rel='noopener noreferrer'
+            aria-label='GitHub'
+            class='group flex items-center justify-center rounded-full bg-white p-2.5 text-slate-400 shadow-sm ring-1 ring-slate-200 transition-all hover:text-slate-900 hover:ring-slate-300 dark:bg-slate-900 dark:text-slate-500 dark:ring-slate-800 dark:hover:text-white dark:hover:ring-slate-700'
+          >
+            <Github class='size-5' />
+          </a>
+          <a
+            href='https://x.com/midudev'
+            target='_blank'
+            rel='noopener noreferrer'
+            aria-label='X (Twitter)'
+            class='group flex items-center justify-center rounded-full bg-white p-2.5 text-slate-400 shadow-sm ring-1 ring-slate-200 transition-all hover:text-slate-900 hover:ring-slate-300 dark:bg-slate-900 dark:text-slate-500 dark:ring-slate-800 dark:hover:text-white dark:hover:ring-slate-700'
+          >
+            <svg viewBox='0 0 24 24' class='size-5' fill='currentColor'>
+              <path
+                d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Links Grid -->
+      <div class='grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-7'>
+        {
+          FOOTER_LINKS.map((section) => (
+            <div class='flex flex-col gap-4'>
+              <h3 class='text-xs font-bold tracking-[0.2em] whitespace-nowrap text-slate-900 uppercase dark:text-white'>
+                {section.title}
+              </h3>
+              <ul class='flex flex-col gap-3'>
+                {section.links.map((link) => (
+                  <li>
+                    <a
+                      href={link.href}
+                      class='text-sm text-slate-500 transition-colors hover:text-blue-500 dark:text-slate-400 dark:hover:text-white'
+                    >
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div
+      class='mt-20 flex flex-col items-center justify-between gap-6 border-t border-dashed border-slate-200 pt-10 md:flex-row dark:border-slate-800'
+    >
+      <a
+        href='https://discord.gg/midudev'
+        target='_blank'
+        rel='noopener noreferrer'
+        class='group/community flex flex-col items-center gap-2 md:items-start'
+      >
+        <p
+          class='text-sm font-bold text-slate-900 transition-colors group-hover/community:text-blue-500 dark:text-white dark:group-hover/community:text-blue-400'
+        >
+          Join our community!
+        </p>
+        <p
+          class='max-w-[200px] text-center text-xs text-slate-500 md:text-left'
+        >
+          Contributing animations or fixing bugs is the best way to support the
+          project.
+        </p>
+      </a>
+
+      <div class='flex flex-col items-center gap-4 md:items-end'>
+        <div class='flex items-center gap-2 text-sm text-slate-500'>
+          <span>Created with</span>
+          <span class='animate-pulse text-red-500'>❤️</span>
+          <span>by</span>
+          <a
+            href='https://x.com/midudev'
+            target='_blank'
+            rel='noopener noreferrer'
+            class='font-bold text-slate-900 transition-all hover:scale-105 hover:text-blue-500 dark:text-white'
+          >
+            midudev
+          </a>
+          <span>and friends</span>
+        </div>
+        <p
+          class='text-[10px] tracking-widest whitespace-nowrap text-slate-400 uppercase'
+        >
+          © {currentYear} Tailwind Animations • MIT License
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

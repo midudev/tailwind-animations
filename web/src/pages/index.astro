@@ -7,327 +7,1144 @@ import theme from '../../../src/theme.js'
 import CopyIcon from '@components/icons/copy.astro'
 import { Code } from 'astro:components'
 import Github from '@components/icons/github.astro'
+import Footer from '@components/Footer.astro'
+import Logo from '@components/Logo.astro'
 import ToggleTheme from '@components/ToggleTheme.astro'
 
 const { animation, animationDuration, animationSteps, animationDelay } = theme
 const { version } = pkg
+
+const POPULAR_ANIMATIONS = [
+  'fade-in',
+  'blurred-fade-in',
+  'zoom-in',
+  'slide-in-top',
+  'bouncing',
+  'pulsing',
+  'shake',
+  'tada',
+  'jelly',
+  'flip-horizontal',
+  'swing',
+  'wobble',
+  'rotate-360',
+  'fade-in-up',
+  'slide-in-left',
+  'zoom-out',
+  'fade-in-down',
+  'slide-in-bottom',
+  'slide-in-right'
+]
+
+const sortedAnimations = Object.keys(animation).sort((a, b) => {
+  const indexA = POPULAR_ANIMATIONS.indexOf(a)
+  const indexB = POPULAR_ANIMATIONS.indexOf(b)
+
+  if (indexA === -1 && indexB === -1) return a.localeCompare(b)
+  if (indexA === -1) return 1
+  if (indexB === -1) return -1
+  return indexA - indexB
+})
+
+const featuredAnimations = sortedAnimations.slice(0, 15)
+const otherAnimations = sortedAnimations.slice(15)
+
+const packageManagers = [
+  {
+    name: 'npm',
+    icon: `<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'><path fill='#c12127' d='M2 2h28v28H2'/><path fill='#fff' d='M7.25 7.25h17.5v17.5h-3.5v-14H16v14H7.25'/></svg>`,
+    command: 'npm install @midudev/tailwind-animations'
+  },
+  {
+    name: 'pnpm',
+    icon: `<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'><path fill='#f9ad00' d='M30 10.75h-8.749V2H30Zm-9.626 0h-8.75V2h8.75Zm-9.625 0H2V2h8.749ZM30 20.375h-8.749v-8.75H30Z'/><path fill='#4e4e4e' d='M20.374 20.375h-8.75v-8.75h8.75Zm0 9.625h-8.75v-8.75h8.75ZM30 30h-8.749v-8.75H30Zm-19.251 0H2v-8.75h8.749Z'/></svg>`,
+    command: 'pnpm add @midudev/tailwind-animations'
+  },
+  {
+    name: 'yarn',
+    icon: `<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'><path fill='#2188b6' d='M28.208 24.409a10.5 10.5 0 0 0-3.959 1.822a23.7 23.7 0 0 1-5.835 2.642a1.63 1.63 0 0 1-.983.55a62 62 0 0 1-6.447.577c-1.163.009-1.876-.3-2.074-.776a1.573 1.573 0 0 1 .866-2.074a4 4 0 0 1-.514-.379c-.171-.171-.352-.514-.406-.388c-.225.55-.343 1.894-.947 2.5c-.83.839-2.4.559-3.328.072c-1.019-.541.072-1.813.072-1.813a.73.73 0 0 1-.992-.343a4.85 4.85 0 0 1-.667-2.949a5.37 5.37 0 0 1 1.749-2.895a9.3 9.3 0 0 1 .658-4.4a10.45 10.45 0 0 1 3.165-3.661S6.628 10.747 7.35 8.817c.469-1.262.658-1.253.812-1.308a3.6 3.6 0 0 0 1.452-.857a5.27 5.27 0 0 1 4.41-1.7S15.2 1.4 16.277 2.09a18.4 18.4 0 0 1 1.533 2.886s1.281-.748 1.425-.469a11.33 11.33 0 0 1 .523 6.132a14 14 0 0 1-2.6 5.411c-.135.225 1.551.938 2.615 3.887c.983 2.7.108 4.96.262 5.212c.027.045.036.063.036.063s1.127.09 3.391-1.308a8.5 8.5 0 0 1 4.277-1.604a1.081 1.081 0 0 1 .469 2.11Z'/></svg>`,
+    command: 'yarn add @midudev/tailwind-animations'
+  },
+  {
+    name: 'bun',
+    icon: `<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'><path fill='#fbf0df' d='M29 17c0 5.65-5.82 10.23-13 10.23S3 22.61 3 17c0-3.5 2.24-6.6 5.66-8.44S14.21 4.81 16 4.81s3.32 1.54 7.34 3.71C26.76 10.36 29 13.46 29 17'/><path fill='none' stroke='#000' d='M16 27.65c7.32 0 13.46-4.65 13.46-10.65c0-3.72-2.37-7-5.89-8.85c-1.39-.75-2.46-1.41-3.37-2l-1.13-.69A6.14 6.14 0 0 0 16 4.35a6.9 6.9 0 0 0-3.3 1.23c-.42.24-.86.51-1.32.8c-.87.54-1.83 1.13-3 1.73C4.91 10 2.54 13.24 2.54 17c0 6 6.14 10.65 13.46 10.65Z'/><ellipse cx='21.65' cy='18.62' fill='#febbd0' rx='2.17' ry='1.28'/><ellipse cx='10.41' cy='18.62' fill='#febbd0' rx='2.17' ry='1.28'/><path fill-rule='evenodd' d='M11.43 18.11a2 2 0 1 0-2-2.05a2.05 2.05 0 0 0 2 2.05m9.2 0a2 2 0 1 0-2-2.05a2 2 0 0 0 2 2.05'/><path fill='#fff' fill-rule='evenodd' d='M10.79 16.19a.77.77 0 1 0-.76-.77a.76.76 0 0 0 .76.77m9.2 0a.77.77 0 1 0 0-1.53a.77.77 0 0 0 0 1.53'/><path fill='#b71422' stroke='#000' stroke-width='.75' d='M18.62 19.67a3.3 3.3 0 0 1-1.09 1.75a2.48 2.48 0 0 1-1.5.69a2.53 2.53 0 0 1-1.5-.69a3.28 3.28 0 0 1-1.08-1.75a.26.26 0 0 1 .29-.3h4.58a.27.27 0 0 1 .3.3Z'/><path fill='#ccbea7' fill-rule='evenodd' d='M14.93 5.75a6.1 6.1 0 0 1-2.09 4.62c-.1.09 0 .27.11.22c1.25-.49 2.94-1.94 2.23-4.88c-.03-.15-.25-.11-.25.04m.85 0a6 6 0 0 1 .57 5c0 .13.12.24.21.13c.83-1 1.54-3.11-.59-5.31c-.1-.11-.27.04-.19.17Zm1-.06a6.1 6.1 0 0 1 2.53 4.38c0 .14.21.17.24 0c.34-1.3.15-3.51-2.66-4.66c-.12-.02-.21.18-.09.27ZM9.94 9.55a6.27 6.27 0 0 0 3.89-3.33c.07-.13.28-.08.25.07c-.64 3-2.79 3.59-4.13 3.51c-.14-.01-.14-.21-.01-.25'/></svg>`,
+    command: 'bun add @midudev/tailwind-animations'
+  },
+  {
+    name: 'deno',
+    icon: `<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'><path fill-rule='evenodd' d='M4.45 21.34A12.5 12.5 0 0 1 3.27 16a12 12 0 0 1 .09-1.46a11 11 0 0 1 .24-1.42a12.75 12.75 0 0 1 9.73-9.57A13 13 0 0 1 16 3.27h1a12.73 12.73 0 0 1 11.57 10.5a13 13 0 0 1 .16 2.23v1a12.6 12.6 0 0 1-3.3 7.61a6.62 6.62 0 0 1-4.7 2.06a4.68 4.68 0 0 1-2.88-1.09a4.58 4.58 0 0 1-1.63-3.09a5.5 5.5 0 0 1 .14-1.61a3.4 3.4 0 0 1 .8-1.53a5 5 0 0 1-1.3-.88a.15.15 0 0 1 0-.19a.16.16 0 0 1 .18-.06a10 10 0 0 0 1.46.37a20 20 0 0 0 2.45.31c2.13.1 4.38-.9 5.05-2.81s.43-3.83-2.08-5s-3.66-2.5-5.69-3.32a5 5 0 0 0-4.3.62c-4.08 2.25-7.72 9.35-6 15.94a.21.21 0 0 1-.1.23a.2.2 0 0 1-.23 0a13 13 0 0 1-1.33-1.73a13 13 0 0 1-.82-1.49'/><path fill='#f5f5f5' fill-rule='evenodd' d='M16.65 2A14 14 0 1 1 2 15.35A14 14 0 0 1 16.65 2m3.27 16.85a20 20 0 0 1-2.45-.31a8.6 8.6 0 0 1-1.47-.35a.16.16 0 0 0-.18.06a.15.15 0 0 0 0 .19a5 5 0 0 0 1.3.88a3.4 3.4 0 0 0-.8 1.53a5.5 5.5 0 0 0-.14 1.61a4.58 4.58 0 0 0 1.63 3.09a4.68 4.68 0 0 0 2.88 1.09a6.62 6.62 0 0 0 4.72-2.07a12.73 12.73 0 1 0-18.84 0a.21.21 0 0 0 .35-.19c-1.68-6.59 2-13.69 6-15.94a5 5 0 0 1 4.3-.62c2 .82 3.18 2.18 5.69 3.32s2.78 3 2.08 5s-2.91 2.86-5.07 2.73ZM15.54 8.69c-.82.06-1.36 1.08-1.43 1.73s.25 1.73 1.32 1.71c1.25 0 1.64-1.09 1.5-2.13a1.39 1.39 0 0 0-1.39-1.31'/><path fill-rule='evenodd' d='M15.54 8.68A1.4 1.4 0 0 1 16.93 10c.14 1-.24 2.12-1.49 2.14c-1.07 0-1.4-1.06-1.33-1.71s.61-1.68 1.43-1.75'/></svg>`,
+    command: 'deno add @midudev/tailwind-animations'
+  }
+]
 ---
 
 <Layout
   title='Tailwind CSS Animations Plugin: Community-Powered Animation Magic'
 >
   <wc-toast></wc-toast>
-  <main class='pb-12'>
-    <header
-      class='mx-auto flex max-w-4xl flex-col items-center justify-center py-12'
-    >
-      <div class='flex items-center justify-center gap-4'>
+
+  <!-- Global Progress Bar -->
+  <div
+    class='scroll-animate-single animate-expand-horizontally fixed top-0 left-0 z-[100] h-1.5 w-full origin-left bg-blue-500'
+  >
+  </div>
+
+  <main class='mx-auto max-w-6xl px-4 pt-16 pb-24 lg:px-8'>
+    <header class='relative z-10 mx-auto mb-20'>
+      <!-- GitHub fixed top-right -->
+      <div class='fixed top-6 right-6 z-50 flex items-center gap-4'>
         <ToggleTheme />
-        <span class='font-mono text-xs font-medium tracking-tighter'
-          >v.{version}</span
-        >
         <a
           aria-label='View website repository on GitHub'
           href='https://github.com/midudev/tailwind-animations'
           target='_blank'
           rel='noopener noreferrer'
-          title='GitHub'
-          class='rounded-md border border-gray-200 p-1 text-gray-700 transition ease-in-out hover:bg-gray-200 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700'
+          class='text-slate-400 transition-colors hover:text-slate-600 dark:hover:text-slate-200'
         >
-          <Github class='size-5' />
+          <Github class='size-6' />
         </a>
       </div>
-      <h1 class='mt-12 text-center text-4xl font-semibold'>
-        tailwind css animations
-      </h1>
-      <h2 class='mt-2 text-lg font-medium opacity-70'>
-        the plugin that you need! =)
-      </h2>
-      <div class='mt-10 px-4 sm:px-0'>
-        <span class='mb-4 text-xs font-medium opacity-60'
-          >1. Install the dependency</span
-        >
-        <div
-          class='flex w-full max-w-md items-center justify-between gap-x-2 rounded-md bg-gray-800 py-1 pr-1 pl-4 text-center backdrop-blur'
-        >
-          <pre
-            class='flex text-sm'>
-            <Code wrap={true} code='npm install @midudev/tailwind-animations' theme="dracula" />
-          </pre>
-          <button
-            id='copyNpmInstall'
-            aria-label='Copy npm install command'
-            title='Copy'
-            class='my-1 mr-2 inline-flex size-7 items-center justify-center rounded-full bg-gray-950/60 text-sm font-medium whitespace-nowrap text-gray-100 transition focus-visible:outline-none disabled:pointer-events-none'
-          >
-            <CopyIcon />
-          </button>
-        </div>
-        <span class='mt-4 mb-2 block text-left text-xs font-medium opacity-60'
-          >2. Add to your configuration</span
-        >
-        <div
-          class='flex w-full max-w-md items-center gap-x-2 rounded-md bg-gray-800 py-3 pr-4 pl-4 text-center backdrop-blur'
-        >
-          <pre
-            class='flex text-left text-xs'>
-            
-            <Code wrap={true} theme="dracula" lang="js" code={`@import 'tailwindcss';
 
-@plugin "@midudev/tailwind-animations";`} />
-          </pre>
+      <!-- Version badge -->
+      <div class='animate-fade-in-up mb-8'>
+        <span
+          class='inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset dark:bg-blue-400/10 dark:text-blue-400 dark:ring-blue-400/30'
+        >
+          v{version}
+        </span>
+      </div>
+
+      <!-- Main Hero: Two columns layout -->
+      <div class='grid items-end gap-12 lg:grid-cols-2 lg:gap-16'>
+        <!-- Left Column: Content -->
+        <div class='text-left'>
+          <div
+            class='animate-fade-in-up animate-delay-100 mb-6 flex items-center gap-5'
+          >
+            <Logo
+              class='aspect-square size-14 shrink-0'
+              iconClass='size-7 animate-float-subtle'
+            />
+            <h1
+              class='text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl dark:text-white'
+            >
+              Tailwind <span class='text-blue-500'>Animations</span>
+            </h1>
+          </div>
+          <p
+            class='animate-fade-in-up animate-delay-200 mb-10 max-w-md text-base leading-7 text-slate-600 sm:text-lg dark:text-slate-400'
+          >
+            The easiest way to add stunning animations to your Tailwind CSS
+            projects. Zero configuration, pure performance.
+          </p>
+
+          <!-- Install Command Box -->
+          <div class='animate-fade-in-up animate-delay-300 flex flex-col gap-5'>
+            <div
+              class='overflow-hidden rounded-xl border border-slate-200 bg-white/50 p-1 shadow-xl shadow-slate-200/50 backdrop-blur-sm dark:border-white/10 dark:bg-black/40 dark:shadow-none'
+            >
+              <div
+                class='flex items-center justify-between border-b border-slate-200 px-4 dark:border-white/10'
+              >
+                <div
+                  class='scrollbar-hide flex items-center gap-1 overflow-x-auto py-2'
+                >
+                  {
+                    packageManagers.map((pm, index) => (
+                      <button
+                        class={`package-manager-btn flex items-center gap-2 rounded-full px-2 py-1 text-xs font-bold transition-all ${index === 0 ? 'bg-black/10 text-slate-900 dark:bg-white/5 dark:text-white' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'}`}
+                        data-pm={pm.name}
+                        data-command={pm.command}
+                      >
+                        <span
+                          class='flex size-4 items-center justify-center'
+                          set:html={pm.icon}
+                        />
+                        <span>{pm.name}</span>
+                      </button>
+                    ))
+                  }
+                </div>
+                <button
+                  id='copyNpmInstall'
+                  class='group flex shrink-0 items-center gap-2 text-xs font-semibold text-slate-500 transition-colors hover:text-blue-500'
+                  title='Copy to clipboard'
+                >
+                  <CopyIcon class='size-4 group-active:scale-90' />
+                </button>
+              </div>
+              <div class='flex items-center gap-4 p-4'>
+                <div class='scrollbar-hide flex-1 overflow-x-auto text-left'>
+                  <code
+                    class='font-mono text-sm text-slate-800 dark:text-slate-200'
+                  >
+                    <span class='text-blue-500 select-none'>$ </span><span
+                      id='install-command'>{packageManagers[0].command}</span
+                    >
+                  </code>
+                </div>
+              </div>
+            </div>
+
+            <!-- Configuration Box -->
+            <div
+              class='overflow-hidden rounded-xl border border-slate-200 bg-white/50 p-1 backdrop-blur-sm dark:border-white/10 dark:bg-black/40'
+            >
+              <div
+                class='flex items-center justify-between border-b border-slate-200 px-4 py-2 dark:border-white/10'
+              >
+                <div class='flex gap-1'>
+                  <button
+                    class='version-tab rounded-full bg-black/10 px-3 py-1 text-[10px] font-bold tracking-widest text-slate-900 uppercase transition-all dark:bg-white/5 dark:text-white'
+                    data-version='v4'
+                  >
+                    Tailwind v4
+                  </button>
+                  <button
+                    class='version-tab rounded-full px-3 py-1 text-[10px] font-bold tracking-widest text-slate-500 uppercase transition-all hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
+                    data-version='v3'
+                  >
+                    Tailwind v3
+                  </button>
+                </div>
+                <div class='flex items-center gap-4'>
+                  <div
+                    class='text-[10px] font-bold tracking-widest text-slate-400 uppercase'
+                  >
+                    How to use
+                  </div>
+                  <button
+                    id='copyCode'
+                    class='group flex shrink-0 items-center gap-2 text-xs font-semibold text-slate-500 transition-colors hover:text-blue-500'
+                    title='Copy to clipboard'
+                  >
+                    <CopyIcon class='size-4 group-active:scale-90' />
+                  </button>
+                </div>
+              </div>
+              <div class='overflow-x-auto p-4 text-left dark:border-none'>
+                <div id='code-v4' class='version-code'>
+                  <Code
+                    class='text-sm'
+                    wrap={true}
+                    lang='postcss'
+                    theme='synthwave-84'
+                    code={`@import 'tailwindcss';
+@plugin '@midudev/tailwind-animations';`}
+                  />
+                </div>
+                <div id='code-v3' class='version-code hidden'>
+                  <Code
+                    class='text-sm'
+                    wrap={true}
+                    theme='synthwave-84'
+                    lang='javascript'
+                    code={`// tailwind.config.mjs
+import animations from '@midudev/tailwind-animations'
+
+export default {
+  plugins: [
+    animations
+  ],
+}`}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Demo -->
+        <div class='animate-fade-in-up animate-delay-500 relative'>
+          <!-- Demo Window -->
+          <div
+            class='relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-2xl shadow-blue-500/10 dark:border-slate-700/50 dark:bg-slate-900'
+          >
+            <!-- Window Header -->
+            <div
+              class='flex items-center justify-between border-b border-slate-200 bg-slate-100 px-4 py-3 dark:border-slate-700/50 dark:bg-slate-800/50'
+            >
+              <div class='flex items-center gap-2'>
+                <div class='size-3 rounded-full bg-red-500'></div>
+                <div class='size-3 rounded-full bg-yellow-500'></div>
+                <div class='size-3 rounded-full bg-green-500'></div>
+              </div>
+              <span class='font-mono text-xs text-slate-500'
+                >demo_preview.html</span
+              >
+              <div class='w-12'></div>
+            </div>
+
+            <!-- Preview Area -->
+            <div
+              class='relative flex min-h-[280px] items-center justify-center overflow-hidden bg-linear-to-br from-slate-50 via-white to-slate-50 p-8 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900'
+            >
+              <!-- Grid Pattern Background -->
+              <div
+                class='pointer-events-none absolute inset-0 opacity-30 dark:opacity-30'
+                style='background-image: linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px); background-size: 40px 40px;'
+              >
+              </div>
+
+              <!-- Animated Box -->
+              <div
+                id='hero-demo-box'
+                class='relative size-28 rounded-2xl bg-linear-to-br from-violet-500 via-purple-500 to-pink-500 shadow-2xl shadow-purple-500/40'
+              >
+                <!-- Glow effect -->
+                <div
+                  class='absolute -inset-1 -z-10 rounded-2xl bg-linear-to-br from-violet-500 via-purple-500 to-pink-500 opacity-50 blur-xl'
+                >
+                </div>
+              </div>
+            </div>
+
+            <!-- Code Display Area -->
+            <div
+              class='border-t border-slate-200 bg-white p-5 dark:border-slate-700/50 dark:bg-slate-900/80'
+            >
+              <div class='font-mono text-sm'>
+                <span class='text-slate-500'>&lt;</span><span
+                  class='text-pink-600 dark:text-pink-400'>div</span
+                >
+                <span class='text-slate-500'> class="</span><span
+                  id='hero-demo-classes'
+                  class='text-cyan-600 dark:text-cyan-400'></span><span
+                  class='text-slate-500'>"&gt;</span
+                >
+              </div>
+              <div
+                class='pl-4 font-mono text-sm text-slate-400 dark:text-slate-600'
+              >
+                &lt;!-- Animación aplicada --&gt;
+              </div>
+              <div class='font-mono text-sm'>
+                <span class='text-slate-500'>&lt;/</span><span
+                  class='text-pink-600 dark:text-pink-400'>div</span
+                ><span class='text-slate-500'>&gt;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decorative elements -->
+          <div
+            class='pointer-events-none absolute -top-20 -right-20 size-40 rounded-full bg-blue-500/20 blur-3xl'
+          >
+          </div>
+          <div
+            class='pointer-events-none absolute -bottom-20 -left-20 size-40 rounded-full bg-purple-500/20 blur-3xl'
+          >
+          </div>
         </div>
       </div>
     </header>
 
-    <section
-      class='sticky top-0 left-0 z-50 mb-8 flex flex-wrap items-center justify-center gap-4 px-6 py-2 sm:gap-6'
-      id='option-inputs'
-    >
-      <label
-        for='duration'
-        class='block font-mono text-xs font-medium text-gray-800 dark:text-gray-200'
-      >
-        Duration
-        <select
-          name='duration'
-          id='duration'
-          class='placeholder-opacity-80 mt-1 block w-full min-w-32 rounded-lg border border-gray-200 bg-gray-50 p-2 text-xs dark:border-gray-700 dark:bg-gray-900'
+    <section class='mt-32 mb-24'>
+      <div class='mb-16 flex flex-col items-center'>
+        <h2
+          class='mb-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
         >
-          {
-            Object.entries(animationDuration).map(([key, value]) => {
-              return <option value={value}>{key}</option>
-            })
-          }
-        </select>
-      </label>
-      <label
-        for='delay'
-        class='block font-mono text-xs font-medium text-gray-800 dark:text-gray-200'
-      >
-        Delay
-        <select
-          name='delay'
-          id='delay'
-          class='placeholder-opacity-80 mt-1 block w-full min-w-32 rounded-lg border border-gray-200 bg-gray-50 p-2 text-xs dark:border-gray-700 dark:bg-gray-900'
+          Animation Collection
+        </h2>
+        <p
+          class='max-w-2xl text-center text-lg text-balance text-slate-600 dark:text-slate-400'
         >
-          {
-            Object.entries(animationDelay).map(([key, value]) => {
-              return <option value={value}>{key}</option>
-            })
-          }
-        </select>
-      </label>
-      <label
-        for='steps'
-        class='block font-mono text-xs font-medium text-gray-800 dark:text-gray-200'
-      >
-        Steps
-        <select
-          name='steps'
-          id='steps'
-          class='placeholder-opacity-80 mt-1 block w-full min-w-32 rounded-lg border border-gray-200 bg-gray-50 p-2 text-xs dark:border-gray-700 dark:bg-gray-900'
-        >
-          {
-            Object.entries(animationSteps).map(([key, value]) => {
-              return <option value={value}>{key}</option>
-            })
-          }
-        </select>
-      </label>
-      <label
-        class='flex flex-col gap-2 font-mono text-xs font-medium text-gray-800 dark:text-gray-200'
-      >
-        Animate all
-        <div
-          class='relative inline h-6 w-12 cursor-pointer rounded-full border border-gray-200 bg-gray-50 transition dark:border-gray-700 dark:bg-gray-900'
-        >
-          <input class='peer sr-only' id='animate' type='checkbox' value='' />
-          <span
-            class='absolute inset-y-0 start-0 mx-1 mt-[3px] size-4 rounded-full bg-gray-500 ring-[6px] ring-gray-300 transition-all ring-inset peer-checked:start-7 peer-checked:w-2 peer-checked:bg-gray-900 peer-checked:ring-transparent dark:ring-gray-700 dark:peer-checked:bg-gray-100'
-          ></span>
-        </div>
-      </label>
-    </section>
+          Explore our comprehensive library of ready-to-use animations.
+          Customize duration, delay, and timing to fit your needs with zero
+          configuration.
+        </p>
+      </div>
 
-    <section
-      class='m-auto grid max-w-4xl grid-cols-2 gap-4 px-4 sm:grid-cols-3 lg:grid-cols-4'
-    >
-      {
-        Object.keys(animation).map((animationKey) => {
-          return (
-            <article
-              class='animate-duration-1000 relative col-span-1 cursor-crosshair rounded-md border border-gray-200 backdrop-blur-sm transition-colors hover:shadow dark:border-gray-800'
-              data-class={animationKey}
-            >
-              <div class='flex h-full w-full flex-col items-center justify-center gap-4 p-6'>
-                <span class='flex h-16 w-16 items-center justify-center rounded-md bg-gray-900 dark:bg-gray-300' />
-                <p class='text-sm font-semibold opacity-80'>{animationKey}</p>
-              </div>
-              <button
-                aria-label={`Copy ${animationKey.split('-').join(' ')} animation`}
-                class='absolute top-2.5 right-2.5'
+      <div class='relative'>
+        <section
+          class='sticky top-4 z-50 mb-12 flex items-center justify-center px-4'
+          id='option-inputs'
+        >
+          <div
+            class='animate-fade-in-up animate-delay-700 flex flex-wrap items-center justify-center gap-4 rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-black/60'
+          >
+            <div class='flex flex-col gap-1'>
+              <span
+                class='text-[10px] font-bold tracking-wider text-slate-400 uppercase'
+                >Duration</span
               >
-                <CopyIcon />
+              <select
+                name='duration'
+                id='duration'
+                class='min-w-32 rounded-lg border border-slate-200 bg-slate-50/50 px-2 py-1 text-sm font-medium transition-colors outline-none hover:border-blue-500 dark:border-white/5 dark:bg-white/5'
+              >
+                {
+                  Object.entries(animationDuration).map(([key, value]) => (
+                    <option
+                      value={value}
+                      selected={key === '1000'}
+                      class='dark:bg-slate-900'
+                    >
+                      {key}
+                    </option>
+                  ))
+                }
+              </select>
+            </div>
+
+            <div class='flex flex-col gap-1'>
+              <span
+                class='text-[10px] font-bold tracking-wider text-slate-400 uppercase'
+                >Delay</span
+              >
+              <select
+                name='delay'
+                id='delay'
+                class='min-w-32 rounded-lg border border-slate-200 bg-slate-50/50 px-2 py-1 text-sm font-medium transition-colors outline-none hover:border-blue-500 dark:border-white/5 dark:bg-white/5'
+              >
+                {
+                  Object.entries(animationDelay).map(([key, value]) => (
+                    <option value={value} class='dark:bg-slate-900'>
+                      {key}
+                    </option>
+                  ))
+                }
+              </select>
+            </div>
+
+            <div class='flex flex-col gap-1'>
+              <span
+                class='text-[10px] font-bold tracking-wider text-slate-400 uppercase'
+                >Steps</span
+              >
+              <select
+                name='steps'
+                id='steps'
+                class='min-w-32 rounded-lg border border-slate-200 bg-slate-50/50 px-2 py-1 text-sm font-medium transition-colors outline-none hover:border-blue-500 dark:border-white/5 dark:bg-white/5'
+              >
+                {
+                  Object.entries(animationSteps).map(([key, value]) => (
+                    <option value={value} class='dark:bg-slate-900'>
+                      {key}
+                    </option>
+                  ))
+                }
+              </select>
+            </div>
+
+            <div
+              class='hidden h-8 w-px bg-slate-200 sm:block dark:bg-slate-800'
+            >
+            </div>
+
+            <label class='group flex cursor-pointer items-center gap-3'>
+              <span
+                class='text-sm font-medium text-slate-600 transition-colors group-hover:text-blue-500 dark:text-slate-400'
+                >Animate all</span
+              >
+              <div class='relative inline-flex h-6 w-11 items-center'>
+                <input class='peer sr-only' id='animate' type='checkbox' />
+                <div
+                  class='h-6 w-11 rounded-full bg-slate-200 transition-colors peer-checked:bg-blue-500 dark:bg-slate-800'
+                >
+                </div>
+                <div
+                  class='absolute left-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all peer-checked:translate-x-5'
+                >
+                </div>
+              </div>
+            </label>
+          </div>
+        </section>
+
+        <section
+          class='grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
+        >
+          {
+            sortedAnimations.map((animationKey, index) => (
+              <article
+                class={`group animate-fade-in-up relative flex flex-col items-center gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/10 dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-blue-500/50 ${index >= 15 ? 'hidden' : ''}`}
+                data-class={animationKey}
+                style={`animation-delay: ${1000 + index * 50}ms; animation-fill-mode: both;`}
+              >
+                <div class='flex w-full items-center justify-between'>
+                  <span class='truncate pr-2 text-xs font-semibold text-slate-600 transition-colors group-hover:text-slate-900 dark:text-slate-400 dark:group-hover:text-white'>
+                    {animationKey}
+                  </span>
+                  <button
+                    aria-label={`Copy ${animationKey} class`}
+                    class='text-slate-300 transition-colors hover:text-blue-500'
+                  >
+                    <CopyIcon class='size-4' />
+                  </button>
+                </div>
+
+                <div class='flex flex-1 items-center justify-center py-8'>
+                  <div
+                    id={`preview-${animationKey}`}
+                    class='size-16 rounded-xl bg-linear-to-br from-blue-500 to-blue-600 shadow-lg shadow-blue-500/30 transition-all duration-300 dark:from-blue-400 dark:to-blue-500 dark:shadow-blue-500/20'
+                  />
+                </div>
+              </article>
+            ))
+          }
+        </section>
+
+        {
+          sortedAnimations.length > 15 && (
+            <div class='flex justify-center py-12'>
+              <button
+                id='load-more'
+                class='animate-fade-in animate-delay-[1500ms] group flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 bg-white/50 px-10 py-3 text-sm font-bold text-slate-700 shadow-sm backdrop-blur-sm transition-all hover:border-blue-500 hover:text-blue-500 hover:shadow-md active:scale-95 dark:border-white/10 dark:bg-black/40 dark:text-slate-300 dark:hover:border-blue-500/50 dark:hover:text-blue-400'
+              >
+                <span>View all animations</span>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='20'
+                  height='20'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  stroke='currentColor'
+                  stroke-width='2.5'
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
+                  class='transition-transform group-hover:rotate-90'
+                >
+                  <path d='M12 5v14' />
+                  <path d='M5 12h14' />
+                </svg>
               </button>
-            </article>
+            </div>
+          )
+        }
+      </div>
+
+      <section class='relative mt-32 mb-24'>
+        <div class='mb-16 flex flex-col items-center'>
+          <h2
+            class='mb-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+          >
+            Scroll Animations
+          </h2>
+          <p
+            class='max-w-2xl text-center text-lg text-balance text-slate-600 dark:text-slate-400'
+          >
+            Animate elements based on their position in the viewport using the <code
+              class='text-blue-500'>view-animate</code
+            > utility.
+          </p>
+        </div>
+
+        <div
+          class='mx-auto max-w-[800px] rounded-3xl border border-slate-200 bg-slate-50/50 p-8 backdrop-blur-sm sm:p-12 dark:border-slate-800 dark:bg-slate-900/50'
+        >
+          <div class='max-w-none'>
+            <h3 class='mb-6 text-center text-xl font-semibold dark:text-white'>
+              Scroll down to see the magic
+            </h3>
+
+            <p class='mb-6 text-slate-600 dark:text-slate-400'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus
+              quis varius quam quisque id. Et ligula ullamcorper malesuada proin
+              libero nunc consequat interdum varius. Elit ullamcorper dignissim
+              cras tincidunt lobortis feugiat vivamus at augue.
+            </p>
+
+            <p class='mb-12 text-slate-600 dark:text-slate-400'>
+              Dolor sed viverra ipsum nunc aliquet. Sed sed risus pretium quam
+              vulputate dignissim. Tortor aliquam nulla facilisi cras. A erat
+              nam at lectus urna duis convallis convallis. Nibh ipsum consequat
+              nisl vel pretium lectus. Sagittis aliquam malesuada bibendum arcu
+              vitae elementum. Malesuada bibendum arcu vitae elementum curabitur
+              vitae nunc sed velit.
+            </p>
+
+            <div
+              class='view-animate-[--subjectReveal] animate-zoom-in animate-range-[entry_10%_contain_25%] flex h-64 w-full flex-col items-center justify-center gap-4 rounded-2xl bg-pink-500 p-4 text-center font-bold text-white shadow-2xl'
+            >
+              <span class='text-2xl'>I reveal on scroll</span>
+              <code
+                class='rounded-lg bg-black/20 px-3 py-1 font-mono text-xs backdrop-blur-sm'
+              >
+                view-animate-[--reveal] animate-zoom-in
+                animate-range-[entry_10%_contain_25%]
+              </code>
+            </div>
+
+            <p class='mt-12 mb-12 text-slate-600 dark:text-slate-400'>
+              Adipiscing enim eu turpis egestas pretium aenean pharetra magna
+              ac. Arcu cursus vitae congue mauris rhoncus aenean vel. Sit amet
+              cursus sit amet dictum. Augue neque gravida in fermentum et.
+              Gravida rutrum quisque non tellus orci ac auctor augue mauris.
+              Risus quis varius quam quisque id diam vel quam elementum. Nibh
+              praesent tristique magna sit amet purus gravida quis. Duis
+              ultricies lacus sed turpis tincidunt id aliquet. In egestas erat
+              imperdiet sed euismod nisi. Eget egestas purus viverra accumsan in
+              nisl nisi scelerisque. Netus et malesuada fames ac.
+            </p>
+
+            <div
+              class='view-animate-[--slideIn] animate-slide-in-left animate-range-[entry_5%_contain_20%] flex h-48 w-full flex-col items-center justify-center gap-4 rounded-2xl bg-blue-500 p-4 text-center font-bold text-white shadow-2xl'
+            >
+              <span class='text-2xl'>I slide in from the left</span>
+              <code
+                class='rounded-lg bg-black/20 px-3 py-1 font-mono text-xs backdrop-blur-sm'
+              >
+                view-animate-[--slide] animate-slide-in-left
+                animate-range-[entry_5%_contain_20%]
+              </code>
+            </div>
+
+            <p class='mt-12 mb-12 text-slate-600 dark:text-slate-400'>
+              Aenean sed adipiscing diam donec adipiscing tristique risus nec.
+              Elementum pulvinar etiam non quam lacus suspendisse faucibus
+              interdum posuere. Aliquam id diam maecenas ultricies mi eget
+              mauris. Tortor at risus viverra adipiscing at in tellus integer.
+            </p>
+
+            <div
+              class='view-animate-[--fadeIn] animate-blurred-fade-in animate-range-[entry_10%_contain_30%] flex h-48 w-full flex-col items-center justify-center gap-4 rounded-2xl bg-purple-500 p-4 text-center font-bold text-white shadow-2xl'
+            >
+              <span class='text-2xl'>I fade in with blur</span>
+              <code
+                class='rounded-lg bg-black/20 px-3 py-1 font-mono text-xs backdrop-blur-sm'
+              >
+                view-animate-[--fade] animate-blurred-fade-in
+                animate-range-[entry_10%_contain_30%]
+              </code>
+            </div>
+
+            <p class='mt-12 text-slate-600 dark:text-slate-400'>
+              Donec pretium vulputate sapien nec sagittis aliquam malesuada
+              bibendum. Quis eleifend quam adipiscing vitae proin sagittis nisl
+              rhoncus. Pretium lectus quam id leo in vitae turpis massa sed.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class='relative mt-32 mb-24'>
+        <div class='mb-16 flex flex-col items-center'>
+          <h2
+            class='mb-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+          >
+            Container Scroll
+          </h2>
+          <p
+            class='max-w-2xl text-center text-lg text-balance text-slate-600 dark:text-slate-400'
+          >
+            Animate elements based on the scroll position of a specific
+            container using the <code class='text-blue-500'>scroll-animate</code
+            > utility.
+          </p>
+        </div>
+
+        <div
+          class='mx-auto max-w-[800px] rounded-3xl border border-slate-200 bg-slate-50/50 p-8 backdrop-blur-sm sm:p-12 dark:border-slate-800 dark:bg-slate-900/50'
+        >
+          <div class='max-w-none'>
+            <div class='grid grid-cols-1 gap-8 md:grid-cols-2'>
+              <!-- Example 1: Self-animating container -->
+              <div class='flex flex-col gap-4'>
+                <h4
+                  class='text-sm font-bold tracking-widest text-slate-400 uppercase'
+                >
+                  Self-animating container
+                </h4>
+                <div
+                  class='scroll-animate-single animate-blurred-fade-in relative h-64 overflow-y-auto rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950'
+                >
+                  <div class='h-[1000px] space-y-4 p-6'>
+                    <h3
+                      class='sticky top-0 bg-white/80 py-2 text-xl font-bold backdrop-blur-sm dark:bg-slate-950/80 dark:text-white'
+                    >
+                      Scroll me
+                    </h3>
+                    <p class='text-slate-600 dark:text-slate-400'>
+                      This entire container uses <code class='text-blue-500'
+                        >scroll-animate-single</code
+                      > and <code class='text-blue-500'
+                        >animate-blurred-fade-in</code
+                      >.
+                    </p>
+                    <p class='text-slate-600 dark:text-slate-400'>
+                      As you scroll down, the container clears up and becomes
+                      more opaque.
+                    </p>
+                    <div
+                      class='h-32 w-full rounded-xl bg-slate-100 dark:bg-slate-900'
+                    >
+                    </div>
+                    <div
+                      class='h-32 w-full rounded-xl bg-slate-100 dark:bg-slate-900'
+                    >
+                    </div>
+                    <div
+                      class='h-32 w-full rounded-xl bg-slate-100 dark:bg-slate-900'
+                    >
+                    </div>
+                  </div>
+                </div>
+                <code
+                  class='self-center rounded-lg bg-black/20 px-3 py-1 font-mono text-xs backdrop-blur-sm dark:text-slate-300'
+                >
+                  scroll-animate-single animate-blurred-fade-in
+                </code>
+              </div>
+
+              <!-- Example 2: Progress bar in container -->
+              <div class='flex flex-col gap-4'>
+                <h4
+                  class='text-sm font-bold tracking-widest text-slate-400 uppercase'
+                >
+                  Shared Timeline
+                </h4>
+                <div
+                  class='scroll-timeline-single relative h-64 overflow-y-auto rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950'
+                >
+                  <div
+                    class='timeline-single animate-expand-horizontally sticky top-0 z-10 h-1.5 w-full origin-left bg-blue-500'
+                  >
+                  </div>
+                  <div class='h-[1000px] space-y-4 p-6'>
+                    <h3 class='text-xl font-bold dark:text-white'>
+                      Shared progress
+                    </h3>
+                    <p class='text-slate-600 dark:text-slate-400'>
+                      The container defines the timeline with <code
+                        class='text-blue-500'>scroll-timeline-single</code
+                      >.
+                    </p>
+                    <p class='text-slate-600 dark:text-slate-400'>
+                      The bar uses <code class='text-blue-500'
+                        >timeline-single</code
+                      > to link its animation to that scroll.
+                    </p>
+                    <div
+                      class='h-32 w-full rounded-xl bg-slate-100 dark:bg-slate-900'
+                    >
+                    </div>
+                    <div
+                      class='h-32 w-full rounded-xl bg-slate-100 dark:bg-slate-900'
+                    >
+                    </div>
+                    <div
+                      class='h-32 w-full rounded-xl bg-slate-100 dark:bg-slate-900'
+                    >
+                    </div>
+                  </div>
+                </div>
+                <div class='flex flex-col items-center gap-2'>
+                  <code
+                    class='rounded-lg bg-black/20 px-3 py-1 font-mono text-[10px] backdrop-blur-sm dark:text-slate-300'
+                  >
+                    Parent: scroll-timeline-single
+                  </code>
+                  <code
+                    class='rounded-lg bg-black/20 px-3 py-1 font-mono text-[10px] backdrop-blur-sm dark:text-slate-300'
+                  >
+                    Child: timeline-single animate-expand-horizontally
+                  </code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </section>
+  </main>
+
+  <script>
+    import { toast } from 'wc-toast'
+
+    const $articles = document.querySelectorAll('article')
+    const $animateAll: HTMLInputElement = document.querySelector('#animate')!
+    const $duration: HTMLSelectElement = document.querySelector('#duration')!
+    const $steps: HTMLSelectElement = document.querySelector('#steps')!
+    const $delay: HTMLSelectElement = document.querySelector('#delay')!
+
+    const $pmButtons = document.querySelectorAll('.package-manager-btn')
+    const $installCommand = document.getElementById('install-command')!
+    const $copyBtn = document.getElementById('copyNpmInstall')!
+    const $copyCodeBtn = document.getElementById('copyCode')!
+
+    const $versionTabs = document.querySelectorAll('.version-tab')
+    const $versionCodes = document.querySelectorAll('.version-code')
+
+    const $loadMore = document.getElementById('load-more')
+
+    if ($loadMore) {
+      $loadMore.addEventListener('click', () => {
+        const $hiddenArticles = document.querySelectorAll('article.hidden')
+        $hiddenArticles.forEach(($article, index) => {
+          $article.classList.remove('hidden')
+          // @ts-ignore
+          $article.style.animationDelay = `${index * 50}ms`
+        })
+        $loadMore.parentElement?.remove()
+      })
+    }
+
+    // Initial duration setup (if any logic depends on it)
+    $duration.value = '1000ms'
+
+    // Version Tab Switcher
+    $versionTabs.forEach(($tab) => {
+      $tab.addEventListener('click', () => {
+        const version = $tab.getAttribute('data-version')!
+
+        $versionTabs.forEach(($t) => {
+          $t.classList.remove(
+            'bg-black/10',
+            'text-slate-900',
+            'dark:bg-white/5',
+            'dark:text-white'
+          )
+          $t.classList.add(
+            'text-slate-500',
+            'dark:text-slate-400',
+            'hover:text-slate-700',
+            'dark:hover:text-slate-200'
           )
         })
-      }
-    </section>
 
-    <footer
-      class='mx-auto flex max-w-2xl flex-col items-center justify-center px-6 pt-20 text-center text-sm text-pretty text-gray-600 dark:text-gray-400'
-    >
-      <p>
-        Based on <a
-          href='https://animation.ibelick.com/'
-          target='_blank'
-          class='text-gray-800 dark:text-gray-200'
-          rel='noopener noreferrer'>Julien Thibeaut Tailwind animations</a
-        >
-      </p>
+        $tab.classList.add(
+          'bg-black/10',
+          'text-slate-900',
+          'dark:bg-white/5',
+          'dark:text-white'
+        )
+        $tab.classList.remove(
+          'text-slate-500',
+          'dark:text-slate-400',
+          'hover:text-slate-700',
+          'dark:hover:text-slate-200'
+        )
 
-      <p>
-        Created by <a
-          href='https://x.com/midudev'
-          target='_blank'
-          class='text-gray-800 dark:text-gray-200'
-          rel='noopener noreferrer'>Midudev</a
-        >
-        and his precious <a
-          href='https://github.com/midudev/tailwind-animations'
-          target='_blank'
-          rel='noopener noreferrer'
-          class='text-gray-800 dark:text-gray-200'
-        >
-          community</a
-        >
-        <span class='text-purple-900 dark:text-purple-500'>❤</span>
-      </p>
-    </footer>
-  </main>
-</Layout>
+        $versionCodes.forEach(($code) => {
+          if ($code.id === `code-${version}`) {
+            $code.classList.remove('hidden')
+          } else {
+            $code.classList.add('hidden')
+          }
+        })
+      })
+    })
 
-<script>
-  import { toast } from 'wc-toast'
-
-  const $articles = document.querySelectorAll('article')
-
-  const $animateAll: HTMLInputElement = document.querySelector('#animate')!
-  const $duration: HTMLSelectElement = document.querySelector('#duration')!
-  const $steps: HTMLSelectElement = document.querySelector('#steps')!
-  const $delay: HTMLSelectElement = document.querySelector('#delay')!
-  const $optionInputs: HTMLElement = document.getElementById('option-inputs')!
-
-  // functions to use as events handlers
-  // created to add and remove the events depending on the toggle
-  function handleMouseEnter(this: HTMLElement) {
-    const animationKey = this.getAttribute('data-class')
-    const animationClass = `animate-${animationKey}`
-    const $box = this.querySelector('span')
-    if ($box == null) return
-    $box.classList.add(animationClass)
-  }
-  function handleMouseLeave(this: HTMLElement): void {
-    const animationKey = this.getAttribute('data-class')
-    const animationClass = `animate-${animationKey}`
-    const $box = this.querySelector('span')
-    if ($box == null) return
-    $box.classList.remove(animationClass)
-  }
-
-  $animateAll.addEventListener('change', () => {
-    $articles.forEach(($article) => {
-      const animationKey = $article.getAttribute('data-class')
-      const animationClass = `animate-${animationKey}`
-      const $box = $article.querySelector('span')
-
-      if ($box == null) return
-
-      if ($animateAll.checked) {
-        $article.removeEventListener('mouseenter', handleMouseEnter)
-        $article.removeEventListener('mouseleave', handleMouseLeave)
-        $box.classList.add(animationClass)
-        $box.style.animationIterationCount = 'infinite'
-      } else {
-        $article.addEventListener('mouseenter', handleMouseEnter)
-        $article.addEventListener('mouseleave', handleMouseLeave)
-        $box.classList.remove(animationClass)
-        $box.style.animationIterationCount = 'unset'
+    $copyCodeBtn.addEventListener('click', () => {
+      const $visibleCode = document.querySelector(
+        '.version-code:not(.hidden) pre'
+      )
+      if ($visibleCode) {
+        const text = $visibleCode.textContent!
+        navigator.clipboard.writeText(text)
+        toast('Configuration copied to clipboard!', {
+          icon: { type: 'success' },
+          theme: {
+            type: document.documentElement.classList.contains('dark')
+              ? 'dark'
+              : 'light'
+          }
+        })
       }
     })
-  })
 
-  $duration.addEventListener('change', (event) => {
-    const target = event.target as HTMLSelectElement
-    $articles.forEach(($article) => {
-      const $box = $article.querySelector('span')
-      if ($box == null) return
-      $box.style.animationDuration = target.value
+    // Package Manager Switcher
+    $pmButtons.forEach(($btn) => {
+      $btn.addEventListener('click', () => {
+        const command = $btn.getAttribute('data-command')!
+        $installCommand.textContent = command
+
+        $pmButtons.forEach(($b) => {
+          $b.classList.remove(
+            'bg-black/10',
+            'text-slate-900',
+            'dark:bg-white/5',
+            'dark:text-white'
+          )
+          $b.classList.add(
+            'text-slate-500',
+            'dark:text-slate-400',
+            'hover:text-slate-700',
+            'dark:hover:text-slate-200'
+          )
+        })
+
+        $btn.classList.add(
+          'bg-black/10',
+          'text-slate-900',
+          'dark:bg-white/5',
+          'dark:text-white'
+        )
+        $btn.classList.remove(
+          'text-slate-500',
+          'dark:text-slate-400',
+          'hover:text-slate-700',
+          'dark:hover:text-slate-200'
+        )
+      })
     })
-  })
 
-  $steps.addEventListener('change', (event) => {
-    const target = event.target as HTMLSelectElement
-    $articles.forEach(($article) => {
-      const $box = $article.querySelector('span')
-      if ($box == null) return
-      $box.style.animationTimingFunction = `steps(${target.value})`
-    })
-  })
-
-  $delay.addEventListener('change', (event) => {
-    const target = event.target as HTMLSelectElement
-    $articles.forEach(($article) => {
-      const $box = $article.querySelector('span')
-      if ($box == null) return
-      $box.style.animationDelay = target.value
-    })
-  })
-
-  $articles.forEach(($article) => {
-    const animationKey = $article.getAttribute('data-class')
-    const animationClass = `animate-${animationKey}`
-
-    $article.addEventListener('mouseenter', handleMouseEnter)
-    $article.addEventListener('mouseleave', handleMouseLeave)
-
-    $article.addEventListener('click', () => {
-      navigator.clipboard.writeText(animationClass)
-      toast('Copied to clipboard!', {
+    $copyBtn.addEventListener('click', () => {
+      const text = $installCommand.textContent!
+      navigator.clipboard.writeText(text)
+      toast('Command copied to clipboard!', {
+        icon: { type: 'success' },
         theme: {
-          type: 'light'
+          type: document.documentElement.classList.contains('dark')
+            ? 'dark'
+            : 'light'
         }
       })
     })
-  })
 
-  const $copyNpmInstall = document.getElementById(
-    'copyNpmInstall'
-  ) as HTMLButtonElement
-
-  $copyNpmInstall.addEventListener('click', () => {
-    const npmCommand = 'npm install @midudev/tailwind-animations'
-    navigator.clipboard.writeText(npmCommand)
-    toast('Copied to clipboard!', {
-      theme: {
-        type: 'light'
+    function handleMouseEnter(this: HTMLElement) {
+      const animationKey = this.getAttribute('data-class')
+      const animationClass = `animate-${animationKey}`
+      const $box = this.querySelector('div[id^="preview-"]') as HTMLElement
+      if ($box) {
+        $box.classList.add(animationClass)
+        // Apply current styles
+        $box.style.animationDuration = $duration.value
+        $box.style.animationDelay = $delay.value
+        $box.style.animationTimingFunction =
+          $steps.value !== 'none' ? `steps(${$steps.value})` : ''
       }
+    }
+
+    function handleMouseLeave(this: HTMLElement): void {
+      const animationKey = this.getAttribute('data-class')
+      const animationClass = `animate-${animationKey}`
+      const $box = this.querySelector('div[id^="preview-"]')
+      if ($box) $box.classList.remove(animationClass)
+    }
+
+    function updateArticlesListeners() {
+      $articles.forEach(($article) => {
+        if ($animateAll.checked) {
+          $article.removeEventListener('mouseenter', handleMouseEnter)
+          $article.removeEventListener('mouseleave', handleMouseLeave)
+        } else {
+          $article.addEventListener('mouseenter', handleMouseEnter)
+          $article.addEventListener('mouseleave', handleMouseLeave)
+        }
+      })
+    }
+
+    $animateAll.addEventListener('change', () => {
+      $articles.forEach(($article) => {
+        const animationKey = $article.getAttribute('data-class')!
+        const animationClass = `animate-${animationKey}`
+        const $box = $article.querySelector(
+          'div[id^="preview-"]'
+        ) as HTMLElement
+
+        if ($box) {
+          if ($animateAll.checked) {
+            $box.classList.add(animationClass)
+            $box.style.animationIterationCount = 'infinite'
+            $box.style.animationDuration = $duration.value
+            $box.style.animationDelay = $delay.value
+            $box.style.animationTimingFunction =
+              $steps.value !== 'none' ? `steps(${$steps.value})` : ''
+          } else {
+            $box.classList.remove(animationClass)
+            $box.style.animationIterationCount = 'unset'
+          }
+        }
+      })
+      updateArticlesListeners()
     })
-  })
 
-  window.addEventListener('scroll', () => {
-    const isSticky = $optionInputs.getBoundingClientRect().top < 20
+    $duration.addEventListener('change', (event) => {
+      const target = event.target as HTMLSelectElement
+      $articles.forEach(($article) => {
+        const $box = $article.querySelector(
+          'div[id^="preview-"]'
+        ) as HTMLElement
+        if ($box) $box.style.animationDuration = target.value
+      })
+    })
 
-    $optionInputs.classList.toggle('is-sticky', isSticky)
-  })
-</script>
+    $steps.addEventListener('change', (event) => {
+      const target = event.target as HTMLSelectElement
+      $articles.forEach(($article) => {
+        const $box = $article.querySelector(
+          'div[id^="preview-"]'
+        ) as HTMLElement
+        if ($box)
+          $box.style.animationTimingFunction =
+            target.value !== 'none' ? `steps(${target.value})` : ''
+      })
+    })
 
-<style>
-  @reference 'tailwindcss';
+    $delay.addEventListener('change', (event) => {
+      const target = event.target as HTMLSelectElement
+      $articles.forEach(($article) => {
+        const $box = $article.querySelector(
+          'div[id^="preview-"]'
+        ) as HTMLElement
+        if ($box) $box.style.animationDelay = target.value
+      })
+    })
 
-  .is-sticky {
-    @apply bg-gray-50/90 py-4 backdrop-blur dark:bg-gray-950/90;
-  }
-</style>
+    $articles.forEach(($article) => {
+      const animationKey = $article.getAttribute('data-class')!
+      const animationClass = `animate-${animationKey}`
+
+      $article.addEventListener('mouseenter', handleMouseEnter)
+      $article.addEventListener('mouseleave', handleMouseLeave)
+
+      $article.addEventListener('click', () => {
+        navigator.clipboard.writeText(animationClass)
+        toast(`Copied "animate-${animationKey}"`, {
+          icon: { type: 'success' },
+          theme: {
+            type: document.documentElement.classList.contains('dark')
+              ? 'dark'
+              : 'light'
+          }
+        })
+      })
+    })
+
+    // ==========================================
+    // Hero Demo Animation - Interactive Typewriter
+    // ==========================================
+    const $heroDemoBox = document.getElementById('hero-demo-box')
+    const $heroDemoClasses = document.getElementById('hero-demo-classes')
+
+    if ($heroDemoBox && $heroDemoClasses) {
+      // Different animation configurations to showcase
+      const demoAnimations = [
+        { animation: 'animate-fade-in-up', extras: '' },
+        { animation: 'animate-bounce', extras: 'animate-duration-700' },
+        { animation: 'animate-shake', extras: 'animate-delay-100' },
+        { animation: 'animate-pulse', extras: 'animate-duration-slow' },
+        { animation: 'animate-swing', extras: 'animate-delay-[25ms]' },
+        { animation: 'animate-wobble', extras: 'animate-duration-[777ms]' },
+        { animation: 'animate-float', extras: 'animate-delay-300' },
+        { animation: 'animate-zoom-in', extras: 'animate-duration-500' },
+        { animation: 'animate-flip-x', extras: 'animate-duration-fast' },
+        { animation: 'animate-bouncing', extras: 'animate-delay-[50ms]' },
+        { animation: 'animate-heartbeat', extras: 'animate-duration-1000' },
+        { animation: 'animate-jelly', extras: 'animate-delay-150' },
+        {
+          animation: 'animate-rubber-band',
+          extras: 'animate-duration-[500ms]'
+        },
+        { animation: 'animate-tada', extras: 'animate-delay-200' }
+      ]
+
+      let currentDemoIndex = 0
+      let isTyping = false
+
+      // Typewriter effect function
+      async function typeText(text: string): Promise<void> {
+        $heroDemoClasses!.textContent = ''
+        for (let i = 0; i <= text.length; i++) {
+          $heroDemoClasses!.textContent = text.substring(0, i)
+          await new Promise((resolve) =>
+            setTimeout(resolve, 35 + Math.random() * 25)
+          )
+        }
+      }
+
+      // Clear text with backspace effect
+      async function clearText(): Promise<void> {
+        const currentText = $heroDemoClasses!.textContent || ''
+        for (let i = currentText.length; i >= 0; i--) {
+          $heroDemoClasses!.textContent = currentText.substring(0, i)
+          await new Promise((resolve) => setTimeout(resolve, 20))
+        }
+      }
+
+      // Main demo loop
+      async function runDemoAnimation(): Promise<void> {
+        if (isTyping) return
+        isTyping = true
+
+        const demo = demoAnimations[currentDemoIndex]
+        const fullClass = demo.extras
+          ? `${demo.animation} ${demo.extras}`
+          : demo.animation
+
+        // Clear previous animation class
+        demoAnimations.forEach((d) => {
+          const animClass = d.animation
+          $heroDemoBox!.classList.remove(animClass)
+        })
+        $heroDemoBox!.style.animation = 'none'
+        $heroDemoBox!.offsetHeight // Trigger reflow
+        $heroDemoBox!.style.animation = ''
+
+        // Type the new class
+        await typeText(fullClass)
+
+        // Apply the animation
+        const animClass = demo.animation
+        $heroDemoBox!.classList.add(animClass)
+
+        // Apply extras via inline styles
+        if (demo.extras.includes('duration')) {
+          const match = demo.extras.match(/animate-duration-(\[?\w+ms?\]?|\w+)/)
+          if (match) {
+            const value = match[1]
+            if (value.startsWith('[') && value.endsWith(']')) {
+              $heroDemoBox!.style.animationDuration = value.slice(1, -1)
+            } else if (value === 'slow') {
+              $heroDemoBox!.style.animationDuration = '1500ms'
+            } else if (value === 'fast') {
+              $heroDemoBox!.style.animationDuration = '300ms'
+            } else {
+              $heroDemoBox!.style.animationDuration = value + 'ms'
+            }
+          }
+        } else {
+          $heroDemoBox!.style.animationDuration = ''
+        }
+
+        if (demo.extras.includes('delay')) {
+          const match = demo.extras.match(/animate-delay-(\[?\w+ms?\]?|\w+)/)
+          if (match) {
+            const value = match[1]
+            if (value.startsWith('[') && value.endsWith(']')) {
+              $heroDemoBox!.style.animationDelay = value.slice(1, -1)
+            } else {
+              $heroDemoBox!.style.animationDelay = value + 'ms'
+            }
+          }
+        } else {
+          $heroDemoBox!.style.animationDelay = ''
+        }
+
+        // Wait for animation to play
+        await new Promise((resolve) => setTimeout(resolve, 2500))
+
+        // Clear and move to next
+        await clearText()
+
+        currentDemoIndex = (currentDemoIndex + 1) % demoAnimations.length
+        isTyping = false
+
+        // Continue the loop
+        setTimeout(runDemoAnimation, 300)
+      }
+
+      // Start the demo
+      setTimeout(runDemoAnimation, 800)
+    }
+  </script>
+
+  <style>
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    pre.astro-code {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+  </style>
+</Layout>
