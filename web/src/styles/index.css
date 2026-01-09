@@ -1,0 +1,53 @@
+@import 'tailwindcss';
+@plugin '@midudev/tailwind-animations';
+
+@custom-variant dark (&:where(.dark, .dark *));
+/* prettier-ignore */
+@source inline('animate-{blurred-fade-in,fade-in,fade-out,slide-in-top,slide-in-bottom,slide-out-top,slide-out-bottom,zoom-in,zoom-out,rotate-90,rotate-180,rotate-360,flip-horizontal,flip-vertical,bouncing,swing,wobble,pulsing,shake,tada,jump,hang,roll-in,roll-out,float,sink,flash,jiggle,rubber-band,scale,slide-in-left,slide-in-right,slide-out-left,slide-out-right,spin-clockwise,spin-counter-clockwise,flip-x,flip-y,blink,pop,expand-horizontally,contract-horizontally,expand-vertically,contract-vertically,fade-in-up,fade-in-down,fade-in-left,fade-in-right,fade-out-up,fade-out-down,fade-out-left,fade-out-right,sway,flip-in-x,flip-in-y,flip-out-x,flip-out-y,rotate-in,rotate-out,slide-rotate-in,slide-rotate-out,heartbeat,horizontal-vibration,rotational-wave,skew,skew-right,vertical-bounce,horizontal-bounce,tilt,squeeze,slide-up-fade,bounce-fade-in,swing-drop-in,pulse-fade-in,impulse-rotation-right,impulse-rotation-left,dancing,pulse,jelly}');
+/* prettier-ignore */
+@source inline('animate-duration-{none,slower,slow,normal,fast,faster,0,100,150,200,250,300,400,500,700,800,900,1000}');
+/* prettier-ignore */
+@source inline('animate-delay-{none,0,100,150,200,250,300,400,500,700,800,900,1000}');
+@source inline('animate-steps-{none,retro,normal,modern}');
+
+:root {
+  --font-sans:
+    'Geist Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-mono:
+    'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+}
+
+body {
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+pre {
+  background: transparent !important;
+}
+
+/* Smooth selection */
+::selection {
+  background: rgba(0, 153, 255, 0.1);
+  color: #0099ff;
+}
+
+.dark ::selection {
+  background: rgba(0, 153, 255, 0.2);
+  color: #0099ff;
+}
+
+/* Custom Utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
