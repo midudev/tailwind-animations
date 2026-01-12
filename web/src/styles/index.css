@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@plugin 'tailwind-animations';
+@import '../../../src/index.css';
 
 @custom-variant dark (&:where(.dark, .dark *));
 /* prettier-ignore */
