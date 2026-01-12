@@ -1,0 +1,36 @@
+{
+  "name": "@midudev/tailwind-animations",
+  "version": "1.0.0",
+  "description": "Deprecated: use tailwind-animations instead",
+  "style": "./src/index.css",
+  "exports": {
+    ".": "./src/index.css",
+    "./index.css": "./src/index.css"
+  },
+  "type": "module",
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "tailwind",
+    "css",
+    "animations",
+    "plugin"
+  ],
+  "author": "Miguel Ángel Durán (@midudev) & su maravillosa comunidad",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/midudev/tailwind-animations.git"
+  },
+  "bugs": {
+    "url": "https://github.com/midudev/tailwind-animations/issues"
+  },
+  "homepage": "https://github.com/midudev/tailwind-animations#readme",
+  "dependencies": {
+    "tailwind-animations": "1.0.0"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4.0.0"
+  }
+}
