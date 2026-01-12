@@ -105,13 +105,16 @@
   /* Timeline Values */
   --tw-timeline-none: none;
   --tw-timeline-auto: auto;
-  --tw-timeline-single: --single-timeline;
   --tw-timeline-scroll: scroll();
+  --tw-timeline-scroll-x: scroll(x);
+  --tw-timeline-scroll-y: scroll(y);
+  --tw-timeline-scroll-block: scroll(block);
+  --tw-timeline-scroll-inline: scroll(inline);
   --tw-timeline-view: view();
-
-  /* Scroll/View Timeline Values */
-  --tw-scroll-timeline-single: --single-timeline;
-  --tw-view-timeline-single: --single-timeline;
+  --tw-timeline-view-x: view(x);
+  --tw-timeline-view-y: view(y);
+  --tw-timeline-view-block: view(block);
+  --tw-timeline-view-inline: view(inline);
 
   /* Scroll/View Timeline Axis Values */
   --tw-scroll-timeline-axis-block: block;
@@ -326,7 +329,7 @@
     50% { transform: scale(1.1) rotate(3deg); }
     60% { transform: scale(1.1) rotate(-3deg); }
     70% { transform: scale(1.1) rotate(3deg); }
-    80% { transform: scale(1.1) rotate(-3deg); }
+    80% { transform: scale(1.1) rotate(3deg); }
     90% { transform: scale(1.1) rotate(3deg); }
     100% { transform: scale(1) rotate(0); }
   }
@@ -775,23 +778,7 @@
    ============================================ */
 
 @utility timeline-* {
-  animation-timeline: --value(--tw-timeline-*, [*]);
-}
-
-/* ============================================
-   Utility Classes - Scroll Timeline
-   ============================================ */
-
-@utility scroll-timeline-* {
-  scroll-timeline-name: --value(--tw-scroll-timeline-*, [*]);
-}
-
-/* ============================================
-   Utility Classes - View Timeline
-   ============================================ */
-
-@utility view-timeline-* {
-  view-timeline-name: --value(--tw-view-timeline-*, [*]);
+  animation-timeline: --value(--tw-timeline-*, [ident], [*]) !important;
 }
 
 /* ============================================
@@ -799,7 +786,7 @@
    ============================================ */
 
 @utility scroll-timeline-axis-* {
-  scroll-timeline-axis: --value(--tw-scroll-timeline-axis-*, [*]);
+  scroll-timeline-axis: --value(--tw-scroll-timeline-axis-*, [ident], [*]);
 }
 
 /* ============================================
@@ -807,7 +794,7 @@
    ============================================ */
 
 @utility view-timeline-axis-* {
-  view-timeline-axis: --value(--tw-view-timeline-axis-*, [*]);
+  view-timeline-axis: --value(--tw-view-timeline-axis-*, [ident], [*]);
 }
 
 /* ============================================
@@ -818,16 +805,3 @@
   animation-range: --value(--tw-anim-range-*, [*]);
 }
 
-/* ============================================
-   Utility Classes - Scroll/View Animate (combined)
-   ============================================ */
-
-@utility scroll-animate-* {
-  scroll-timeline-name: --value(--tw-scroll-timeline-*, [*]);
-  animation-timeline: --value(--tw-scroll-timeline-*, [*]);
-}
-
-@utility view-animate-* {
-  view-timeline-name: --value(--tw-view-timeline-*, [*]);
-  animation-timeline: --value(--tw-view-timeline-*, [*]);
-}
