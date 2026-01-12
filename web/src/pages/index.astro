@@ -2,7 +2,7 @@
 import Layout from '@layouts/Layout.astro'
 
 import pkg from '../../../package.json'
-import theme from '../../../src/theme.js'
+import { theme } from '../data/theme.js'
 
 import CopyIcon from '@components/icons/copy.astro'
 import { Code } from 'astro:components'
@@ -53,27 +53,27 @@ const packageManagers = [
   {
     name: 'npm',
     icon: `<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'><path fill='#c12127' d='M2 2h28v28H2'/><path fill='#fff' d='M7.25 7.25h17.5v17.5h-3.5v-14H16v14H7.25'/></svg>`,
-    command: 'npm install @midudev/tailwind-animations'
+    command: 'npm install tailwind-animations'
   },
   {
     name: 'pnpm',
     icon: `<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'><path fill='#f9ad00' d='M30 10.75h-8.749V2H30Zm-9.626 0h-8.75V2h8.75Zm-9.625 0H2V2h8.749ZM30 20.375h-8.749v-8.75H30Z'/><path fill='#4e4e4e' d='M20.374 20.375h-8.75v-8.75h8.75Zm0 9.625h-8.75v-8.75h8.75ZM30 30h-8.749v-8.75H30Zm-19.251 0H2v-8.75h8.749Z'/></svg>`,
-    command: 'pnpm add @midudev/tailwind-animations'
+    command: 'pnpm add tailwind-animations'
   },
   {
     name: 'yarn',
     icon: `<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'><path fill='#2188b6' d='M28.208 24.409a10.5 10.5 0 0 0-3.959 1.822a23.7 23.7 0 0 1-5.835 2.642a1.63 1.63 0 0 1-.983.55a62 62 0 0 1-6.447.577c-1.163.009-1.876-.3-2.074-.776a1.573 1.573 0 0 1 .866-2.074a4 4 0 0 1-.514-.379c-.171-.171-.352-.514-.406-.388c-.225.55-.343 1.894-.947 2.5c-.83.839-2.4.559-3.328.072c-1.019-.541.072-1.813.072-1.813a.73.73 0 0 1-.992-.343a4.85 4.85 0 0 1-.667-2.949a5.37 5.37 0 0 1 1.749-2.895a9.3 9.3 0 0 1 .658-4.4a10.45 10.45 0 0 1 3.165-3.661S6.628 10.747 7.35 8.817c.469-1.262.658-1.253.812-1.308a3.6 3.6 0 0 0 1.452-.857a5.27 5.27 0 0 1 4.41-1.7S15.2 1.4 16.277 2.09a18.4 18.4 0 0 1 1.533 2.886s1.281-.748 1.425-.469a11.33 11.33 0 0 1 .523 6.132a14 14 0 0 1-2.6 5.411c-.135.225 1.551.938 2.615 3.887c.983 2.7.108 4.96.262 5.212c.027.045.036.063.036.063s1.127.09 3.391-1.308a8.5 8.5 0 0 1 4.277-1.604a1.081 1.081 0 0 1 .469 2.11Z'/></svg>`,
-    command: 'yarn add @midudev/tailwind-animations'
+    command: 'yarn add tailwind-animations'
   },
   {
     name: 'bun',
     icon: `<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'><path fill='#fbf0df' d='M29 17c0 5.65-5.82 10.23-13 10.23S3 22.61 3 17c0-3.5 2.24-6.6 5.66-8.44S14.21 4.81 16 4.81s3.32 1.54 7.34 3.71C26.76 10.36 29 13.46 29 17'/><path fill='none' stroke='#000' d='M16 27.65c7.32 0 13.46-4.65 13.46-10.65c0-3.72-2.37-7-5.89-8.85c-1.39-.75-2.46-1.41-3.37-2l-1.13-.69A6.14 6.14 0 0 0 16 4.35a6.9 6.9 0 0 0-3.3 1.23c-.42.24-.86.51-1.32.8c-.87.54-1.83 1.13-3 1.73C4.91 10 2.54 13.24 2.54 17c0 6 6.14 10.65 13.46 10.65Z'/><ellipse cx='21.65' cy='18.62' fill='#febbd0' rx='2.17' ry='1.28'/><ellipse cx='10.41' cy='18.62' fill='#febbd0' rx='2.17' ry='1.28'/><path fill-rule='evenodd' d='M11.43 18.11a2 2 0 1 0-2-2.05a2.05 2.05 0 0 0 2 2.05m9.2 0a2 2 0 1 0-2-2.05a2 2 0 0 0 2 2.05'/><path fill='#fff' fill-rule='evenodd' d='M10.79 16.19a.77.77 0 1 0-.76-.77a.76.76 0 0 0 .76.77m9.2 0a.77.77 0 1 0 0-1.53a.77.77 0 0 0 0 1.53'/><path fill='#b71422' stroke='#000' stroke-width='.75' d='M18.62 19.67a3.3 3.3 0 0 1-1.09 1.75a2.48 2.48 0 0 1-1.5.69a2.53 2.53 0 0 1-1.5-.69a3.28 3.28 0 0 1-1.08-1.75a.26.26 0 0 1 .29-.3h4.58a.27.27 0 0 1 .3.3Z'/><path fill='#ccbea7' fill-rule='evenodd' d='M14.93 5.75a6.1 6.1 0 0 1-2.09 4.62c-.1.09 0 .27.11.22c1.25-.49 2.94-1.94 2.23-4.88c-.03-.15-.25-.11-.25.04m.85 0a6 6 0 0 1 .57 5c0 .13.12.24.21.13c.83-1 1.54-3.11-.59-5.31c-.1-.11-.27.04-.19.17Zm1-.06a6.1 6.1 0 0 1 2.53 4.38c0 .14.21.17.24 0c.34-1.3.15-3.51-2.66-4.66c-.12-.02-.21.18-.09.27ZM9.94 9.55a6.27 6.27 0 0 0 3.89-3.33c.07-.13.28-.08.25.07c-.64 3-2.79 3.59-4.13 3.51c-.14-.01-.14-.21-.01-.25'/></svg>`,
-    command: 'bun add @midudev/tailwind-animations'
+    command: 'bun add tailwind-animations'
   },
   {
     name: 'deno',
     icon: `<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'><path fill-rule='evenodd' d='M4.45 21.34A12.5 12.5 0 0 1 3.27 16a12 12 0 0 1 .09-1.46a11 11 0 0 1 .24-1.42a12.75 12.75 0 0 1 9.73-9.57A13 13 0 0 1 16 3.27h1a12.73 12.73 0 0 1 11.57 10.5a13 13 0 0 1 .16 2.23v1a12.6 12.6 0 0 1-3.3 7.61a6.62 6.62 0 0 1-4.7 2.06a4.68 4.68 0 0 1-2.88-1.09a4.58 4.58 0 0 1-1.63-3.09a5.5 5.5 0 0 1 .14-1.61a3.4 3.4 0 0 1 .8-1.53a5 5 0 0 1-1.3-.88a.15.15 0 0 1 0-.19a.16.16 0 0 1 .18-.06a10 10 0 0 0 1.46.37a20 20 0 0 0 2.45.31c2.13.1 4.38-.9 5.05-2.81s.43-3.83-2.08-5s-3.66-2.5-5.69-3.32a5 5 0 0 0-4.3.62c-4.08 2.25-7.72 9.35-6 15.94a.21.21 0 0 1-.1.23a.2.2 0 0 1-.23 0a13 13 0 0 1-1.33-1.73a13 13 0 0 1-.82-1.49'/><path fill='#f5f5f5' fill-rule='evenodd' d='M16.65 2A14 14 0 1 1 2 15.35A14 14 0 0 1 16.65 2m3.27 16.85a20 20 0 0 1-2.45-.31a8.6 8.6 0 0 1-1.47-.35a.16.16 0 0 0-.18.06a.15.15 0 0 0 0 .19a5 5 0 0 0 1.3.88a3.4 3.4 0 0 0-.8 1.53a5.5 5.5 0 0 0-.14 1.61a4.58 4.58 0 0 0 1.63 3.09a4.68 4.68 0 0 0 2.88 1.09a6.62 6.62 0 0 0 4.72-2.07a12.73 12.73 0 1 0-18.84 0a.21.21 0 0 0 .35-.19c-1.68-6.59 2-13.69 6-15.94a5 5 0 0 1 4.3-.62c2 .82 3.18 2.18 5.69 3.32s2.78 3 2.08 5s-2.91 2.86-5.07 2.73ZM15.54 8.69c-.82.06-1.36 1.08-1.43 1.73s.25 1.73 1.32 1.71c1.25 0 1.64-1.09 1.5-2.13a1.39 1.39 0 0 0-1.39-1.31'/><path fill-rule='evenodd' d='M15.54 8.68A1.4 1.4 0 0 1 16.93 10c.14 1-.24 2.12-1.49 2.14c-1.07 0-1.4-1.06-1.33-1.71s.61-1.68 1.43-1.75'/></svg>`,
-    command: 'deno add @midudev/tailwind-animations'
+    command: 'deno add tailwind-animations'
   }
 ]
 ---
@@ -82,12 +82,6 @@ const packageManagers = [
   title='Tailwind CSS Animations Plugin: Community-Powered Animation Magic'
 >
   <wc-toast></wc-toast>
-
-  <!-- Global Progress Bar -->
-  <div
-    class='scroll-animate-single animate-expand-horizontally fixed top-0 left-0 z-[100] h-1.5 w-full origin-left bg-blue-500'
-  >
-  </div>
 
   <main class='mx-auto max-w-6xl px-4 pt-16 pb-24 lg:px-8'>
     <header class='relative z-10 mx-auto mb-20'>
@@ -230,7 +224,7 @@ const packageManagers = [
                     lang='postcss'
                     theme='synthwave-84'
                     code={`@import 'tailwindcss';
-@plugin '@midudev/tailwind-animations';`}
+@plugin 'tailwind-animations';`}
                   />
                 </div>
                 <div id='code-v3' class='version-code hidden'>
@@ -240,7 +234,7 @@ const packageManagers = [
                     theme='synthwave-84'
                     lang='javascript'
                     code={`// tailwind.config.mjs
-import animations from '@midudev/tailwind-animations'
+import animations from 'tailwind-animations'
 
 export default {
   plugins: [
@@ -316,7 +310,7 @@ export default {
               <div
                 class='pl-4 font-mono text-sm text-slate-400 dark:text-slate-600'
               >
-                &lt;!-- Animación aplicada --&gt;
+                &lt;!-- Applied animation --&gt;
               </div>
               <div class='font-mono text-sm'>
                 <span class='text-slate-500'>&lt;/</span><span
@@ -342,12 +336,12 @@ export default {
     <section class='mt-32 mb-24'>
       <div class='mb-16 flex flex-col items-center'>
         <h2
-          class='mb-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+          class='animate-fade-in-up animate-delay-[600ms] mb-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
         >
           Animation Collection
         </h2>
         <p
-          class='max-w-2xl text-center text-lg text-balance text-slate-600 dark:text-slate-400'
+          class='animate-fade-in-up animate-delay-700 max-w-2xl text-center text-lg text-balance text-slate-600 dark:text-slate-400'
         >
           Explore our comprehensive library of ready-to-use animations.
           Customize duration, delay, and timing to fit your needs with zero
@@ -361,7 +355,7 @@ export default {
           id='option-inputs'
         >
           <div
-            class='animate-fade-in-up animate-delay-700 flex flex-wrap items-center justify-center gap-4 rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-black/60'
+            class='animate-fade-in-up animate-delay-800 flex flex-wrap items-center justify-center gap-4 rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-black/60'
           >
             <div class='flex flex-col gap-1'>
               <span
@@ -525,7 +519,7 @@ export default {
             class='max-w-2xl text-center text-lg text-balance text-slate-600 dark:text-slate-400'
           >
             Animate elements based on their position in the viewport using the <code
-              class='text-blue-500'>view-animate</code
+              class='text-blue-500'>timeline-view</code
             > utility.
           </p>
         </div>
@@ -539,81 +533,131 @@ export default {
             </h3>
 
             <p class='mb-6 text-slate-600 dark:text-slate-400'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus
-              quis varius quam quisque id. Et ligula ullamcorper malesuada proin
-              libero nunc consequat interdum varius. Elit ullamcorper dignissim
-              cras tincidunt lobortis feugiat vivamus at augue.
+              To animate elements on scroll, we use the <code
+                class='text-blue-500'>timeline-view</code
+              > utility. This property creates a View Timeline that allows you to
+              synchronize the animation with the element's displacement within the
+              viewport.
             </p>
 
             <p class='mb-12 text-slate-600 dark:text-slate-400'>
-              Dolor sed viverra ipsum nunc aliquet. Sed sed risus pretium quam
-              vulputate dignissim. Tortor aliquam nulla facilisi cras. A erat
-              nam at lectus urna duis convallis convallis. Nibh ipsum consequat
-              nisl vel pretium lectus. Sagittis aliquam malesuada bibendum arcu
-              vitae elementum. Malesuada bibendum arcu vitae elementum curabitur
-              vitae nunc sed velit.
+              The animation is automatically linked to the element's visibility
+              in the viewport. Use <code class='text-blue-500'
+                >animate-range</code
+              > to control when the animation starts and ends relative to the element's
+              visibility.
             </p>
 
             <div
-              class='view-animate-[--subjectReveal] animate-zoom-in animate-range-[entry_10%_contain_25%] flex h-64 w-full flex-col items-center justify-center gap-4 rounded-2xl bg-pink-500 p-4 text-center font-bold text-white shadow-2xl'
+              class='timeline-view animate-zoom-in animate-range-cover flex h-64 w-full flex-col items-center justify-center gap-4 rounded-2xl bg-pink-500 p-4 text-center font-bold text-white shadow-2xl'
             >
               <span class='text-2xl'>I reveal on scroll</span>
               <code
                 class='rounded-lg bg-black/20 px-3 py-1 font-mono text-xs backdrop-blur-sm'
               >
-                view-animate-[--reveal] animate-zoom-in
-                animate-range-[entry_10%_contain_25%]
+                timeline-view animate-zoom-in animate-range-cover
               </code>
             </div>
 
             <p class='mt-12 mb-12 text-slate-600 dark:text-slate-400'>
-              Adipiscing enim eu turpis egestas pretium aenean pharetra magna
-              ac. Arcu cursus vitae congue mauris rhoncus aenean vel. Sit amet
-              cursus sit amet dictum. Augue neque gravida in fermentum et.
-              Gravida rutrum quisque non tellus orci ac auctor augue mauris.
-              Risus quis varius quam quisque id diam vel quam elementum. Nibh
-              praesent tristique magna sit amet purus gravida quis. Duis
-              ultricies lacus sed turpis tincidunt id aliquet. In egestas erat
-              imperdiet sed euismod nisi. Eget egestas purus viverra accumsan in
-              nisl nisi scelerisque. Netus et malesuada fames ac.
+              The <code class='text-blue-500'>animate-range</code> property is essential
+              for defining when the animation starts and ends relative to the element's
+              visibility. You can use predefined ranges like <code
+                class='text-blue-500'>gradual</code
+              >, <code class='text-blue-500'>moderate</code>, <code
+                class='text-blue-500'>brisk</code
+              >, or <code class='text-blue-500'>rapid</code> to easily control the
+              animation's pace.
+            </p>
+
+            <div class='grid grid-cols-1 gap-6 sm:grid-cols-2'>
+              <div
+                class='timeline-view animate-fade-in animate-range-gradual flex h-32 w-full flex-col items-center justify-center gap-2 rounded-xl bg-slate-200 p-4 text-center font-bold text-slate-800 shadow-lg dark:bg-slate-800 dark:text-slate-200'
+              >
+                <span class='text-sm'>Gradual (10% - 90%)</span>
+                <code
+                  class='rounded-lg bg-black/10 px-2 py-1 font-mono text-[10px] dark:bg-white/10'
+                >
+                  animate-range-gradual
+                </code>
+              </div>
+              <div
+                class='timeline-view animate-fade-in animate-range-moderate flex h-32 w-full flex-col items-center justify-center gap-2 rounded-xl bg-slate-200 p-4 text-center font-bold text-slate-800 shadow-lg dark:bg-slate-800 dark:text-slate-200'
+              >
+                <span class='text-sm'>Moderate (20% - 80%)</span>
+                <code
+                  class='rounded-lg bg-black/10 px-2 py-1 font-mono text-[10px] dark:bg-white/10'
+                >
+                  animate-range-moderate
+                </code>
+              </div>
+              <div
+                class='timeline-view animate-fade-in animate-range-brisk flex h-32 w-full flex-col items-center justify-center gap-2 rounded-xl bg-slate-200 p-4 text-center font-bold text-slate-800 shadow-lg dark:bg-slate-800 dark:text-slate-200'
+              >
+                <span class='text-sm'>Brisk (30% - 70%)</span>
+                <code
+                  class='rounded-lg bg-black/10 px-2 py-1 font-mono text-[10px] dark:bg-white/10'
+                >
+                  animate-range-brisk
+                </code>
+              </div>
+              <div
+                class='timeline-view animate-fade-in animate-range-rapid flex h-32 w-full flex-col items-center justify-center gap-2 rounded-xl bg-slate-200 p-4 text-center font-bold text-slate-800 shadow-lg dark:bg-slate-800 dark:text-slate-200'
+              >
+                <span class='text-sm'>Rapid (40% - 60%)</span>
+                <code
+                  class='rounded-lg bg-black/10 px-2 py-1 font-mono text-[10px] dark:bg-white/10'
+                >
+                  animate-range-rapid
+                </code>
+              </div>
+            </div>
+
+            <p class='mt-12 mb-12 text-slate-600 dark:text-slate-400'>
+              Of course, you can also use custom values for more precision. By
+              specifying values like <code class='text-blue-500'>entry 10%</code
+              > or <code class='text-blue-500'>contain 25%</code>, you can
+              perfectly time the reveal effect to match your design's flow.
             </p>
 
             <div
-              class='view-animate-[--slideIn] animate-slide-in-left animate-range-[entry_5%_contain_20%] flex h-48 w-full flex-col items-center justify-center gap-4 rounded-2xl bg-blue-500 p-4 text-center font-bold text-white shadow-2xl'
+              class='timeline-view animate-slide-in-left animate-range-[entry_5%_contain_20%] flex h-48 w-full flex-col items-center justify-center gap-4 rounded-2xl bg-blue-500 p-4 text-center font-bold text-white shadow-2xl'
             >
-              <span class='text-2xl'>I slide in from the left</span>
+              <span class='text-2xl'>I fade in from the left</span>
               <code
                 class='rounded-lg bg-black/20 px-3 py-1 font-mono text-xs backdrop-blur-sm'
               >
-                view-animate-[--slide] animate-slide-in-left
+                timeline-view animate-slide-in-left
                 animate-range-[entry_5%_contain_20%]
               </code>
             </div>
 
             <p class='mt-12 mb-12 text-slate-600 dark:text-slate-400'>
-              Aenean sed adipiscing diam donec adipiscing tristique risus nec.
-              Elementum pulvinar etiam non quam lacus suspendisse faucibus
-              interdum posuere. Aliquam id diam maecenas ultricies mi eget
-              mauris. Tortor at risus viverra adipiscing at in tellus integer.
+              You can combine different directions and effects. Using <code
+                class='text-blue-500'>animate-slide-in-left</code
+              > with a scroll timeline makes the element gracefully slide into place
+              while adjusting its opacity, synchronized with the user's scrolling
+              speed for a more interactive feel.
             </p>
 
             <div
-              class='view-animate-[--fadeIn] animate-blurred-fade-in animate-range-[entry_10%_contain_30%] flex h-48 w-full flex-col items-center justify-center gap-4 rounded-2xl bg-purple-500 p-4 text-center font-bold text-white shadow-2xl'
+              class='timeline-view animate-blurred-fade-in animate-range-[entry_10%_contain_30%] flex h-48 w-full flex-col items-center justify-center gap-4 rounded-2xl bg-purple-500 p-4 text-center font-bold text-white shadow-2xl'
             >
               <span class='text-2xl'>I fade in with blur</span>
               <code
                 class='rounded-lg bg-black/20 px-3 py-1 font-mono text-xs backdrop-blur-sm'
               >
-                view-animate-[--fade] animate-blurred-fade-in
+                timeline-view animate-blurred-fade-in
                 animate-range-[entry_10%_contain_30%]
               </code>
             </div>
 
             <p class='mt-12 text-slate-600 dark:text-slate-400'>
-              Donec pretium vulputate sapien nec sagittis aliquam malesuada
-              bibendum. Quis eleifend quam adipiscing vitae proin sagittis nisl
-              rhoncus. Pretium lectus quam id leo in vitae turpis massa sed.
+              Blurred transitions like <code class='text-blue-500'
+                >animate-blurred-fade-in</code
+              > add a layer of polish. By linking it to a scroll timeline, you create
+              a depth-of-field effect that naturally draws attention to the content
+              as it becomes clear and focused.
             </p>
           </div>
         </div>
@@ -624,123 +668,407 @@ export default {
           <h2
             class='mb-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
           >
-            Container Scroll
+            Scroll & View Timelines
           </h2>
           <p
             class='max-w-2xl text-center text-lg text-balance text-slate-600 dark:text-slate-400'
           >
-            Animate elements based on the scroll position of a specific
-            container using the <code class='text-blue-500'>scroll-animate</code
-            > utility.
+            Link animations to scroll progress or element visibility using
+            powerful timeline utilities.
           </p>
         </div>
 
         <div
           class='mx-auto max-w-[800px] rounded-3xl border border-slate-200 bg-slate-50/50 p-8 backdrop-blur-sm sm:p-12 dark:border-slate-800 dark:bg-slate-900/50'
         >
-          <div class='max-w-none'>
-            <div class='grid grid-cols-1 gap-8 md:grid-cols-2'>
-              <!-- Example 1: Self-animating container -->
-              <div class='flex flex-col gap-4'>
-                <h4
-                  class='text-sm font-bold tracking-widest text-slate-400 uppercase'
-                >
-                  Self-animating container
-                </h4>
+          <div class='grid grid-cols-1 gap-16'>
+            <!-- Example 1: Vertical Scroll Progress -->
+            <div class='flex flex-col gap-6'>
+              <h3 class='text-xl font-semibold dark:text-white'>
+                Vertical Scroll Progress
+              </h3>
+              <p class='text-slate-600 dark:text-slate-400'>
+                Use <code class='text-blue-500'>timeline-scroll</code> to link an
+                animation to the scroll container's progress. The animation advances
+                as you scroll.
+              </p>
+              <div
+                class='relative h-64 overflow-y-auto rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950'
+              >
                 <div
-                  class='scroll-animate-single animate-blurred-fade-in relative h-64 overflow-y-auto rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950'
+                  class='timeline-scroll animate-expand-horizontally sticky top-0 h-2 w-full origin-left bg-gradient-to-r from-green-400 to-emerald-600'
                 >
-                  <div class='h-[1000px] space-y-4 p-6'>
-                    <h3
-                      class='sticky top-0 bg-white/80 py-2 text-xl font-bold backdrop-blur-sm dark:bg-slate-950/80 dark:text-white'
-                    >
-                      Scroll me
-                    </h3>
-                    <p class='text-slate-600 dark:text-slate-400'>
-                      This entire container uses <code class='text-blue-500'
-                        >scroll-animate-single</code
-                      > and <code class='text-blue-500'
-                        >animate-blurred-fade-in</code
-                      >.
-                    </p>
-                    <p class='text-slate-600 dark:text-slate-400'>
-                      As you scroll down, the container clears up and becomes
-                      more opaque.
-                    </p>
-                    <div
-                      class='h-32 w-full rounded-xl bg-slate-100 dark:bg-slate-900'
-                    >
-                    </div>
-                    <div
-                      class='h-32 w-full rounded-xl bg-slate-100 dark:bg-slate-900'
-                    >
-                    </div>
-                    <div
-                      class='h-32 w-full rounded-xl bg-slate-100 dark:bg-slate-900'
-                    >
-                    </div>
+                </div>
+                <div class='h-[800px] p-6'>
+                  <p class='text-sm text-slate-500 dark:text-slate-400'>
+                    ↓ Scroll down to see the progress bar fill
+                  </p>
+                  <div class='mt-6 space-y-4'>
+                    {
+                      [1, 2, 3].map(() => (
+                        <div class='h-28 rounded-xl bg-slate-100 dark:bg-slate-900' />
+                      ))
+                    }
                   </div>
                 </div>
-                <code
-                  class='self-center rounded-lg bg-black/20 px-3 py-1 font-mono text-xs backdrop-blur-sm dark:text-slate-300'
+              </div>
+              <code
+                class='self-center rounded-lg bg-slate-900 px-3 py-2 font-mono text-xs text-green-400'
+              >
+                timeline-scroll animate-expand-horizontally
+              </code>
+            </div>
+
+            <!-- Example 2: Horizontal Scroll Progress -->
+            <div class='flex flex-col gap-6'>
+              <h3 class='text-xl font-semibold dark:text-white'>
+                Horizontal Scroll Progress
+              </h3>
+              <p class='text-slate-600 dark:text-slate-400'>
+                Use <code class='text-blue-500'>timeline-[scroll(inline)]</code>
+                for horizontal scroll containers. The progress bar follows your horizontal
+                scrolling.
+              </p>
+              <div
+                class='relative h-48 overflow-x-auto overflow-y-hidden rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950'
+              >
+                <div
+                  class='timeline-[scroll(inline)] animate-expand-horizontally sticky top-0 left-0 z-10 h-2 w-full origin-left bg-gradient-to-r from-purple-400 to-pink-600'
                 >
-                  scroll-animate-single animate-blurred-fade-in
+                </div>
+                <div class='flex h-full w-[1500px] items-center gap-4 p-6'>
+                  {
+                    ['🚀', '⭐', '💎', '🎯', '🔥', '✨', '🎨', '💡'].map(
+                      (emoji) => (
+                        <div class='flex h-28 w-40 flex-shrink-0 items-center justify-center rounded-xl bg-slate-100 text-4xl dark:bg-slate-900'>
+                          {emoji}
+                        </div>
+                      )
+                    )
+                  }
+                </div>
+              </div>
+              <code
+                class='self-center rounded-lg bg-slate-900 px-3 py-2 font-mono text-xs text-purple-400'
+              >
+                timeline-[scroll(inline)] animate-expand-horizontally
+              </code>
+            </div>
+
+            <!-- Example 3: Entry vs Exit Ranges -->
+            <div class='flex flex-col gap-6'>
+              <h3 class='text-xl font-semibold dark:text-white'>
+                Entry & Exit Animation Ranges
+              </h3>
+              <p class='text-slate-600 dark:text-slate-400'>
+                Control when animations play with <code class='text-blue-500'
+                  >animate-range-entry</code
+                > (entering viewport) and <code class='text-blue-500'
+                  >animate-range-exit</code
+                > (leaving viewport).
+              </p>
+              <div
+                class='relative h-80 overflow-y-auto rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950'
+              >
+                <div class='flex h-[1200px] flex-col items-center gap-8 p-8'>
+                  <p class='text-sm text-slate-500 dark:text-slate-400'>
+                    ↓ Scroll to see entry/exit animations
+                  </p>
+                  <div class='h-48'></div>
+                  <div
+                    class='timeline-view animate-slide-in-left animate-range-entry flex w-64 items-center justify-center rounded-xl bg-cyan-500 p-6 font-bold text-white shadow-lg'
+                  >
+                    <span class='text-center'
+                      >Entry Animation<br /><span
+                        class='text-xs font-normal opacity-80'
+                        >Plays when entering</span
+                      ></span
+                    >
+                  </div>
+                  <div class='h-32'></div>
+                  <div
+                    class='timeline-view animate-slide-out-right animate-range-exit flex w-64 items-center justify-center rounded-xl bg-rose-500 p-6 font-bold text-white shadow-lg'
+                  >
+                    <span class='text-center'
+                      >Exit Animation<br /><span
+                        class='text-xs font-normal opacity-80'
+                        >Plays when leaving</span
+                      ></span
+                    >
+                  </div>
+                  <div class='h-48'></div>
+                </div>
+              </div>
+              <div class='flex flex-wrap justify-center gap-2'>
+                <code
+                  class='rounded-lg bg-slate-900 px-3 py-2 font-mono text-xs text-cyan-400'
+                >
+                  animate-range-entry
+                </code>
+                <code
+                  class='rounded-lg bg-slate-900 px-3 py-2 font-mono text-xs text-rose-400'
+                >
+                  animate-range-exit
                 </code>
               </div>
+            </div>
 
-              <!-- Example 2: Progress bar in container -->
-              <div class='flex flex-col gap-4'>
-                <h4
-                  class='text-sm font-bold tracking-widest text-slate-400 uppercase'
-                >
-                  Shared Timeline
-                </h4>
-                <div
-                  class='scroll-timeline-single relative h-64 overflow-y-auto rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950'
-                >
-                  <div
-                    class='timeline-single animate-expand-horizontally sticky top-0 z-10 h-1.5 w-full origin-left bg-blue-500'
-                  >
+            <!-- Example 4: Staggered Reveal -->
+            <div class='flex flex-col gap-6'>
+              <h3 class='text-xl font-semibold dark:text-white'>
+                Staggered Reveal Effect
+              </h3>
+              <p class='text-slate-600 dark:text-slate-400'>
+                Combine <code class='text-blue-500'>timeline-view</code> with different
+                <code class='text-blue-500'>animate-range</code>
+                values to create a staggered reveal effect.
+              </p>
+              <div
+                class='relative h-96 overflow-y-auto rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950'
+              >
+                <div class='flex h-[1400px] flex-col items-center gap-6 p-8'>
+                  <p class='text-sm text-slate-500 dark:text-slate-400'>
+                    ↓ Scroll to reveal cards in sequence
+                  </p>
+                  <div class='h-64'></div>
+                  <div class='grid grid-cols-2 gap-4'>
+                    <div
+                      class='timeline-view animate-fade-in-up animate-range-[entry_0%_cover_30%] flex h-24 w-28 items-center justify-center rounded-xl bg-amber-500 font-bold text-white shadow-lg'
+                    >
+                      First
+                    </div>
+                    <div
+                      class='timeline-view animate-fade-in-up animate-range-[entry_10%_cover_40%] flex h-24 w-28 items-center justify-center rounded-xl bg-orange-500 font-bold text-white shadow-lg'
+                    >
+                      Second
+                    </div>
+                    <div
+                      class='timeline-view animate-fade-in-up animate-range-[entry_20%_cover_50%] flex h-24 w-28 items-center justify-center rounded-xl bg-red-500 font-bold text-white shadow-lg'
+                    >
+                      Third
+                    </div>
+                    <div
+                      class='timeline-view animate-fade-in-up animate-range-[entry_30%_cover_60%] flex h-24 w-28 items-center justify-center rounded-xl bg-pink-500 font-bold text-white shadow-lg'
+                    >
+                      Fourth
+                    </div>
                   </div>
-                  <div class='h-[1000px] space-y-4 p-6'>
-                    <h3 class='text-xl font-bold dark:text-white'>
-                      Shared progress
-                    </h3>
-                    <p class='text-slate-600 dark:text-slate-400'>
-                      The container defines the timeline with <code
-                        class='text-blue-500'>scroll-timeline-single</code
-                      >.
-                    </p>
-                    <p class='text-slate-600 dark:text-slate-400'>
-                      The bar uses <code class='text-blue-500'
-                        >timeline-single</code
-                      > to link its animation to that scroll.
-                    </p>
-                    <div
-                      class='h-32 w-full rounded-xl bg-slate-100 dark:bg-slate-900'
-                    >
-                    </div>
-                    <div
-                      class='h-32 w-full rounded-xl bg-slate-100 dark:bg-slate-900'
-                    >
-                    </div>
-                    <div
-                      class='h-32 w-full rounded-xl bg-slate-100 dark:bg-slate-900'
-                    >
-                    </div>
-                  </div>
+                  <div class='h-96'></div>
                 </div>
-                <div class='flex flex-col items-center gap-2'>
-                  <code
-                    class='rounded-lg bg-black/20 px-3 py-1 font-mono text-[10px] backdrop-blur-sm dark:text-slate-300'
+              </div>
+              <code
+                class='self-center rounded-lg bg-slate-900 px-3 py-2 font-mono text-xs text-amber-400'
+              >
+                animate-range-[entry_0%_cover_30%] → [entry_10%_cover_40%] → ...
+              </code>
+            </div>
+
+            <!-- Example 5: View Timeline with Rotation -->
+            <div class='flex flex-col gap-6'>
+              <h3 class='text-xl font-semibold dark:text-white'>
+                Rotation on Scroll
+              </h3>
+              <p class='text-slate-600 dark:text-slate-400'>
+                Use <code class='text-blue-500'>animate-rotate-360</code> with
+                <code class='text-blue-500'>animate-range-cover</code> to rotate elements
+                as they pass through the viewport.
+              </p>
+              <div
+                class='relative h-72 overflow-y-auto rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950'
+              >
+                <div class='flex h-[1000px] flex-col items-center gap-8 p-8'>
+                  <p class='text-sm text-slate-500 dark:text-slate-400'>
+                    ↓ Scroll to spin the shapes
+                  </p>
+                  <div class='h-40'></div>
+                  <div class='flex gap-6'>
+                    <div
+                      class='timeline-view animate-rotate-360 animate-range-cover h-20 w-20 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg'
+                    >
+                    </div>
+                    <div
+                      class='timeline-view animate-spin-clockwise animate-range-cover h-20 w-20 rounded-full bg-gradient-to-br from-teal-500 to-cyan-600 shadow-lg'
+                    >
+                    </div>
+                    <div
+                      class='timeline-view animate-flip-x animate-range-cover flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-fuchsia-500 to-pink-600 text-3xl shadow-lg'
+                    >
+                      🎲
+                    </div>
+                  </div>
+                  <div class='h-96'></div>
+                </div>
+              </div>
+              <div class='flex flex-wrap justify-center gap-2'>
+                <code
+                  class='rounded-lg bg-slate-900 px-3 py-2 font-mono text-xs text-indigo-400'
+                >
+                  animate-rotate-360
+                </code>
+                <code
+                  class='rounded-lg bg-slate-900 px-3 py-2 font-mono text-xs text-teal-400'
+                >
+                  animate-spin-clockwise
+                </code>
+                <code
+                  class='rounded-lg bg-slate-900 px-3 py-2 font-mono text-xs text-fuchsia-400'
+                >
+                  animate-flip-x
+                </code>
+              </div>
+            </div>
+
+            <!-- Example 6: Timeline Axis Variants -->
+            <div class='flex flex-col gap-6'>
+              <h3 class='text-xl font-semibold dark:text-white'>
+                Timeline Utilities Reference
+              </h3>
+              <p class='text-slate-600 dark:text-slate-400'>
+                Available timeline utilities and how to use them:
+              </p>
+              <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
+                <div
+                  class='flex flex-col gap-1 rounded-xl border border-slate-200 p-4 dark:border-slate-800'
+                >
+                  <span
+                    class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                    >Scroll Timelines</span
                   >
-                    Parent: scroll-timeline-single
-                  </code>
-                  <code
-                    class='rounded-lg bg-black/20 px-3 py-1 font-mono text-[10px] backdrop-blur-sm dark:text-slate-300'
+                  <code class='text-xs text-blue-500'>timeline-scroll</code>
+                  <code class='text-xs text-blue-500'>timeline-[scroll(x)]</code
                   >
-                    Child: timeline-single animate-expand-horizontally
-                  </code>
+                  <code class='text-xs text-blue-500'>timeline-[scroll(y)]</code
+                  >
+                  <code class='text-xs text-blue-500'
+                    >timeline-[scroll(block)]</code
+                  >
+                  <code class='text-xs text-blue-500'
+                    >timeline-[scroll(inline)]</code
+                  >
+                </div>
+                <div
+                  class='flex flex-col gap-1 rounded-xl border border-slate-200 p-4 dark:border-slate-800'
+                >
+                  <span
+                    class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                    >View Timelines</span
+                  >
+                  <code class='text-xs text-emerald-500'>timeline-view</code>
+                  <code class='text-xs text-emerald-500'
+                    >timeline-[view(x)]</code
+                  >
+                  <code class='text-xs text-emerald-500'
+                    >timeline-[view(y)]</code
+                  >
+                  <code class='text-xs text-emerald-500'
+                    >timeline-[view(block)]</code
+                  >
+                  <code class='text-xs text-emerald-500'
+                    >timeline-[view(inline)]</code
+                  >
+                </div>
+                <div
+                  class='flex flex-col gap-1 rounded-xl border border-slate-200 p-4 dark:border-slate-800'
+                >
+                  <span
+                    class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                    >Animation Ranges</span
+                  >
+                  <code class='text-xs text-amber-500'>animate-range-cover</code
+                  >
+                  <code class='text-xs text-amber-500'
+                    >animate-range-contain</code
+                  >
+                  <code class='text-xs text-amber-500'>animate-range-entry</code
+                  >
+                  <code class='text-xs text-amber-500'>animate-range-exit</code>
+                </div>
+                <div
+                  class='flex flex-col gap-1 rounded-xl border border-slate-200 p-4 dark:border-slate-800'
+                >
+                  <span
+                    class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                    >Preset Ranges</span
+                  >
+                  <code class='text-xs text-purple-500'
+                    >animate-range-gradual <span class='text-slate-500'
+                      >(10%-90%)</span
+                    ></code
+                  >
+                  <code class='text-xs text-purple-500'
+                    >animate-range-moderate <span class='text-slate-500'
+                      >(20%-80%)</span
+                    ></code
+                  >
+                  <code class='text-xs text-purple-500'
+                    >animate-range-brisk <span class='text-slate-500'
+                      >(30%-70%)</span
+                    ></code
+                  >
+                  <code class='text-xs text-purple-500'
+                    >animate-range-rapid <span class='text-slate-500'
+                      >(40%-60%)</span
+                    ></code
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Example 7: Arbitrary Values -->
+            <div class='flex flex-col gap-6'>
+              <h3 class='text-xl font-semibold dark:text-white'>
+                Arbitrary Values
+              </h3>
+              <p class='text-slate-600 dark:text-slate-400'>
+                Use brackets for custom values. Use underscores <code
+                  class='text-blue-500'>_</code
+                > instead of spaces.
+              </p>
+              <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
+                <div
+                  class='flex flex-col gap-2 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900'
+                >
+                  <span
+                    class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                    >Scroll with axis</span
+                  >
+                  <code class='text-xs text-blue-400'
+                    >timeline-[scroll(x_root)]</code
+                  >
+                  <code class='text-xs text-blue-400'
+                    >timeline-[scroll(y_nearest)]</code
+                  >
+                </div>
+                <div
+                  class='flex flex-col gap-2 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900'
+                >
+                  <span
+                    class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                    >View with inset</span
+                  >
+                  <code class='text-xs text-emerald-400'
+                    >timeline-[view(block)]</code
+                  >
+                  <code class='text-xs text-emerald-400'
+                    >timeline-[view(x_200px_auto)]</code
+                  >
+                </div>
+                <div
+                  class='col-span-full flex flex-col gap-2 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900'
+                >
+                  <span
+                    class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                    >Custom animation ranges</span
+                  >
+                  <code class='text-xs text-amber-400'
+                    >animate-range-[entry_0%_cover_50%]</code
+                  >
+                  <code class='text-xs text-amber-400'
+                    >animate-range-[cover_25%_cover_75%]</code
+                  >
+                  <code class='text-xs text-amber-400'
+                    >animate-range-[exit_-10%_exit_100%]</code
+                  >
                 </div>
               </div>
             </div>
