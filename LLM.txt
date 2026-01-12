@@ -1,0 +1,471 @@
+# Tailwind Animations - LLM Context File
+
+## Project Overview
+
+**tailwind-animations** is a Tailwind CSS v4 plugin that provides a comprehensive and exhaustive set of ready-to-use CSS animations through utility classes. Created and maintained by Miguel Ángel Durán (@midudev) in collaboration with his active community.
+
+**Repository**: [GitHub - midudev/tailwind-animations](https://github.com/midudev/tailwind-animations)
+**License**: MIT
+**Current Version**: 1.0.1
+**Website**: https://tailwind-animations.com/
+
+***
+
+## Installation and Configuration
+
+### Package Installation
+
+```bash
+# NPM
+npm install tailwind-animations
+
+# PNPM (recommended for monorepos)
+pnpm install tailwind-animations
+
+# Yarn
+yarn add tailwind-animations
+```
+
+### Setup in Tailwind CSS v4
+
+The plugin is configured directly in your global CSS file:
+
+```css
+/* globals.css or main.css */
+@import "tailwindcss";
+
+@plugin 'tailwind-animations';
+```
+
+### Requirements
+
+- **Tailwind CSS**: v4.0.0 or higher
+- For Tailwind CSS v3 support: use `@midudev/tailwind-animations@0.2.0` (deprecated legacy version)
+
+***
+
+## Main Features
+
+### 1. **70+ Predefined Animations**
+Exhaustive set of ready-to-use animations without needing custom CSS code.
+
+### 2. **Granular Control through Utility Classes**
+Modify duration, delays, iterations, and behavior of any animation:
+- `animate-delay-*` (0ms to 1000ms)
+- `animate-duration-*` (faster, fast, normal, slow, slower + numeric values)
+- `animate-iteration-count-*` (once, twice, thrice, infinite)
+- `animate-direction-*` (normal, reverse, alternate, alternate-reverse)
+- `animate-fill-mode-*` (forwards, backwards, both)
+- `animate-play-*` (running, paused)
+
+### 3. **Advanced Easing Functions**
+- **Standard Timing Functions**: ease, ease-in, ease-out, ease-in-out, linear
+- **Predefined Cubic Bezier Curves**: 
+  - Sine, Quad, Cubic, Quart, Quint, Expo (with -in, -out, -in-out variants)
+  - Circ, Back (with variants)
+
+### 4. **View Timeline Support**
+Animations synchronized with element position in the viewport:
+
+```html
+<div class="animate-zoom-in view-animate-[--entrance] animate-range-[entry_10%_contain_25%]">
+  Animates when entering the viewport
+</div>
+```
+
+### 5. **Scroll Timeline Support**
+
+Animations linked to user scrolling:
+
+```html
+<div class="timeline-scroll animate-rotate-360">
+  Rotates while you scroll
+</div>
+```
+
+### 6. **Steps and Retro Animations**
+Support for pixel/retro-style animations with defined steps:
+- retro (8 steps), normal (16 steps), modern (24 steps)
+
+***
+
+## Complete Animation Catalog
+
+### 🎨 Fade Animations
+| Animation | Description |
+|-----------|-------------|
+| `fade-in` | Smooth appearance |
+| `fade-out` | Smooth fade out |
+| `blurred-fade-in` | Progressive blurred entry |
+| `fade-in-up`, `fade-in-down` | Entry with vertical movement |
+| `fade-in-left`, `fade-in-right` | Entry with horizontal movement |
+| `fade-out-*` | Exit variants |
+| `pulse-fade-in` | Entry with pulse effect |
+
+### 🎯 Slide Animations
+| Animation | Description |
+|-----------|-------------|
+| `slide-in-top`, `slide-in-bottom` | Entry from/to top/bottom |
+| `slide-in-left`, `slide-in-right` | Entry from/to sides |
+| `slide-out-*` | Exit variants |
+| `slide-up-fade` | Upward slide with fade |
+| `slide-rotate-in`, `slide-rotate-out` | Slide with simultaneous rotation |
+
+### 🔍 Zoom & Scale Animations
+| Animation | Description |
+|-----------|-------------|
+| `zoom-in` | Zoom in with appearance |
+| `zoom-out` | Zoom out with fade |
+| `scale` | Simple scaling |
+| `pop` | Soft "explosion" effect |
+| `expand-horizontally`, `contract-horizontally` | Horizontal expand/contract |
+| `expand-vertically`, `contract-vertically` | Vertical expand/contract |
+
+### 🔄 Rotation Animations
+| Animation | Description |
+|-----------|-------------|
+| `rotate-90`, `rotate-180`, `rotate-360` | Defined rotations |
+| `spin-clockwise`, `spin-counter-clockwise` | Continuous rotation |
+| `rotate-in`, `rotate-out` | Entry/exit with rotation |
+| `impulse-rotation-right`, `impulse-rotation-left` | Impulse rotation with direction |
+| `rotational-wave` | Continuous rotational wave |
+
+### 🔀 Flip Animations
+| Animation | Description |
+|-----------|-------------|
+| `flip-horizontal`, `flip-vertical` | 3D flip (Y/X axis) |
+| `flip-x`, `flip-y` | Mirror on X/Y axes |
+| `flip-in-x`, `flip-in-y` | Entry with 3D flip |
+| `flip-out-x`, `flip-out-y` | Exit with 3D flip |
+
+### 💫 Movement & Motion Animations
+| Animation | Description |
+|-----------|-------------|
+| `bouncing` | Simple vertical bounce |
+| `bounce-fade-in` | Bounce with appearance |
+| `vertical-bounce`, `horizontal-bounce` | Directional bounces |
+| `swing` | Pendulum movement |
+| `sway` | Soft swaying |
+| `wobble` | Irregular oscillation |
+| `jiggle` | Quick shaking |
+| `tilt` | 3D tilt |
+| `squeeze` | Compression and expansion |
+| `jump` | Vertical jump |
+| `hang` | Hanging effect |
+| `roll-in`, `roll-out` | Rolling with rotation |
+| `float` | Soft floating |
+| `sink` | Soft sinking |
+| `shake` | Tremor |
+| `blink` | Blinking |
+
+### ⭐ Interactive & Fun Animations
+| Animation | Description |
+|-----------|-------------|
+| `tada` | Celebration effect WOW.js style |
+| `heartbeat` | Heartbeat |
+| `pulse`, `pulsing` | Opacity/scale pulsing |
+| `rubber-band` | Rubber band effect |
+| `flash` | Quick flash |
+| `horizontal-vibration` | Horizontal vibration |
+| `dancing` | Dance movement |
+| `jelly` | Jelly effect |
+
+### 🎪 Composite & Advanced Animations
+| Animation | Description |
+|-----------|-------------|
+| `swing-drop-in` | Entry with swing and drop |
+| `skew`, `skew-right` | Skew/tilt |
+
+***
+
+## CSS Configuration Variables
+
+### Delays
+
+```
+0ms | 100ms | 150ms | 200ms | 250ms | 300ms | 400ms | 500ms | 700ms | 800ms | 900ms | 1000ms
+```
+
+### Durations
+**Semantic names**:
+- `faster`: 100ms
+- `fast`: 200ms
+- `normal`: 300ms
+- `slow`: 400ms
+- `slower`: 500ms
+
+**Numeric values**: 0ms to 1000ms
+
+### Iteration Counts
+- `once`: 1 time
+- `twice`: 2 times
+- `thrice`: 3 times
+- `infinite`: Infinite
+
+### Fill Modes
+- `forwards`: Maintains final state
+- `backwards`: Uses initial state before starting
+- `both`: Combines forwards and backwards
+
+### Animation Steps (For retro effect)
+- `retro`: 8 steps
+- `normal`: 16 steps
+- `modern`: 24 steps
+
+### Animation Ranges (Scroll/View Timeline)
+- `cover`: Full range
+- `contain`: Within viewport
+- `entry`: Entry to viewport
+- `exit`: Exit from viewport
+- `gradual`, `moderate`, `brisk`, `rapid`: Predefined ranges with percentages
+
+***
+
+## Complete Technology Stack
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| **Tailwind CSS** | 4.1.18 | Main CSS framework |
+| **PostCSS** | 8.5.6 | CSS processor |
+| **Astro** | 4.3.3 | Website build tool |
+| **Vitest** | 4.0.16 | Testing framework |
+| **ESLint** | 9.39.2 | JS code linting |
+| **Neostandard** | 0.12.2 | ESLint configuration |
+| **Prettier** | 3.7.4 | Code formatter |
+| **TypeScript Parser** | 8.52.0 | TypeScript support |
+
+***
+
+## Project Structure
+
+```
+tailwind-animations/
+├── CHANGELOG.md                     # Version history and changes
+├── LICENSE                          # MIT License file
+├── LLM.txt                          # LLM context file (this file)
+├── README.es.md                     # Spanish documentation
+├── README.md                        # English documentation
+├── eslint.config.js                 # ESLint configuration
+├── lib/
+│   └── imgs/
+│       └── web.jpg                  # Project visual assets
+├── package.json                     # Main package configuration
+├── packages/
+│   └── scoped/                      # @midudev/tailwind-animations (deprecated)
+│       ├── README.md
+│       ├── package.json
+│       └── src/
+│           └── index.css            # Synced CSS for scoped package
+├── pnpm-workspace.yaml              # Monorepo workspace config
+├── scripts/
+│   ├── deprecate-scoped.mjs         # Script to deprecate scoped package
+│   ├── publish-both.mjs             # Publish automation for both packages
+│   └── sync-scoped-package.mjs      # Sync code between packages
+├── src/
+│   └── index.css                    # Main file with all animations
+├── test/
+│   ├── index.test.js                # Test suite with Vitest
+│   └── utils.js                     # Test utilities
+└── web/                             # Demo website (Astro)
+    ├── README.md
+    ├── astro.config.mjs             # Astro configuration
+    ├── package.json
+    ├── public/
+    │   ├── favicon.svg
+    │   ├── fonts/
+    │   │   ├── Figtree.ttf
+    │   │   └── GeistMono.ttf
+    │   └── og.jpg                   # Open Graph image
+    ├── src/
+    │   ├── components/
+    │   │   ├── Footer.astro
+    │   │   ├── Logo.astro
+    │   │   ├── ToggleTheme.astro
+    │   │   └── icons/
+    │   │       ├── copy.astro
+    │   │       ├── github.astro
+    │   │       ├── moon.astro
+    │   │       ├── sun.astro
+    │   │       └── system.astro
+    │   ├── data/
+    │   │   └── theme.js             # Theme configuration
+    │   ├── env.d.ts                 # TypeScript environment types
+    │   ├── layouts/
+    │   │   └── Layout.astro         # Main layout component
+    │   ├── pages/
+    │   │   └── index.astro          # Homepage
+    │   └── styles/
+    │       └── index.css            # Website styles
+    └── tsconfig.json                # TypeScript configuration
+
+Directories: 18 | Files: 39
+```
+
+***
+
+## Available Scripts and Commands
+
+| Command | Function |
+|---------|----------|
+| `npm run lint` | Check code with ESLint |
+| `npm run lint:fix` | Auto-fix ESLint issues |
+| `npm run test` | Run tests with Vitest |
+| `npm run test:ci` | Tests in CI mode (single run) |
+| `npm run publish:official` | Publish official package to NPM |
+| `npm run publish:scoped` | Publish scoped @midudev/ package (deprecated) |
+| `npm run publish:both` | Publish both versions |
+| `npm run sync:scoped` | Sync code between packages |
+| `npm run deprecate:scoped` | Mark scoped package as deprecated |
+
+***
+
+## Dependencies and Compatibility
+
+### Peer Dependencies
+- `tailwindcss`: ^4.0.0 (required)
+
+### Main Dev Dependencies
+- @tailwindcss/postcss: 4.1.18
+- @csstools/postcss-minify: 2.0.5
+- postcss: 8.5.6
+- tailwindcss: 4.1.18
+- vitest: 4.0.16
+- eslint: 9.39.2
+
+### Installed Tools
+- prettier and prettier-plugin-tailwindcss
+- eslint-plugin-astro (for web/ linting)
+- TypeScript ESLint Parser
+
+***
+
+## Usage Examples
+
+### Basic Usage
+
+```html
+<!-- Simple fade in -->
+<div class="animate-fade-in">
+  Content that appears smoothly
+</div>
+
+<!-- Slide with customization -->
+<div class="animate-slide-in-bottom animate-delay-300 animate-duration-slow">
+  Slides from bottom after 300ms (duration: 400ms)
+</div>
+```
+
+### Advanced Combinations
+
+```html
+<!-- Zoom entry that pauses on hover -->
+<div class="animate-zoom-in hover:animate-play-paused animate-duration-fast">
+  Fast zoom that pauses on hover
+</div>
+
+<!-- Animation linked to scroll -->
+<div class="animate-rotate-360 timeline-scroll animate-duration-slower">
+  Rotates while you scroll (very slowly)
+</div>
+
+<!-- View Timeline: animates when entering viewport -->
+<div class="w-72 h-52 bg-gradient-to-r from-blue-500 to-purple-500
+            animate-pop view-animate-[--entrance] 
+            animate-range-[entry_10%_contain_25%]">
+  Pop when entering viewport
+</div>
+```
+
+### Advanced Easing Usage
+
+```html
+<!-- With custom cubic easing curve -->
+<div class="animate-fade-in-up animate-bezier-cubic-out animate-duration-normal">
+  Smooth entry with cubic easing
+</div>
+
+<!-- Step by step (retro pixel style) -->
+<div class="animate-rotate-360 animate-steps-retro animate-duration-slower animate-iteration-count-infinite">
+  Pixel/retro style rotation
+</div>
+```
+
+***
+
+## Important Information
+
+### ⚠️ Deprecation
+- The **`@midudev/tailwind-animations`** package is **completely deprecated**
+- Maintained only for backward compatibility
+- **All new projects should use `tailwind-animations`**
+
+### 📦 Older Versions
+For projects using **Tailwind CSS v3**, use:
+
+```bash
+npm install @midudev/tailwind-animations@0.2.0
+```
+
+### 🏗️ Technical Features
+- **CSS-only**: No JavaScript dependencies
+- **Tree-shakeable**: Only used animations are included in your build
+- **Performance optimized**: Uses CSS variables for maximum efficiency
+- **Monorepo**: Uses pnpm workspaces to manage multiple packages
+
+### 🤝 Community and Contributions
+- Actively maintained project
+- Accepts PRs and community suggestions
+- Contributors graph: https://contrib.rocks/image?repo=midudev/tailwind-animations
+- Last updates in June 2024
+
+***
+
+## Recent History
+
+### Main Updates
+- **Jun 2024**: Multiple UX/UI improvements and new animations
+- **May 2024**: Feature pull requests integration
+- **Mar 2024**: Version update and ESLint configuration
+- **Feb 2024**: Accessibility improvements and dark mode
+
+### Recent Development Areas
+- ESLint standard migrations
+- New animations (jelly, skew, etc.)
+- Scroll-driven animations
+- Dark mode improvements
+- Demo website UX optimizations
+
+***
+
+## Quick Reference
+
+### Animation Class Anatomy
+
+```
+animate-[name] animate-delay-[ms] animate-duration-[time]
+animate-iteration-count-[repetitions] animate-direction-[direction]
+animate-fill-mode-[mode] animate-bezier-[easing]
+```
+
+### Complete Example
+
+```html
+<button class="animate-tada 
+               animate-delay-200 
+               animate-duration-slow 
+               animate-iteration-count-infinite 
+               animate-direction-alternate
+               hover:animate-play-paused">
+  Click me!
+</button>
+```
+
+***
+
+## Resources
+
+- **Official Website**: https://tailwind-animations.com/
+- **GitHub Repository**: https://github.com/midudev/tailwind-animations
+- **NPM Package**: https://www.npmjs.com/package/tailwind-animations
+- **Documentation**: README.md (EN) and README.es.md (ES)
+- **Issues & Discussions**: GitHub Issues and Discussions
