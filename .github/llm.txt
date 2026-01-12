@@ -418,7 +418,7 @@ animate-fill-mode-[modo] animate-bezier-[easing]
 
 ## Recursos
 
-- **Website Oficial**: https://tailwindcss-animations.vercel.app/
+- **Website Oficial**: https://tailwind-animations.com/
 - **GitHub Repository**: https://github.com/midudev/tailwind-animations
 - **NPM Package**: https://www.npmjs.com/package/tailwind-animations
 - **Documentación**: README.md (EN) y README.es.md (ES)
