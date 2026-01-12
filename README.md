@@ -11,7 +11,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/midudev/tailwind-animations)
 ![GitHub Contributors](https://img.shields.io/github/contributors/midudev/tailwind-animations)
 
-![web](./lib/imgs/web.jpg)
+![CleanShot 2026-01-12 at 21 27 57@2x](https://github.com/user-attachments/assets/e2d42595-c049-4c21-a208-770d56291483)
 
 ![Tailwind
 CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.1-blue?style=for-the-badge&logo=tailwind-css)
