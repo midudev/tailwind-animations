@@ -13,7 +13,7 @@
   "dependencies": {
     "@astrojs/check": "0.9.6",
     "@fontsource-variable/geist-mono": "5.2.7",
-    "@midudev/tailwind-animations": "file:../",
+    "tailwind-animations": "file:../",
     "@tailwindcss/vite": "4.1.18",
     "astro": "5.16.8",
     "tailwindcss": "4.1.18",

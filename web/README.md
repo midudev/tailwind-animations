@@ -1,1 +1,1 @@
-# Web de `@midudev/tailwind-animations`
+# Web de `tailwind-animations`
