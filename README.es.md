@@ -41,10 +41,8 @@ $ yarn add tailwind-animations
 Usa el plugin en tu configuración de Tailwind:
 
 ```css
-/* globals.css */
-@import "tailwindcss";
-
-@plugin 'tailwind-animations';
+@import 'tailwindcss';
+@import 'tailwind-animations';
 ```
 
 ## Uso

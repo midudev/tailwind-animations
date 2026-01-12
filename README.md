@@ -50,9 +50,8 @@ yarn add tailwind-animations
 
 ```css
 /* globals.css (for Tailwind CSS 4.*) */
-@import "tailwindcss";
-
-@plugin 'tailwind-animations';
+@import 'tailwindcss';
+@import 'tailwind-animations';
 ```
 
 ## Usage :gear:
