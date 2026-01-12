@@ -3,9 +3,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss()],
-    ssr: {
-      noExternal: ['tailwind-animations']
-    }
+    plugins: [tailwindcss()]
   }
 })
