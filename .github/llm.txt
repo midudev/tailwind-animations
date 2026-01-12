@@ -1,0 +1,158 @@
+# Tailwind Animations - LLM Context File
+
+## Project Overview
+**tailwind-animations** es un plugin de Tailwind CSS que proporciona un conjunto completo de animaciones CSS listas para usar a través de clases de utilidad. El proyecto fue creado por Miguel Ángel Durán (@midudev) y su comunidad.
+
+**Repository**: https://github.com/midudev/tailwind-animations
+**License**: MIT
+**Version**: 1.0.1
+
+## Key Information
+
+### Installation
+El paquete se instala vía npm, pnpm o yarn:
+```
+npm install tailwind-animations
+pnpm install tailwind-animations
+yarn add tailwind-animations
+```
+
+### Usage
+Se implementa como plugin de Tailwind CSS v4:
+```css
+/* globals.css */
+@import "tailwindcss";
+@plugin 'tailwind-animations';
+```
+
+### Core Features
+- **70+ Animaciones predefinidas**: fade-in, slide, zoom, rotate, flip, bounce, pulse, etc.
+- **Utility Classes para control granular**: animate-delay-*, animate-duration-*, animate-iteration-count-*
+- **Animation Timing Functions**: ease, ease-in, ease-out, ease-in-out, linear
+- **Cubic Bezier Curves**: Múltiples curvas de easing predefinidas (sine, quad, cubic, quart, quint, expo, circ, back)
+- **Animation Fill Modes**: forwards, backwards, both
+- **Animation Direction**: normal, reverse, alternate, alternate-reverse
+- **Animation Play State**: running, paused
+- **View Timeline Support**: Animaciones basadas en la posición del elemento en la ventana
+- **Scroll Timeline Support**: Animaciones sincronizadas con scroll
+
+### Animation Categories
+
+#### Fade Animations
+- blurred-fade-in, fade-in, fade-out
+- fade-in-up, fade-in-down, fade-in-left, fade-in-right
+- fade-out-up, fade-out-down, fade-out-left, fade-out-right
+- pulse-fade-in
+
+#### Slide Animations
+- slide-in-top, slide-in-bottom, slide-in-left, slide-in-right
+- slide-out-top, slide-out-bottom, slide-out-left, slide-out-right
+- slide-up-fade, slide-rotate-in, slide-rotate-out
+
+#### Zoom & Scale Animations
+- zoom-in, zoom-out, scale, pop
+- expand-horizontally, contract-horizontally
+- expand-vertically, contract-vertically
+
+#### Rotation Animations
+- rotate-90, rotate-180, rotate-360
+- spin-clockwise, spin-counter-clockwise
+- rotate-in, rotate-out
+- impulse-rotation-right, impulse-rotation-left
+
+#### Flip Animations
+- flip-horizontal, flip-vertical
+- flip-x, flip-y
+- flip-in-x, flip-in-y
+- flip-out-x, flip-out-y
+
+#### Movement & Motion Animations
+- bouncing, bounce-fade-in, vertical-bounce, horizontal-bounce
+- swing, sway, wobble, jiggle, tilt, squeeze
+- jump, hang, roll-in, roll-out
+- float, sink, shake, blink
+
+#### Interactive Animations
+- tada, heartbeat, pulse, pulsing
+- rubber-band, flash
+- horizontal-vibration, rotational-wave
+- dancing, jelly
+
+#### Composite Animations
+- swing-drop-in
+- skew, skew-right
+
+### Theme Configuration Variables
+
+#### Animation Delays
+- 0ms, 100ms, 150ms, 200ms, 250ms, 300ms, 400ms, 500ms, 700ms, 800ms, 900ms, 1000ms
+
+#### Animation Durations
+- **Named**: slower (500ms), slow (400ms), normal (300ms), fast (200ms), faster (100ms)
+- **Numeric**: 0ms, 100ms, 150ms, 200ms, 250ms, 300ms, 400ms, 500ms, 700ms, 800ms, 900ms, 1000ms
+
+#### Animation Iteration Counts
+- once (1), twice (2), thrice (3), infinite
+
+#### Animation Fill Modes
+- forwards, backwards, both
+
+#### Animation Steps
+- retro (8 steps), normal (16 steps), modern (24 steps)
+
+#### Animation Ranges
+- cover, contain, entry, exit
+- gradual (10% 90%), moderate (20% 80%), brisk (30% 70%), rapid (40% 60%)
+
+### Technical Details
+
+**Stack**:
+- Tailwind CSS v4.1.18
+- Astro 4.3.3
+- PostCSS 8.5.6
+- ESLint 9.39.2
+- Vitest 4.0.16
+
+**Project Structure**:
+```
+tailwind-animations/
+├── src/
+│   └── index.css (Todas las animaciones y utilidades)
+├── lib/ (Imágenes y assets)
+├── packages/ (Paquete scoped para compatibilidad)
+├── test/ (Suite de pruebas)
+├── web/ (Sitio web de demostración)
+├── scripts/ (Scripts de utilidad y publicación)
+├── package.json
+├── pnpm-workspace.yaml
+└── eslint.config.js
+```
+
+**Commands**:
+- `npm run lint` - ESLint check
+- `npm run lint:fix` - ESLint fix
+- `npm run test` - Vitest
+- `npm run test:ci` - Vitest CI mode
+- `npm run publish:official` - Publish main package
+- `npm run publish:scoped` - Publish scoped package
+- `npm run publish:both` - Publish both packages
+
+### Dependencies
+- **Peer Dependencies**: tailwindcss ^4.0.0
+- **Dev Dependencies**: tailwindcss, postcss, vitest, eslint, prettier, y herramientas de linting
+
+### Notes
+- El paquete original `@midudev/tailwind-animations` está deprecado. Se recomienda usar `tailwind-animations`
+- Para Tailwind CSS v3, usar la última versión compatible: `@midudev/tailwind-animations@0.2.0`
+- El plugin es CSS-only, sin dependencias de JavaScript
+
+### Website
+Sitio de demostración interactivo: https://tailwindcss-animations.vercel.app/
+
+### Community
+El proyecto es activamente mantenido y aceptado contribuciones de la comunidad. Ver gráfico de contribuidores en el repositorio.
+
+### Recent Activity
+- Últimas actualizaciones en junio 2024
+- Múltiples PRs de features y fixes
+- Migraciones recientes a ESLint y configuración de linting actualizada
