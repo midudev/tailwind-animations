@@ -1,6 +1,6 @@
 {
   "name": "tailwind-animations",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tailwind CSS plugin to add animations to your website",
   "style": "./src/index.css",
   "exports": {

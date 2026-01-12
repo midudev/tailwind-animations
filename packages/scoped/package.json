@@ -1,6 +1,6 @@
 {
   "name": "@midudev/tailwind-animations",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Deprecated: use tailwind-animations instead",
   "style": "./src/index.css",
   "exports": {
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/midudev/tailwind-animations#readme",
   "dependencies": {
-    "tailwind-animations": "1.0.0"
+    "tailwind-animations": "1.0.1"
   },
   "peerDependencies": {
     "tailwindcss": "^4.0.0"
