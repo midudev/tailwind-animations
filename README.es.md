@@ -26,28 +26,25 @@ información.
 
 ## Instalación
 
+> Nota: este proyecto antes se publicaba como `@midudev/tailwind-animations`. Ese paquete se mantiene solo como **compatibilidad** y está **deprecado**.
+
+> ¿Necesitas soporte para **Tailwind CSS v3**? Usa la última versión compatible: `@midudev/tailwind-animations@0.2.0`.
+
 Instala el paquete con tu gestor de paquetes favorito:
 
 ```sh
-$ npm install @midudev/tailwind-animations
-$ pnpm add @midudev/tailwind-animations
-$ yarn add @midudev/tailwind-animations
+$ npm install tailwind-animations
+$ pnpm add tailwind-animations
+$ yarn add tailwind-animations
 ```
 
 Usa el plugin en tu configuración de Tailwind:
 
-```js
+```css
+/* globals.css */
+@import "tailwindcss";
 
-// tailwind.config.mjs
-import animations from '@midudev/tailwind-animations'
-
-export default {
-  // resto de opciones
-  plugins: [
-    animations
-  ],
-}
-
+@plugin 'tailwind-animations';
 ```
 
 ## Uso

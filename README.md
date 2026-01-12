@@ -24,43 +24,35 @@ Visit the [website](https://tailwindcss-animations.vercel.app/) to get more info
   
 ## Installation :book:
 
+> Note: this project used to be published as `@midudev/tailwind-animations`. That package remains available only as a **deprecated compatibility shim**.
+
+> Need **Tailwind CSS v3** support? Use the last v3-compatible release: `@midudev/tailwind-animations@0.2.0`.
+
 #### Package install
 
 > Install the package with your favorite package manager:
 
 - npm
 ```bash
-npm install @midudev/tailwind-animations
+npm install tailwind-animations
 ```
 - pnpm
 ```bash
-pnpm install @midudev/tailwind-animations
+pnpm install tailwind-animations
 ```
 - yarn
 ```bash
-yarn add @midudev/tailwind-animations
+yarn add tailwind-animations
 ```
 
 #### Plugin Implementation
 > Use the plugin in your Tailwind CSS project:
 
-```js
-// tailwind.config.mjs (for Tailwind CSS 3.*)
-import animations from '@midudev/tailwind-animations'
-
-export default {
-  // rest of the options
-  plugins: [
-    animations
-  ],
-}
-```
-
 ```css
 /* globals.css (for Tailwind CSS 4.*) */
 @import "tailwindcss";
 
-@plugin '@midudev/tailwind-animations';
+@plugin 'tailwind-animations';
 ```
 
 ## Usage :gear:
