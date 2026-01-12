@@ -66,6 +66,7 @@ Modify duration, delays, iterations, and behavior of any animation:
 
 ### 4. **View Timeline Support**
 Animations synchronized with element position in the viewport:
+
 ```html
 <div class="animate-zoom-in view-animate-[--entrance] animate-range-[entry_10%_contain_25%]">
   Animates when entering the viewport
@@ -73,7 +74,9 @@ Animations synchronized with element position in the viewport:
 ```
 
 ### 5. **Scroll Timeline Support**
+
 Animations linked to user scrolling:
+
 ```html
 <div class="timeline-scroll animate-rotate-360">
   Rotates while you scroll
@@ -178,6 +181,7 @@ Support for pixel/retro-style animations with defined steps:
 ## CSS Configuration Variables
 
 ### Delays
+
 ```
 0ms | 100ms | 150ms | 200ms | 250ms | 300ms | 400ms | 500ms | 700ms | 800ms | 900ms | 1000ms
 ```
@@ -236,29 +240,65 @@ Support for pixel/retro-style animations with defined steps:
 
 ```
 tailwind-animations/
+├── CHANGELOG.md                     # Version history and changes
+├── LICENSE                          # MIT License file
+├── LLM.txt                          # LLM context file (this file)
+├── README.es.md                     # Spanish documentation
+├── README.md                        # English documentation
+├── eslint.config.js                 # ESLint configuration
+├── lib/
+│   └── imgs/
+│       └── web.jpg                  # Project visual assets
+├── package.json                     # Main package configuration
+├── packages/
+│   └── scoped/                      # @midudev/tailwind-animations (deprecated)
+│       ├── README.md
+│       ├── package.json
+│       └── src/
+│           └── index.css            # Synced CSS for scoped package
+├── pnpm-workspace.yaml              # Monorepo workspace config
+├── scripts/
+│   ├── deprecate-scoped.mjs         # Script to deprecate scoped package
+│   ├── publish-both.mjs             # Publish automation for both packages
+│   └── sync-scoped-package.mjs      # Sync code between packages
 ├── src/
 │   └── index.css                    # Main file with all animations
-│                                     # and CSS utilities
-├── lib/
-│   └── imgs/                        # Project visual assets
-├── packages/
-│   └── scoped/                      # @midudev/tailwind-animations package
-│                                     # (deprecated, compatibility only)
 ├── test/
-│   └── *.test.js                   # Test suite with Vitest
-├── web/
-│   └── [Astro files]               # Demo website
-├── scripts/
-│   ├── sync-scoped-package.mjs
-│   ├── deprecate-scoped.mjs
-│   └── publish-both.mjs            # Publishing automation
-├── .github/
-│   └── workflows/                  # GitHub Actions CI/CD
-├── package.json
-├── pnpm-workspace.yaml             # Monorepo config
-├── eslint.config.js
-├── CHANGELOG.md
-└── README.md / README.es.md        # Multi-language documentation
+│   ├── index.test.js                # Test suite with Vitest
+│   └── utils.js                     # Test utilities
+└── web/                             # Demo website (Astro)
+    ├── README.md
+    ├── astro.config.mjs             # Astro configuration
+    ├── package.json
+    ├── public/
+    │   ├── favicon.svg
+    │   ├── fonts/
+    │   │   ├── Figtree.ttf
+    │   │   └── GeistMono.ttf
+    │   └── og.jpg                   # Open Graph image
+    ├── src/
+    │   ├── components/
+    │   │   ├── Footer.astro
+    │   │   ├── Logo.astro
+    │   │   ├── ToggleTheme.astro
+    │   │   └── icons/
+    │   │       ├── copy.astro
+    │   │       ├── github.astro
+    │   │       ├── moon.astro
+    │   │       ├── sun.astro
+    │   │       └── system.astro
+    │   ├── data/
+    │   │   └── theme.js             # Theme configuration
+    │   ├── env.d.ts                 # TypeScript environment types
+    │   ├── layouts/
+    │   │   └── Layout.astro         # Main layout component
+    │   ├── pages/
+    │   │   └── index.astro          # Homepage
+    │   └── styles/
+    │       └── index.css            # Website styles
+    └── tsconfig.json                # TypeScript configuration
+
+Directories: 18 | Files: 39
 ```
 
 ***
@@ -302,6 +342,7 @@ tailwind-animations/
 ## Usage Examples
 
 ### Basic Usage
+
 ```html
 <!-- Simple fade in -->
 <div class="animate-fade-in">
@@ -315,6 +356,7 @@ tailwind-animations/
 ```
 
 ### Advanced Combinations
+
 ```html
 <!-- Zoom entry that pauses on hover -->
 <div class="animate-zoom-in hover:animate-play-paused animate-duration-fast">
@@ -335,6 +377,7 @@ tailwind-animations/
 ```
 
 ### Advanced Easing Usage
+
 ```html
 <!-- With custom cubic easing curve -->
 <div class="animate-fade-in-up animate-bezier-cubic-out animate-duration-normal">
@@ -358,6 +401,7 @@ tailwind-animations/
 
 ### 📦 Older Versions
 For projects using **Tailwind CSS v3**, use:
+
 ```bash
 npm install @midudev/tailwind-animations@0.2.0
 ```
@@ -396,6 +440,7 @@ npm install @midudev/tailwind-animations@0.2.0
 ## Quick Reference
 
 ### Animation Class Anatomy
+
 ```
 animate-[name] animate-delay-[ms] animate-duration-[time]
 animate-iteration-count-[repetitions] animate-direction-[direction]
@@ -403,6 +448,7 @@ animate-fill-mode-[mode] animate-bezier-[easing]
 ```
 
 ### Complete Example
+
 ```html
 <button class="animate-tada 
                animate-delay-200 
