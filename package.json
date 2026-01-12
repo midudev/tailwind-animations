@@ -12,7 +12,12 @@
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
     "test": "vitest",
-    "test:ci": "vitest run"
+    "test:ci": "vitest run",
+    "sync:scoped": "node ./scripts/sync-scoped-package.mjs",
+    "publish:official": "pnpm publish --access public --no-git-checks",
+    "publish:scoped": "pnpm --dir ./packages/scoped publish --access public --no-git-checks",
+    "deprecate:scoped": "node ./scripts/deprecate-scoped.mjs",
+    "publish:both": "node ./scripts/publish-both.mjs"
   },
   "keywords": ["tailwind", "css", "animations", "plugin"],
   "author": "Miguel Ángel Durán (@midudev) & su maravillosa comunidad",
