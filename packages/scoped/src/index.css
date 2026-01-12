@@ -1,0 +1,6 @@
+/*
+  Deprecated package shim.
+  Use `tailwind-animations` instead.
+*/
+
+@import "tailwind-animations";
