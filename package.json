@@ -18,7 +18,7 @@
     "test": "vitest",
     "test:ci": "vitest run"
   },
-  "keywords": [],
+  "keywords": ["tailwind", "css", "animations", "plugin"],
   "author": "Miguel Ángel Durán (@midudev) & su maravillosa comunidad",
   "license": "MIT",
   "peerDependencies": {
