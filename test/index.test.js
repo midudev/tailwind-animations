@@ -144,15 +144,7 @@ describe('tailwindcss-animations plugins', () => {
       content: '<div class="timeline-none">Hello</div>'
     })
 
-    expect(css).toContain('.timeline-none{animation-timeline:none}')
-  })
-
-  it('use a animation timeline single', async () => {
-    const css = await generatePluginCSS({
-      content: '<div class="timeline-single">Hello</div>'
-    })
-
-    expect(css).toContain('.timeline-single{animation-timeline:--single-timeline}')
+    expect(css).toContain('.timeline-none{animation-timeline:none!important}')
   })
 
   it('use a animation timeline scroll', async () => {
@@ -160,7 +152,55 @@ describe('tailwindcss-animations plugins', () => {
       content: '<div class="timeline-scroll">Hello</div>'
     })
 
-    expect(css).toContain('.timeline-scroll{animation-timeline:scroll()}')
+    expect(css).toContain('.timeline-scroll{animation-timeline:scroll()!important}')
+  })
+
+  it('use a animation timeline scroll-x', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="timeline-scroll-x">Hello</div>'
+    })
+
+    expect(css).toContain('.timeline-scroll-x{animation-timeline:scroll(x)!important}')
+  })
+
+  it('use a animation timeline scroll-y', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="timeline-scroll-y">Hello</div>'
+    })
+
+    expect(css).toContain('.timeline-scroll-y{animation-timeline:scroll(y)!important}')
+  })
+
+  it('use a animation timeline scroll-block', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="timeline-scroll-block">Hello</div>'
+    })
+
+    expect(css).toContain('.timeline-scroll-block{animation-timeline:scroll(block)!important}')
+  })
+
+  it('use a animation timeline scroll-inline', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="timeline-scroll-inline">Hello</div>'
+    })
+
+    expect(css).toContain('.timeline-scroll-inline{animation-timeline:scroll(inline)!important}')
+  })
+
+  it('use a animation timeline view-x', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="timeline-view-x">Hello</div>'
+    })
+
+    expect(css).toContain('.timeline-view-x{animation-timeline:view(x)!important}')
+  })
+
+  it('use a animation timeline view-inline', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="timeline-view-inline">Hello</div>'
+    })
+
+    expect(css).toContain('.timeline-view-inline{animation-timeline:view(inline)!important}')
   })
 
   it('use a animation timeline scroll custom', async () => {
@@ -168,7 +208,23 @@ describe('tailwindcss-animations plugins', () => {
       content: '<div class="timeline-[scroll(20%)]">Hello</div>'
     })
 
-    expect(css).toContain('.timeline-\\[scroll\\(20\\%\\)\\]{animation-timeline:scroll(20%)}')
+    expect(css).toContain('.timeline-\\[scroll\\(20\\%\\)\\]{animation-timeline:scroll(20%)!important}')
+  })
+
+  it('use a animation timeline scroll custom with spaces', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="timeline-[scroll(x_root)]">Hello</div>'
+    })
+
+    expect(css).toContain('.timeline-\\[scroll\\(x_root\\)\\]{animation-timeline:scroll(x root)!important}')
+  })
+
+  it('use a animation timeline view custom with multiple values', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="timeline-[view(x_200px_auto)]">Hello</div>'
+    })
+
+    expect(css).toContain('.timeline-\\[view\\(x_200px_auto\\)\\]{animation-timeline:view(x 200px auto)!important}')
   })
 
   it('use a animation timeline custom name', async () => {
@@ -176,31 +232,7 @@ describe('tailwindcss-animations plugins', () => {
       content: '<div class="timeline-[--test]">Hello</div>'
     })
 
-    expect(css).toContain('.timeline-\\[--test\\]{animation-timeline:--test}')
-  })
-
-  it('use a scroll timeline single', async () => {
-    const css = await generatePluginCSS({
-      content: '<div class="scroll-timeline-single">Hello</div>'
-    })
-
-    expect(css).toContain('.scroll-timeline-single{scroll-timeline-name:--single-timeline}')
-  })
-
-  it('use a view timeline single', async () => {
-    const css = await generatePluginCSS({
-      content: '<div class="view-timeline-single">Hello</div>'
-    })
-
-    expect(css).toContain('.view-timeline-single{view-timeline-name:--single-timeline}')
-  })
-
-  it('use a view timeline custom name', async () => {
-    const css = await generatePluginCSS({
-      content: '<div class="view-timeline-[--test-view]">Hello</div>'
-    })
-
-    expect(css).toContain('.view-timeline-\\[--test-view\\]{view-timeline-name:--test-view}')
+    expect(css).toContain('.timeline-\\[--test\\]{animation-timeline:--test!important}')
   })
 
   it('use a timeline range', async () => {
@@ -241,29 +273,5 @@ describe('tailwindcss-animations plugins', () => {
     })
 
     expect(css).toContain('.view-timeline-axis-y{view-timeline-axis:y}')
-  })
-
-  it('use view animation timeline in same element', async () => {
-    const css = await generatePluginCSS({
-      content: '<div class="view-animate-single">Hello</div>'
-    })
-
-    expect(css).toContain('.view-animate-single{view-timeline-name:--single-timeline;animation-timeline:--single-timeline}')
-  })
-
-  it('use scroll animation timeline in same element', async () => {
-    const css = await generatePluginCSS({
-      content: '<div class="scroll-animate-single">Hello</div>'
-    })
-
-    expect(css).toContain('.scroll-animate-single{scroll-timeline-name:--single-timeline;animation-timeline:--single-timeline}')
-  })
-
-  it('use scroll animation timeline in same element with custom name', async () => {
-    const css = await generatePluginCSS({
-      content: '<div class="scroll-animate-[--test-timeline-scroll]">Hello</div>'
-    })
-
-    expect(css).toContain('.scroll-animate-\\[--test-timeline-scroll\\]{scroll-timeline-name:--test-timeline-scroll;animation-timeline:--test-timeline-scroll}')
   })
 })
