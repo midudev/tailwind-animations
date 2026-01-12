@@ -33,8 +33,7 @@ The plugin is configured directly in your global CSS file:
 ```css
 /* globals.css or main.css */
 @import "tailwindcss";
-
-@plugin 'tailwind-animations';
+@import 'tailwind-animations';
 ```
 
 ### Requirements
