@@ -76,6 +76,8 @@ const packageManagers = [
     command: 'deno add tailwind-animations'
   }
 ]
+// Guardado en una variable por si hay necesidad de cambiar el diseño luego... 
+const AnchorStyle = 'bg-blue-50 px-2 py-1 ring-1 ring-blue-700/10 ring-inset dark:bg-blue-400/10 dark:ring-blue-400/30 rounded-sm shadow'
 ---
 
 <Layout
@@ -83,13 +85,29 @@ const packageManagers = [
 >
   <wc-toast class="fixed inset-0 pointer-events-none z-50"></wc-toast>
 
-  <main class='mx-auto min-w-screen max-w-6xl px-2 sm:px-4 pt-16 pb-18 sm:pb-24 lg:px-8'>
+  <main class='mx-auto min-w-screen max-w-6xl px-2 sm:px-4 pt-16 pb-18 sm:pb-24 lg:px-8' id='hero'>
     <header class='relative z-10 mx-auto mb-20'>
       <!-- GitHub fixed top-right -->
       <!-- 
         En mobile el elemento fixed al escrollear queda tapado por un elemento
         fixed en la parte de abajo, por eso en mobile es absolute
       -->
+
+      <!-- Link PART -->
+      <!-- Left-2 porque el panel del Animation Collection tapa el Anchor 'Try it!' -->
+      <div class=' w-fit z-50 flex items-center gap-2 fixed top-6 font-bold tracking-tight text-slate-900 dark:text-white left-2'>
+        <a href="#animation-collection" class={AnchorStyle}>
+          Go
+          <span class='text-blue-500'>Animations</span>
+           Collection</a>
+        <a href="#scroll-animations" class={AnchorStyle}>
+          Go Scroll 
+          <span class='text-blue-500'>Animations</span>
+        </a>
+        <a href="#hero" class={AnchorStyle}>Try it!</a>
+      </div>
+      <!--  -->
+
       <div class='absolute lg:fixed top-6 right-6 w-fit z-50 flex items-center gap-4'>
         <ToggleTheme />
         <a
@@ -368,7 +386,7 @@ export default {
       </div>
     </header>
 
-    <section class='mt-32 mb-24'>
+    <section class='mt-32 mb-24' id='animation-collection'>
       <div class='mb-16 flex flex-col items-center'>
         <h2
           class='animate-fade-in-up animate-delay-[600ms] mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
@@ -543,7 +561,7 @@ export default {
         }
       </div>
 
-      <section class='relative mt-32 mb-24'>
+      <section class='relative mt-32 mb-24' id='scroll-animations'>
         <div class='mb-16 flex flex-col items-center'>
           <h2
             class='mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
