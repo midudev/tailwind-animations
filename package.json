@@ -9,8 +9,8 @@
   },
   "type": "module",
   "scripts": {
-    "lint": "eslint ./src",
-    "lint:fix": "eslint --fix ./src",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "test": "vitest",
     "test:ci": "vitest run",
     "sync:scoped": "node ./scripts/sync-scoped-package.mjs",
