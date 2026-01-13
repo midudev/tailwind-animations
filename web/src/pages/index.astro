@@ -81,12 +81,16 @@ const packageManagers = [
 <Layout
   title='Tailwind CSS Animations Plugin: Community-Powered Animation Magic'
 >
-  <wc-toast></wc-toast>
+  <wc-toast class="fixed inset-0 pointer-events-none z-50"></wc-toast>
 
-  <main class='mx-auto max-w-6xl px-4 pt-16 pb-24 lg:px-8'>
+  <main class='mx-auto min-w-screen max-w-6xl px-2 sm:px-4 pt-16 pb-18 sm:pb-24 lg:px-8'>
     <header class='relative z-10 mx-auto mb-20'>
       <!-- GitHub fixed top-right -->
-      <div class='fixed top-6 right-6 z-50 flex items-center gap-4'>
+      <!-- 
+        En mobile el elemento fixed al escrollear queda tapado por un elemento
+        fixed en la parte de abajo, por eso en mobile es absolute
+      -->
+      <div class='absolute lg:fixed top-6 right-6 w-fit z-50 flex items-center gap-4'>
         <ToggleTheme />
         <a
           aria-label='View website repository on GitHub'
@@ -113,14 +117,14 @@ const packageManagers = [
         <!-- Left Column: Content -->
         <div class='text-left'>
           <div
-            class='animate-fade-in-up animate-delay-100 mb-6 flex items-center gap-5'
+            class='animate-fade-in-up animate-delay-100 mb-6 flex items-center gap-2 sm:gap-5'
           >
             <Logo
-              class='aspect-square size-14 shrink-0'
+              class='aspect-square size-10 sm:size-14 shrink-0'
               iconClass='size-7 animate-float-subtle'
             />
             <h1
-              class='text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl dark:text-white'
+              class='text-3xl font-bold tracking-tight text-slate-900 sm:text-5xl dark:text-white'
             >
               Tailwind <span class='text-blue-500'>Animations</span>
             </h1>
@@ -138,10 +142,33 @@ const packageManagers = [
               class='overflow-hidden rounded-xl border border-slate-200 bg-white/50 p-1 shadow-xl shadow-slate-200/50 backdrop-blur-sm dark:border-white/10 dark:bg-black/40 dark:shadow-none'
             >
               <div
-                class='flex items-center justify-between border-b border-slate-200 px-4 dark:border-white/10'
+                class='flex items-center justify-between border-b border-slate-200 px-1 sm:px-4 dark:border-white/10'
               >
-                <div
+
+                <!-- Elemento problematico original - en Responsive Mobile -->
+
+                <!-- <div
                   class='scrollbar-hide flex items-center gap-1 overflow-x-auto py-2'
+                > -->
+
+                <!-- 
+                Solucion, el comportamiento igual, pero para mobile implementar un grid
+                para el desbordamiento y dividir los elementos en 2 filas.
+                  -->
+                <div
+                class="
+                  scrollbar-hide
+                  flex
+                  items-center
+                  gap-1
+                  overflow-x-auto
+                  py-2
+
+                  max-sm:grid
+                  max-sm:grid-rows-2
+                  max-sm:grid-flow-col
+                  max-sm:overflow-x-auto
+                "
                 >
                   {
                     packageManagers.map((pm, index) => (
@@ -324,10 +351,15 @@ export default {
           </div>
 
           <!-- Decorative elements -->
-          <div
+          
+          <!-- Elemento problematico original - en Responsive Mobile -->
+          <!-- <div
             class='pointer-events-none absolute -top-20 -right-20 size-40 rounded-full bg-blue-500/20 blur-3xl'
-          >
-          </div>
+          > </div> -->
+          
+          <!-- Elemento Remplazo -->
+          <div class="pointer-events-none absolute top-0 right-0 -translate-x-20 -translate-y-20 size-40 rounded-full bg-blue-500/20 blur-3xl"></div>
+
           <div
             class='pointer-events-none absolute -bottom-20 -left-20 size-40 rounded-full bg-purple-500/20 blur-3xl'
           >
@@ -339,7 +371,7 @@ export default {
     <section class='mt-32 mb-24'>
       <div class='mb-16 flex flex-col items-center'>
         <h2
-          class='animate-fade-in-up animate-delay-[600ms] mb-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+          class='animate-fade-in-up animate-delay-[600ms] mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
         >
           Animation Collection
         </h2>
@@ -514,7 +546,7 @@ export default {
       <section class='relative mt-32 mb-24'>
         <div class='mb-16 flex flex-col items-center'>
           <h2
-            class='mb-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+            class='mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
           >
             Scroll Animations
           </h2>
@@ -669,7 +701,7 @@ export default {
       <section class='relative mt-32 mb-24'>
         <div class='mb-16 flex flex-col items-center'>
           <h2
-            class='mb-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+            class='mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
           >
             Scroll & View Timelines
           </h2>
@@ -739,7 +771,7 @@ export default {
                   class='timeline-[scroll(inline)] animate-expand-horizontally sticky top-0 left-0 z-10 h-2 w-full origin-left bg-gradient-to-r from-purple-400 to-pink-600'
                 >
                 </div>
-                <div class='flex h-full w-[1500px] items-center gap-4 p-6'>
+                <div class='flex h-full w-full max-w-[1500px] items-center gap-4 p-6'>
                   {
                     ['🚀', '⭐', '💎', '🎯', '🔥', '✨', '🎨', '💡'].map(
                       (emoji) => (
