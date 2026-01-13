@@ -46,9 +46,6 @@ const sortedAnimations = Object.keys(animation).sort((a, b) => {
   return indexA - indexB
 })
 
-const featuredAnimations = sortedAnimations.slice(0, 15)
-const otherAnimations = sortedAnimations.slice(15)
-
 const packageManagers = [
   {
     name: 'npm',
@@ -81,16 +78,13 @@ const packageManagers = [
 <Layout
   title='Tailwind CSS Animations Plugin: Community-Powered Animation Magic'
 >
-  <wc-toast class="fixed inset-0 pointer-events-none z-50"></wc-toast>
+  <wc-toast class='pointer-events-none fixed inset-0 z-50'></wc-toast>
 
-  <main class='mx-auto min-w-screen max-w-6xl px-2 sm:px-4 pt-16 pb-18 sm:pb-24 lg:px-8'>
-    <header class='relative z-10 mx-auto mb-20'>
-      <!-- GitHub fixed top-right -->
-      <!-- 
-        En mobile el elemento fixed al escrollear queda tapado por un elemento
-        fixed en la parte de abajo, por eso en mobile es absolute
-      -->
-      <div class='absolute lg:fixed top-6 right-6 w-fit z-50 flex items-center gap-4'>
+  <main class='mx-auto max-w-6xl min-w-screen pt-16'>
+    <header class='relative z-10 mx-auto mb-20 max-w-6xl px-4 lg:px-8'>
+      <div
+        class='absolute top-6 right-6 z-50 flex w-fit items-center gap-4 lg:fixed'
+      >
         <ToggleTheme />
         <a
           aria-label='View website repository on GitHub'
@@ -120,7 +114,7 @@ const packageManagers = [
             class='animate-fade-in-up animate-delay-100 mb-6 flex items-center gap-2 sm:gap-5'
           >
             <Logo
-              class='aspect-square size-10 sm:size-14 shrink-0'
+              class='aspect-square size-10 shrink-0 sm:size-14'
               iconClass='size-7 animate-float-subtle'
             />
             <h1
@@ -144,31 +138,8 @@ const packageManagers = [
               <div
                 class='flex items-center justify-between border-b border-slate-200 px-1 sm:px-4 dark:border-white/10'
               >
-
-                <!-- Elemento problematico original - en Responsive Mobile -->
-
-                <!-- <div
-                  class='scrollbar-hide flex items-center gap-1 overflow-x-auto py-2'
-                > -->
-
-                <!-- 
-                Solucion, el comportamiento igual, pero para mobile implementar un grid
-                para el desbordamiento y dividir los elementos en 2 filas.
-                  -->
                 <div
-                class="
-                  scrollbar-hide
-                  flex
-                  items-center
-                  gap-1
-                  overflow-x-auto
-                  py-2
-
-                  max-sm:grid
-                  max-sm:grid-rows-2
-                  max-sm:grid-flow-col
-                  max-sm:overflow-x-auto
-                "
+                  class='scrollbar-hide flex items-center gap-1 overflow-x-auto py-2 max-sm:grid max-sm:grid-flow-col max-sm:grid-rows-2 max-sm:overflow-x-auto'
                 >
                   {
                     packageManagers.map((pm, index) => (
@@ -207,7 +178,6 @@ const packageManagers = [
               </div>
             </div>
 
-            <!-- Configuration Box -->
             <div
               class='overflow-hidden rounded-xl border border-slate-200 bg-white/50 p-1 backdrop-blur-sm dark:border-white/10 dark:bg-black/40'
             >
@@ -351,14 +321,10 @@ export default {
           </div>
 
           <!-- Decorative elements -->
-          
-          <!-- Elemento problematico original - en Responsive Mobile -->
-          <!-- <div
-            class='pointer-events-none absolute -top-20 -right-20 size-40 rounded-full bg-blue-500/20 blur-3xl'
-          > </div> -->
-          
-          <!-- Elemento Remplazo -->
-          <div class="pointer-events-none absolute top-0 right-0 -translate-x-20 -translate-y-20 size-40 rounded-full bg-blue-500/20 blur-3xl"></div>
+          <div
+            class='pointer-events-none absolute top-0 right-0 size-40 -translate-x-20 -translate-y-20 rounded-full bg-blue-500/20 blur-3xl'
+          >
+          </div>
 
           <div
             class='pointer-events-none absolute -bottom-20 -left-20 size-40 rounded-full bg-purple-500/20 blur-3xl'
@@ -482,7 +448,7 @@ export default {
         </section>
 
         <section
-          class='grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
+          class='relative mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:px-8'
         >
           {
             sortedAnimations.map((animationKey, index) => (
@@ -771,7 +737,9 @@ export default {
                   class='timeline-[scroll(inline)] animate-expand-horizontally sticky top-0 left-0 z-10 h-2 w-full origin-left bg-gradient-to-r from-purple-400 to-pink-600'
                 >
                 </div>
-                <div class='flex h-full w-full max-w-[1500px] items-center gap-4 p-6'>
+                <div
+                  class='flex h-full w-full max-w-[1500px] items-center gap-4 p-6'
+                >
                   {
                     ['🚀', '⭐', '💎', '🎯', '🔥', '✨', '🎨', '💡'].map(
                       (emoji) => (
