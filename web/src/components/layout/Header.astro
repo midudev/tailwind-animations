@@ -3,6 +3,7 @@ import Logo from '@components/ui/Logo.astro'
 import Github from '@components/icons/github.astro'
 import ToggleTheme from '@components/ui/ToggleTheme.astro'
 import Menu from '@components/icons/menu.astro'
+import Enlace from '@components/ui/Enlace.astro'
 ---
 
 <script>
@@ -45,32 +46,28 @@ import Menu from '@components/icons/menu.astro'
       <Menu class='size-7 self-end sm:size-8' />
     </button>
 
-    <div id="menu" class="hidden h-fit col-span-2 lg:grid lg:grid-cols-[auto_auto] gap-5">
+    <div id="menu" class="hidden h-fit col-span-2 lg:col-span-1 lg:grid lg:grid-cols-[auto_auto] gap-5">
       <!-- main navigation -->
       <nav
         class='my-3 flex flex-col gap-5 max-lg:text-center lg:flex-row lg:items-center lg:gap-6'
       >
       <div class="h-[2px] bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-800 to-transparent"></div>
-        <a
-          href='#'
+        <Enlace
+          href='#preview'
           class='text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
-          >Preview</a
-        >
-        <a
+          >Preview</Enlace>
+        <Enlace
           href='#animation-collection'
           class='text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
-          >Animation Collection</a
-        >
-        <a
+          >Animation Collection</Enlace>
+        <Enlace
           href='#scroll-animations'
           class='text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
-          >Scroll Animations</a
-        >
-        <a
+          >Scroll Animations</Enlace>
+        <Enlace
           href='#scroll-view-timelines'
           class='text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
-          >Scroll View Timelines</a
-        >
+          >Scroll View Timelines</Enlace>
       </nav>
 
       <!-- Color Theme / GitHub -->
