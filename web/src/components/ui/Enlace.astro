@@ -1,0 +1,45 @@
+---
+const { href, target = '_self', className = '' } = Astro.props
+---
+
+<!-- Este es un componente que utiliza el header para navegar fluidamente con sus enlaces -->
+
+<a
+  href={href}
+  target={target}
+  draggable='false'
+  class='text-slate-600 transition-colors select-none hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
+  data-enlace
+>
+  <slot />
+</a>
+
+<script>
+  document.addEventListener('click', (e) => {
+    if (!e.target) return
+    const link = (e.target as Element).closest('a[data-enlace]')
+    if (!link) return
+
+    const href = link.getAttribute('href')
+
+    // If it's an in-page anchor like #temario, scroll to the element instead
+    if (href && href.startsWith('#')) {
+      e.preventDefault()
+      const id = href.slice(1)
+      const el =
+        document.getElementById(id) || document.getElementsByName(id)[0]
+
+      if (el) {
+        // try to account for a fixed header
+        const header = document.querySelector('header')
+        const offset = header ? header.offsetHeight + 8 : 8
+        const y = el.getBoundingClientRect().top + window.pageYOffset - offset
+
+        window.scrollTo({ top: y, behavior: 'smooth' })
+      } else {
+        console.warn('Anchor target not found:', href)
+      }
+    }
+    // External or normal links are handled by the browser
+  })
+</script>

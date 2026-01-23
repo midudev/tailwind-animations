@@ -4,12 +4,24 @@ import Layout from '@layouts/Layout.astro'
 import pkg from '../../../package.json'
 import { theme } from '../data/theme.js'
 
-import CopyIcon from '@components/icons/copy.astro'
+/*  
+Las importaciones, se han organizado de la siguiente forma: 
+1. importacion de code.
+2. importaciones de iconos.
+3. importaciones de componentes UI.
+4. importaciones de layout.
+*/
+
 import { Code } from 'astro:components'
+import CopyIcon from '@components/icons/copy.astro'
 import Github from '@components/icons/github.astro'
-import Footer from '@components/Footer.astro'
-import Logo from '@components/Logo.astro'
-import ToggleTheme from '@components/ToggleTheme.astro'
+
+import Logo from '@components/ui/Logo.astro'
+import ToggleTheme from '@components/ui/ToggleTheme.astro'
+
+// Importacion de componentes de layout
+import Footer from '@components/layout/Footer.astro'
+import Header from '@components/layout/Header.astro'
 
 const { animation, animationDuration, animationSteps, animationDelay } = theme
 const { version } = pkg
@@ -79,6 +91,8 @@ const packageManagers = [
   title='Tailwind CSS Animations Plugin: Community-Powered Animation Magic'
 >
   <wc-toast class='pointer-events-none fixed inset-0 z-50'></wc-toast>
+  <!-- se agrega el componente header -->
+  <Header />
 
   <main class='mx-auto max-w-6xl w-full pt-16'>
     <header class='relative z-10 mx-auto mb-20 max-w-6xl px-4 lg:px-8'>
@@ -334,7 +348,7 @@ export default {
       </div>
     </header>
 
-    <section class='mt-32 mb-24'>
+    <section id='animation-collection' class='mt-32 mb-24'>
       <div class='mb-16 flex flex-col items-center'>
         <h2
           class='animate-fade-in-up animate-delay-[600ms] mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
@@ -351,8 +365,9 @@ export default {
       </div>
 
       <div class='relative'>
+        <!-- Antes era sticky se le quito para que no tenga problemas con el header que es sticky -->
         <section
-          class='sticky top-4 z-50 mb-12 flex items-center justify-center px-4'
+          class='top-4 z-50 mb-12 flex items-center justify-center px-4'
           id='option-inputs'
         >
           <div
@@ -509,7 +524,7 @@ export default {
         }
       </div>
 
-      <section class='relative mt-32 mb-24'>
+      <section id='scroll-animations' class='relative mt-32 mb-24'>
         <div class='mb-16 flex flex-col items-center'>
           <h2
             class='mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
@@ -664,7 +679,7 @@ export default {
         </div>
       </section>
 
-      <section class='relative mt-32 mb-24'>
+      <section id="scroll-view-timelines" class='relative mt-32 mb-24'>
         <div class='mb-16 flex flex-col items-center'>
           <h2
             class='mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
