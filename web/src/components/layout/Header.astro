@@ -8,6 +8,26 @@ import Enlace from '@components/ui/Enlace.astro'
 
 <!-- Todo el header completo el componente y sus configuraciones -->
 
+<style>
+  .header-scroll {
+    --header-opacity: 0;
+    background: rgb(255 255 255 / calc(var(--header-opacity) * 0.8));
+    border-color: rgb(226 232 240 / var(--header-opacity));
+    backdrop-filter: blur(calc(var(--header-opacity) * 4px));
+  }
+
+  :global(.dark) .header-scroll {
+    background: rgb(15 23 42 / calc(var(--header-opacity) * 0.8));
+    border-color: rgb(51 65 85 / var(--header-opacity));
+  }
+
+  .logo-scroll {
+    --logo-opacity: 0;
+    opacity: var(--logo-opacity);
+    transform: translateY(calc((1 - var(--logo-opacity)) * 20px));
+  }
+</style>
+
 <script>
   const btn = document.getElementById('menu-btn')
   const menu = document.getElementById('menu')
@@ -18,15 +38,32 @@ import Enlace from '@components/ui/Enlace.astro'
       btn.setAttribute('aria-expanded', String(!menuOpen))
     })
   }
+
+  // Logo and header scroll visibility
+  const logoContainer = document.getElementById('logo-container')
+  const header = document.getElementById('header')
+
+  const handleScroll = () => {
+    const scrollY = window.scrollY
+
+    // Progressive opacity based on scroll (0 to 100px)
+    const progress = Math.min(scrollY / 100, 1)
+    header?.style.setProperty('--header-opacity', String(progress))
+    logoContainer?.style.setProperty('--logo-opacity', String(progress))
+  }
+
+  window.addEventListener('scroll', handleScroll)
 </script>
 
 <header
-  class='fixed z-20 w-screen border-b border-slate-200 bg-white/80 px-3 py-5 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/80'
+  id='header'
+  class='fixed z-20 w-screen border-b px-3 py-5 header-scroll'
 >
   <div class='mx-auto grid w-full max-w-6xl grid-cols-2 grid-cols-[auto_auto]'>
     <!-- Title of Web -->
     <div
-      class='animate-fade-in-up animate-delay-100 flex items-center gap-1 sm:gap-2'
+      id='logo-container'
+      class='flex items-center gap-1 sm:gap-2 logo-scroll'
     >
       <Logo
         class='aspect-square size-7 shrink-0 sm:size-9'
@@ -60,7 +97,6 @@ import Enlace from '@components/ui/Enlace.astro'
           class='h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent dark:via-slate-800'
         >
         </div>
-        <Enlace href='#preview'>Preview</Enlace>
         <Enlace href='#animation-collection'>Animation Collection</Enlace>
         <Enlace href='#scroll-animations'>Scroll Animations</Enlace>
         <Enlace href='#scroll-view-timelines'>Scroll View Timelines</Enlace>

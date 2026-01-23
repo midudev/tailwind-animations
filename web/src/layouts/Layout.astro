@@ -2,6 +2,8 @@
 import '@fontsource-variable/geist-mono'
 import '../styles/index.css'
 
+import JSConfBanner from '@components/ui/JSConfBanner.astro'
+
 interface Props {
   title: string
 }
@@ -48,5 +50,6 @@ const { title } = Astro.props
     class='relative h-fit w-full bg-white text-slate-900 transition-colors duration-300 dark:bg-[#050505] dark:text-slate-50'
   >
     <slot />
+    <JSConfBanner />
   </body>
 </html>
