@@ -1,0 +1,153 @@
+<!-- AnimationCollection Subsection -->
+
+<section id='scroll-animations' class='relative mt-32 mb-24'>
+  <div class='mb-16 flex flex-col items-center'>
+    <h2
+      class='mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+    >
+      Scroll Animations
+    </h2>
+    <p
+      class='max-w-2xl text-center text-lg text-balance text-slate-600 dark:text-slate-400'
+    >
+      Animate elements based on their position in the viewport using the <code
+        class='text-blue-500'>timeline-view</code
+      > utility.
+    </p>
+  </div>
+
+  <div
+    class='mx-auto max-w-[800px] rounded-3xl border border-slate-200 bg-slate-50/50 p-8 backdrop-blur-sm sm:p-12 dark:border-slate-800 dark:bg-slate-900/50'
+  >
+    <div class='max-w-none'>
+      <h3 class='mb-6 text-center text-xl font-semibold dark:text-white'>
+        Scroll down to see the magic
+      </h3>
+
+      <p class='mb-6 text-slate-600 dark:text-slate-400'>
+        To animate elements on scroll, we use the <code class='text-blue-500'
+          >timeline-view</code
+        > utility. This property creates a View Timeline that allows you to synchronize
+        the animation with the element's displacement within the viewport.
+      </p>
+
+      <p class='mb-12 text-slate-600 dark:text-slate-400'>
+        The animation is automatically linked to the element's visibility in the
+        viewport. Use <code class='text-blue-500'>animate-range</code> to control
+        when the animation starts and ends relative to the element's visibility.
+      </p>
+
+      <div
+        class='timeline-view animate-zoom-in animate-range-cover flex h-64 w-full flex-col items-center justify-center gap-4 rounded-2xl bg-pink-500 p-4 text-center font-bold text-white shadow-2xl'
+      >
+        <span class='text-2xl'>I reveal on scroll</span>
+        <code
+          class='rounded-lg bg-black/20 px-3 py-1 font-mono text-xs backdrop-blur-sm'
+        >
+          timeline-view animate-zoom-in animate-range-cover
+        </code>
+      </div>
+
+      <p class='mt-12 mb-12 text-slate-600 dark:text-slate-400'>
+        The <code class='text-blue-500'>animate-range</code> property is essential
+        for defining when the animation starts and ends relative to the element's
+        visibility. You can use predefined ranges like <code
+          class='text-blue-500'>gradual</code
+        >, <code class='text-blue-500'>moderate</code>, <code
+          class='text-blue-500'>brisk</code
+        >, or <code class='text-blue-500'>rapid</code> to easily control the animation's
+        pace.
+      </p>
+
+      <div class='grid grid-cols-1 gap-6 sm:grid-cols-2'>
+        <div
+          class='timeline-view animate-fade-in animate-range-gradual flex h-32 w-full flex-col items-center justify-center gap-2 rounded-xl bg-slate-200 p-4 text-center font-bold text-slate-800 shadow-lg dark:bg-slate-800 dark:text-slate-200'
+        >
+          <span class='text-sm'>Gradual (10% - 90%)</span>
+          <code
+            class='rounded-lg bg-black/10 px-2 py-1 font-mono text-[10px] dark:bg-white/10'
+          >
+            animate-range-gradual
+          </code>
+        </div>
+        <div
+          class='timeline-view animate-fade-in animate-range-moderate flex h-32 w-full flex-col items-center justify-center gap-2 rounded-xl bg-slate-200 p-4 text-center font-bold text-slate-800 shadow-lg dark:bg-slate-800 dark:text-slate-200'
+        >
+          <span class='text-sm'>Moderate (20% - 80%)</span>
+          <code
+            class='rounded-lg bg-black/10 px-2 py-1 font-mono text-[10px] dark:bg-white/10'
+          >
+            animate-range-moderate
+          </code>
+        </div>
+        <div
+          class='timeline-view animate-fade-in animate-range-brisk flex h-32 w-full flex-col items-center justify-center gap-2 rounded-xl bg-slate-200 p-4 text-center font-bold text-slate-800 shadow-lg dark:bg-slate-800 dark:text-slate-200'
+        >
+          <span class='text-sm'>Brisk (30% - 70%)</span>
+          <code
+            class='rounded-lg bg-black/10 px-2 py-1 font-mono text-[10px] dark:bg-white/10'
+          >
+            animate-range-brisk
+          </code>
+        </div>
+        <div
+          class='timeline-view animate-fade-in animate-range-rapid flex h-32 w-full flex-col items-center justify-center gap-2 rounded-xl bg-slate-200 p-4 text-center font-bold text-slate-800 shadow-lg dark:bg-slate-800 dark:text-slate-200'
+        >
+          <span class='text-sm'>Rapid (40% - 60%)</span>
+          <code
+            class='rounded-lg bg-black/10 px-2 py-1 font-mono text-[10px] dark:bg-white/10'
+          >
+            animate-range-rapid
+          </code>
+        </div>
+      </div>
+
+      <p class='mt-12 mb-12 text-slate-600 dark:text-slate-400'>
+        Of course, you can also use custom values for more precision. By
+        specifying values like <code class='text-blue-500'>entry 10%</code> or <code
+          class='text-blue-500'>contain 25%</code
+        >, you can perfectly time the reveal effect to match your design's flow.
+      </p>
+
+      <div
+        class='timeline-view animate-fade-in-left animate-range-[entry_5%_contain_20%] flex h-48 w-full flex-col items-center justify-center gap-4 rounded-2xl bg-blue-500 p-4 text-center font-bold text-white shadow-2xl'
+      >
+        <span class='text-2xl'>I fade in from the left</span>
+        <code
+          class='rounded-lg bg-black/20 px-3 py-1 font-mono text-xs backdrop-blur-sm'
+        >
+          timeline-view animate-slide-in-left
+          animate-range-[entry_5%_contain_20%]
+        </code>
+      </div>
+
+      <p class='mt-12 mb-12 text-slate-600 dark:text-slate-400'>
+        You can combine different directions and effects. Using <code
+          class='text-blue-500'>animate-slide-in-left</code
+        > with a scroll timeline makes the element gracefully slide into place while
+        adjusting its opacity, synchronized with the user's scrolling speed for a
+        more interactive feel.
+      </p>
+
+      <div
+        class='timeline-view animate-blurred-fade-in animate-range-[entry_10%_contain_30%] flex h-48 w-full flex-col items-center justify-center gap-4 rounded-2xl bg-purple-500 p-4 text-center font-bold text-white shadow-2xl'
+      >
+        <span class='text-2xl'>I fade in with blur</span>
+        <code
+          class='rounded-lg bg-black/20 px-3 py-1 font-mono text-xs backdrop-blur-sm'
+        >
+          timeline-view animate-blurred-fade-in
+          animate-range-[entry_10%_contain_30%]
+        </code>
+      </div>
+
+      <p class='mt-12 text-slate-600 dark:text-slate-400'>
+        Blurred transitions like <code class='text-blue-500'
+          >animate-blurred-fade-in</code
+        > add a layer of polish. By linking it to a scroll timeline, you create a
+        depth-of-field effect that naturally draws attention to the content as it
+        becomes clear and focused.
+      </p>
+    </div>
+  </div>
+</section>
