@@ -1,0 +1,211 @@
+---
+import { theme } from '../../data/theme.js'
+
+import CopyIcon from '@components/icons/copy.astro'
+
+const { animation, animationDuration, animationSteps, animationDelay } = theme
+
+const POPULAR_ANIMATIONS = [
+  'fade-in',
+  'blurred-fade-in',
+  'zoom-in',
+  'slide-in-top',
+  'bouncing',
+  'pulsing',
+  'shake',
+  'tada',
+  'jelly',
+  'flip-horizontal',
+  'swing',
+  'wobble',
+  'rotate-360',
+  'fade-in-up',
+  'slide-in-left',
+  'zoom-out',
+  'fade-in-down',
+  'slide-in-bottom',
+  'slide-in-right'
+]
+
+const sortedAnimations = Object.keys(animation).sort((a, b) => {
+  const indexA = POPULAR_ANIMATIONS.indexOf(a)
+  const indexB = POPULAR_ANIMATIONS.indexOf(b)
+
+  if (indexA === -1 && indexB === -1) return a.localeCompare(b)
+  if (indexA === -1) return 1
+  if (indexB === -1) return -1
+  return indexA - indexB
+})
+---
+
+<!-- Primary elements of the AnimationCollection section -->
+<div class='mb-16 flex flex-col items-center'>
+  <h2
+    class='animate-fade-in-up animate-delay-[600ms] mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+  >
+    Animation Collection
+  </h2>
+  <p
+    class='animate-fade-in-up animate-delay-700 max-w-2xl text-center text-lg text-balance text-slate-600 dark:text-slate-400'
+  >
+    Explore our comprehensive library of ready-to-use animations. Customize
+    duration, delay, and timing to fit your needs with zero configuration.
+  </p>
+</div>
+
+<div class='relative'>
+  <section
+    class='top-4 z-50 mb-12 flex items-center justify-center px-4'
+    id='option-inputs'
+  >
+    <div
+      class='animate-fade-in-up animate-delay-800 flex flex-wrap items-center justify-center gap-4 rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-black/60'
+    >
+      <div class='flex flex-col gap-1'>
+        <span
+          class='text-[10px] font-bold tracking-wider text-slate-400 uppercase'
+          >Duration</span
+        >
+        <select
+          name='duration'
+          id='duration'
+          class='min-w-32 rounded-lg border border-slate-200 bg-slate-50/50 px-2 py-1 text-sm font-medium transition-colors outline-none hover:border-blue-500 dark:border-white/5 dark:bg-white/5'
+        >
+          {
+            Object.entries(animationDuration).map(([key, value]) => (
+              <option
+                value={value}
+                selected={key === '1000'}
+                class='dark:bg-slate-900'
+              >
+                {key}
+              </option>
+            ))
+          }
+        </select>
+      </div>
+
+      <div class='flex flex-col gap-1'>
+        <span
+          class='text-[10px] font-bold tracking-wider text-slate-400 uppercase'
+          >Delay</span
+        >
+        <select
+          name='delay'
+          id='delay'
+          class='min-w-32 rounded-lg border border-slate-200 bg-slate-50/50 px-2 py-1 text-sm font-medium transition-colors outline-none hover:border-blue-500 dark:border-white/5 dark:bg-white/5'
+        >
+          {
+            Object.entries(animationDelay).map(([key, value]) => (
+              <option value={value} class='dark:bg-slate-900'>
+                {key}
+              </option>
+            ))
+          }
+        </select>
+      </div>
+
+      <div class='flex flex-col gap-1'>
+        <span
+          class='text-[10px] font-bold tracking-wider text-slate-400 uppercase'
+          >Steps</span
+        >
+        <select
+          name='steps'
+          id='steps'
+          class='min-w-32 rounded-lg border border-slate-200 bg-slate-50/50 px-2 py-1 text-sm font-medium transition-colors outline-none hover:border-blue-500 dark:border-white/5 dark:bg-white/5'
+        >
+          {
+            Object.entries(animationSteps).map(([key, value]) => (
+              <option value={value} class='dark:bg-slate-900'>
+                {key}
+              </option>
+            ))
+          }
+        </select>
+      </div>
+
+      <div class='hidden h-8 w-px bg-slate-200 sm:block dark:bg-slate-800'>
+      </div>
+
+      <label class='group flex cursor-pointer items-center gap-3'>
+        <span
+          class='text-sm font-medium text-slate-600 transition-colors group-hover:text-blue-500 dark:text-slate-400'
+          >Animate all</span
+        >
+        <div class='relative inline-flex h-6 w-11 items-center'>
+          <input class='peer sr-only' id='animate' type='checkbox' />
+          <div
+            class='h-6 w-11 rounded-full bg-slate-200 transition-colors peer-checked:bg-blue-500 dark:bg-slate-800'
+          >
+          </div>
+          <div
+            class='absolute left-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all peer-checked:translate-x-5'
+          >
+          </div>
+        </div>
+      </label>
+    </div>
+  </section>
+
+  <section
+    class='relative mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:px-8'
+  >
+    {
+      sortedAnimations.map((animationKey, index) => (
+        <article
+          class={`group animate-fade-in-up relative flex flex-col items-center gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/10 dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-blue-500/50 ${index >= 15 ? 'hidden' : ''}`}
+          data-class={animationKey}
+          style={`animation-delay: ${1000 + index * 50}ms; animation-fill-mode: both;`}
+        >
+          <div class='flex w-full items-center justify-between'>
+            <span class='truncate pr-2 text-xs font-semibold text-slate-600 transition-colors group-hover:text-slate-900 dark:text-slate-400 dark:group-hover:text-white'>
+              {animationKey}
+            </span>
+            <button
+              aria-label={`Copy ${animationKey} class`}
+              class='text-slate-300 transition-colors hover:text-blue-500'
+            >
+              <CopyIcon class='size-4' />
+            </button>
+          </div>
+
+          <div class='flex flex-1 items-center justify-center py-8'>
+            <div
+              id={`preview-${animationKey}`}
+              class='size-16 rounded-xl bg-linear-to-br from-blue-500 to-blue-600 shadow-lg shadow-blue-500/30 transition-all duration-300 dark:from-blue-400 dark:to-blue-500 dark:shadow-blue-500/20'
+            />
+          </div>
+        </article>
+      ))
+    }
+  </section>
+
+  {
+    sortedAnimations.length > 15 && (
+      <div class='flex justify-center py-12'>
+        <button
+          id='load-more'
+          class='animate-fade-in animate-delay-[1500ms] group flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 bg-white/50 px-10 py-3 text-sm font-bold text-slate-700 shadow-sm backdrop-blur-sm transition-all hover:border-blue-500 hover:text-blue-500 hover:shadow-md active:scale-95 dark:border-white/10 dark:bg-black/40 dark:text-slate-300 dark:hover:border-blue-500/50 dark:hover:text-blue-400'
+        >
+          <span>View all animations</span>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='20'
+            height='20'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            stroke-width='2.5'
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            class='transition-transform group-hover:rotate-90'
+          >
+            <path d='M12 5v14' />
+            <path d='M5 12h14' />
+          </svg>
+        </button>
+      </div>
+    )
+  }
+</div>
