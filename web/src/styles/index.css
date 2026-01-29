@@ -21,9 +21,14 @@
   --font-mono:
     'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+}
 body {
   font-family: var(--font-sans);
 }
