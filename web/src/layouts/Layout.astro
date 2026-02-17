@@ -7,26 +7,35 @@ interface Props {
 }
 
 const { title } = Astro.props
+const description =
+  'Tailwind CSS plugin to add stunning animations to your website. Zero configuration, pure performance.'
+const siteUrl = 'https://tailwind-animations.com'
+const ogImage = `${siteUrl}/og.jpg`
 ---
 
 <!doctype html>
 <html lang='en'>
   <head>
     <meta charset='UTF-8' />
-    <meta
-      name='description'
-      content='Tailwind plugin to add easily animations to your website'
-    />
+    <meta name='description' content={description} />
     <meta name='viewport' content='width=device-width' />
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <link rel='canonical' href={siteUrl} />
     <meta name='theme-color' content='#0099ff' />
-    <meta name='og:title' content={title} />
-    <meta
-      name='og:description'
-      content='Tailwind plugin to add easily animations to your website'
-    />
-    <meta name='og:image' content='/og.jpg' />
+
+    <!-- Open Graph -->
+    <meta property='og:type' content='website' />
+    <meta property='og:url' content={siteUrl} />
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+    <meta property='og:image' content={ogImage} />
+
+    <!-- Twitter -->
     <meta name='twitter:card' content='summary_large_image' />
+    <meta name='twitter:title' content={title} />
+    <meta name='twitter:description' content={description} />
+    <meta name='twitter:image' content={ogImage} />
+
     <title>{title}</title>
 
     <script is:inline>
@@ -50,3 +59,16 @@ const { title } = Astro.props
     <slot />
   </body>
 </html>
+
+<style is:global>
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>

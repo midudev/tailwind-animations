@@ -37,6 +37,14 @@ import Enlace from '@components/ui/Enlace.astro'
       const menuOpen = menu.classList.toggle('hidden')
       btn.setAttribute('aria-expanded', String(!menuOpen))
     })
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+        menu.classList.add('hidden')
+        btn.setAttribute('aria-expanded', 'false')
+        btn.focus()
+      }
+    })
   }
 
   // Logo and header scroll visibility
@@ -55,9 +63,17 @@ import Enlace from '@components/ui/Enlace.astro'
   window.addEventListener('scroll', handleScroll)
 </script>
 
+<a
+  href='#main-content'
+  class='sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-blue-500 focus:px-4 focus:py-2 focus:text-white focus:outline-none'
+>
+  Skip to content
+</a>
+
 <header
   id='header'
   class='fixed z-20 w-screen border-b px-3 py-5 header-scroll'
+  role='banner'
 >
   <div class='mx-auto grid w-full max-w-6xl grid-cols-2 grid-cols-[auto_auto]'>
     <!-- Title of Web -->
@@ -69,11 +85,12 @@ import Enlace from '@components/ui/Enlace.astro'
         class='aspect-square size-7 shrink-0 sm:size-9'
         iconClass='size-4 sm:size-6 animate-float-subtle'
       />
-      <h1
+      <span
         class='text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl dark:text-white'
+        aria-hidden='true'
       >
         Tailwind <span class='text-blue-500'>Animations</span>
-      </h1>
+      </span>
     </div>
 
     <button

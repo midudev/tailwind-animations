@@ -94,7 +94,7 @@ const packageManagers = [
   <!-- se agrega el componente header -->
   <Header />
 
-  <main class='mx-auto w-full max-w-6xl pt-16'>
+  <main id='main-content' class='mx-auto w-full max-w-6xl pt-16'>
     <header
       id='preview'
       class='relative z-10 mx-auto mb-20 max-w-6xl px-4 lg:px-8'
@@ -142,6 +142,8 @@ const packageManagers = [
               >
                 <div
                   class='scrollbar-hide flex items-center gap-1 overflow-x-auto py-2 max-sm:grid max-sm:grid-flow-col max-sm:grid-rows-2 max-sm:overflow-x-auto'
+                  role='group'
+                  aria-label='Package manager'
                 >
                   {
                     packageManagers.map((pm, index) => (
@@ -149,9 +151,11 @@ const packageManagers = [
                         class={`package-manager-btn flex items-center gap-2 rounded-full px-2 py-1 text-xs font-bold transition-all ${index === 0 ? 'bg-black/10 text-slate-900 dark:bg-white/5 dark:text-white' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'}`}
                         data-pm={pm.name}
                         data-command={pm.command}
+                        aria-pressed={index === 0 ? 'true' : 'false'}
                       >
                         <span
                           class='flex size-4 items-center justify-center'
+                          aria-hidden='true'
                           set:html={pm.icon}
                         />
                         <span>{pm.name}</span>
@@ -162,7 +166,7 @@ const packageManagers = [
                 <button
                   id='copyNpmInstall'
                   class='group flex shrink-0 items-center gap-2 text-xs font-semibold text-slate-500 transition-colors hover:text-blue-500'
-                  title='Copy to clipboard'
+                  aria-label='Copy install command to clipboard'
                 >
                   <CopyIcon class='size-4 group-active:scale-90' />
                 </button>
@@ -186,16 +190,24 @@ const packageManagers = [
               <div
                 class='flex items-center justify-between border-b border-slate-200 px-4 py-2 dark:border-white/10'
               >
-                <div class='flex gap-1'>
+                <div class='flex gap-1' role='tablist' aria-label='Tailwind version'>
                   <button
                     class='version-tab rounded-full bg-black/10 px-3 py-1 text-[10px] font-bold tracking-widest text-slate-900 uppercase transition-all dark:bg-white/5 dark:text-white'
                     data-version='v4'
+                    role='tab'
+                    aria-selected='true'
+                    aria-controls='code-v4'
+                    id='tab-v4'
                   >
                     Tailwind v4
                   </button>
                   <button
                     class='version-tab rounded-full px-3 py-1 text-[10px] font-bold tracking-widest text-slate-500 uppercase transition-all hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
                     data-version='v3'
+                    role='tab'
+                    aria-selected='false'
+                    aria-controls='code-v3'
+                    id='tab-v3'
                   >
                     Tailwind v3
                   </button>
@@ -209,14 +221,14 @@ const packageManagers = [
                   <button
                     id='copyCode'
                     class='group flex shrink-0 items-center gap-2 text-xs font-semibold text-slate-500 transition-colors hover:text-blue-500'
-                    title='Copy to clipboard'
+                    aria-label='Copy code to clipboard'
                   >
                     <CopyIcon class='size-4 group-active:scale-90' />
                   </button>
                 </div>
               </div>
               <div class='overflow-x-auto p-4 text-left dark:border-none'>
-                <div id='code-v4' class='version-code'>
+                <div id='code-v4' class='version-code' role='tabpanel' aria-labelledby='tab-v4'>
                   <Code
                     class='text-sm'
                     wrap={true}
@@ -226,7 +238,7 @@ const packageManagers = [
 @import 'tailwind-animations';`}
                   />
                 </div>
-                <div id='code-v3' class='version-code hidden'>
+                <div id='code-v3' class='version-code hidden' role='tabpanel' aria-labelledby='tab-v3'>
                   <Code
                     class='text-sm'
                     wrap={true}
@@ -362,9 +374,10 @@ export default {
             class='animate-fade-in-up animate-delay-800 flex flex-wrap items-center justify-center gap-4 rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-black/60'
           >
             <div class='flex flex-col gap-1'>
-              <span
+              <label
+                for='duration'
                 class='text-[10px] font-bold tracking-wider text-slate-400 uppercase'
-                >Duration</span
+                >Duration</label
               >
               <select
                 name='duration'
@@ -386,9 +399,10 @@ export default {
             </div>
 
             <div class='flex flex-col gap-1'>
-              <span
+              <label
+                for='delay'
                 class='text-[10px] font-bold tracking-wider text-slate-400 uppercase'
-                >Delay</span
+                >Delay</label
               >
               <select
                 name='delay'
@@ -406,9 +420,10 @@ export default {
             </div>
 
             <div class='flex flex-col gap-1'>
-              <span
+              <label
+                for='steps'
                 class='text-[10px] font-bold tracking-wider text-slate-400 uppercase'
-                >Steps</span
+                >Steps</label
               >
               <select
                 name='steps'
@@ -456,20 +471,23 @@ export default {
           {
             sortedAnimations.map((animationKey, index) => (
               <article
-                class={`group animate-fade-in-up relative flex flex-col items-center gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/10 dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-blue-500/50 ${index >= 15 ? 'hidden' : ''}`}
+                class={`group animate-fade-in-up relative flex cursor-pointer flex-col items-center gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/10 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-blue-500/50 ${index >= 15 ? 'hidden' : ''}`}
                 data-class={animationKey}
                 style={`animation-delay: ${1000 + index * 50}ms; animation-fill-mode: both;`}
+                tabindex='0'
+                role='button'
+                aria-label={`Copy animate-${animationKey} class. Hover to preview.`}
               >
                 <div class='flex w-full items-center justify-between'>
                   <span class='truncate pr-2 text-xs font-semibold text-slate-600 transition-colors group-hover:text-slate-900 dark:text-slate-400 dark:group-hover:text-white'>
                     {animationKey}
                   </span>
-                  <button
-                    aria-label={`Copy ${animationKey} class`}
+                  <span
+                    aria-hidden='true'
                     class='text-slate-300 transition-colors hover:text-blue-500'
                   >
                     <CopyIcon class='size-4' />
-                  </button>
+                  </span>
                 </div>
 
                 <div class='flex flex-1 items-center justify-center py-8'>
@@ -1138,6 +1156,7 @@ export default {
             'hover:text-slate-700',
             'dark:hover:text-slate-200'
           )
+          $t.setAttribute('aria-selected', 'false')
         })
 
         $tab.classList.add(
@@ -1152,6 +1171,7 @@ export default {
           'hover:text-slate-700',
           'dark:hover:text-slate-200'
         )
+        $tab.setAttribute('aria-selected', 'true')
 
         $versionCodes.forEach(($code) => {
           if ($code.id === `code-${version}`) {
@@ -1200,6 +1220,7 @@ export default {
             'hover:text-slate-700',
             'dark:hover:text-slate-200'
           )
+          $b.setAttribute('aria-pressed', 'false')
         })
 
         $btn.classList.add(
@@ -1214,6 +1235,7 @@ export default {
           'hover:text-slate-700',
           'dark:hover:text-slate-200'
         )
+        $btn.setAttribute('aria-pressed', 'true')
       })
     })
 
@@ -1327,7 +1349,7 @@ export default {
       $article.addEventListener('mouseenter', handleMouseEnter)
       $article.addEventListener('mouseleave', handleMouseLeave)
 
-      $article.addEventListener('click', () => {
+      function copyAnimation() {
         navigator.clipboard.writeText(animationClass)
         toast(`Copied "animate-${animationKey}"`, {
           icon: { type: 'success' },
@@ -1337,6 +1359,14 @@ export default {
               : 'light'
           }
         })
+      }
+
+      $article.addEventListener('click', copyAnimation)
+      $article.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          copyAnimation()
+        }
       })
     })
 

@@ -128,16 +128,23 @@ const FOOTER_LINKS = [
                 {section.title}
               </h3>
               <ul class='flex flex-col gap-3'>
-                {section.links.map((link) => (
-                  <li>
-                    <a
-                      href={link.href}
-                      class='text-sm text-slate-500 transition-colors hover:text-blue-500 dark:text-slate-400 dark:hover:text-white'
-                    >
-                      {link.name}
-                    </a>
-                  </li>
-                ))}
+                {section.links.map((link) => {
+                  const isExternal = link.href.startsWith('http')
+                  return (
+                    <li>
+                      <a
+                        href={link.href}
+                        class='text-sm text-slate-500 transition-colors hover:text-blue-500 dark:text-slate-400 dark:hover:text-white'
+                        {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      >
+                        {link.name}
+                        {isExternal && (
+                          <span class='sr-only'> (opens in a new tab)</span>
+                        )}
+                      </a>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           ))
