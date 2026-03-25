@@ -58,6 +58,16 @@ import Enlace from '@components/ui/Enlace.astro'
     const progress = Math.min(scrollY / 100, 1)
     header?.style.setProperty('--header-opacity', String(progress))
     logoContainer?.style.setProperty('--logo-opacity', String(progress))
+
+    if (progress >= 0.1) {
+      header?.classList.add('transition-colors', 'duration-300', 'ease-in-out')
+    } else {
+      header?.classList.remove(
+        'transition-colors',
+        'duration-300',
+        'ease-in-out'
+      )
+    }
   }
 
   window.addEventListener('scroll', handleScroll)
@@ -72,21 +82,21 @@ import Enlace from '@components/ui/Enlace.astro'
 
 <header
   id='header'
-  class='fixed z-20 w-screen border-b px-3 py-5 header-scroll'
+  class='header-scroll fixed z-20 w-screen border-b px-3 py-5'
   role='banner'
 >
   <div class='mx-auto grid w-full max-w-6xl grid-cols-2 grid-cols-[auto_auto]'>
     <!-- Title of Web -->
     <div
       id='logo-container'
-      class='flex items-center gap-1 sm:gap-2 logo-scroll'
+      class='logo-scroll flex items-center gap-1 sm:gap-2'
     >
       <Logo
         class='aspect-square size-7 shrink-0 sm:size-9'
         iconClass='size-4 sm:size-6 animate-float-subtle'
       />
       <span
-        class='text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl dark:text-white'
+        class='text-2xl font-bold tracking-tight text-slate-900 transition-colors duration-300 ease-in-out sm:text-3xl dark:text-white'
         aria-hidden='true'
       >
         Tailwind <span class='text-blue-500'>Animations</span>
@@ -131,7 +141,7 @@ import Enlace from '@components/ui/Enlace.astro'
           href='https://github.com/midudev/tailwind-animations'
           target='_blank'
           rel='noopener noreferrer'
-          class='text-slate-400 transition-colors hover:text-slate-600 dark:hover:text-slate-200'
+          class='text-slate-400 transition-colors duration-300 ease-in-out hover:text-slate-600 dark:hover:text-slate-200'
         >
           <Github class='size-7' />
         </a>
