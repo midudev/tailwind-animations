@@ -55,18 +55,18 @@ const FOOTER_LINKS = [
 ---
 
 <footer
-  class='relative mt-32 overflow-hidden border-t border-slate-200 bg-slate-50/50 pt-20 pb-10 dark:border-slate-800 dark:bg-[#080808]/50'
+  class='relative mt-32 overflow-hidden border-t border-slate-200 bg-slate-50/50 pt-20 pb-10 dark:border-slate-800 dark:bg-[#080808]/50 transition-colors duration-300 ease-in-out'
 >
   <div
-    class='absolute top-0 left-1/2 h-px w-full -translate-x-1/2 bg-linear-to-r from-transparent via-blue-500/20 to-transparent dark:via-blue-500/10'
+    class='absolute top-0 left-1/2 h-px w-full -translate-x-1/2 bg-linear-to-r from-transparent via-blue-500/20 to-transparent dark:via-blue-500/10 transition-colors duration-300 ease-in-out'
   >
   </div>
   <div
-    class='absolute -top-24 left-1/4 size-64 rounded-full bg-blue-500/5 blur-[100px] dark:bg-blue-600/5'
+    class='absolute -top-24 left-1/4 size-64 rounded-full bg-blue-500/5 blur-[100px] dark:bg-blue-600/5 transition-colors duration-300 ease-in-out'
   >
   </div>
   <div
-    class='absolute right-1/4 -bottom-24 size-64 rounded-full bg-blue-500/5 blur-[100px] dark:bg-blue-600/5'
+    class='absolute right-1/4 -bottom-24 size-64 rounded-full bg-blue-500/5 blur-[100px] dark:bg-blue-600/5 transition-colors duration-300 ease-in-out'
   >
   </div>
 
@@ -80,14 +80,14 @@ const FOOTER_LINKS = [
             iconClass='size-6 animate-float-subtle group-hover:animate-pulse'
           />
           <span
-            class='text-2xl font-bold tracking-tight text-slate-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400'
+            class='text-2xl font-bold tracking-tight text-slate-900 transition-colors duration-300 ease-in-out group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400'
           >
             Tailwind <span class='text-blue-500'>Animations</span>
           </span>
         </div>
 
         <p
-          class='max-w-sm text-base leading-relaxed text-slate-600 dark:text-slate-400'
+          class='max-w-sm text-base leading-relaxed text-slate-600 dark:text-slate-400 transition-colors duration-300 ease-in-out'
         >
           Elevate your user experience with high-performance animations. Open
           source, community-driven, and designed for Tailwind CSS.
@@ -99,7 +99,7 @@ const FOOTER_LINKS = [
             target='_blank'
             rel='noopener noreferrer'
             aria-label='GitHub'
-            class='group flex items-center justify-center rounded-full bg-white p-2.5 text-slate-400 shadow-sm ring-1 ring-slate-200 transition-all hover:text-slate-900 hover:ring-slate-300 dark:bg-slate-900 dark:text-slate-500 dark:ring-slate-800 dark:hover:text-white dark:hover:ring-slate-700'
+            class='group flex items-center justify-center rounded-full bg-white p-2.5 text-slate-400 shadow-sm ring-1 ring-slate-200 transition-all duration-300 ease-in-out hover:text-slate-900 hover:ring-slate-300 dark:bg-slate-900 dark:text-slate-500 dark:ring-slate-800 dark:hover:text-white dark:hover:ring-slate-700'
           >
             <Github class='size-5' />
           </a>
@@ -108,7 +108,7 @@ const FOOTER_LINKS = [
             target='_blank'
             rel='noopener noreferrer'
             aria-label='X (Twitter)'
-            class='group flex items-center justify-center rounded-full bg-white p-2.5 text-slate-400 shadow-sm ring-1 ring-slate-200 transition-all hover:text-slate-900 hover:ring-slate-300 dark:bg-slate-900 dark:text-slate-500 dark:ring-slate-800 dark:hover:text-white dark:hover:ring-slate-700'
+            class='group flex items-center justify-center rounded-full bg-white p-2.5 text-slate-400 shadow-sm ring-1 ring-slate-200 transition-all duration-300 ease-in-out hover:text-slate-900 hover:ring-slate-300 dark:bg-slate-900 dark:text-slate-500 dark:ring-slate-800 dark:hover:text-white dark:hover:ring-slate-700'
           >
             <svg viewBox='0 0 24 24' class='size-5' fill='currentColor'>
               <path
@@ -124,7 +124,7 @@ const FOOTER_LINKS = [
         {
           FOOTER_LINKS.map((section) => (
             <div class='flex flex-col gap-4'>
-              <h3 class='text-xs font-bold tracking-[0.2em] whitespace-nowrap text-slate-900 uppercase dark:text-white'>
+              <h3 class='text-xs font-bold tracking-[0.2em] whitespace-nowrap text-slate-900 uppercase transition-colors duration-300 ease-in-out dark:text-white'>
                 {section.title}
               </h3>
               <ul class='flex flex-col gap-3'>
@@ -134,8 +134,10 @@ const FOOTER_LINKS = [
                     <li>
                       <a
                         href={link.href}
-                        class='text-sm text-slate-500 transition-colors hover:text-blue-500 dark:text-slate-400 dark:hover:text-white'
-                        {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                        class='text-sm text-slate-500 transition-colors duration-300 ease-in-out hover:text-blue-500 dark:text-slate-400 dark:hover:text-white'
+                        {...(isExternal
+                          ? { target: '_blank', rel: 'noopener noreferrer' }
+                          : {})}
                       >
                         {link.name}
                         {isExternal && (
@@ -154,7 +156,7 @@ const FOOTER_LINKS = [
 
     <!-- Bottom Section -->
     <div
-      class='mt-20 flex flex-col items-center justify-between gap-6 border-t border-dashed border-slate-200 pt-10 md:flex-row dark:border-slate-800'
+      class='mt-20 flex flex-col items-center justify-between gap-6 border-t border-dashed border-slate-200 pt-10 md:flex-row dark:border-slate-800 transition-colors duration-300 ease-in-out'
     >
       <a
         href='https://discord.gg/midudev'
@@ -163,7 +165,7 @@ const FOOTER_LINKS = [
         class='group/community flex flex-col items-center gap-2 md:items-start'
       >
         <p
-          class='text-sm font-bold text-slate-900 transition-colors group-hover/community:text-blue-500 dark:text-white dark:group-hover/community:text-blue-400'
+          class='text-sm font-bold text-slate-900 transition-colors duration-300 ease-in-out group-hover/community:text-blue-500 dark:text-white dark:group-hover/community:text-blue-400'
         >
           Join our community!
         </p>
@@ -176,7 +178,7 @@ const FOOTER_LINKS = [
       </a>
 
       <div class='flex flex-col items-center gap-4 md:items-end'>
-        <div class='flex items-center gap-2 text-sm text-slate-500'>
+        <div class='flex items-center gap-2 text-sm text-slate-500 transition-colors duration-300 ease-in-out'>
           <span>Created with</span>
           <span class='animate-pulse text-red-500'>❤️</span>
           <span>by</span>
@@ -184,7 +186,7 @@ const FOOTER_LINKS = [
             href='https://x.com/midudev'
             target='_blank'
             rel='noopener noreferrer'
-            class='font-bold text-slate-900 transition-all hover:scale-105 hover:text-blue-500 dark:text-white'
+            class='font-bold text-slate-900 transition-all duration-300 ease-in-out hover:scale-105 hover:text-blue-500 dark:text-white'
           >
             midudev
           </a>
