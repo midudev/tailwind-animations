@@ -139,6 +139,49 @@ describe('tailwindcss-animations plugins', () => {
     expect(css).toContain('.animate-play-paused{animation-play-state:paused}')
   })
 
+  it('use dialog entry and exit effects', async () => {
+    const css = await generatePluginCSS({
+      content: '<dialog class="animate-dialog">Hello</dialog>'
+    })
+
+    expect(css).toContain(
+      '.animate-dialog{opacity:var(--tw-anim-dialog-start-opacity, 0)'
+    )
+    expect(css).toContain(
+      'translate:var(--tw-anim-dialog-start-translate, 0 1.5rem)'
+    )
+    expect(css).toContain(
+      'overlay var(--tw-anim-dialog-duration, 350ms) ease allow-discrete'
+    )
+    expect(css).toContain(
+      'display var(--tw-anim-dialog-duration, 350ms) ease allow-discrete'
+    )
+    expect(css).toContain(
+      '@starting-style {.animate-dialog[open]{opacity:var(--tw-anim-dialog-start-opacity, 0)'
+    )
+    expect(css).toContain('.animate-dialog[open]::backdrop{opacity:1}')
+    expect(css).toContain(
+      '@starting-style {.animate-dialog[open]::backdrop{opacity:0}}'
+    )
+  })
+
+  it('use dialog effect modifiers', async () => {
+    const css = await generatePluginCSS({
+      content:
+        '<dialog class="animate-dialog animate-dialog-from-top animate-dialog-zoom animate-dialog-duration-500">Hello</dialog>'
+    })
+
+    expect(css).toContain(
+      '.animate-dialog-from-top{--tw-anim-dialog-start-translate:0 -1.5rem;}'
+    )
+    expect(css).toContain(
+      '.animate-dialog-zoom{--tw-anim-dialog-start-translate:0 0;--tw-anim-dialog-start-scale:0.92;}'
+    )
+    expect(css).toContain(
+      '.animate-dialog-duration-500{--tw-anim-dialog-duration:calc(500 * 1ms);--tw-anim-dialog-duration:500ms;}'
+    )
+  })
+
   it('use a animation timeline none or auto', async () => {
     const css = await generatePluginCSS({
       content: '<div class="timeline-none">Hello</div>'

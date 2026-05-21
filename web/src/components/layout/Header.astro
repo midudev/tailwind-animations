@@ -26,6 +26,10 @@ import Enlace from '@components/ui/Enlace.astro'
     opacity: var(--logo-opacity);
     transform: translateY(calc((1 - var(--logo-opacity)) * 20px));
   }
+
+  .logo-scroll[aria-hidden='true'] {
+    pointer-events: none;
+  }
 </style>
 
 <script>
@@ -56,11 +60,24 @@ import Enlace from '@components/ui/Enlace.astro'
 
     // Progressive opacity based on scroll (0 to 100px)
     const progress = Math.min(scrollY / 100, 1)
+    const isLogoInteractive = progress > 0.05
+
     header?.style.setProperty('--header-opacity', String(progress))
     logoContainer?.style.setProperty('--logo-opacity', String(progress))
+
+    if (logoContainer) {
+      if (isLogoInteractive) {
+        logoContainer.removeAttribute('aria-hidden')
+        logoContainer.removeAttribute('tabindex')
+      } else {
+        logoContainer.setAttribute('aria-hidden', 'true')
+        logoContainer.setAttribute('tabindex', '-1')
+      }
+    }
   }
 
   window.addEventListener('scroll', handleScroll)
+  handleScroll()
 </script>
 
 <a
@@ -77,9 +94,13 @@ import Enlace from '@components/ui/Enlace.astro'
 >
   <div class='mx-auto grid w-full max-w-6xl grid-cols-2 grid-cols-[auto_auto]'>
     <!-- Title of Web -->
-    <div
+    <a
       id='logo-container'
-      class='flex items-center gap-1 sm:gap-2 logo-scroll'
+      href='#top'
+      aria-label='Back to top'
+      aria-hidden='true'
+      tabindex='-1'
+      class='flex items-center gap-1 rounded-xl no-underline outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-4 focus-visible:ring-offset-white sm:gap-2 dark:focus-visible:ring-offset-slate-950 logo-scroll'
     >
       <Logo
         class='aspect-square size-7 shrink-0 sm:size-9'
@@ -91,7 +112,7 @@ import Enlace from '@components/ui/Enlace.astro'
       >
         Tailwind <span class='text-blue-500'>Animations</span>
       </span>
-    </div>
+    </a>
 
     <button
       id='menu-btn'
@@ -117,6 +138,7 @@ import Enlace from '@components/ui/Enlace.astro'
         <Enlace href='#animation-collection'>Animation Collection</Enlace>
         <Enlace href='#scroll-animations'>Scroll Animations</Enlace>
         <Enlace href='#scroll-view-timelines'>Scroll View Timelines</Enlace>
+        <Enlace href='#dialog-effects'>Dialog Effects</Enlace>
       </nav>
 
       <!-- Color Theme / GitHub -->

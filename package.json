@@ -19,7 +19,12 @@
     "deprecate:scoped": "node ./scripts/deprecate-scoped.mjs",
     "publish:both": "node ./scripts/publish-both.mjs"
   },
-  "keywords": ["tailwind", "css", "animations", "plugin"],
+  "keywords": [
+    "tailwind",
+    "css",
+    "animations",
+    "plugin"
+  ],
   "author": "Miguel Ángel Durán (@midudev) & su maravillosa comunidad",
   "license": "MIT",
   "peerDependencies": {

@@ -10,6 +10,8 @@
 @source inline('animate-delay-{none,0,100,150,200,250,300,400,500,700,800,900,1000}');
 @source inline('animate-steps-{none,retro,normal,modern}');
 /* prettier-ignore */
+@source inline('animate-dialog animate-dialog-{from-top,from-bottom,from-left,from-right,fade,zoom} animate-dialog-duration-{100,150,200,250,300,400,500,700,800,900,1000,fast,normal,slow}');
+/* prettier-ignore */
 @source inline('timeline-{scroll,view}');
 /* prettier-ignore */
 @source inline('animate-range-{cover,contain,entry,exit,gradual,moderate,brisk,rapid}');

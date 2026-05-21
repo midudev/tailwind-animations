@@ -774,6 +774,110 @@
 }
 
 /* ============================================
+   Utility Classes - Dialog Entry/Exit Effects
+   ============================================ */
+
+@layer utilities {
+  .animate-dialog {
+    opacity: var(--tw-anim-dialog-start-opacity, 0);
+    translate: var(--tw-anim-dialog-start-translate, 0 1.5rem);
+    scale: var(--tw-anim-dialog-start-scale, 0.96);
+    will-change: opacity, translate, scale;
+    transition:
+      opacity var(--tw-anim-dialog-duration, 350ms) ease,
+      translate var(--tw-anim-dialog-duration, 350ms) var(--tw-anim-dialog-easing, cubic-bezier(0.22, 1, 0.36, 1)),
+      scale var(--tw-anim-dialog-duration, 350ms) var(--tw-anim-dialog-easing, cubic-bezier(0.22, 1, 0.36, 1)),
+      overlay var(--tw-anim-dialog-duration, 350ms) ease allow-discrete,
+      display var(--tw-anim-dialog-duration, 350ms) ease allow-discrete;
+  }
+
+  .animate-dialog[open] {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+
+  .animate-dialog[open].is-closing {
+    opacity: var(--tw-anim-dialog-start-opacity, 0);
+    translate: var(--tw-anim-dialog-start-translate, 0 1.5rem);
+    scale: var(--tw-anim-dialog-start-scale, 0.96);
+  }
+
+  .animate-dialog[open].is-opening {
+    opacity: var(--tw-anim-dialog-start-opacity, 0);
+    translate: var(--tw-anim-dialog-start-translate, 0 1.5rem);
+    scale: var(--tw-anim-dialog-start-scale, 0.96);
+  }
+
+  @starting-style {
+    .animate-dialog[open] {
+      opacity: var(--tw-anim-dialog-start-opacity, 0);
+      translate: var(--tw-anim-dialog-start-translate, 0 1.5rem);
+      scale: var(--tw-anim-dialog-start-scale, 0.96);
+    }
+  }
+
+  .animate-dialog::backdrop {
+    opacity: 0;
+    background: var(--tw-anim-dialog-backdrop-background, rgb(15 23 42 / 0.58));
+    backdrop-filter: var(--tw-anim-dialog-backdrop-filter, blur(8px));
+    transition:
+      opacity var(--tw-anim-dialog-duration, 350ms) ease,
+      overlay var(--tw-anim-dialog-duration, 350ms) ease allow-discrete,
+      display var(--tw-anim-dialog-duration, 350ms) ease allow-discrete;
+  }
+
+  .animate-dialog[open]::backdrop {
+    opacity: 1;
+  }
+
+  .animate-dialog[open].is-closing::backdrop {
+    opacity: 0;
+  }
+
+  .animate-dialog[open].is-opening::backdrop {
+    opacity: 0;
+  }
+
+  @starting-style {
+    .animate-dialog[open]::backdrop {
+      opacity: 0;
+    }
+  }
+}
+
+@utility animate-dialog-from-top {
+  --tw-anim-dialog-start-translate: 0 -1.5rem;
+}
+
+@utility animate-dialog-from-bottom {
+  --tw-anim-dialog-start-translate: 0 1.5rem;
+}
+
+@utility animate-dialog-from-left {
+  --tw-anim-dialog-start-translate: -1.5rem 0;
+}
+
+@utility animate-dialog-from-right {
+  --tw-anim-dialog-start-translate: 1.5rem 0;
+}
+
+@utility animate-dialog-fade {
+  --tw-anim-dialog-start-translate: 0 0;
+  --tw-anim-dialog-start-scale: 1;
+}
+
+@utility animate-dialog-zoom {
+  --tw-anim-dialog-start-translate: 0 0;
+  --tw-anim-dialog-start-scale: 0.92;
+}
+
+@utility animate-dialog-duration-* {
+  --tw-anim-dialog-duration: calc(--value(integer) * 1ms);
+  --tw-anim-dialog-duration: --value(--tw-anim-duration-*, [duration], [*]);
+}
+
+/* ============================================
    Utility Classes - Animation Timeline
    ============================================ */
 
@@ -804,4 +908,3 @@
 @utility animate-range-* {
   animation-range: --value(--tw-anim-range-*, [*]);
 }
-
