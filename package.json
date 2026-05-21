@@ -28,23 +28,24 @@
   "author": "Miguel Ángel Durán (@midudev) & su maravillosa comunidad",
   "license": "MIT",
   "peerDependencies": {
-    "tailwindcss": "^4.0.0"
+    "tailwindcss": "4.3.0"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "4.1.18",
-    "@csstools/postcss-minify": "2.0.5",
-    "eslint": "9.39.2",
-    "neostandard": "0.12.2",
-    "postcss": "8.5.6",
-    "tailwindcss": "4.1.18",
-    "vitest": "4.0.16",
-    "@typescript-eslint/parser": "8.52.0",
+    "@tailwindcss/postcss": "4.3.0",
+    "@csstools/postcss-minify": "3.0.0",
+    "eslint": "9.39.4",
+    "neostandard": "0.13.0",
+    "postcss": "8.5.14",
+    "tailwindcss": "4.3.0",
+    "typescript": "5.9.3",
+    "vitest": "4.1.6",
+    "@typescript-eslint/parser": "8.59.3",
     "eslint-config-prettier": "10.1.8",
-    "eslint-plugin-astro": "1.5.0",
+    "eslint-plugin-astro": "1.7.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
-    "prettier": "3.7.4",
+    "prettier": "3.8.3",
     "prettier-config-standard": "7.0.0",
     "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "0.7.2"
+    "prettier-plugin-tailwindcss": "0.8.0"
   }
 }
