@@ -192,7 +192,6 @@ const dialogModifierExamples = [
       'Fade variants are useful when movement would distract from short copy.'
   }
 ]
-
 ---
 
 <Layout
@@ -519,9 +518,7 @@ export default {
                 </svg>
               </div>
               <div class='min-w-0'>
-                <p
-                  class='text-sm font-bold text-slate-950 dark:text-amber-50'
-                >
+                <p class='text-sm font-bold text-slate-950 dark:text-amber-50'>
                   Reduced motion is enabled
                 </p>
                 <p
@@ -1461,7 +1458,9 @@ export default {
               >
                 Modifier examples
               </span>
-              <h3 class='mt-2 text-2xl font-bold text-slate-900 dark:text-white'>
+              <h3
+                class='mt-2 text-2xl font-bold text-slate-900 dark:text-white'
+              >
                 Same utility, different dialog feel
               </h3>
             </div>
@@ -1469,8 +1468,8 @@ export default {
               class='max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-400'
             >
               Stack one motion modifier and one duration modifier on top of
-              <code class='text-blue-500'>animate-dialog</code>; the rest is still
-              regular Tailwind styling.
+              <code class='text-blue-500'>animate-dialog</code>; the rest is
+              still regular Tailwind styling.
             </p>
           </div>
 
@@ -1514,7 +1513,10 @@ export default {
                       <span class='text-xs font-bold tracking-widest text-emerald-600 uppercase dark:text-emerald-300'>
                         {example.eyebrow}
                       </span>
-                      <h4 id={`${example.id}-title`} class='mt-2 text-xl font-bold'>
+                      <h4
+                        id={`${example.id}-title`}
+                        class='mt-2 text-xl font-bold'
+                      >
                         {example.dialogTitle}
                       </h4>
                     </div>
@@ -1526,14 +1528,12 @@ export default {
                       >
                         {example.dialogDescription}
                       </p>
-                      <code class='mt-5 block break-all rounded-xl border border-slate-200 bg-slate-50 p-3 font-mono text-xs leading-5 text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300'>
+                      <code class='mt-5 block rounded-xl border border-slate-200 bg-slate-50 p-3 font-mono text-xs leading-5 break-all text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300'>
                         {example.code}
                       </code>
                     </div>
 
-                    <div
-                      class='flex justify-end border-t border-slate-200 px-5 py-4 dark:border-slate-800'
-                    >
+                    <div class='flex justify-end border-t border-slate-200 px-5 py-4 dark:border-slate-800'>
                       <button
                         type='button'
                         commandfor={example.id}
@@ -1586,8 +1586,9 @@ export default {
     const $versionCodes = document.querySelectorAll('.version-code')
 
     const $loadMore = document.getElementById('load-more')
-    const $animatedDialogs =
-      document.querySelectorAll<HTMLDialogElement>('dialog.animate-dialog')
+    const $animatedDialogs = document.querySelectorAll<HTMLDialogElement>(
+      'dialog.animate-dialog'
+    )
     const $dialogCommandButtons = document.querySelectorAll<HTMLButtonElement>(
       'button[commandfor][command]'
     )
@@ -1653,9 +1654,7 @@ export default {
     $dialogCommandButtons.forEach(($button) => {
       const dialogId = $button.getAttribute('commandfor')
       const command = $button.getAttribute('command')
-      const $dialog = dialogId
-        ? document.getElementById(dialogId)
-        : null
+      const $dialog = dialogId ? document.getElementById(dialogId) : null
 
       if (
         !($dialog instanceof HTMLDialogElement) ||
