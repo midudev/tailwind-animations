@@ -3,9 +3,6 @@ packages:
   - packages/**
   - web/**
 
-overrides:
-  vite: 7.3.3
-
 allowBuilds:
   esbuild: true
   sharp: true
