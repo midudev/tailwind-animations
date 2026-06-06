@@ -72,4 +72,12 @@ const ogImage = `${siteUrl}/og.jpg`
       scroll-behavior: auto !important;
     }
   }
+
+  [data-force-motion='true'] *,
+  [data-force-motion='true'] *::before,
+  [data-force-motion='true'] *::after {
+    animation-duration: revert !important;
+    animation-iteration-count: revert !important;
+    transition-duration: revert !important;
+  }
 </style>
