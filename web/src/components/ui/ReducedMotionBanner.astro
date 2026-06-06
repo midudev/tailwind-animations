@@ -1,0 +1,67 @@
+---
+---
+
+<div
+  id="reduced-motion-banner"
+  role="status"
+  aria-live="polite"
+  class="hidden items-center justify-between gap-3 rounded-xl border border-amber-400/30 bg-amber-400/10 px-4 py-3 text-sm text-amber-300"
+>
+  <span class="flex items-center gap-2">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+      <path d="M12 9v4" />
+      <path d="M12 17h.01" />
+    </svg>
+    <span>
+      Tu sistema tiene <strong>Reduce Motion</strong> activado. Las previews de animación están deshabilitadas.
+    </span>
+  </span>
+  <button
+    id="reduced-motion-dismiss"
+    type="button"
+    class="shrink-0 rounded-lg px-3 py-1 text-xs font-medium text-amber-200 ring-1 ring-amber-400/40 transition hover:bg-amber-400/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+    aria-label="Ignorar advertencia de movimiento reducido"
+  >
+    Ver de todas formas
+  </button>
+</div>
+
+<script>
+  const banner = document.getElementById('reduced-motion-banner')
+  const dismissBtn = document.getElementById('reduced-motion-dismiss')
+  const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+  function showBanner() {
+    if (mediaQuery.matches && banner) {
+      banner.classList.remove('hidden')
+      banner.classList.add('flex')
+    }
+  }
+
+  dismissBtn?.addEventListener('click', () => {
+    banner?.classList.add('hidden')
+    banner?.classList.remove('flex')
+    document.documentElement.setAttribute('data-force-motion', 'true')
+
+    // notify cards so they can re-bind hover listeners
+    document.querySelectorAll('article[data-class]').forEach((article) => {
+      article.dispatchEvent(new Event('motionrestored'))
+    })
+  })
+
+  mediaQuery.addEventListener('change', showBanner)
+
+  showBanner()
+</script>

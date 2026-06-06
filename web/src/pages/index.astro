@@ -16,6 +16,7 @@ import { Code } from 'astro:components'
 import CopyIcon from '@components/icons/copy.astro'
 
 import Logo from '@components/ui/Logo.astro'
+import ReducedMotionBanner from '@components/ui/ReducedMotionBanner.astro'
 
 // Importacion de componentes de layout
 import Footer from '@components/layout/Footer.astro'
@@ -630,6 +631,10 @@ export default {
             </label>
           </div>
         </section>
+
+        <div class='mx-auto max-w-6xl px-4 lg:px-8'>
+          <ReducedMotionBanner />
+        </div>
 
         <section
           class='relative mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:px-8'
