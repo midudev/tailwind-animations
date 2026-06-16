@@ -317,4 +317,24 @@ describe('tailwindcss-animations plugins', () => {
 
     expect(css).toContain('.view-timeline-axis-y{view-timeline-axis:y}')
   })
+
+  it('use percentage values for animate-translate', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-translate-[50%]">Hello</div>'
+    })
+
+    expect(css).toContain(
+      '.animate-translate-\\[50\\%\\]'
+    )
+  })
+
+  it('use length values for animate-translate', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-translate-[10rem]">Hello</div>'
+    })
+
+    expect(css).toContain(
+      '.animate-translate-\\[10rem\\]'
+    )
+  })
 })
