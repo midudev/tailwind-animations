@@ -63,7 +63,7 @@ importers:
         specifier: workspace:*
         version: link:../..
       tailwindcss:
-        specifier: 4.3.2
+        specifier: '4'
         version: 4.3.2
 
   web:
