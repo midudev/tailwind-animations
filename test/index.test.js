@@ -317,4 +317,45 @@ describe('tailwindcss-animations plugins', () => {
 
     expect(css).toContain('.view-timeline-axis-y{view-timeline-axis:y}')
   })
+
+  it('uses percentage values for animate-translate', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-translate-[50%]">Hello</div>'
+    })
+
+    expect(css).toContain('--tw-anim-translate:50%')
+    expect(css).toContain('animate-translate-\\[50\\%\\]')
+  })
+
+  it('uses length values for animate-translate', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-translate-[10rem]">Hello</div>'
+    })
+
+    expect(css).toContain('--tw-anim-translate:10rem')
+    expect(css).toContain('animate-translate-\\[10rem\\]')
+  })
+
+  it('keeps default slide distance when animate-translate is not set', async () => {
+    const css = await generatePluginCSS({
+      content: '<div class="animate-slide-in-right">Hello</div>'
+    })
+
+    expect(css).toContain(
+      'translateX(var(--tw-anim-translate, 20px))'
+    )
+    expect(css).toContain('@keyframes slide-in-right')
+  })
+
+  it('applies signed direction for top/left slides with animate-translate', async () => {
+    const css = await generatePluginCSS({
+      content:
+        '<div class="animate-slide-in-top animate-translate-[100%]">Hello</div>'
+    })
+
+    expect(css).toContain('--tw-anim-translate:100%')
+    expect(css).toContain(
+      'translateY(calc(var(--tw-anim-translate, 20px) * -1))'
+    )
+  })
 })

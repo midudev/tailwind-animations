@@ -225,23 +225,23 @@
   }
 
   @keyframes slide-in-top {
-    0% { transform: translateY(-20px); }
+    0% { transform: translateY(calc(var(--tw-anim-translate, 20px) * -1)); }
     100% { transform: translateY(0); }
   }
 
   @keyframes slide-in-bottom {
-    0% { transform: translateY(20px); }
+    0% { transform: translateY(var(--tw-anim-translate, 20px)); }
     100% { transform: translateY(0); }
   }
 
   @keyframes slide-out-top {
     0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
+    100% { transform: translateY(calc(var(--tw-anim-translate, 20px) * -1)); }
   }
 
   @keyframes slide-out-bottom {
     0% { transform: translateY(0); }
-    100% { transform: translateY(20px); }
+    100% { transform: translateY(var(--tw-anim-translate, 20px)); }
   }
 
   @keyframes zoom-in {
@@ -396,23 +396,23 @@
   }
 
   @keyframes slide-in-left {
-    0% { transform: translateX(-20px); }
+    0% { transform: translateX(calc(var(--tw-anim-translate, 20px) * -1)); }
     100% { transform: translateX(0); }
   }
 
   @keyframes slide-in-right {
-    0% { transform: translateX(20px); }
+    0% { transform: translateX(var(--tw-anim-translate, 20px)); }
     100% { transform: translateX(0); }
   }
 
   @keyframes slide-out-left {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-20px); }
+    100% { transform: translateX(calc(var(--tw-anim-translate, 20px) * -1)); }
   }
 
   @keyframes slide-out-right {
     0% { transform: translateX(0); }
-    100% { transform: translateX(20px); }
+    100% { transform: translateX(var(--tw-anim-translate, 20px)); }
   }
 
   @keyframes spin-clockwise {
@@ -907,4 +907,12 @@
 
 @utility animate-range-* {
   animation-range: --value(--tw-anim-range-*, [*]);
+}
+
+/* ============================================
+   Utility Classes - Slide Translate Distance
+   ============================================ */
+
+@utility animate-translate-* {
+  --tw-anim-translate: --value([length], [percentage], [*]);
 }
