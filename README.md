@@ -24,10 +24,6 @@ Visit the [website](https://tailwind-animations.com/) or the [playground](https:
   
 ## Installation :book:
 
-> Note: this project used to be published as `@midudev/tailwind-animations`. That package remains available only as a **deprecated compatibility shim**.
-
-> Need **Tailwind CSS v3** support? Use the last v3-compatible release: `@midudev/tailwind-animations@0.2.0`.
-
 #### Package install
 
 > Install the package with your favorite package manager:
@@ -110,8 +106,6 @@ This plugin also brings a utility class to animate elements based on their posit
 </p>
 </div>
 ```
-
-> Example extracted from [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/view-timeline)
 
 ## Contributors 👑
   
