@@ -60,8 +60,8 @@ importers:
   packages/scoped:
     dependencies:
       tailwind-animations:
-        specifier: 1.0.1
-        version: 1.0.1(tailwindcss@4.3.2)
+        specifier: workspace:*
+        version: link:../..
       tailwindcss:
         specifier: 4.3.2
         version: 4.3.2
@@ -2741,11 +2741,6 @@ packages:
   synckit@0.11.5:
     resolution: {integrity: sha512-frqvfWyDA5VPVdrWfH24uM6SI/O8NLpVbIIJxb8t/a3YGsp4AW9CYgSKC0OaSEfexnp7Y1pVh2Y6IHO8ggGDmA==}
     engines: {node: ^14.18.0 || >=16.0.0}
-
-  tailwind-animations@1.0.1:
-    resolution: {integrity: sha512-5ouCdgfGS4kcyuzRSb/1O3o9f5Akssi7ue46PHfKjvPLMWjtnzmqM8i6ElES3tKVTyhjSaTPfLti7aB7WSxhZg==}
-    peerDependencies:
-      tailwindcss: ^4.0.0
 
   tailwindcss@4.3.2:
     resolution: {integrity: sha512-WtctNNSH8A9jlMIqxzuYumOHU5uGZyRv0Q5svQl+oEPy5w84YpBxdb7MdqyiSPQge5jTJ6zFQLq0PFygdccSBA==}
@@ -6001,10 +5996,6 @@ snapshots:
     dependencies:
       '@pkgr/core': 0.2.4
       tslib: 2.8.1
-
-  tailwind-animations@1.0.1(tailwindcss@4.3.2):
-    dependencies:
-      tailwindcss: 4.3.2
 
   tailwindcss@4.3.2: {}
 

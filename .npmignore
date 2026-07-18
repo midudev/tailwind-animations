@@ -1,8 +1,20 @@
-.github/*
-test/*
-web/*
-web/README.md
-lib/imgs/web.jpg
+# Package contents are controlled by package.json "files".
+# Extra excludes for safety:
+.agents
+.github
+.claude
+web
+test
+packages
+scripts
+lib
+*.tgz
+pnpm-lock.yaml
 pnpm-workspace.yaml
+eslint.config.js
+skills-lock.json
+DEPLOY.md
+LLM.txt
+AGENTS.md
 README.es.md
-README.md
+CHANGELOG.md

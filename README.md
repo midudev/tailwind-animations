@@ -14,12 +14,12 @@
 ![CleanShot 2026-01-12 at 21 27 57@2x](https://github.com/user-attachments/assets/e2d42595-c049-4c21-a208-770d56291483)
 
 ![Tailwind
-CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.1-blue?style=for-the-badge&logo=tailwind-css)
-![Astro](https://img.shields.io/badge/Astro-4.3.3-orange?style=for-the-badge&logo=astro)
+CSS](https://img.shields.io/badge/Tailwind%20CSS-4-blue?style=for-the-badge&logo=tailwind-css)
+![npm](https://img.shields.io/npm/v/tailwind-animations?style=for-the-badge)
 
 Get your animations easily done with only Tailwind CSS classes.
 
-Visit the [website](https://tailwindcss-animations.vercel.app/) to get more information.
+Visit the [website](https://tailwind-animations.com/) or the [playground](https://tailwind-animations.com/playground/) to get more information.
 </div>
   
 ## Installation :book:

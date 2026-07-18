@@ -2,6 +2,30 @@
 
 Todos los cambios notables en este proyecto serán documentados en este archivo.
 
+El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
+y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
+
+## [1.0.2] - 2026-07-18
+
+### Añadido
+- Utilidad **`animate-slide-distance-*`** para personalizar la distancia de recorrido de las animaciones `slide-in-*` / `slide-out-*` (por defecto `20px`).
+  - Acepta longitudes y porcentajes, p. ej. `animate-slide-distance-[50%]`, `animate-slide-distance-[6rem]`.
+  - Variable CSS: `--tw-anim-slide-distance`.
+- Sitio web: **Playground** en `/playground` con composición en vivo, presets de UI y estado compartible por URL.
+- Mejoras de SEO, accesibilidad y UX en la web de documentación.
+
+### Cambiado
+- Renombrado interno de la API de distancia de slide (antes experimental como `animate-translate`) a **`animate-slide-distance`**.
+- Peer dependency de `tailwindcss` alineada a **4.3.2**.
+
+### Corregido
+- Cards de ejemplos de dialog en la web ya no disparan el toast de copiado con `animate-null`.
+
+## [1.0.1] - 2026-01
+
+### Cambiado
+- Ajustes menores de publicación y paquete scoped deprecado `@midudev/tailwind-animations`.
+
 ## [1.0.0] - 2026-01-12
 
 ### Añadido

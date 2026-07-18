@@ -14,12 +14,12 @@
 ![web](./lib/imgs/web.jpg)
 
 ![Tailwind
-CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.1-blue?style=for-the-badge&logo=tailwind-css)
-![Astro](https://img.shields.io/badge/Astro-4.3.3-orange?style=for-the-badge&logo=astro)
+CSS](https://img.shields.io/badge/Tailwind%20CSS-4-blue?style=for-the-badge&logo=tailwind-css)
+![npm](https://img.shields.io/npm/v/tailwind-animations?style=for-the-badge)
 
 Obten animaciones de CSS con una sola clase de Tailwind!
 
-Visita la [web](https://tailwindcss-animations.vercel.app/) para obtener más
+Visita la [web](https://tailwind-animations.com/) o el [playground](https://tailwind-animations.com/playground/) para obtener más
 información.
 
 </div>

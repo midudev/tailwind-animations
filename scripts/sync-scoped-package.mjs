@@ -18,8 +18,12 @@ if (!rootPkg?.version) throw new Error('Root package.json is missing "version"')
 
 scopedPkg.version = rootPkg.version
 scopedPkg.dependencies ||= {}
-scopedPkg.dependencies['tailwind-animations'] = rootPkg.version
+// Keep workspace link for local installs; pnpm publish rewrites this to the
+// real version of the workspace package when packing.
+scopedPkg.dependencies['tailwind-animations'] = 'workspace:*'
 
 await fs.writeFile(scopedPackagePath, JSON.stringify(scopedPkg, null, 2) + '\n', 'utf8')
 
-console.log(`Synced @midudev/tailwind-animations to version ${rootPkg.version}`)
+console.log(
+  `Synced @midudev/tailwind-animations to version ${rootPkg.version} (dep: workspace:*)`
+)

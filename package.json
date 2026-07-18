@@ -1,12 +1,23 @@
 {
   "name": "tailwind-animations",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tailwind CSS plugin to add animations to your website",
   "style": "./src/index.css",
   "exports": {
     ".": "./src/index.css",
     "./index.css": "./src/index.css"
   },
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/midudev/tailwind-animations.git"
+  },
+  "bugs": {
+    "url": "https://github.com/midudev/tailwind-animations/issues"
+  },
+  "homepage": "https://tailwind-animations.com",
   "type": "module",
   "scripts": {
     "lint": "eslint .",
