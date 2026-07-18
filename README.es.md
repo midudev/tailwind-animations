@@ -16,6 +16,7 @@
 ![Tailwind
 CSS](https://img.shields.io/badge/Tailwind%20CSS-4-blue?style=for-the-badge&logo=tailwind-css)
 ![npm](https://img.shields.io/npm/v/tailwind-animations?style=for-the-badge)
+[![skills.sh](https://skills.sh/b/midudev/tailwind-animations)](https://skills.sh/midudev/tailwind-animations)
 
 Obten animaciones de CSS con una sola clase de Tailwind!
 
@@ -37,6 +38,14 @@ $ npm install tailwind-animations
 $ pnpm add tailwind-animations
 $ yarn add tailwind-animations
 ```
+
+### Skill para agentes (skills.sh)
+
+```bash
+npx skills add midudev/tailwind-animations
+```
+
+Más info: [skills.sh/midudev/tailwind-animations](https://skills.sh/midudev/tailwind-animations)
 
 Usa el plugin en tu configuración de Tailwind:
 

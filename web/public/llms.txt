@@ -59,6 +59,12 @@ Peer: any Tailwind CSS v4 (`"tailwindcss": "4"`).
 
 Use legacy: `@midudev/tailwind-animations@0.2.0` (deprecated).
 
-## Agent skill (repo contributors)
+## Agent skill (package consumers)
 
-See `.agents/skills/tailwind-animations/SKILL.md` in the GitHub repository.
+Install via skills.sh:
+
+```bash
+npx skills add midudev/tailwind-animations
+```
+
+Skill paths in the repo: `skills/tailwind-animations/SKILL.md` (and `.agents/skills/…`).

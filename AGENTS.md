@@ -1,12 +1,16 @@
 # AGENTS
 
-## Project skill
+## Skills (skills.sh)
 
-For day-to-day work on this repo, load the skill:
+The **`tailwind-animations` skill is for package consumers** (people using the npm package in their apps), not for contributing to this monorepo.
 
-**`.agents/skills/tailwind-animations/SKILL.md`**
+- Paths (identical copies for discovery):
+  - `skills/tailwind-animations/SKILL.md`
+  - `.agents/skills/tailwind-animations/SKILL.md`
+- Install elsewhere: `npx skills add midudev/tailwind-animations`
+- Badge: https://skills.sh/midudev/tailwind-animations
 
-It covers plugin API, adding animations, website/playground, agent Markdown endpoints, release flow, and anti-patterns.
+When **working inside this monorepo**, follow this `AGENTS.md`, `CHANGELOG.md`, and the codebase (especially `src/index.css`). Do not treat the consumer skill as contributor docs.
 
 Public site agent docs (prefer Markdown over HTML):
 

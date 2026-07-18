@@ -134,8 +134,9 @@ ${fills.map((k) => `\`${k}\``).join(', ')}
 
 - Prefer markdown endpoints (\`/index.md\`, \`/playground.md\`, \`/llms-full.md\`) over scraping HTML.
 - Source of truth for CSS: \`${REPO}/blob/main/src/index.css\`
-- Project agent skill (repo): \`.agents/skills/tailwind-animations/SKILL.md\`
-- Supply-chain rules: \`AGENTS.md\` (exact dep pins, no \`^\`/\`~\`, keep lockfile)
+- Consumer agent skill (skills.sh): \`npx skills add midudev/tailwind-animations\`
+- Skill files: \`skills/tailwind-animations/SKILL.md\`
+- Supply-chain rules for contributors: \`AGENTS.md\` (exact dep pins, no \`^\`/\`~\`, keep lockfile)
 
 ---
 Generated from \`${pkg.name}@${pkg.version}\` · ${SITE}
@@ -302,28 +303,17 @@ Related: \`animate-dialog-fade\`, \`animate-dialog-zoom\`, \`animate-dialog-from
 | \`/llms-full.md\` | This full reference |
 | \`/robots.txt\` | Crawl rules + sitemap |
 
-## Contributing / repo layout (for coding agents)
-
-Monorepo (pnpm):
-
-- \`src/index.css\` — **plugin source of truth** (publish surface)
-- \`web/\` — Astro site
-- \`test/\` — Vitest + PostCSS generation tests
-- \`packages/scoped/\` — deprecated \`@midudev/tailwind-animations\` shim
-- \`scripts/publish-both.mjs\` — publish official + deprecate scoped
-
-Commands:
+## Install this package's agent skill
 
 \`\`\`bash
-pnpm install
-pnpm test:ci
-pnpm --dir web dev
-pnpm --dir web build
-pnpm sync:scoped
-pnpm publish:both   # needs npm auth
+npx skills add midudev/tailwind-animations
 \`\`\`
 
-Supply chain (see \`AGENTS.md\`): exact versions only (no \`^\`/\`~\`), keep \`pnpm-lock.yaml\`, no blind upgrades, 7-day release age.
+Consumer skill lives at \`skills/tailwind-animations/SKILL.md\` (mirrored under \`.agents/skills/\`).
+
+## Contributing to the monorepo (optional)
+
+If you are contributing to the plugin itself (not using it as a dependency), see \`AGENTS.md\` and \`src/index.css\` in the GitHub repo. The skills.sh skill is for **consumers**, not monorepo maintainers.
 
 ## Performance notes
 
