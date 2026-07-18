@@ -1,23 +1,25 @@
 # Tailwind Animations
 
-> Open-source Tailwind CSS plugin with 79+ ready-to-use animation utility classes. Zero configuration. Built by midudev and the community.
+> Open-source Tailwind CSS v4 plugin: 79+ animation utilities. CSS-only. MIT. midudev + community.
+
+## Prefer Markdown (for agents)
+
+When reading this website as an AI agent, use Markdown endpoints instead of HTML:
+
+- Home (Markdown): https://tailwind-animations.com/index.md
+- Playground (Markdown): https://tailwind-animations.com/playground.md
+- Full reference: https://tailwind-animations.com/llms-full.md
+- This summary: https://tailwind-animations.com/llms.txt
+
+HTML pages advertise `rel="alternate" type="text/markdown"`.
 
 ## Site
 
 - Homepage: https://tailwind-animations.com/
+- Playground: https://tailwind-animations.com/playground/
 - Package: https://www.npmjs.com/package/tailwind-animations
 - Repository: https://github.com/midudev/tailwind-animations
 - License: MIT
-
-## What it does
-
-Adds CSS animation utilities to Tailwind CSS projects, including:
-
-- Entrance/exit: fade-in, fade-out, slide-in-*, zoom-in, zoom-out
-- Attention: bounce, shake, tada, jelly, wobble, pulse
-- Transforms: flip, rotate, spin, skew
-- Scroll-driven: timeline-view + animate-range
-- Dialog: animate-dialog entry/exit with @starting-style
 
 ## Install (Tailwind CSS v4)
 
@@ -30,6 +32,8 @@ npm install tailwind-animations
 @import 'tailwind-animations';
 ```
 
+Peer: any Tailwind CSS v4 (`"tailwindcss": "4"`).
+
 ## Usage
 
 ```html
@@ -37,25 +41,24 @@ npm install tailwind-animations
 <div class="animate-slide-in-bottom animate-delay-300 animate-duration-slow">
   Delayed slide
 </div>
+<div class="animate-slide-in-left animate-slide-distance-[6rem]">
+  Custom distance
+</div>
 ```
 
-## Tailwind CSS v3
+## Features
 
-Use the last v3-compatible release:
+- Entrance/exit: fade, slide, zoom, flip, roll
+- Attention: bounce, shake, tada, jelly, wobble, pulse
+- Scroll-driven: timeline-view / timeline-scroll + animate-range
+- Dialog: animate-dialog (+ from-*, fade, zoom, duration)
+- Slide distance: animate-slide-distance-[…]
+- Playground with shareable URL state (?a=&d=&delay=&s=&i=&f=&p=)
 
-```bash
-npm install @midudev/tailwind-animations@0.2.0
-```
+## Tailwind v3
 
-## Sections on the site
+Use legacy: `@midudev/tailwind-animations@0.2.0` (deprecated).
 
-- Animation Collection: interactive gallery of utility classes
-- Scroll Animations: viewport-linked motion
-- Scroll View Timelines: view timeline utilities
-- Dialog Effects: native <dialog> entry/exit patterns
+## Agent skill (repo contributors)
 
-## Contact / Community
-
-- Author: Miguel Ángel Durán (@midudev)
-- GitHub: https://github.com/midudev/tailwind-animations
-- Discord: https://discord.gg/midudev
+See `.agents/skills/tailwind-animations/SKILL.md` in the GitHub repository.

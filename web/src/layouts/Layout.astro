@@ -25,6 +25,16 @@ const ogImageURL = new URL(image, siteUrl).href
 const pageUrl = canonicalURL.href
 const softwareVersion = pkg.version
 
+// Agent-readable Markdown alternate for the current page
+const path = Astro.url.pathname.replace(/\/$/, '') || ''
+const markdownPath =
+  path === '' || path === '/'
+    ? '/index.md'
+    : path.endsWith('.md')
+      ? path
+      : `${path}.md`
+const markdownUrl = new URL(markdownPath, siteUrl).href
+
 const robotsContent = noindex
   ? 'noindex, nofollow'
   : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
@@ -198,6 +208,19 @@ const structuredData = {
     <meta name='googlebot' content={robotsContent} />
     <meta name='bingbot' content={robotsContent} />
     <link rel='canonical' href={pageUrl} />
+    <link
+      rel='alternate'
+      type='text/markdown'
+      title='Markdown for agents'
+      href={markdownUrl}
+    />
+    <link
+      rel='alternate'
+      type='text/markdown'
+      title='Full agent documentation'
+      href={new URL('/llms-full.md', siteUrl).href}
+    />
+    <meta name='md-url' content={markdownUrl} />
 
     <!-- Open Graph -->
     <meta property='og:type' content={type} />
@@ -238,6 +261,7 @@ const structuredData = {
     <link rel='manifest' href='/site.webmanifest' />
     <link rel='sitemap' type='application/xml' title='Sitemap' href='/sitemap-index.xml' />
     <link rel='alternate' type='text/plain' title='LLM information' href='/llms.txt' />
+    <link rel='alternate' type='text/markdown' title='LLM full documentation' href='/llms-full.md' />
 
     <!-- Performance hints -->
     <link rel='dns-prefetch' href='https://github.com' />
