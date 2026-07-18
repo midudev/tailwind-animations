@@ -62,10 +62,16 @@ const ogImage = `${siteUrl}/og.jpg`
 </html>
 
 <style is:global>
+  /*
+    Respect prefers-reduced-motion by default. Users can opt back in for this
+    session via data-force-motion on <html> (see ReducedMotionBanner).
+    Scoping with :not() is safer than animation-duration: revert, which would
+    wipe utility-class durations back to the UA default.
+  */
   @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    html:not([data-force-motion='true']) *,
+    html:not([data-force-motion='true']) *::before,
+    html:not([data-force-motion='true']) *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;

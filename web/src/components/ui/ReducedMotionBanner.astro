@@ -1,0 +1,109 @@
+---
+---
+
+<div
+  id='reduced-motion-banner'
+  class='pointer-events-none sticky top-28 z-10 mx-auto mb-5 hidden max-w-2xl px-4'
+  hidden
+>
+  <div
+    class='pointer-events-auto overflow-hidden rounded-2xl border border-amber-300/30 bg-white/90 text-left shadow-2xl shadow-amber-950/10 backdrop-blur-xl dark:border-amber-300/20 dark:bg-slate-950/85 dark:shadow-black/30'
+    role='status'
+    aria-live='polite'
+  >
+    <div
+      class='flex flex-col gap-4 border-l-4 border-amber-400 px-4 py-3.5 sm:flex-row sm:items-center sm:justify-between sm:gap-5 sm:px-5'
+    >
+      <div class='flex min-w-0 items-start gap-3 sm:gap-4'>
+        <div
+          class='mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl bg-amber-400/15 text-amber-600 ring-1 ring-amber-400/25 dark:text-amber-300'
+        >
+          <svg
+            class='size-5'
+            xmlns='http://www.w3.org/2000/svg'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            stroke-width='2'
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            aria-hidden='true'
+          >
+            <path
+              d='M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z'
+            ></path>
+            <path d='M12 9v4'></path>
+            <path d='M12 17h.01'></path>
+          </svg>
+        </div>
+        <div class='min-w-0'>
+          <p class='text-sm font-bold text-slate-950 dark:text-amber-50'>
+            Reduced motion is enabled
+          </p>
+          <p class='mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300'>
+            Animation previews are paused by your system or browser preference.
+            Hover previews stay off until you opt back in.
+          </p>
+        </div>
+      </div>
+
+      <button
+        id='reduced-motion-enable'
+        type='button'
+        class='inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 self-stretch rounded-xl bg-blue-500 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-blue-500/25 transition-all hover:bg-blue-600 hover:shadow-blue-500/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.98] sm:self-center dark:focus-visible:ring-offset-slate-950'
+      >
+        <svg
+          class='size-4'
+          xmlns='http://www.w3.org/2000/svg'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='2.5'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          aria-hidden='true'
+        >
+          <polygon points='5 3 19 12 5 21 5 3'></polygon>
+        </svg>
+        Preview animations anyway
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById('reduced-motion-banner')
+  const enableBtn = document.getElementById('reduced-motion-enable')
+  const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+  const isForceMotion = () =>
+    document.documentElement.getAttribute('data-force-motion') === 'true'
+
+  const setBannerVisible = (visible: boolean) => {
+    if (!banner) return
+
+    banner.hidden = !visible
+    banner.classList.toggle('hidden', !visible)
+  }
+
+  const syncBanner = () => {
+    setBannerVisible(mediaQuery.matches && !isForceMotion())
+  }
+
+  enableBtn?.addEventListener('click', () => {
+    document.documentElement.setAttribute('data-force-motion', 'true')
+    setBannerVisible(false)
+
+    // Notify listeners (e.g. future card rebinding) that motion is allowed again
+    document.dispatchEvent(new CustomEvent('motionrestored'))
+  })
+
+  mediaQuery.addEventListener('change', () => {
+    if (!mediaQuery.matches) {
+      document.documentElement.removeAttribute('data-force-motion')
+    }
+    syncBanner()
+  })
+
+  syncBanner()
+</script>

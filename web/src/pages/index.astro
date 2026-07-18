@@ -16,6 +16,7 @@ import { Code } from 'astro:components'
 import CopyIcon from '@components/icons/copy.astro'
 
 import Logo from '@components/ui/Logo.astro'
+import ReducedMotionBanner from '@components/ui/ReducedMotionBanner.astro'
 
 // Importacion de componentes de layout
 import Footer from '@components/layout/Footer.astro'
@@ -486,51 +487,7 @@ export default {
       </div>
 
       <div class='relative'>
-        <div
-          class='pointer-events-none sticky top-28 z-10 mx-auto mb-5 hidden max-w-2xl px-4 motion-reduce:block'
-        >
-          <div
-            class='pointer-events-auto overflow-hidden rounded-2xl border border-amber-300/30 bg-white/90 text-left shadow-2xl shadow-amber-950/10 backdrop-blur-xl dark:border-amber-300/20 dark:bg-slate-950/85 dark:shadow-black/30'
-            role='status'
-          >
-            <div
-              class='flex items-start gap-3 border-l-4 border-amber-400 px-4 py-3.5 sm:gap-4 sm:px-5'
-            >
-              <div
-                class='mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl bg-amber-400/15 text-amber-600 ring-1 ring-amber-400/25 dark:text-amber-300'
-              >
-                <svg
-                  class='size-5'
-                  xmlns='http://www.w3.org/2000/svg'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  stroke='currentColor'
-                  stroke-width='2'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
-                  aria-hidden='true'
-                >
-                  <path
-                    d='M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z'
-                  ></path>
-                  <path d='M12 9v4'></path>
-                  <path d='M12 17h.01'></path>
-                </svg>
-              </div>
-              <div class='min-w-0'>
-                <p class='text-sm font-bold text-slate-950 dark:text-amber-50'>
-                  Reduced motion is enabled
-                </p>
-                <p
-                  class='mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300'
-                >
-                  Animation previews are paused by your system or browser
-                  preference.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ReducedMotionBanner />
 
         <section
           class='top-4 z-50 mb-12 flex items-center justify-center px-4'
@@ -1970,6 +1927,16 @@ export default {
     // ==========================================
     const $heroDemoBox = document.getElementById('hero-demo-box')
     const $heroDemoClasses = document.getElementById('hero-demo-classes')
+    const $heroDemoClassesSr = document.getElementById('hero-demo-classes-sr')
+
+    const setHeroDemoClassLabel = (text: string) => {
+      if ($heroDemoClasses) $heroDemoClasses.textContent = text
+      if ($heroDemoClassesSr) {
+        $heroDemoClassesSr.textContent = text
+          ? `Current demo class: ${text}`
+          : ''
+      }
+    }
 
     if ($heroDemoBox && $heroDemoClasses) {
       // Different animation configurations to showcase
@@ -1998,9 +1965,9 @@ export default {
 
       // Typewriter effect function
       async function typeText(text: string): Promise<void> {
-        $heroDemoClasses!.textContent = ''
+        setHeroDemoClassLabel('')
         for (let i = 0; i <= text.length; i++) {
-          $heroDemoClasses!.textContent = text.substring(0, i)
+          setHeroDemoClassLabel(text.substring(0, i))
           await new Promise((resolve) =>
             setTimeout(resolve, 35 + Math.random() * 25)
           )
@@ -2011,7 +1978,7 @@ export default {
       async function clearText(): Promise<void> {
         const currentText = $heroDemoClasses!.textContent || ''
         for (let i = currentText.length; i >= 0; i--) {
-          $heroDemoClasses!.textContent = currentText.substring(0, i)
+          setHeroDemoClassLabel(currentText.substring(0, i))
           await new Promise((resolve) => setTimeout(resolve, 20))
         }
       }
