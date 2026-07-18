@@ -1,0 +1,61 @@
+# Tailwind Animations
+
+> Open-source Tailwind CSS plugin with 79+ ready-to-use animation utility classes. Zero configuration. Built by midudev and the community.
+
+## Site
+
+- Homepage: https://tailwind-animations.com/
+- Package: https://www.npmjs.com/package/tailwind-animations
+- Repository: https://github.com/midudev/tailwind-animations
+- License: MIT
+
+## What it does
+
+Adds CSS animation utilities to Tailwind CSS projects, including:
+
+- Entrance/exit: fade-in, fade-out, slide-in-*, zoom-in, zoom-out
+- Attention: bounce, shake, tada, jelly, wobble, pulse
+- Transforms: flip, rotate, spin, skew
+- Scroll-driven: timeline-view + animate-range
+- Dialog: animate-dialog entry/exit with @starting-style
+
+## Install (Tailwind CSS v4)
+
+```bash
+npm install tailwind-animations
+```
+
+```css
+@import 'tailwindcss';
+@import 'tailwind-animations';
+```
+
+## Usage
+
+```html
+<div class="animate-fade-in">Hello</div>
+<div class="animate-slide-in-bottom animate-delay-300 animate-duration-slow">
+  Delayed slide
+</div>
+```
+
+## Tailwind CSS v3
+
+Use the last v3-compatible release:
+
+```bash
+npm install @midudev/tailwind-animations@0.2.0
+```
+
+## Sections on the site
+
+- Animation Collection: interactive gallery of utility classes
+- Scroll Animations: viewport-linked motion
+- Scroll View Timelines: view timeline utilities
+- Dialog Effects: native <dialog> entry/exit patterns
+
+## Contact / Community
+
+- Author: Miguel Ángel Durán (@midudev)
+- GitHub: https://github.com/midudev/tailwind-animations
+- Discord: https://discord.gg/midudev

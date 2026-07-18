@@ -1,42 +1,253 @@
 ---
 import '@fontsource-variable/geist-mono/index.css'
 import '../styles/index.css'
+import pkg from '../../../package.json'
 
 interface Props {
   title: string
+  description?: string
+  image?: string
+  type?: 'website' | 'article'
+  noindex?: boolean
 }
 
-const { title } = Astro.props
-const description =
-  'Tailwind CSS plugin to add stunning animations to your website. Zero configuration, pure performance.'
-const siteUrl = 'https://tailwind-animations.com'
-const ogImage = `${siteUrl}/og.jpg`
+const {
+  title,
+  description = 'Add 79+ ready-to-use CSS animations to Tailwind CSS with utility classes. Zero config, fade, slide, zoom, scroll, dialog effects, and more. Open source by midudev.',
+  image = '/og.jpg',
+  type = 'website',
+  noindex = false
+} = Astro.props
+
+const siteUrl = Astro.site?.href.replace(/\/$/, '') ?? 'https://tailwind-animations.com'
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? siteUrl)
+const ogImageURL = new URL(image, siteUrl).href
+const pageUrl = canonicalURL.href
+const softwareVersion = pkg.version
+
+const robotsContent = noindex
+  ? 'noindex, nofollow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+
+const organization = {
+  '@type': 'Organization',
+  '@id': `${siteUrl}/#organization`,
+  name: 'midudev',
+  url: 'https://midu.dev',
+  logo: {
+    '@type': 'ImageObject',
+    url: `${siteUrl}/favicon.svg`
+  },
+  sameAs: [
+    'https://github.com/midudev',
+    'https://x.com/midudev',
+    'https://www.youtube.com/midudev',
+    'https://www.twitch.tv/midudev',
+    'https://discord.gg/midudev'
+  ]
+}
+
+const website = {
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  url: siteUrl,
+  name: 'Tailwind Animations',
+  description,
+  inLanguage: 'en',
+  publisher: { '@id': `${siteUrl}/#organization` }
+}
+
+const webPage = {
+  '@type': 'WebPage',
+  '@id': `${pageUrl}#webpage`,
+  url: pageUrl,
+  name: title,
+  description,
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  about: { '@id': `${siteUrl}/#software` },
+  primaryImageOfPage: {
+    '@type': 'ImageObject',
+    url: ogImageURL,
+    width: 2470,
+    height: 1326
+  },
+  inLanguage: 'en'
+}
+
+const software = {
+  '@type': 'SoftwareApplication',
+  '@id': `${siteUrl}/#software`,
+  name: 'tailwind-animations',
+  alternateName: ['Tailwind Animations', 'Tailwind CSS Animations Plugin'],
+  description,
+  url: siteUrl,
+  image: ogImageURL,
+  applicationCategory: 'DeveloperApplication',
+  applicationSubCategory: 'CSS Animation Library',
+  operatingSystem: 'Any',
+  softwareVersion,
+  downloadUrl: 'https://www.npmjs.com/package/tailwind-animations',
+  installUrl: 'https://www.npmjs.com/package/tailwind-animations',
+  codeRepository: 'https://github.com/midudev/tailwind-animations',
+  license: 'https://opensource.org/licenses/MIT',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock'
+  },
+  author: { '@id': `${siteUrl}/#organization` },
+  creator: { '@id': `${siteUrl}/#organization` },
+  keywords: [
+    'tailwind css',
+    'css animations',
+    'tailwind plugin',
+    'animation utilities',
+    'fade in',
+    'scroll animations',
+    'dialog animations'
+  ].join(', ')
+}
+
+const softwareSourceCode = {
+  '@type': 'SoftwareSourceCode',
+  '@id': `${siteUrl}/#sourcecode`,
+  name: 'tailwind-animations',
+  description,
+  codeRepository: 'https://github.com/midudev/tailwind-animations',
+  programmingLanguage: ['CSS', 'JavaScript', 'TypeScript'],
+  runtimePlatform: 'Tailwind CSS',
+  license: 'https://opensource.org/licenses/MIT',
+  author: { '@id': `${siteUrl}/#organization` }
+}
+
+const faq = {
+  '@type': 'FAQPage',
+  '@id': `${pageUrl}#faq`,
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is tailwind-animations?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'tailwind-animations is an open-source Tailwind CSS plugin that adds 79+ ready-to-use animation utility classes such as fade-in, slide-in, zoom, bounce, scroll-driven animations, and native dialog entry/exit effects—with zero configuration.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I install Tailwind CSS animations?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Install with npm install tailwind-animations (or pnpm, yarn, bun, or deno), then import the plugin in your CSS with @import 'tailwindcss'; and @import 'tailwind-animations'; for Tailwind CSS v4."
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Does it work with Tailwind CSS v3 and v4?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Use the latest tailwind-animations package with Tailwind CSS v4 via CSS imports. For Tailwind CSS v3, install the last v3-compatible release: @midudev/tailwind-animations@0.2.0.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I animate an element with a utility class?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Add a class such as animate-fade-in or animate-slide-in-bottom to any HTML element. You can combine duration, delay, and timing utilities like animate-duration-slow and animate-delay-300.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I create scroll-based animations?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Use timeline-view and animate-range utilities to synchronize CSS animations with an element position in the viewport for scroll-driven motion.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Is the plugin free and open source?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. tailwind-animations is free, MIT licensed, and open source on GitHub under midudev/tailwind-animations.'
+      }
+    }
+  ]
+}
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [organization, website, webPage, software, softwareSourceCode, faq]
+}
 ---
 
 <!doctype html>
-<html lang='en'>
+<html lang='en' dir='ltr'>
   <head>
     <meta charset='UTF-8' />
-    <meta name='description' content={description} />
-    <meta name='viewport' content='width=device-width' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <link rel='canonical' href={siteUrl} />
-    <meta name='theme-color' content='#0099ff' />
-
-    <!-- Open Graph -->
-    <meta property='og:type' content='website' />
-    <meta property='og:url' content={siteUrl} />
-    <meta property='og:title' content={title} />
-    <meta property='og:description' content={description} />
-    <meta property='og:image' content={ogImage} />
-
-    <!-- Twitter -->
-    <meta name='twitter:card' content='summary_large_image' />
-    <meta name='twitter:title' content={title} />
-    <meta name='twitter:description' content={description} />
-    <meta name='twitter:image' content={ogImage} />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <meta name='color-scheme' content='dark light' />
 
     <title>{title}</title>
+    <meta name='description' content={description} />
+    <meta name='author' content='Miguel Ángel Durán (midudev)' />
+    <meta name='creator' content='midudev' />
+    <meta name='publisher' content='midudev' />
+    <meta name='robots' content={robotsContent} />
+    <meta name='googlebot' content={robotsContent} />
+    <meta name='bingbot' content={robotsContent} />
+    <link rel='canonical' href={pageUrl} />
+
+    <!-- Open Graph -->
+    <meta property='og:type' content={type} />
+    <meta property='og:site_name' content='Tailwind Animations' />
+    <meta property='og:locale' content='en_US' />
+    <meta property='og:url' content={pageUrl} />
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+    <meta property='og:image' content={ogImageURL} />
+    <meta property='og:image:secure_url' content={ogImageURL} />
+    <meta property='og:image:type' content='image/jpeg' />
+    <meta property='og:image:width' content='2470' />
+    <meta property='og:image:height' content='1326' />
+    <meta
+      property='og:image:alt'
+      content='Tailwind Animations — ready-to-use CSS animation utilities for Tailwind CSS'
+    />
+
+    <!-- Twitter / X -->
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta name='twitter:site' content='@midudev' />
+    <meta name='twitter:creator' content='@midudev' />
+    <meta name='twitter:title' content={title} />
+    <meta name='twitter:description' content={description} />
+    <meta name='twitter:image' content={ogImageURL} />
+    <meta
+      name='twitter:image:alt'
+      content='Tailwind Animations — ready-to-use CSS animation utilities for Tailwind CSS'
+    />
+
+    <!-- Theme & icons -->
+    <meta name='theme-color' content='#0099ff' media='(prefers-color-scheme: light)' />
+    <meta name='theme-color' content='#050505' media='(prefers-color-scheme: dark)' />
+    <meta name='msapplication-TileColor' content='#0099ff' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <link rel='mask-icon' href='/favicon.svg' color='#0099ff' />
+    <link rel='apple-touch-icon' href='/favicon.svg' />
+    <link rel='manifest' href='/site.webmanifest' />
+    <link rel='sitemap' type='application/xml' title='Sitemap' href='/sitemap-index.xml' />
+    <link rel='alternate' type='text/plain' title='LLM information' href='/llms.txt' />
+
+    <!-- Performance hints -->
+    <link rel='dns-prefetch' href='https://github.com' />
+    <link rel='dns-prefetch' href='https://www.npmjs.com' />
+
+    <script
+      is:inline
+      type='application/ld+json'
+      set:html={JSON.stringify(structuredData)}
+    />
 
     <script is:inline>
       const getThemePreference = () => {

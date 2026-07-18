@@ -1,4 +1,30 @@
+# https://tailwind-animations.com
 User-agent: *
 Allow: /
 
+# AI / research crawlers (explicit allow for discoverability)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Host & sitemaps
+Host: https://tailwind-animations.com
 Sitemap: https://tailwind-animations.com/sitemap-index.xml
+Sitemap: https://tailwind-animations.com/sitemap-0.xml

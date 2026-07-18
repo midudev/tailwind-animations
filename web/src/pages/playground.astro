@@ -1,0 +1,777 @@
+---
+import Layout from '@layouts/Layout.astro'
+import Header from '@components/layout/Header.astro'
+import Footer from '@components/layout/Footer.astro'
+import CopyIcon from '@components/icons/copy.astro'
+import { theme } from '../data/theme.js'
+
+const POPULAR = [
+  'fade-in',
+  'fade-in-up',
+  'blurred-fade-in',
+  'zoom-in',
+  'slide-in-bottom',
+  'slide-in-left',
+  'bouncing',
+  'pulsing',
+  'shake',
+  'tada',
+  'jelly',
+  'wobble',
+  'flip-horizontal',
+  'swing',
+  'rotate-360',
+  'heartbeat'
+]
+
+const allAnimations = Object.keys(theme.animation).sort((a, b) => {
+  const ia = POPULAR.indexOf(a)
+  const ib = POPULAR.indexOf(b)
+  if (ia === -1 && ib === -1) return a.localeCompare(b)
+  if (ia === -1) return 1
+  if (ib === -1) return -1
+  return ia - ib
+})
+
+const durations = Object.keys(theme.animationDuration)
+const delays = Object.keys(theme.animationDelay)
+const steps = Object.keys(theme.animationSteps)
+const iterations = Object.keys(theme.animationIterationCount)
+const fills = Object.keys(theme.animationFillMode)
+
+const params = Astro.url.searchParams
+const pick = (key: string, allowed: string[], fallback: string) => {
+  const value = params.get(key)
+  return value && allowed.includes(value) ? value : fallback
+}
+
+const initialState = {
+  a: pick('a', allAnimations, 'fade-in'),
+  d: pick('d', durations, '1000'),
+  delay: pick('delay', delays, '0'),
+  s: pick('s', steps, 'none'),
+  i: pick('i', iterations, 'once'),
+  f: pick('f', fills, 'both'),
+  p: pick('p', ['box', 'button', 'card', 'text'], 'box')
+}
+
+const playgroundData = {
+  animations: allAnimations,
+  durations,
+  delays,
+  steps,
+  iterations,
+  fills,
+  initial: initialState
+}
+---
+
+<Layout
+  title='Playground | Tailwind CSS Animations'
+  description='Compose Tailwind animation utilities live: pick an animation, duration, delay, steps, iteration and fill mode. Copy the class list or share the URL.'
+>
+  <Header />
+
+  <main
+    id='main-content'
+    class='mx-auto w-full max-w-6xl px-4 pt-20 pb-16 sm:px-6 sm:pt-24 lg:px-8'
+    tabindex='-1'
+  >
+    <div class='mb-8 max-w-2xl'>
+      <p
+        class='mb-2 text-xs font-semibold tracking-[0.18em] text-blue-500 uppercase'
+      >
+        Playground
+      </p>
+      <h1
+        class='text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+      >
+        Compose animations live
+      </h1>
+      <p class='mt-3 text-base leading-relaxed text-slate-600 dark:text-slate-400'>
+        Pick an animation, tune timing, preview on a UI preset, then copy the
+        classes or share the URL.
+      </p>
+    </div>
+
+    <div
+      class='grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,22rem)] lg:items-start xl:grid-cols-[minmax(0,1fr)_minmax(20rem,24rem)]'
+    >
+      <!-- Preview stage -->
+      <section
+        class='flex min-h-[28rem] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-slate-950/60'
+        aria-label='Animation preview'
+      >
+        <div
+          class='flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 px-4 py-3 dark:border-white/10'
+        >
+          <div
+            class='flex flex-wrap gap-1'
+            role='tablist'
+            aria-label='Preview preset'
+            id='preset-tabs'
+          >
+            {
+              [
+                { id: 'box', label: 'Box' },
+                { id: 'button', label: 'Button' },
+                { id: 'card', label: 'Card' },
+                { id: 'text', label: 'Text' }
+              ].map((preset) => (
+                <button
+                  type='button'
+                  role='tab'
+                  data-preset={preset.id}
+                  aria-selected={preset.id === initialState.p ? 'true' : 'false'}
+                  class:list={[
+                    'preset-tab min-h-8 rounded-full px-3 py-1 text-xs font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none',
+                    preset.id === initialState.p
+                      ? 'bg-slate-100 text-slate-900 dark:bg-white/10 dark:text-white'
+                      : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
+                  ]}
+                >
+                  {preset.label}
+                </button>
+              ))
+            }
+          </div>
+
+          <div class='flex items-center gap-2'>
+            <button
+              type='button'
+              id='replay-btn'
+              class='inline-flex min-h-9 items-center gap-1.5 rounded-full border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 transition-colors hover:border-blue-500 hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-white/10 dark:text-slate-300 dark:hover:border-blue-400 dark:hover:text-blue-300'
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='14'
+                height='14'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                stroke-width='2'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                aria-hidden='true'
+              >
+                <path d='M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8'
+                ></path>
+                <path d='M3 3v5h5'></path>
+              </svg>
+              Replay
+            </button>
+          </div>
+        </div>
+
+        <div
+          id='preview-stage'
+          class='relative flex flex-1 items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08),transparent_55%)] p-8 sm:p-12 dark:bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.12),transparent_55%)]'
+        >
+          <div
+            class='pointer-events-none absolute inset-0 opacity-30'
+            style='background-image: linear-gradient(rgba(148,163,184,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.12) 1px, transparent 1px); background-size: 32px 32px;'
+            aria-hidden='true'
+          >
+          </div>
+
+          <!-- Presets -->
+          <div
+            id='preset-box'
+            class:list={[
+              'preset-target relative z-10',
+              initialState.p !== 'box' && 'hidden'
+            ]}
+            data-preset-panel='box'
+          >
+            <div
+              id='target-box'
+              class='size-24 rounded-2xl bg-linear-to-br from-blue-500 to-indigo-500 shadow-2xl shadow-blue-500/30 sm:size-28'
+            >
+            </div>
+          </div>
+
+          <div
+            id='preset-button'
+            class:list={[
+              'preset-target relative z-10',
+              initialState.p !== 'button' && 'hidden'
+            ]}
+            data-preset-panel='button'
+          >
+            <button
+              id='target-button'
+              type='button'
+              class='rounded-full bg-blue-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-blue-500/30'
+            >
+              Get started
+            </button>
+          </div>
+
+          <div
+            id='preset-card'
+            class:list={[
+              'preset-target relative z-10 w-full max-w-xs',
+              initialState.p !== 'card' && 'hidden'
+            ]}
+            data-preset-panel='card'
+          >
+            <div
+              id='target-card'
+              class='rounded-2xl border border-slate-200 bg-white p-5 shadow-xl dark:border-white/10 dark:bg-slate-900'
+            >
+              <div
+                class='mb-3 size-10 rounded-xl bg-linear-to-br from-violet-500 to-pink-500'
+              >
+              </div>
+              <p class='text-sm font-bold text-slate-900 dark:text-white'>
+                Motion card
+              </p>
+              <p class='mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400'>
+                Preview how the animation feels on a real UI surface.
+              </p>
+            </div>
+          </div>
+
+          <div
+            id='preset-text'
+            class:list={[
+              'preset-target relative z-10 max-w-sm text-center',
+              initialState.p !== 'text' && 'hidden'
+            ]}
+            data-preset-panel='text'
+          >
+            <p
+              id='target-text'
+              class='text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+            >
+              Hello, motion
+            </p>
+          </div>
+        </div>
+
+        <!-- Snippet bar -->
+        <div
+          class='border-t border-slate-200 bg-slate-50 px-4 py-3 dark:border-white/10 dark:bg-black/30'
+        >
+          <div class='flex items-start justify-between gap-3'>
+            <div class='min-w-0 flex-1'>
+              <p
+                class='mb-1 text-[10px] font-semibold tracking-wider text-slate-400 uppercase'
+              >
+                Class list
+              </p>
+              <code
+                id='class-snippet'
+                class='block overflow-x-auto font-mono text-[13px] leading-relaxed break-all text-slate-800 dark:text-slate-200'
+              ></code>
+            </div>
+            <div class='flex shrink-0 flex-col gap-2 sm:flex-row'>
+              <button
+                type='button'
+                id='copy-classes'
+                class='inline-flex min-h-9 items-center justify-center gap-1.5 rounded-full bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:bg-white dark:text-slate-900 dark:hover:bg-blue-300'
+              >
+                <CopyIcon class='size-3.5' />
+                <span data-label>Copy</span>
+              </button>
+              <button
+                type='button'
+                id='copy-url'
+                class='inline-flex min-h-9 items-center justify-center gap-1.5 rounded-full border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 transition-colors hover:border-blue-500 hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-white/10 dark:text-slate-300 dark:hover:border-blue-400 dark:hover:text-blue-300'
+              >
+                <span data-label>Share URL</span>
+              </button>
+            </div>
+          </div>
+          <p id='playground-status' class='sr-only' aria-live='polite'></p>
+        </div>
+      </section>
+
+      <!-- Controls -->
+      <aside
+        class='flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5 dark:border-white/10 dark:bg-slate-950/60'
+        aria-label='Playground controls'
+      >
+        <div>
+          <label
+            for='animation-search'
+            class='mb-1.5 block text-[11px] font-semibold tracking-wider text-slate-400 uppercase'
+          >
+            Animation
+          </label>
+          <input
+            id='animation-search'
+            type='search'
+            placeholder='Search animations…'
+            autocomplete='off'
+            class='mb-2 h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 dark:border-white/10 dark:bg-black/30 dark:text-slate-100'
+          />
+          <div
+            id='animation-list'
+            class='max-h-48 overflow-y-auto rounded-xl border border-slate-200 dark:border-white/10'
+            role='listbox'
+            aria-label='Animation list'
+          >
+            {
+              allAnimations.map((name) => (
+                <button
+                  type='button'
+                  role='option'
+                  data-animation={name}
+                  aria-selected={name === initialState.a ? 'true' : 'false'}
+                  class:list={[
+                    'animation-option flex w-full items-center justify-between px-3 py-2 text-left text-sm transition-colors focus-visible:bg-blue-50 focus-visible:outline-none dark:focus-visible:bg-blue-500/10',
+                    name === initialState.a
+                      ? 'bg-blue-50 font-semibold text-blue-700 dark:bg-blue-500/15 dark:text-blue-300'
+                      : 'text-slate-600 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-white/5'
+                  ]}
+                >
+                  <span class='font-mono text-[13px]'>{name}</span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class='grid grid-cols-2 gap-3'>
+          <label class='block'>
+            <span
+              class='mb-1.5 block text-[11px] font-semibold tracking-wider text-slate-400 uppercase'
+            >
+              Duration
+            </span>
+            <select
+              id='ctrl-duration'
+              class='h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-2 text-sm font-medium text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 dark:border-white/10 dark:bg-black/30 dark:text-slate-100'
+            >
+              {
+                durations.map((key) => (
+                  <option value={key} selected={key === initialState.d}>
+                    {key}
+                  </option>
+                ))
+              }
+            </select>
+          </label>
+
+          <label class='block'>
+            <span
+              class='mb-1.5 block text-[11px] font-semibold tracking-wider text-slate-400 uppercase'
+            >
+              Delay
+            </span>
+            <select
+              id='ctrl-delay'
+              class='h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-2 text-sm font-medium text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 dark:border-white/10 dark:bg-black/30 dark:text-slate-100'
+            >
+              {
+                delays.map((key) => (
+                  <option value={key} selected={key === initialState.delay}>
+                    {key}
+                  </option>
+                ))
+              }
+            </select>
+          </label>
+
+          <label class='block'>
+            <span
+              class='mb-1.5 block text-[11px] font-semibold tracking-wider text-slate-400 uppercase'
+            >
+              Steps
+            </span>
+            <select
+              id='ctrl-steps'
+              class='h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-2 text-sm font-medium text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 dark:border-white/10 dark:bg-black/30 dark:text-slate-100'
+            >
+              {
+                steps.map((key) => (
+                  <option value={key} selected={key === initialState.s}>
+                    {key}
+                  </option>
+                ))
+              }
+            </select>
+          </label>
+
+          <label class='block'>
+            <span
+              class='mb-1.5 block text-[11px] font-semibold tracking-wider text-slate-400 uppercase'
+            >
+              Iteration
+            </span>
+            <select
+              id='ctrl-iteration'
+              class='h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-2 text-sm font-medium text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 dark:border-white/10 dark:bg-black/30 dark:text-slate-100'
+            >
+              {
+                iterations.map((key) => (
+                  <option value={key} selected={key === initialState.i}>
+                    {key}
+                  </option>
+                ))
+              }
+            </select>
+          </label>
+
+          <label class='col-span-2 block'>
+            <span
+              class='mb-1.5 block text-[11px] font-semibold tracking-wider text-slate-400 uppercase'
+            >
+              Fill mode
+            </span>
+            <select
+              id='ctrl-fill'
+              class='h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-2 text-sm font-medium text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 dark:border-white/10 dark:bg-black/30 dark:text-slate-100'
+            >
+              {
+                fills.map((key) => (
+                  <option value={key} selected={key === initialState.f}>
+                    {key}
+                  </option>
+                ))
+              }
+            </select>
+          </label>
+        </div>
+
+        <div
+          class='rounded-xl border border-dashed border-slate-200 px-3 py-3 text-xs leading-relaxed text-slate-500 dark:border-white/10 dark:text-slate-400'
+        >
+          Tip: change any control to update the preview and the shareable URL.
+          Use <kbd class='rounded bg-slate-100 px-1 dark:bg-white/10'>Replay</kbd
+          > to re-trigger entrance animations.
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <Footer />
+
+  <script
+    is:inline
+    type='application/json'
+    id='playground-data'
+    set:html={JSON.stringify(playgroundData)}
+  />
+
+  <script>
+    type PlaygroundState = {
+      a: string
+      d: string
+      delay: string
+      s: string
+      i: string
+      f: string
+      p: string
+    }
+
+    type PlaygroundData = {
+      animations: string[]
+      durations: string[]
+      delays: string[]
+      steps: string[]
+      iterations: string[]
+      fills: string[]
+      initial: PlaygroundState
+    }
+
+    const dataEl = document.getElementById('playground-data')
+    const data = JSON.parse(dataEl?.textContent || '{}') as PlaygroundData
+
+    const state: PlaygroundState = { ...data.initial }
+
+    const $snippet = document.getElementById('class-snippet')!
+    const $status = document.getElementById('playground-status')!
+    const $search = document.getElementById(
+      'animation-search'
+    ) as HTMLInputElement
+    const $list = document.getElementById('animation-list')!
+    const $duration = document.getElementById(
+      'ctrl-duration'
+    ) as HTMLSelectElement
+    const $delay = document.getElementById('ctrl-delay') as HTMLSelectElement
+    const $steps = document.getElementById('ctrl-steps') as HTMLSelectElement
+    const $iteration = document.getElementById(
+      'ctrl-iteration'
+    ) as HTMLSelectElement
+    const $fill = document.getElementById('ctrl-fill') as HTMLSelectElement
+    const $replay = document.getElementById('replay-btn')!
+    const $copyClasses = document.getElementById('copy-classes')!
+    const $copyUrl = document.getElementById('copy-url')!
+    const $presetTabs = document.querySelectorAll<HTMLButtonElement>(
+      '.preset-tab'
+    )
+    const $presetPanels =
+      document.querySelectorAll<HTMLElement>('.preset-target')
+
+    const targetMap: Record<string, HTMLElement | null> = {
+      box: document.getElementById('target-box'),
+      button: document.getElementById('target-button'),
+      card: document.getElementById('target-card'),
+      text: document.getElementById('target-text')
+    }
+
+    const announce = (message: string) => {
+      $status.textContent = ''
+      requestAnimationFrame(() => {
+        $status.textContent = message
+      })
+    }
+
+    const isDefaultModifier = (key: string, value: string) => {
+      if (key === 'd') return value === 'none' || value === 'normal'
+      if (key === 'delay') return value === 'none' || value === '0'
+      if (key === 's') return value === 'none'
+      if (key === 'i') return value === 'once' || value === 'none'
+      if (key === 'f') return value === 'none'
+      return false
+    }
+
+    /** Build utility class list for export (skip neutral defaults). */
+    const buildClasses = (includeDefaults = false) => {
+      const classes = [`animate-${state.a}`]
+
+      if (includeDefaults || !isDefaultModifier('d', state.d)) {
+        if (state.d !== 'none') classes.push(`animate-duration-${state.d}`)
+      }
+      if (includeDefaults || !isDefaultModifier('delay', state.delay)) {
+        if (state.delay !== 'none') {
+          classes.push(`animate-delay-${state.delay}`)
+        }
+      }
+      if (includeDefaults || !isDefaultModifier('s', state.s)) {
+        if (state.s !== 'none') classes.push(`animate-steps-${state.s}`)
+      }
+      if (includeDefaults || !isDefaultModifier('i', state.i)) {
+        if (state.i !== 'none') {
+          classes.push(`animate-iteration-count-${state.i}`)
+        }
+      }
+      if (includeDefaults || !isDefaultModifier('f', state.f)) {
+        if (state.f !== 'none') classes.push(`animate-fill-mode-${state.f}`)
+      }
+
+      return classes
+    }
+
+    /** Full class list applied to the live target (includes all chosen values). */
+    const buildAppliedClasses = () => {
+      const classes = [`animate-${state.a}`]
+      if (state.d !== 'none') classes.push(`animate-duration-${state.d}`)
+      if (state.delay !== 'none') classes.push(`animate-delay-${state.delay}`)
+      if (state.s !== 'none') classes.push(`animate-steps-${state.s}`)
+      if (state.i !== 'none') {
+        classes.push(`animate-iteration-count-${state.i}`)
+      }
+      if (state.f !== 'none') classes.push(`animate-fill-mode-${state.f}`)
+      return classes
+    }
+
+    const clearMotionClasses = (el: HTMLElement) => {
+      const toRemove: string[] = []
+      el.classList.forEach((cls) => {
+        if (
+          cls.startsWith('animate-duration-') ||
+          cls.startsWith('animate-delay-') ||
+          cls.startsWith('animate-steps-') ||
+          cls.startsWith('animate-iteration-count-') ||
+          cls.startsWith('animate-fill-mode-') ||
+          data.animations.some((name) => cls === `animate-${name}`)
+        ) {
+          toRemove.push(cls)
+        }
+      })
+      toRemove.forEach((cls) => el.classList.remove(cls))
+    }
+
+    const getActiveTarget = () => targetMap[state.p] ?? null
+
+    const applyPreview = (replay = false) => {
+      const target = getActiveTarget()
+      if (!target) return
+
+      clearMotionClasses(target)
+
+      if (replay) {
+        // Force reflow so entrance animations restart
+        void target.offsetWidth
+      }
+
+      buildAppliedClasses().forEach((cls) => target.classList.add(cls))
+    }
+
+    const updateSnippet = () => {
+      const classes = buildClasses(false)
+      $snippet.textContent = classes.join(' ')
+    }
+
+    const updateUrl = () => {
+      const url = new URL(window.location.href)
+      const defaults: PlaygroundState = {
+        a: 'fade-in',
+        d: '1000',
+        delay: '0',
+        s: 'none',
+        i: 'once',
+        f: 'both',
+        p: 'box'
+      }
+
+      ;(Object.keys(state) as (keyof PlaygroundState)[]).forEach((key) => {
+        if (state[key] === defaults[key]) {
+          url.searchParams.delete(key)
+        } else {
+          url.searchParams.set(key, state[key])
+        }
+      })
+
+      // Always keep animation in URL when not default for clarity when sharing
+      if (state.a !== defaults.a) url.searchParams.set('a', state.a)
+
+      history.replaceState(null, '', url)
+    }
+
+    const setPreset = (preset: string) => {
+      state.p = preset
+      $presetPanels.forEach((panel) => {
+        const id = panel.getAttribute('data-preset-panel')
+        panel.classList.toggle('hidden', id !== preset)
+      })
+      $presetTabs.forEach((tab) => {
+        const selected = tab.getAttribute('data-preset') === preset
+        tab.setAttribute('aria-selected', String(selected))
+        tab.classList.toggle('bg-slate-100', selected)
+        tab.classList.toggle('text-slate-900', selected)
+        tab.classList.toggle('dark:bg-white/10', selected)
+        tab.classList.toggle('dark:text-white', selected)
+        tab.classList.toggle('text-slate-500', !selected)
+        tab.classList.toggle('dark:text-slate-400', !selected)
+      })
+      applyPreview(true)
+      updateUrl()
+    }
+
+    const setAnimation = (name: string) => {
+      state.a = name
+      $list.querySelectorAll<HTMLButtonElement>('.animation-option').forEach(
+        (btn) => {
+          const selected = btn.getAttribute('data-animation') === name
+          btn.setAttribute('aria-selected', String(selected))
+          btn.classList.toggle('bg-blue-50', selected)
+          btn.classList.toggle('font-semibold', selected)
+          btn.classList.toggle('text-blue-700', selected)
+          btn.classList.toggle('dark:bg-blue-500/15', selected)
+          btn.classList.toggle('dark:text-blue-300', selected)
+          btn.classList.toggle('text-slate-600', !selected)
+          btn.classList.toggle('dark:text-slate-300', !selected)
+        }
+      )
+      applyPreview(true)
+      updateSnippet()
+      updateUrl()
+    }
+
+    const filterAnimations = (query: string) => {
+      const q = query.trim().toLowerCase()
+      $list.querySelectorAll<HTMLButtonElement>('.animation-option').forEach(
+        (btn) => {
+          const name = btn.getAttribute('data-animation') || ''
+          btn.classList.toggle('hidden', q !== '' && !name.includes(q))
+        }
+      )
+    }
+
+    // Wire controls
+    $list.addEventListener('click', (event) => {
+      const btn = (event.target as HTMLElement).closest<HTMLButtonElement>(
+        '.animation-option'
+      )
+      if (!btn) return
+      const name = btn.getAttribute('data-animation')
+      if (name) setAnimation(name)
+    })
+
+    $search.addEventListener('input', () => filterAnimations($search.value))
+
+    $duration.addEventListener('change', () => {
+      state.d = $duration.value
+      applyPreview(true)
+      updateSnippet()
+      updateUrl()
+    })
+    $delay.addEventListener('change', () => {
+      state.delay = $delay.value
+      applyPreview(true)
+      updateSnippet()
+      updateUrl()
+    })
+    $steps.addEventListener('change', () => {
+      state.s = $steps.value
+      applyPreview(true)
+      updateSnippet()
+      updateUrl()
+    })
+    $iteration.addEventListener('change', () => {
+      state.i = $iteration.value
+      applyPreview(true)
+      updateSnippet()
+      updateUrl()
+    })
+    $fill.addEventListener('change', () => {
+      state.f = $fill.value
+      applyPreview(true)
+      updateSnippet()
+      updateUrl()
+    })
+
+    $presetTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const preset = tab.getAttribute('data-preset')
+        if (preset) setPreset(preset)
+      })
+    })
+
+    $replay.addEventListener('click', () => {
+      applyPreview(true)
+      announce('Animation replayed')
+    })
+
+    const flashLabel = (btn: HTMLElement, message: string) => {
+      const label = btn.querySelector('[data-label]')
+      if (!(label instanceof HTMLElement)) return
+      const prev = label.textContent || ''
+      label.textContent = message
+      window.setTimeout(() => {
+        label.textContent = prev
+      }, 1200)
+    }
+
+    $copyClasses.addEventListener('click', async () => {
+      const text = buildClasses(false).join(' ')
+      try {
+        await navigator.clipboard.writeText(text)
+        announce('Classes copied to clipboard')
+        flashLabel($copyClasses, 'Copied!')
+      } catch {
+        announce('Could not copy classes')
+      }
+    })
+
+    $copyUrl.addEventListener('click', async () => {
+      updateUrl()
+      try {
+        await navigator.clipboard.writeText(window.location.href)
+        announce('Share URL copied to clipboard')
+        flashLabel($copyUrl, 'URL copied!')
+      } catch {
+        announce('Could not copy URL')
+      }
+    })
+
+    // Init
+    applyPreview(true)
+    updateSnippet()
+    updateUrl()
+  </script>
+</Layout>

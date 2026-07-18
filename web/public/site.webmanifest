@@ -1,0 +1,22 @@
+{
+  "name": "Tailwind Animations",
+  "short_name": "TW Animations",
+  "description": "Ready-to-use CSS animation utilities for Tailwind CSS. Fade, slide, zoom, scroll, and dialog effects with zero configuration.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050505",
+  "theme_color": "#0099ff",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["developer", "utilities", "productivity"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

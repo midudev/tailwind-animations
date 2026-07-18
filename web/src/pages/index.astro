@@ -85,6 +85,44 @@ const packageManagers = [
   }
 ]
 
+const slideDistanceExamples = [
+  {
+    id: 'slide-distance-default',
+    label: 'Default',
+    badge: '20px',
+    description: 'Built-in travel when you only use a slide utility.',
+    animation: 'animate-slide-in-right',
+    distance: null as string | null,
+    code: 'animate-slide-in-right'
+  },
+  {
+    id: 'slide-distance-full',
+    label: 'Full width',
+    badge: '100%',
+    description: 'Slide the full element width—great for off-canvas reveals.',
+    animation: 'animate-slide-in-right',
+    distance: 'animate-slide-distance-[100%]',
+    code: 'animate-slide-in-right animate-slide-distance-[100%]'
+  },
+  {
+    id: 'slide-distance-large',
+    label: 'Large offset',
+    badge: '6rem',
+    description: 'A longer entrance without writing custom keyframes.',
+    animation: 'animate-slide-in-left',
+    distance: 'animate-slide-distance-[6rem]',
+    code: 'animate-slide-in-left animate-slide-distance-[6rem]'
+  }
+]
+
+const slideDistanceSnippet = `<div class="animate-slide-in-right animate-slide-distance-[100%]">
+  Full-width slide entrance
+</div>
+
+<div class="animate-slide-in-top animate-slide-distance-[10rem]">
+  Tall offset from above
+</div>`
+
 const dialogHtmlSnippet = `<button
   type="button"
   commandfor="motion-dialog"
@@ -196,73 +234,111 @@ const dialogModifierExamples = [
 ---
 
 <Layout
-  title='Tailwind CSS Animations Plugin: Community-Powered Animation Magic'
+  title='Tailwind CSS Animations Plugin | 79+ Utility Classes'
+  description='Add 79+ ready-to-use CSS animations to Tailwind CSS with utility classes. Fade, slide, zoom, scroll-driven motion, and dialog effects. Zero config, open source by midudev.'
 >
-  <wc-toast class='pointer-events-none fixed inset-0 z-50'></wc-toast>
-  <!-- se agrega el componente header -->
+  <wc-toast class='pointer-events-none fixed inset-0 z-50' aria-hidden='true'
+  ></wc-toast>
+  <div
+    id='a11y-announce'
+    class='sr-only'
+    aria-live='polite'
+    aria-atomic='true'
+  >
+  </div>
   <Header />
 
-  <main id='main-content' class='mx-auto w-full max-w-6xl pt-16'>
+  <main
+    id='main-content'
+    class='mx-auto w-full max-w-6xl pt-20 sm:pt-24'
+    tabindex='-1'
+  >
     <header
       id='preview'
-      class='relative z-10 mx-auto mb-20 max-w-6xl px-4 lg:px-8'
+      class='relative z-10 mx-auto mb-24 max-w-6xl px-4 lg:px-8'
     >
-      <!-- Version badge -->
-      <div class='animate-fade-in-up mb-8'>
-        <span
-          class='inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset dark:bg-blue-400/10 dark:text-blue-400 dark:ring-blue-400/30'
-        >
-          v{version}
-        </span>
-      </div>
-
-      <!-- Main Hero: Two columns layout -->
-      <div class='grid items-end gap-12 lg:grid-cols-2 lg:gap-16'>
-        <!-- Left Column: Content -->
+      <!-- Main Hero: Two columns — bottoms of config + demo align on lg -->
+      <div class='grid items-start gap-14 lg:grid-cols-2 lg:items-end lg:gap-12 xl:gap-16'>
+        <!-- Left: copy + install -->
         <div class='text-left'>
           <div
-            class='animate-fade-in-up animate-delay-100 mb-6 flex items-center gap-2 sm:gap-5'
+            class='animate-fade-in-up animate-delay-100 mb-5 flex items-center gap-3 sm:mb-6 sm:gap-4'
           >
             <Logo
-              class='aspect-square size-10 shrink-0 sm:size-14'
-              iconClass='size-7 animate-float-subtle'
+              class='aspect-square size-11 shrink-0 sm:size-12'
+              iconClass='size-6 animate-float-subtle sm:size-7'
             />
-            <h1
-              class='text-3xl font-bold tracking-tight text-slate-900 sm:text-5xl dark:text-white'
-            >
-              Tailwind <span class='text-blue-500'>Animations</span>
-            </h1>
+            <div class='min-w-0'>
+              <h1
+                class='text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1] dark:text-white'
+              >
+                Tailwind CSS
+                <span class='text-blue-500'>Animations</span>
+              </h1>
+              <p
+                class='mt-1 font-mono text-xs tracking-wide text-slate-400 dark:text-slate-500'
+              >
+                v{version}
+              </p>
+            </div>
           </div>
+
           <p
-            class='animate-fade-in-up animate-delay-200 mb-10 max-w-md text-base leading-7 text-slate-600 sm:text-lg dark:text-slate-400'
+            class='animate-fade-in-up animate-delay-200 mb-6 max-w-md text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-400'
           >
-            The easiest way to add stunning animations to your Tailwind CSS
-            projects. Zero configuration, pure performance.
+            {Object.keys(animation).length}+ ready-to-use animation utilities
+            for Tailwind CSS. Zero config, pure CSS performance.
           </p>
 
-          <!-- Install Command Box -->
-          <div class='animate-fade-in-up animate-delay-300 flex flex-col gap-5'>
+          <div class='animate-fade-in-up animate-delay-200 mb-8 sm:mb-10'>
+            <a
+              href='/playground'
+              class='group inline-flex min-h-11 items-center gap-2 rounded-full bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 transition-all hover:bg-blue-600 hover:shadow-blue-500/40 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:focus-visible:ring-offset-slate-950'
+            >
+              Open Playground
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='16'
+                height='16'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                stroke-width='2'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                class='transition-transform group-hover:translate-x-0.5'
+                aria-hidden='true'
+              >
+                <path d='M5 12h14'></path>
+                <path d='m12 5 7 7-7 7'></path>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Install + config -->
+          <div class='animate-fade-in-up animate-delay-300 flex flex-col gap-3'>
             <div
-              class='overflow-hidden rounded-xl border border-slate-200 bg-white/50 p-1 shadow-xl shadow-slate-200/50 backdrop-blur-sm dark:border-white/10 dark:bg-black/40 dark:shadow-none'
+              class='overflow-hidden rounded-2xl border border-slate-200 bg-white/60 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-black/40'
             >
               <div
-                class='flex items-center justify-between border-b border-slate-200 px-1 sm:px-4 dark:border-white/10'
+                class='flex items-center justify-between gap-2 border-b border-slate-200/80 px-2 sm:px-3 dark:border-white/10'
               >
                 <div
-                  class='scrollbar-hide flex items-center gap-1 overflow-x-auto py-2 max-sm:grid max-sm:grid-flow-col max-sm:grid-rows-2 max-sm:overflow-x-auto'
+                  class='scrollbar-hide flex items-center gap-0.5 overflow-x-auto py-2'
                   role='group'
                   aria-label='Package manager'
                 >
                   {
                     packageManagers.map((pm, index) => (
                       <button
-                        class={`package-manager-btn flex items-center gap-2 rounded-full px-2 py-1 text-xs font-bold transition-all ${index === 0 ? 'bg-black/10 text-slate-900 dark:bg-white/5 dark:text-white' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'}`}
+                        type='button'
+                        class={`package-manager-btn flex min-h-8 items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none ${index === 0 ? 'bg-slate-100 text-slate-900 dark:bg-white/10 dark:text-white' : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'}`}
                         data-pm={pm.name}
                         data-command={pm.command}
                         aria-pressed={index === 0 ? 'true' : 'false'}
                       >
                         <span
-                          class='flex size-4 items-center justify-center'
+                          class='flex size-3.5 items-center justify-center'
                           aria-hidden='true'
                           set:html={pm.icon}
                         />
@@ -273,78 +349,76 @@ const dialogModifierExamples = [
                 </div>
                 <button
                   id='copyNpmInstall'
-                  class='group flex shrink-0 items-center gap-2 text-xs font-semibold text-slate-500 transition-colors hover:text-blue-500'
+                  type='button'
+                  class='group inline-flex size-9 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:hover:bg-white/5'
                   aria-label='Copy install command to clipboard'
                 >
                   <CopyIcon class='size-4 group-active:scale-90' />
                 </button>
               </div>
-              <div class='flex items-center gap-4 p-4'>
-                <div class='scrollbar-hide flex-1 overflow-x-auto text-left'>
-                  <code
-                    class='font-mono text-sm text-slate-800 dark:text-slate-200'
+              <div class='px-4 py-3.5'>
+                <code
+                  class='font-mono text-sm text-slate-800 dark:text-slate-200'
+                >
+                  <span class='text-blue-500 select-none'>$ </span><span
+                    id='install-command'>{packageManagers[0].command}</span
                   >
-                    <span class='text-blue-500 select-none'>$ </span><span
-                      id='install-command'>{packageManagers[0].command}</span
-                    >
-                  </code>
-                </div>
+                </code>
               </div>
             </div>
 
             <div
-              class='overflow-hidden rounded-xl border border-slate-200 bg-white/50 p-1 backdrop-blur-sm dark:border-white/10 dark:bg-black/40'
+              class='overflow-hidden rounded-2xl border border-slate-200 bg-white/60 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-black/40'
             >
               <div
-                class='flex items-center justify-between border-b border-slate-200 px-4 py-2 dark:border-white/10'
+                class='flex items-center justify-between gap-2 border-b border-slate-200/80 px-3 py-2 dark:border-white/10'
               >
                 <div
-                  class='flex gap-1'
+                  class='flex gap-0.5'
                   role='tablist'
                   aria-label='Tailwind version'
                 >
                   <button
-                    class='version-tab rounded-full bg-black/10 px-3 py-1 text-[10px] font-bold tracking-widest text-slate-900 uppercase transition-all dark:bg-white/5 dark:text-white'
+                    type='button'
+                    class='version-tab min-h-8 rounded-full bg-slate-100 px-3 py-1 text-[11px] font-medium tracking-wide text-slate-900 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:bg-white/10 dark:text-white'
                     data-version='v4'
                     role='tab'
                     aria-selected='true'
                     aria-controls='code-v4'
                     id='tab-v4'
+                    tabindex='0'
                   >
                     Tailwind v4
                   </button>
                   <button
-                    class='version-tab rounded-full px-3 py-1 text-[10px] font-bold tracking-widest text-slate-500 uppercase transition-all hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
+                    type='button'
+                    class='version-tab min-h-8 rounded-full px-3 py-1 text-[11px] font-medium tracking-wide text-slate-500 transition-colors hover:text-slate-800 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:text-slate-400 dark:hover:text-slate-200'
                     data-version='v3'
                     role='tab'
                     aria-selected='false'
                     aria-controls='code-v3'
                     id='tab-v3'
+                    tabindex='-1'
                   >
                     Tailwind v3
                   </button>
                 </div>
-                <div class='flex items-center gap-4'>
-                  <div
-                    class='text-[10px] font-bold tracking-widest text-slate-400 uppercase'
-                  >
-                    How to use
-                  </div>
-                  <button
-                    id='copyCode'
-                    class='group flex shrink-0 items-center gap-2 text-xs font-semibold text-slate-500 transition-colors hover:text-blue-500'
-                    aria-label='Copy code to clipboard'
-                  >
-                    <CopyIcon class='size-4 group-active:scale-90' />
-                  </button>
-                </div>
+                <button
+                  id='copyCode'
+                  type='button'
+                  class='group inline-flex size-9 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:hover:bg-white/5'
+                  aria-label='Copy configuration code to clipboard'
+                >
+                  <CopyIcon class='size-4 group-active:scale-90' />
+                </button>
               </div>
-              <div class='overflow-x-auto p-4 text-left dark:border-none'>
+              <div class='overflow-x-auto px-4 py-3.5 text-left'>
                 <div
                   id='code-v4'
                   class='version-code'
                   role='tabpanel'
                   aria-labelledby='tab-v4'
+                  tabindex='0'
                 >
                   <Code
                     class='text-sm'
@@ -360,6 +434,8 @@ const dialogModifierExamples = [
                   class='version-code hidden'
                   role='tabpanel'
                   aria-labelledby='tab-v3'
+                  tabindex='0'
+                  hidden
                 >
                   <Code
                     class='text-sm'
@@ -368,7 +444,7 @@ const dialogModifierExamples = [
                     lang='javascript'
                     code={`// install package '@midudev/tailwind-animations@0.2.0'
 // npm install @midudev/tailwind-animations@0.2.0
-                    
+
 // tailwind.config.mjs
 import animations from 'tailwind-animations'
 
@@ -384,44 +460,39 @@ export default {
           </div>
         </div>
 
-        <!-- Right Column: Interactive Demo -->
-        <div class='animate-fade-in-up animate-delay-500 relative'>
-          <!-- Demo Window -->
+        <!-- Right: live demo (bottom-aligned with how-to-use card) -->
+        <div class='animate-fade-in-up animate-delay-500 relative w-full lg:pl-2'>
           <div
-            class='relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-2xl shadow-blue-500/10 dark:border-slate-700/50 dark:bg-slate-900'
+            class='relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-xl shadow-blue-500/10 dark:border-slate-700/50 dark:bg-slate-900 dark:shadow-black/40'
           >
-            <!-- Window Header -->
             <div
-              class='flex items-center justify-between border-b border-slate-200 bg-slate-100 px-4 py-3 dark:border-slate-700/50 dark:bg-slate-800/50'
+              class='flex items-center justify-between border-b border-slate-200 bg-slate-100/80 px-4 py-2.5 dark:border-slate-700/50 dark:bg-slate-800/40'
             >
-              <div class='flex items-center gap-2'>
-                <div class='size-3 rounded-full bg-red-500'></div>
-                <div class='size-3 rounded-full bg-yellow-500'></div>
-                <div class='size-3 rounded-full bg-green-500'></div>
+              <div class='flex items-center gap-1.5' aria-hidden='true'>
+                <div class='size-2.5 rounded-full bg-red-500/90'></div>
+                <div class='size-2.5 rounded-full bg-yellow-500/90'></div>
+                <div class='size-2.5 rounded-full bg-green-500/90'></div>
               </div>
-              <span class='font-mono text-xs text-slate-500'
+              <span class='font-mono text-[11px] text-slate-400'
                 >demo_preview.html</span
               >
-              <div class='w-12'></div>
+              <div class='w-10' aria-hidden='true'></div>
             </div>
 
-            <!-- Preview Area -->
             <div
-              class='relative flex min-h-[280px] items-center justify-center overflow-hidden bg-linear-to-br from-slate-50 via-white to-slate-50 p-8 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900'
+              class='relative flex min-h-[260px] items-center justify-center overflow-hidden sm:min-h-[300px]'
+              aria-hidden='true'
             >
-              <!-- Grid Pattern Background -->
               <div
-                class='pointer-events-none absolute inset-0 opacity-30 dark:opacity-30'
-                style='background-image: linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px); background-size: 40px 40px;'
+                class='pointer-events-none absolute inset-0 opacity-25 dark:opacity-30'
+                style='background-image: linear-gradient(rgba(99, 102, 241, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.12) 1px, transparent 1px); background-size: 36px 36px;'
               >
               </div>
 
-              <!-- Animated Box -->
               <div
                 id='hero-demo-box'
                 class='relative size-28 rounded-2xl bg-linear-to-br from-violet-500 via-purple-500 to-pink-500 shadow-2xl shadow-purple-500/40'
               >
-                <!-- Glow effect -->
                 <div
                   class='absolute -inset-1 -z-10 rounded-2xl bg-linear-to-br from-violet-500 via-purple-500 to-pink-500 opacity-50 blur-xl'
                 >
@@ -429,11 +500,13 @@ export default {
               </div>
             </div>
 
-            <!-- Code Display Area -->
             <div
-              class='border-t border-slate-200 bg-white p-5 dark:border-slate-700/50 dark:bg-slate-900/80'
+              class='border-t border-slate-200 bg-white px-4 py-4 dark:border-slate-700/50 dark:bg-slate-900/90'
+              aria-live='polite'
+              aria-atomic='true'
             >
-              <div class='font-mono text-sm'>
+              <p class='sr-only'>Example animation utility class in use:</p>
+              <div class='font-mono text-[13px] sm:text-sm' aria-hidden='true'>
                 <span class='text-slate-500'>&lt;</span><span
                   class='text-pink-600 dark:text-pink-400'>div</span
                 >
@@ -444,68 +517,85 @@ export default {
                 >
               </div>
               <div
-                class='pl-4 font-mono text-sm text-slate-400 dark:text-slate-600'
+                class='pl-4 font-mono text-[13px] text-slate-400 sm:text-sm dark:text-slate-600'
+                aria-hidden='true'
               >
                 &lt;!-- Applied animation --&gt;
               </div>
-              <div class='font-mono text-sm'>
+              <div class='font-mono text-[13px] sm:text-sm' aria-hidden='true'>
                 <span class='text-slate-500'>&lt;/</span><span
                   class='text-pink-600 dark:text-pink-400'>div</span
                 ><span class='text-slate-500'>&gt;</span>
               </div>
+              <p class='sr-only'>
+                <span id='hero-demo-classes-sr'></span>
+              </p>
             </div>
           </div>
 
-          <!-- Decorative elements -->
           <div
-            class='pointer-events-none absolute top-0 right-0 size-40 -translate-x-20 -translate-y-20 rounded-full bg-blue-500/20 blur-3xl'
+            class='pointer-events-none absolute -top-10 -right-10 size-40 rounded-full bg-blue-500/15 blur-3xl'
+            aria-hidden='true'
           >
           </div>
-
           <div
-            class='pointer-events-none absolute -bottom-20 -left-20 size-40 rounded-full bg-purple-500/20 blur-3xl'
+            class='pointer-events-none absolute -bottom-12 -left-8 size-36 rounded-full bg-purple-500/15 blur-3xl'
+            aria-hidden='true'
           >
           </div>
         </div>
       </div>
     </header>
 
-    <section id='animation-collection' class='mt-32 mb-24'>
-      <div class='mb-16 flex flex-col items-center'>
+    <section
+      id='animation-collection'
+      class='mt-32 mb-24'
+      aria-labelledby='animation-collection-heading'
+    >
+      <div class='mb-10 flex flex-col items-center px-4 sm:mb-12'>
         <h2
-          class='animate-fade-in-up animate-delay-[600ms] mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+          id='animation-collection-heading'
+          class='animate-fade-in-up animate-delay-[600ms] mb-3 text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
         >
           Animation Collection
         </h2>
         <p
-          class='animate-fade-in-up animate-delay-700 max-w-2xl text-center text-lg text-balance text-slate-600 dark:text-slate-400'
+          class='animate-fade-in-up animate-delay-700 max-w-xl text-center text-base text-balance text-slate-600 sm:text-lg dark:text-slate-400'
         >
-          Explore our comprehensive library of ready-to-use animations.
-          Customize duration, delay, and timing to fit your needs with zero
-          configuration.
+          {Object.keys(animation).length}+ utilities. Hover to preview, click to
+          copy.
         </p>
       </div>
 
       <div class='relative'>
         <ReducedMotionBanner />
 
-        <section
-          class='top-4 z-50 mb-12 flex items-center justify-center px-4'
+        <!-- Minimal sticky toolbar -->
+        <div
+          class='sticky top-16 z-30 mb-10 px-4 sm:top-[4.5rem]'
           id='option-inputs'
         >
-          <div
-            class='animate-fade-in-up animate-delay-800 flex flex-wrap items-center justify-center gap-4 rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-black/60'
+          <fieldset
+            class='animate-fade-in-up animate-delay-800 mx-auto m-0 flex w-fit max-w-full flex-wrap items-center justify-center gap-x-0.5 gap-y-2 rounded-full border border-slate-200/80 bg-white/80 p-1.5 shadow-lg shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/75 dark:shadow-black/40'
+            aria-label='Animation preview options'
           >
-            <div class='flex flex-col gap-1'>
-              <label
-                for='duration'
-                class='text-[10px] font-bold tracking-wider text-slate-400 uppercase'
-                >Duration</label
+            <legend class='sr-only'>
+              Customize animation duration, delay, and steps for previews
+            </legend>
+
+            <label
+              class='flex items-center gap-1.5 rounded-full px-2 py-0.5 transition-colors hover:bg-slate-100/80 dark:hover:bg-white/5'
+            >
+              <span
+                class='text-[11px] font-medium tracking-wide text-slate-400 uppercase'
               >
+                <span class='sm:hidden'>Dur</span>
+                <span class='hidden sm:inline'>Duration</span>
+              </span>
               <select
                 name='duration'
                 id='duration'
-                class='min-w-32 rounded-lg border border-slate-200 bg-slate-50/50 px-2 py-1 text-sm font-medium transition-colors outline-none hover:border-blue-500 dark:border-white/5 dark:bg-white/5'
+                class='collection-select h-8 min-w-[4.25rem] cursor-pointer appearance-none rounded-md border-0 bg-transparent py-0.5 pr-5 pl-0.5 text-sm font-semibold text-slate-800 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:text-slate-100'
               >
                 {
                   Object.entries(animationDuration).map(([key, value]) => (
@@ -519,18 +609,24 @@ export default {
                   ))
                 }
               </select>
-            </div>
+            </label>
 
-            <div class='flex flex-col gap-1'>
-              <label
-                for='delay'
-                class='text-[10px] font-bold tracking-wider text-slate-400 uppercase'
-                >Delay</label
+            <span
+              class='hidden h-4 w-px bg-slate-200 sm:block dark:bg-white/10'
+              aria-hidden='true'></span>
+
+            <label
+              class='flex items-center gap-1.5 rounded-full px-2 py-0.5 transition-colors hover:bg-slate-100/80 dark:hover:bg-white/5'
+            >
+              <span
+                class='text-[11px] font-medium tracking-wide text-slate-400 uppercase'
               >
+                Delay
+              </span>
               <select
                 name='delay'
                 id='delay'
-                class='min-w-32 rounded-lg border border-slate-200 bg-slate-50/50 px-2 py-1 text-sm font-medium transition-colors outline-none hover:border-blue-500 dark:border-white/5 dark:bg-white/5'
+                class='collection-select h-8 min-w-[4.25rem] cursor-pointer appearance-none rounded-md border-0 bg-transparent py-0.5 pr-5 pl-0.5 text-sm font-semibold text-slate-800 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:text-slate-100'
               >
                 {
                   Object.entries(animationDelay).map(([key, value]) => (
@@ -540,18 +636,24 @@ export default {
                   ))
                 }
               </select>
-            </div>
+            </label>
 
-            <div class='flex flex-col gap-1'>
-              <label
-                for='steps'
-                class='text-[10px] font-bold tracking-wider text-slate-400 uppercase'
-                >Steps</label
+            <span
+              class='hidden h-4 w-px bg-slate-200 sm:block dark:bg-white/10'
+              aria-hidden='true'></span>
+
+            <label
+              class='flex items-center gap-1.5 rounded-full px-2 py-0.5 transition-colors hover:bg-slate-100/80 dark:hover:bg-white/5'
+            >
+              <span
+                class='text-[11px] font-medium tracking-wide text-slate-400 uppercase'
               >
+                Steps
+              </span>
               <select
                 name='steps'
                 id='steps'
-                class='min-w-32 rounded-lg border border-slate-200 bg-slate-50/50 px-2 py-1 text-sm font-medium transition-colors outline-none hover:border-blue-500 dark:border-white/5 dark:bg-white/5'
+                class='collection-select h-8 min-w-[4.5rem] cursor-pointer appearance-none rounded-md border-0 bg-transparent py-0.5 pr-5 pl-0.5 text-sm font-semibold text-slate-800 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:text-slate-100'
               >
                 {
                   Object.entries(animationSteps).map(([key, value]) => (
@@ -561,63 +663,81 @@ export default {
                   ))
                 }
               </select>
-            </div>
-
-            <div
-              class='hidden h-8 w-px bg-slate-200 sm:block dark:bg-slate-800'
-            >
-            </div>
-
-            <label class='group flex cursor-pointer items-center gap-3'>
-              <span
-                class='text-sm font-medium text-slate-600 transition-colors group-hover:text-blue-500 dark:text-slate-400'
-                >Animate all</span
-              >
-              <div class='relative inline-flex h-6 w-11 items-center'>
-                <input class='peer sr-only' id='animate' type='checkbox' />
-                <div
-                  class='h-6 w-11 rounded-full bg-slate-200 transition-colors peer-checked:bg-blue-500 dark:bg-slate-800'
-                >
-                </div>
-                <div
-                  class='absolute left-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all peer-checked:translate-x-5'
-                >
-                </div>
-              </div>
             </label>
-          </div>
-        </section>
 
+            <span
+              class='mx-0.5 h-4 w-px bg-slate-200 dark:bg-white/10'
+              aria-hidden='true'></span>
+
+            <label
+              class='flex h-9 cursor-pointer items-center gap-2 rounded-full px-2.5 transition-colors hover:bg-slate-100 focus-within:ring-2 focus-within:ring-blue-500 dark:hover:bg-white/5'
+              for='animate'
+            >
+              <span class='relative inline-flex h-5 w-9 shrink-0 items-center'>
+                <input
+                  class='peer sr-only'
+                  id='animate'
+                  type='checkbox'
+                  aria-describedby='animate-all-help'
+                />
+                <span
+                  class='absolute inset-0 rounded-full bg-slate-200 transition-colors peer-checked:bg-blue-500 dark:bg-slate-700'
+                  aria-hidden='true'></span>
+                <span
+                  class='absolute top-0.5 left-0.5 size-4 rounded-full bg-white shadow-sm transition-transform duration-200 peer-checked:translate-x-4'
+                  aria-hidden='true'></span>
+              </span>
+              <span class='text-sm font-medium text-slate-600 dark:text-slate-300'>
+                Play all
+              </span>
+            </label>
+            <p id='animate-all-help' class='sr-only'>
+              When enabled, every animation preview plays in a continuous loop.
+              When disabled, previews play on hover or keyboard focus.
+            </p>
+          </fieldset>
+        </div>
+
+        <!-- Gallery -->
         <section
-          class='relative mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:px-8'
+          class='relative mx-auto grid max-w-5xl grid-cols-2 gap-3 px-4 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 lg:px-8'
+          aria-label='Animation utility classes'
         >
           {
             sortedAnimations.map((animationKey, index) => (
               <article
-                class={`group animate-fade-in-up relative flex cursor-pointer flex-col items-center gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/10 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-blue-500/50 ${index >= 15 ? 'hidden' : ''}`}
+                class:list={[
+                  'animation-card group relative flex cursor-pointer flex-col items-center gap-3 rounded-2xl p-4 transition-colors',
+                  'hover:bg-slate-50 focus-visible:bg-slate-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none',
+                  'dark:hover:bg-white/[0.03] dark:focus-visible:bg-white/[0.03]',
+                  index >= 15 && 'hidden'
+                ]}
                 data-class={animationKey}
                 style={`animation-delay: ${1000 + index * 50}ms; animation-fill-mode: both;`}
                 tabindex='0'
                 role='button'
-                aria-label={`Copy animate-${animationKey} class. Hover to preview.`}
+                aria-label={`Copy class animate-${animationKey}. Focus or hover to preview.`}
               >
-                <div class='flex w-full items-center justify-between'>
-                  <span class='truncate pr-2 text-xs font-semibold text-slate-600 transition-colors group-hover:text-slate-900 dark:text-slate-400 dark:group-hover:text-white'>
-                    {animationKey}
-                  </span>
-                  <span
-                    aria-hidden='true'
-                    class='text-slate-300 transition-colors hover:text-blue-500'
-                  >
-                    <CopyIcon class='size-4' />
-                  </span>
-                </div>
-
-                <div class='flex flex-1 items-center justify-center py-8'>
+                <div
+                  class='relative flex aspect-square w-full max-w-[7.5rem] items-center justify-center'
+                  aria-hidden='true'
+                >
                   <div
                     id={`preview-${animationKey}`}
-                    class='size-16 rounded-xl bg-linear-to-br from-blue-500 to-blue-600 shadow-lg shadow-blue-500/30 transition-all duration-300 dark:from-blue-400 dark:to-blue-500 dark:shadow-blue-500/20'
+                    class='size-14 rounded-2xl bg-blue-500 shadow-[0_0_24px_-4px_rgba(59,130,246,0.55)] transition-shadow group-hover:shadow-[0_0_32px_-2px_rgba(59,130,246,0.7)] dark:bg-blue-500'
                   />
+                </div>
+
+                <div class='flex w-full min-w-0 items-center justify-center gap-1.5'>
+                  <code class='truncate font-mono text-[11px] leading-none text-slate-500 transition-colors group-hover:text-slate-800 group-focus-visible:text-slate-800 sm:text-xs dark:text-slate-400 dark:group-hover:text-slate-200 dark:group-focus-visible:text-slate-200'>
+                    {animationKey}
+                  </code>
+                  <span
+                    aria-hidden='true'
+                    class='shrink-0 text-slate-300 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 dark:text-slate-600'
+                  >
+                    <CopyIcon class='size-3.5' />
+                  </span>
                 </div>
               </article>
             ))
@@ -626,26 +746,29 @@ export default {
 
         {
           sortedAnimations.length > 15 && (
-            <div class='flex justify-center py-12'>
+            <div class='flex justify-center pt-10 pb-2'>
               <button
                 id='load-more'
-                class='animate-fade-in animate-delay-[1500ms] group flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 bg-white/50 px-10 py-3 text-sm font-bold text-slate-700 shadow-sm backdrop-blur-sm transition-all hover:border-blue-500 hover:text-blue-500 hover:shadow-md active:scale-95 dark:border-white/10 dark:bg-black/40 dark:text-slate-300 dark:hover:border-blue-500/50 dark:hover:text-blue-400'
+                type='button'
+                class='group inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white'
+                aria-controls='animation-collection'
               >
-                <span>View all animations</span>
+                <span>Show all {sortedAnimations.length}</span>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
-                  width='20'
-                  height='20'
+                  width='16'
+                  height='16'
                   viewBox='0 0 24 24'
                   fill='none'
                   stroke='currentColor'
-                  stroke-width='2.5'
+                  stroke-width='2'
                   stroke-linecap='round'
                   stroke-linejoin='round'
-                  class='transition-transform group-hover:rotate-90'
+                  class='transition-transform group-hover:translate-y-0.5'
+                  aria-hidden='true'
+                  focusable='false'
                 >
-                  <path d='M12 5v14' />
-                  <path d='M5 12h14' />
+                  <path d='m6 9 6 6 6-6' />
                 </svg>
               </button>
             </div>
@@ -653,19 +776,154 @@ export default {
         }
       </div>
 
-      <section id='scroll-animations' class='relative mt-32 mb-24'>
-        <div class='mb-16 flex flex-col items-center'>
+      <section
+        id='slide-distance'
+        class='relative mt-32 mb-24 px-4 lg:px-8'
+        aria-labelledby='slide-distance-heading'
+      >
+        <div class='mx-auto mb-12 max-w-3xl text-center'>
+          <span
+            class='mb-3 inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-[10px] font-bold tracking-widest text-blue-600 uppercase dark:text-blue-300'
+          >
+            New utility
+          </span>
           <h2
+            id='slide-distance-heading'
             class='mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
           >
-            Scroll Animations
+            Customize slide distance
+          </h2>
+          <p class='text-lg text-balance text-slate-600 dark:text-slate-400'>
+            Pair any <code class='text-blue-500'>animate-slide-*</code> utility
+            with <code class='text-blue-500'>animate-slide-distance-*</code> to
+            control how far it travels. Default stays <code
+              class='text-blue-500'>20px</code
+            >—no breaking change.
+          </p>
+        </div>
+
+        <div class='mx-auto max-w-6xl'>
+          <div
+            class='mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'
+          >
+            <p class='text-sm leading-6 text-slate-600 dark:text-slate-400'>
+              Hover a card (or press Replay) to compare the same slide with
+              different distances. Direction is built into each slide utility—use
+              a positive length or percentage.
+            </p>
+            <button
+              id='replay-slide-distance'
+              type='button'
+              class='inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center gap-2 self-start rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-800 shadow-sm transition hover:border-blue-500 hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-[0.98] dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:border-blue-400 dark:hover:text-blue-300'
+            >
+              <svg
+                class='size-4'
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                stroke-width='2.5'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                aria-hidden='true'
+              >
+                <path d='M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8'
+                ></path>
+                <path d='M3 3v5h5'></path>
+              </svg>
+              Replay demos
+            </button>
+          </div>
+
+          <div class='grid gap-4 md:grid-cols-3'>
+            {
+              slideDistanceExamples.map((example) => (
+                <article
+                  class='slide-distance-card group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg shadow-slate-200/40 dark:border-slate-800 dark:bg-slate-950 dark:shadow-none'
+                  data-slide-animation={example.animation}
+                  data-slide-distance={example.distance ?? ''}
+                >
+                  <div class='relative flex h-40 items-center justify-center overflow-hidden bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950'>
+                    <div
+                      class='pointer-events-none absolute inset-y-6 left-1/2 w-px -translate-x-1/2 bg-slate-200/80 dark:bg-white/10'
+                      aria-hidden='true'
+                    />
+                    <div
+                      class='slide-distance-preview size-16 rounded-xl bg-linear-to-br from-blue-500 to-blue-600 shadow-lg shadow-blue-500/30 dark:from-blue-400 dark:to-blue-500 dark:shadow-blue-500/20'
+                      aria-hidden='true'
+                    />
+                  </div>
+                  <div class='flex flex-1 flex-col gap-3 p-5'>
+                    <div class='flex items-center justify-between gap-3'>
+                      <h3 class='text-base font-bold text-slate-900 dark:text-white'>
+                        {example.label}
+                      </h3>
+                      <code class='rounded-md bg-blue-500/10 px-2 py-1 font-mono text-[10px] font-bold tracking-wide text-blue-600 dark:text-blue-300'>
+                        {example.badge}
+                      </code>
+                    </div>
+                    <p class='text-sm leading-6 text-slate-600 dark:text-slate-400'>
+                      {example.description}
+                    </p>
+                    <code class='mt-auto block overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 font-mono text-[11px] leading-5 text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300'>
+                      {example.code}
+                    </code>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+
+          <div
+            class='mt-10 overflow-hidden rounded-3xl border border-slate-200 bg-slate-950 shadow-2xl dark:border-slate-800'
+          >
+            <div
+              class='flex items-center justify-between border-b border-white/10 px-4 py-3'
+            >
+              <span class='font-mono text-xs text-slate-400'
+                >slide-distance.html</span
+              >
+              <button
+                id='copy-slide-distance-example'
+                type='button'
+                aria-label='Copy slide distance HTML example'
+                class='inline-flex items-center gap-2 rounded-full bg-sky-400/10 px-3 py-1.5 text-[10px] font-bold tracking-widest text-sky-300 uppercase transition hover:bg-sky-400/20 hover:text-sky-200 focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none'
+              >
+                <CopyIcon />
+                Copy example
+              </button>
+            </div>
+            <div id='slide-distance-example-code' class='overflow-x-auto p-4'>
+              <Code
+                class='text-sm'
+                wrap={true}
+                lang='html'
+                theme='synthwave-84'
+                code={slideDistanceSnippet}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id='scroll-animations'
+        class='relative mt-32 mb-24'
+        aria-labelledby='scroll-animations-heading'
+      >
+        <div class='mb-16 flex flex-col items-center px-4'>
+          <h2
+            id='scroll-animations-heading'
+            class='mb-4 text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+          >
+            Scroll-Driven CSS Animations
           </h2>
           <p
             class='max-w-2xl text-center text-lg text-balance text-slate-600 dark:text-slate-400'
           >
             Animate elements based on their position in the viewport using the <code
               class='text-blue-500'>timeline-view</code
-            > utility.
+            > Tailwind utility—no JavaScript scroll listeners required.
           </p>
         </div>
 
@@ -808,18 +1066,23 @@ export default {
         </div>
       </section>
 
-      <section id='scroll-view-timelines' class='relative mt-32 mb-24'>
-        <div class='mb-16 flex flex-col items-center'>
+      <section
+        id='scroll-view-timelines'
+        class='relative mt-32 mb-24'
+        aria-labelledby='scroll-view-timelines-heading'
+      >
+        <div class='mb-16 flex flex-col items-center px-4'>
           <h2
-            class='mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+            id='scroll-view-timelines-heading'
+            class='mb-4 text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
           >
-            Scroll & View Timelines
+            Scroll & View Timeline Utilities
           </h2>
           <p
             class='max-w-2xl text-center text-lg text-balance text-slate-600 dark:text-slate-400'
           >
-            Link animations to scroll progress or element visibility using
-            powerful timeline utilities.
+            Link Tailwind CSS animations to scroll progress or element visibility
+            using timeline utilities for modern, scroll-driven motion.
           </p>
         </div>
 
@@ -1223,7 +1486,11 @@ export default {
         </div>
       </section>
 
-      <section id='dialog-effects' class='relative mt-32 mb-24 px-4 lg:px-8'>
+      <section
+        id='dialog-effects'
+        class='relative mt-32 mb-24 px-4 lg:px-8'
+        aria-labelledby='dialog-effects-heading'
+      >
         <div class='mx-auto mb-16 flex max-w-3xl flex-col items-center'>
           <span
             class='mb-4 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-bold tracking-wider text-emerald-600 uppercase dark:text-emerald-300'
@@ -1231,6 +1498,7 @@ export default {
             Top layer patterns
           </span>
           <h2
+            id='dialog-effects-heading'
             class='mb-4 text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
           >
             Dialog Entry & Exit Effects
@@ -1244,7 +1512,8 @@ export default {
             > utility wraps <code class='text-blue-500'>@starting-style</code>,
             <code class='text-blue-500'>display</code>, <code
               class='text-blue-500'>overlay</code
-            >, and <code class='text-blue-500'>allow-discrete</code> into one class.
+            >, and <code class='text-blue-500'>allow-discrete</code> into one Tailwind
+            class for smooth modal open and close animations.
           </p>
         </div>
 
@@ -1433,7 +1702,7 @@ export default {
           <div class='grid gap-4 sm:grid-cols-2 xl:grid-cols-4'>
             {
               dialogModifierExamples.map((example) => (
-                <article class='flex min-h-64 flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-lg shadow-slate-200/40 dark:border-slate-800 dark:bg-slate-950 dark:shadow-none'>
+                <div class='dialog-example-card flex min-h-64 flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-lg shadow-slate-200/40 dark:border-slate-800 dark:bg-slate-950 dark:shadow-none'>
                   <div>
                     <div class='flex items-center justify-between gap-3'>
                       <span class='text-[10px] font-bold tracking-widest text-emerald-600 uppercase dark:text-emerald-300'>
@@ -1501,7 +1770,7 @@ export default {
                       </button>
                     </div>
                   </dialog>
-                </article>
+                </div>
               ))
             }
           </div>
@@ -1509,8 +1778,78 @@ export default {
       </section>
     </section>
 
-    <Footer />
+    <section
+      id='faq'
+      class='relative mt-32 mb-24 px-4 lg:px-8'
+      aria-labelledby='faq-heading'
+    >
+      <div class='mx-auto mb-12 max-w-3xl text-center'>
+        <h2
+          id='faq-heading'
+          class='mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+        >
+          Frequently Asked Questions
+        </h2>
+        <p class='text-lg text-balance text-slate-600 dark:text-slate-400'>
+          Everything you need to know about the Tailwind CSS animations plugin.
+        </p>
+      </div>
+
+      <div class='mx-auto flex max-w-3xl flex-col gap-4'>
+        {
+          [
+            {
+              q: 'What is tailwind-animations?',
+              a: 'An open-source Tailwind CSS plugin that ships 79+ animation utility classes—fade, slide, zoom, bounce, flip, scroll-driven motion, and native dialog effects—so you can animate UI without writing custom keyframes.'
+            },
+            {
+              q: 'How do I install it?',
+              a: 'Run npm install tailwind-animations (or pnpm / yarn / bun / deno), then add @import \'tailwindcss\'; and @import \'tailwind-animations\'; to your global CSS for Tailwind v4.'
+            },
+            {
+              q: 'Does it work with Tailwind CSS v3 and v4?',
+              a: 'Yes. The current package targets Tailwind CSS v4 via CSS imports. For Tailwind v3, use the legacy package @midudev/tailwind-animations@0.2.0.'
+            },
+            {
+              q: 'How do I use an animation utility class?',
+              a: 'Add classes like animate-fade-in or animate-slide-in-bottom to any element. Combine them with animate-duration-*, animate-delay-*, and animate-steps-* to control timing.'
+            },
+            {
+              q: 'Can I change how far a slide animation travels?',
+              a: 'Yes. Pair any animate-slide-* utility with animate-slide-distance-[…] (for example animate-slide-distance-[100%] or animate-slide-distance-[10rem]). The default distance stays 20px if you omit it.'
+            },
+            {
+              q: 'Can I build scroll-based animations?',
+              a: 'Yes. Use timeline-view with animate-range utilities to tie CSS animations to an element position in the viewport—no scroll event listeners needed.'
+            },
+            {
+              q: 'Is it free and open source?',
+              a: 'Yes. The project is MIT licensed, free to use commercially, and open for contributions on GitHub at midudev/tailwind-animations.'
+            }
+          ].map(({ q, a }) => (
+            <details class='group rounded-2xl border border-slate-200 bg-white/60 p-5 open:shadow-lg open:shadow-slate-200/40 dark:border-slate-800 dark:bg-slate-950/50 dark:open:shadow-black/20'>
+              <summary class='cursor-pointer list-none rounded-lg text-left text-base font-semibold text-slate-900 marker:content-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:text-white [&::-webkit-details-marker]:hidden'>
+                <span class='flex items-center justify-between gap-4'>
+                  {q}
+                  <span
+                    class='shrink-0 text-slate-400 transition-transform group-open:rotate-45'
+                    aria-hidden='true'
+                  >
+                    +
+                  </span>
+                </span>
+              </summary>
+              <p class='mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400'>
+                {a}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+    </section>
   </main>
+
+  <Footer />
 
   <style is:global>
     .dialog-class-highlight {
@@ -1527,7 +1866,36 @@ export default {
   <script>
     import { toast } from 'wc-toast'
 
-    const $articles = document.querySelectorAll('article')
+    const $announce = document.getElementById('a11y-announce')
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
+
+    const announce = (message: string) => {
+      if (!$announce) return
+      $announce.textContent = ''
+      // Force a DOM change so polite live regions re-announce
+      window.requestAnimationFrame(() => {
+        $announce.textContent = message
+      })
+    }
+
+    const toastSuccess = (message: string) => {
+      announce(message)
+      toast(message, {
+        icon: { type: 'success' },
+        theme: {
+          type: document.documentElement.classList.contains('dark')
+            ? 'dark'
+            : 'light'
+        }
+      })
+    }
+
+    // Only animation preview cards — never dialog example cards
+    const $articles = document.querySelectorAll<HTMLElement>(
+      'article.animation-card[data-class]'
+    )
     const $animateAll: HTMLInputElement = document.querySelector('#animate')!
     const $duration: HTMLSelectElement = document.querySelector('#duration')!
     const $steps: HTMLSelectElement = document.querySelector('#steps')!
@@ -1538,9 +1906,20 @@ export default {
     const $copyBtn = document.getElementById('copyNpmInstall')!
     const $copyCodeBtn = document.getElementById('copyCode')!
     const $copyDialogExampleBtn = document.getElementById('copy-dialog-example')
+    const $copySlideDistanceExampleBtn = document.getElementById(
+      'copy-slide-distance-example'
+    )
+    const $replaySlideDistance = document.getElementById(
+      'replay-slide-distance'
+    )
+    const $slideDistanceCards = document.querySelectorAll<HTMLElement>(
+      '.slide-distance-card'
+    )
 
-    const $versionTabs = document.querySelectorAll('.version-tab')
-    const $versionCodes = document.querySelectorAll('.version-code')
+    const $versionTabs = document.querySelectorAll<HTMLButtonElement>(
+      '.version-tab'
+    )
+    const $versionCodes = document.querySelectorAll<HTMLElement>('.version-code')
 
     const $loadMore = document.getElementById('load-more')
     const $animatedDialogs = document.querySelectorAll<HTMLDialogElement>(
@@ -1598,13 +1977,19 @@ export default {
 
     if ($loadMore) {
       $loadMore.addEventListener('click', () => {
-        const $hiddenArticles = document.querySelectorAll('article.hidden')
+        const $hiddenArticles = document.querySelectorAll<HTMLElement>(
+          'article.animation-card[data-class].hidden'
+        )
         $hiddenArticles.forEach(($article, index) => {
           $article.classList.remove('hidden')
-          // @ts-ignore
           $article.style.animationDelay = `${index * 50}ms`
         })
+        const count = $hiddenArticles.length
         $loadMore.parentElement?.remove()
+        announce(
+          `Showing all animations. ${count} additional animation cards are now visible.`
+        )
+        $hiddenArticles[0]?.focus()
       })
     }
 
@@ -1674,66 +2059,65 @@ export default {
     // Initial duration setup (if any logic depends on it)
     $duration.value = '1000ms'
 
-    // Version Tab Switcher
-    $versionTabs.forEach(($tab) => {
-      $tab.addEventListener('click', () => {
-        const version = $tab.getAttribute('data-version')!
+    // Version Tab Switcher (ARIA Tabs: roving tabindex + arrows)
+    const activateVersionTab = ($tab: HTMLButtonElement, focusTab = false) => {
+      const version = $tab.getAttribute('data-version')!
 
-        $versionTabs.forEach(($t) => {
-          $t.classList.remove(
-            'bg-black/10',
-            'text-slate-900',
-            'dark:bg-white/5',
-            'dark:text-white'
-          )
-          $t.classList.add(
-            'text-slate-500',
-            'dark:text-slate-400',
-            'hover:text-slate-700',
-            'dark:hover:text-slate-200'
-          )
-          $t.setAttribute('aria-selected', 'false')
-        })
+      $versionTabs.forEach(($t) => {
+        const selected = $t === $tab
+        $t.classList.toggle('bg-slate-100', selected)
+        $t.classList.toggle('text-slate-900', selected)
+        $t.classList.toggle('dark:bg-white/10', selected)
+        $t.classList.toggle('dark:text-white', selected)
+        $t.classList.toggle('text-slate-500', !selected)
+        $t.classList.toggle('dark:text-slate-400', !selected)
+        $t.classList.toggle('hover:text-slate-800', !selected)
+        $t.classList.toggle('dark:hover:text-slate-200', !selected)
+        $t.setAttribute('aria-selected', String(selected))
+        $t.tabIndex = selected ? 0 : -1
+      })
 
-        $tab.classList.add(
-          'bg-black/10',
-          'text-slate-900',
-          'dark:bg-white/5',
-          'dark:text-white'
-        )
-        $tab.classList.remove(
-          'text-slate-500',
-          'dark:text-slate-400',
-          'hover:text-slate-700',
-          'dark:hover:text-slate-200'
-        )
-        $tab.setAttribute('aria-selected', 'true')
+      $versionCodes.forEach(($code) => {
+        const active = $code.id === `code-${version}`
+        $code.classList.toggle('hidden', !active)
+        $code.toggleAttribute('hidden', !active)
+      })
 
-        $versionCodes.forEach(($code) => {
-          if ($code.id === `code-${version}`) {
-            $code.classList.remove('hidden')
-          } else {
-            $code.classList.add('hidden')
-          }
-        })
+      if (focusTab) $tab.focus()
+    }
+
+    $versionTabs.forEach(($tab, index) => {
+      $tab.addEventListener('click', () => activateVersionTab($tab))
+
+      $tab.addEventListener('keydown', (event) => {
+        const tabs = [...$versionTabs]
+        let nextIndex: number | null = null
+
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+          nextIndex = (index + 1) % tabs.length
+        } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+          nextIndex = (index - 1 + tabs.length) % tabs.length
+        } else if (event.key === 'Home') {
+          nextIndex = 0
+        } else if (event.key === 'End') {
+          nextIndex = tabs.length - 1
+        }
+
+        if (nextIndex === null) return
+
+        event.preventDefault()
+        activateVersionTab(tabs[nextIndex], true)
       })
     })
 
     $copyCodeBtn.addEventListener('click', () => {
       const $visibleCode = document.querySelector(
-        '.version-code:not(.hidden) pre'
+        '.version-code:not([hidden]) pre, .version-code:not(.hidden) pre'
       )
       if ($visibleCode) {
         const text = $visibleCode.textContent!
         navigator.clipboard.writeText(text)
-        toast('Configuration copied to clipboard!', {
-          icon: { type: 'success' },
-          theme: {
-            type: document.documentElement.classList.contains('dark')
-              ? 'dark'
-              : 'light'
-          }
-        })
+        toastSuccess('Configuration copied to clipboard!')
       }
     })
 
@@ -1742,15 +2126,57 @@ export default {
 
       if ($dialogCode) {
         navigator.clipboard.writeText($dialogCode.textContent!)
-        toast('Dialog example copied to clipboard!', {
-          icon: { type: 'success' },
-          theme: {
-            type: document.documentElement.classList.contains('dark')
-              ? 'dark'
-              : 'light'
-          }
-        })
+        toastSuccess('Dialog example copied to clipboard!')
       }
+    })
+
+    $copySlideDistanceExampleBtn?.addEventListener('click', () => {
+      const $code = document.querySelector('#slide-distance-example-code pre')
+
+      if ($code) {
+        navigator.clipboard.writeText($code.textContent!)
+        toastSuccess('Slide distance example copied to clipboard!')
+      }
+    })
+
+    const playSlideDistancePreview = ($card: HTMLElement) => {
+      const $preview = $card.querySelector<HTMLElement>(
+        '.slide-distance-preview'
+      )
+      if (!$preview) return
+
+      const animation = $card.getAttribute('data-slide-animation')
+      const distance = $card.getAttribute('data-slide-distance')
+      if (!animation) return
+
+      const classes = [animation, 'animate-duration-700']
+      if (distance) classes.push(distance)
+
+      $preview.classList.remove(...classes)
+      // Restart CSS animation
+      void $preview.offsetWidth
+      $preview.classList.add(...classes)
+    }
+
+    $slideDistanceCards.forEach(($card) => {
+      $card.addEventListener('mouseenter', () => {
+        if (prefersReducedMotion) return
+        playSlideDistancePreview($card)
+      })
+    })
+
+    $replaySlideDistance?.addEventListener('click', () => {
+      if (prefersReducedMotion) {
+        announce('Animations are paused by reduced motion preference.')
+        return
+      }
+
+      $slideDistanceCards.forEach(($card, index) => {
+        window.setTimeout(() => {
+          playSlideDistancePreview($card)
+        }, index * 80)
+      })
+      announce('Replaying slide distance demos.')
     })
 
     // Package Manager Switcher
@@ -1761,30 +2187,30 @@ export default {
 
         $pmButtons.forEach(($b) => {
           $b.classList.remove(
-            'bg-black/10',
+            'bg-slate-100',
             'text-slate-900',
-            'dark:bg-white/5',
+            'dark:bg-white/10',
             'dark:text-white'
           )
           $b.classList.add(
             'text-slate-500',
             'dark:text-slate-400',
-            'hover:text-slate-700',
+            'hover:text-slate-800',
             'dark:hover:text-slate-200'
           )
           $b.setAttribute('aria-pressed', 'false')
         })
 
         $btn.classList.add(
-          'bg-black/10',
+          'bg-slate-100',
           'text-slate-900',
-          'dark:bg-white/5',
+          'dark:bg-white/10',
           'dark:text-white'
         )
         $btn.classList.remove(
           'text-slate-500',
           'dark:text-slate-400',
-          'hover:text-slate-700',
+          'hover:text-slate-800',
           'dark:hover:text-slate-200'
         )
         $btn.setAttribute('aria-pressed', 'true')
@@ -1794,59 +2220,83 @@ export default {
     $copyBtn.addEventListener('click', () => {
       const text = $installCommand.textContent!
       navigator.clipboard.writeText(text)
-      toast('Command copied to clipboard!', {
-        icon: { type: 'success' },
-        theme: {
-          type: document.documentElement.classList.contains('dark')
-            ? 'dark'
-            : 'light'
-        }
-      })
+      toastSuccess('Command copied to clipboard!')
     })
 
-    function handleMouseEnter(this: HTMLElement) {
-      const animationKey = this.getAttribute('data-class')
+    function playPreview(target: HTMLElement) {
+      if (prefersReducedMotion || $animateAll.checked) return
+
+      const animationKey = target.getAttribute('data-class')
+      if (!animationKey) return
+
       const animationClass = `animate-${animationKey}`
-      const $box = this.querySelector('div[id^="preview-"]') as HTMLElement
-      if ($box) {
-        $box.classList.add(animationClass)
-        // Apply current styles
-        $box.style.animationDuration = $duration.value
-        $box.style.animationDelay = $delay.value
-        $box.style.animationTimingFunction =
-          $steps.value !== 'none' ? `steps(${$steps.value})` : ''
-      }
+      const $box = target.querySelector(
+        'div[id^="preview-"]'
+      ) as HTMLElement | null
+      if (!$box) return
+
+      $box.classList.add(animationClass)
+      $box.style.animationDuration = $duration.value
+      $box.style.animationDelay = $delay.value
+      $box.style.animationTimingFunction =
+        $steps.value !== 'none' ? `steps(${$steps.value})` : ''
     }
 
-    function handleMouseLeave(this: HTMLElement): void {
-      const animationKey = this.getAttribute('data-class')
+    function stopPreview(target: HTMLElement) {
+      if ($animateAll.checked) return
+
+      const animationKey = target.getAttribute('data-class')
+      if (!animationKey) return
+
       const animationClass = `animate-${animationKey}`
-      const $box = this.querySelector('div[id^="preview-"]')
+      const $box = target.querySelector('div[id^="preview-"]')
       if ($box) $box.classList.remove(animationClass)
+    }
+
+    function handleMouseEnter(event: Event) {
+      playPreview(event.currentTarget as HTMLElement)
+    }
+
+    function handleMouseLeave(event: Event): void {
+      stopPreview(event.currentTarget as HTMLElement)
+    }
+
+    function handleFocusIn(event: Event) {
+      playPreview(event.currentTarget as HTMLElement)
+    }
+
+    function handleFocusOut(event: Event) {
+      stopPreview(event.currentTarget as HTMLElement)
     }
 
     function updateArticlesListeners() {
       $articles.forEach(($article) => {
-        if ($animateAll.checked) {
-          $article.removeEventListener('mouseenter', handleMouseEnter)
-          $article.removeEventListener('mouseleave', handleMouseLeave)
-        } else {
+        $article.removeEventListener('mouseenter', handleMouseEnter)
+        $article.removeEventListener('mouseleave', handleMouseLeave)
+        $article.removeEventListener('focusin', handleFocusIn)
+        $article.removeEventListener('focusout', handleFocusOut)
+
+        if (!$animateAll.checked) {
           $article.addEventListener('mouseenter', handleMouseEnter)
           $article.addEventListener('mouseleave', handleMouseLeave)
+          $article.addEventListener('focusin', handleFocusIn)
+          $article.addEventListener('focusout', handleFocusOut)
         }
       })
     }
 
     $animateAll.addEventListener('change', () => {
       $articles.forEach(($article) => {
-        const animationKey = $article.getAttribute('data-class')!
+        const animationKey = $article.getAttribute('data-class')
+        if (!animationKey) return
+
         const animationClass = `animate-${animationKey}`
         const $box = $article.querySelector(
           'div[id^="preview-"]'
         ) as HTMLElement
 
         if ($box) {
-          if ($animateAll.checked) {
+          if ($animateAll.checked && !prefersReducedMotion) {
             $box.classList.add(animationClass)
             $box.style.animationIterationCount = 'infinite'
             $box.style.animationDuration = $duration.value
@@ -1859,6 +2309,11 @@ export default {
           }
         }
       })
+      announce(
+        $animateAll.checked
+          ? 'Play all enabled. All previews loop continuously.'
+          : 'Play all disabled. Previews play on hover or focus.'
+      )
       updateArticlesListeners()
     })
 
@@ -1895,22 +2350,14 @@ export default {
     })
 
     $articles.forEach(($article) => {
-      const animationKey = $article.getAttribute('data-class')!
-      const animationClass = `animate-${animationKey}`
+      const animationKey = $article.getAttribute('data-class')
+      if (!animationKey) return
 
-      $article.addEventListener('mouseenter', handleMouseEnter)
-      $article.addEventListener('mouseleave', handleMouseLeave)
+      const animationClass = `animate-${animationKey}`
 
       function copyAnimation() {
         navigator.clipboard.writeText(animationClass)
-        toast(`Copied "animate-${animationKey}"`, {
-          icon: { type: 'success' },
-          theme: {
-            type: document.documentElement.classList.contains('dark')
-              ? 'dark'
-              : 'light'
-          }
-        })
+        toastSuccess(`Copied "animate-${animationKey}"`)
       }
 
       $article.addEventListener('click', copyAnimation)
@@ -1921,6 +2368,8 @@ export default {
         }
       })
     })
+
+    updateArticlesListeners()
 
     // ==========================================
     // Hero Demo Animation - Interactive Typewriter
@@ -2055,12 +2504,27 @@ export default {
         setTimeout(runDemoAnimation, 300)
       }
 
-      // Start the demo
-      setTimeout(runDemoAnimation, 800)
+      // Respect prefers-reduced-motion: show a static example instead of looping
+      if (prefersReducedMotion) {
+        const demo = demoAnimations[0]
+        const fullClass = demo.extras
+          ? `${demo.animation} ${demo.extras}`
+          : demo.animation
+        setHeroDemoClassLabel(fullClass)
+        $heroDemoBox.classList.add(demo.animation)
+      } else {
+        setTimeout(runDemoAnimation, 800)
+      }
     }
   </script>
 
   <style>
+    .collection-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 4.5 3 3 3-3'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.15rem center;
+    }
+
     .scrollbar-hide::-webkit-scrollbar {
       display: none;
     }

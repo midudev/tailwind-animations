@@ -7,8 +7,10 @@ allowBuilds:
   esbuild: true
   sharp: true
 
-minimumReleaseAgeExclude:
-  - vite@8.0.15
-
 onlyBuiltDependencies:
   - '@tailwindcss/oxide'
+
+# eslint-plugin-jsx-a11y (optional peer of eslint-plugin-astro) does not declare ESLint 10 yet
+peerDependencyRules:
+  allowedVersions:
+    'eslint-plugin-jsx-a11y>eslint': '10'

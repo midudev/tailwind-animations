@@ -31,6 +31,6 @@
     "tailwind-animations": "1.0.1"
   },
   "peerDependencies": {
-    "tailwindcss": "4.3.0"
+    "tailwindcss": "4.3.2"
   }
 }

@@ -10,11 +10,17 @@
 @source inline('animate-delay-{none,0,100,150,200,250,300,400,500,700,800,900,1000}');
 @source inline('animate-steps-{none,retro,normal,modern}');
 /* prettier-ignore */
+@source inline('animate-iteration-count-{none,once,twice,thrice,infinite}');
+/* prettier-ignore */
+@source inline('animate-fill-mode-{none,forwards,backwards,both}');
+/* prettier-ignore */
 @source inline('animate-dialog animate-dialog-{from-top,from-bottom,from-left,from-right,fade,zoom} animate-dialog-duration-{100,150,200,250,300,400,500,700,800,900,1000,fast,normal,slow}');
 /* prettier-ignore */
 @source inline('timeline-{scroll,view}');
 /* prettier-ignore */
 @source inline('animate-range-{cover,contain,entry,exit,gradual,moderate,brisk,rapid}');
+/* prettier-ignore */
+@source inline('animate-slide-distance-[50%] animate-slide-distance-[100%] animate-slide-distance-[6rem] animate-slide-distance-[10rem]');
 
 :root {
   --font-sans:
@@ -27,6 +33,46 @@
 
 body {
   font-family: var(--font-sans);
+}
+
+/* Keep focused content clear of the fixed header (WCAG 2.4.11) */
+:target,
+:focus-visible {
+  scroll-margin-top: 6rem;
+  scroll-margin-bottom: 2rem;
+}
+
+/* Global keyboard focus indicator where components omit one */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid #0099ff;
+  outline-offset: 2px;
+}
+
+/* Skip-link helper when Tailwind focus:not-sr-only expands it */
+.skip-link:focus,
+.skip-link:focus-visible {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  border-radius: 0.5rem;
+  background: #0099ff;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 pre {

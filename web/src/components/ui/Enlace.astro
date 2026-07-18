@@ -1,14 +1,29 @@
 ---
-const { href, target = '_self', className = '' } = Astro.props
----
+interface Props {
+  href: string
+  target?: string
+  class?: string
+  title?: string
+}
 
-<!-- Este es un componente que utiliza el header para navegar fluidamente con sus enlaces -->
+const {
+  href,
+  target = '_self',
+  class: className,
+  title
+} = Astro.props
+---
 
 <a
   href={href}
   target={target}
+  title={title}
   draggable='false'
-  class='text-slate-600 transition-colors select-none hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
+  class:list={[
+    'select-none transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none',
+    className ??
+      'rounded-md px-1 py-1 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
+  ]}
   data-enlace
 >
   <slot />
@@ -22,24 +37,34 @@ const { href, target = '_self', className = '' } = Astro.props
 
     const href = link.getAttribute('href')
 
-    // If it's an in-page anchor like #temario, scroll to the element instead
     if (href && href.startsWith('#')) {
       e.preventDefault()
       const id = href.slice(1)
       const el =
         document.getElementById(id) || document.getElementsByName(id)[0]
 
-      if (el) {
-        // try to account for a fixed header
+      if (el instanceof HTMLElement) {
         const header = document.querySelector('header')
-        const offset = header ? header.offsetHeight + 8 : 8
+        const offset = header ? header.getBoundingClientRect().height + 8 : 8
         const y = el.getBoundingClientRect().top + window.pageYOffset - offset
 
-        window.scrollTo({ top: y, behavior: 'smooth' })
+        if (!el.hasAttribute('tabindex')) {
+          el.setAttribute('tabindex', '-1')
+        }
+        el.focus({ preventScroll: true })
+
+        const prefersReducedMotion = window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        ).matches
+        window.scrollTo({
+          top: y,
+          behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        })
+
+        history.pushState(null, '', href)
       } else {
         console.warn('Anchor target not found:', href)
       }
     }
-    // External or normal links are handled by the browser
   })
 </script>

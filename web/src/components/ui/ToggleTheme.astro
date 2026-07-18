@@ -5,25 +5,44 @@ import MoonIcon from '../icons/moon.astro'
 
 <button
   id='theme-toggle'
-  class='inline-flex size-7 cursor-pointer items-center justify-center text-slate-400 transition-colors hover:text-slate-600 dark:hover:text-slate-200'
-  aria-label='Toggle theme'
+  type='button'
+  class='inline-flex size-10 min-h-10 min-w-10 cursor-pointer items-center justify-center rounded-full text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-800 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none sm:size-11 sm:min-h-11 sm:min-w-11 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-slate-200'
+  aria-label='Switch to light theme'
 >
-  <SunIcon id='sun-icon' class='hidden size-7 dark:block' />
-  <MoonIcon id='moon-icon' class='block size-7 dark:hidden' />
+  <SunIcon
+    id='sun-icon'
+    class='hidden size-6 dark:block'
+    aria-hidden='true'
+  />
+  <MoonIcon
+    id='moon-icon'
+    class='block size-6 dark:hidden'
+    aria-hidden='true'
+  />
 </button>
 
 <script>
-  const handleToggleClick = () => {
-    const element = document.documentElement
-    element.classList.toggle('dark')
+  const $toggle = document.getElementById('theme-toggle')
 
-    const isDark = element.classList.contains('dark')
-    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  const updateThemeLabel = () => {
+    if (!$toggle) return
+    const isDark = document.documentElement.classList.contains('dark')
+    $toggle.setAttribute(
+      'aria-label',
+      isDark ? 'Switch to light theme' : 'Switch to dark theme'
+    )
+    $toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false')
   }
 
-  const $toggle = document.getElementById('theme-toggle')
+  const handleToggleClick = () => {
+    document.documentElement.classList.toggle('dark')
+    const isDark = document.documentElement.classList.contains('dark')
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+    updateThemeLabel()
+  }
 
   if ($toggle) {
     $toggle.addEventListener('click', handleToggleClick)
+    updateThemeLabel()
   }
 </script>
