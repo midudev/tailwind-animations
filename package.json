@@ -39,7 +39,7 @@
   "author": "Miguel Ángel Durán (@midudev) & su maravillosa comunidad",
   "license": "MIT",
   "peerDependencies": {
-    "tailwindcss": "4.3.2"
+    "tailwindcss": "4"
   },
   "devDependencies": {
     "@csstools/postcss-minify": "3.0.0",

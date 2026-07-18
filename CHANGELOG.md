@@ -16,7 +16,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ### Cambiado
 - Renombrado interno de la API de distancia de slide (antes experimental como `animate-translate`) a **`animate-slide-distance`**.
-- Peer dependency de `tailwindcss` alineada a **4.3.2**.
+- Peer dependency de `tailwindcss` declarada como **`4`** (cualquier versión de Tailwind CSS v4).
 
 ### Corregido
 - Cards de ejemplos de dialog en la web ya no disparan el toast de copiado con `animate-null`.
