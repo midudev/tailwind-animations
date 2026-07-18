@@ -6,7 +6,7 @@
 
 **Repository**: [GitHub - midudev/tailwind-animations](https://github.com/midudev/tailwind-animations)
 **License**: MIT
-**Current Version**: 1.0.1
+**Current Version**: 1.0.2
 **Website**: https://tailwind-animations.com/
 
 ***
