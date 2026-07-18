@@ -52,6 +52,55 @@ body {
   outline-offset: 2px;
 }
 
+/*
+ * Site toasts: enter uses plugin keyframes (slide-in-top + blurred-fade-in).
+ * Exit uses a dedicated keyframe — reverse + multi-animation is unreliable
+ * (opacity often snaps to 0 instead of animating out).
+ */
+.site-toast-enter {
+  animation-name: slide-in-top, blurred-fade-in;
+  animation-duration: 0.45s, 0.5s;
+  animation-timing-function: ease-out, ease-in-out;
+  animation-fill-mode: both, both;
+  --tw-anim-slide-distance: 0.75rem;
+}
+
+@keyframes site-toast-out {
+  from {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(-0.65rem);
+  }
+}
+
+.site-toast-exit {
+  animation-name: site-toast-out;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-toast-enter {
+    animation-name: fade-in;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+  }
+
+  .site-toast-exit {
+    animation-name: fade-out;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+  }
+}
+
 /* Skip-link helper when Tailwind focus:not-sr-only expands it */
 .skip-link:focus,
 .skip-link:focus-visible {
