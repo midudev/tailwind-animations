@@ -1,1 +1,6 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme inline {
+  --font-sans: -apple-system, var(--font-sans);
+  --font-mono var(--font-mono);
+}

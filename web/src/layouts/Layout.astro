@@ -1,4 +1,5 @@
 ---
+import { Font } from 'astro:assets'
 import '../styles/index.css'
 import pkg from '../../../package.json'
 
@@ -286,6 +287,8 @@ const structuredData = {
       const isDark = getThemePreference() === 'dark'
       document.documentElement.classList.toggle('dark', isDark)
     </script>
+    <Font cssVariable="--font-sans" />
+    <Font cssVariable="--font-mono" />
   </head>
   <body
     id='top'

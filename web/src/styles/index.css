@@ -24,19 +24,6 @@
 /* prettier-ignore */
 @source inline('scroll-mask scroll-mask-{y,x,t,b,l,r} scroll-mask-y-from-90% scroll-mask-x-from-90% scroll-mask-t-from-95% scroll-mask-b-from-80% scroll-mask-r-from-[calc(100%-2rem)]');
 
-:root {
-  --font-sans:
-    'Geist Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
-  --font-mono:
-    'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
-}
-
-body {
-  font-family: var(--font-sans);
-}
-
 /* Keep focused content clear of the fixed header (WCAG 2.4.11) */
 :target,
 :focus-visible {

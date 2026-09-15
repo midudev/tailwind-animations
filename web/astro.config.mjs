@@ -1,10 +1,13 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig, fontProviders } from 'astro/config'
 import tailwindcss from '@tailwindcss/vite'
 import sitemap from '@astrojs/sitemap'
 
 export default defineConfig({
   site: 'https://tailwind-animations.com',
   compressHTML: true,
+  devToolbar: {
+    enabled: false
+  },
   build: {
     inlineStylesheets: 'auto'
   },
@@ -18,5 +21,21 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()]
-  }
+  },
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      name: 'Figtree',
+      cssVariable: '--font-sans',
+      weights: ['400 700'],
+      fallbacks: ['-apple-system', 'Arial', 'sans-serif']
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: 'Geist Mono',
+      cssVariable: '--font-mono',
+      weights: ['400 700'],
+      fallbacks: ['ui-monospace', 'SFMono-Regular', 'monospace']
+    }
+  ]
 })
