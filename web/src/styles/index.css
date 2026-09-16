@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 @import '../../../src/index.css';
-
 @custom-variant dark (&:where(.dark, .dark *));
+
 /* prettier-ignore */
 @source inline('animate-{blurred-fade-in,fade-in,fade-out,slide-in-top,slide-in-bottom,slide-out-top,slide-out-bottom,zoom-in,zoom-out,rotate-90,rotate-180,rotate-360,rotate-3d,flip-horizontal,flip-vertical,bouncing,swing,wobble,pulsing,shake,tada,jump,hang,roll-in,roll-out,float,sink,flash,jiggle,rubber-band,scale,slide-in-left,slide-in-right,slide-out-left,slide-out-right,spin-clockwise,spin-counter-clockwise,flip-x,flip-y,blink,pop,expand-horizontally,contract-horizontally,expand-vertically,contract-vertically,fade-in-up,fade-in-down,fade-in-left,fade-in-right,fade-out-up,fade-out-down,fade-out-left,fade-out-right,sway,flip-in-x,flip-in-y,flip-out-x,flip-out-y,rotate-in,rotate-out,slide-rotate-in,slide-rotate-out,heartbeat,horizontal-vibration,rotational-wave,skew,skew-right,vertical-bounce,horizontal-bounce,tilt,squeeze,slide-up-fade,bounce-fade-in,swing-drop-in,pulse-fade-in,impulse-rotation-right,impulse-rotation-left,dancing,pulse,jelly}');
 /* prettier-ignore */

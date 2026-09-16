@@ -27,7 +27,7 @@ export default defineConfig({
       provider: fontProviders.fontsource(),
       name: 'Figtree',
       cssVariable: '--font-sans',
-      weights: ['400 700'],
+      weights: ['300 700'],
       fallbacks: ['-apple-system', 'Arial', 'sans-serif']
     },
     {

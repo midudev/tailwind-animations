@@ -2,5 +2,5 @@
 
 @theme inline {
   --font-sans: -apple-system, var(--font-sans);
-  --font-mono var(--font-mono);
+  --font-mono: var(--font-mono);
 }
