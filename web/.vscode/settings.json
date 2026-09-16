@@ -1,9 +1,8 @@
 {
-  "eslint.validate": [
-    "javascript",
-    "astro", 
-    "typescript",
-  ],
+  "eslint.validate": ["javascript", "astro", "typescript"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "prettier.documentSelectors": ["**/*.astro"],
   "[astro]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

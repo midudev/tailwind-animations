@@ -1,5 +1,5 @@
 ---
-import '@fontsource-variable/geist-mono/index.css'
+import { Font } from 'astro:assets'
 import '../styles/index.css'
 import pkg from '../../../package.json'
 
@@ -19,7 +19,8 @@ const {
   noindex = false
 } = Astro.props
 
-const siteUrl = Astro.site?.href.replace(/\/$/, '') ?? 'https://tailwind-animations.com'
+const siteUrl =
+  Astro.site?.href.replace(/\/$/, '') ?? 'https://tailwind-animations.com'
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? siteUrl)
 const ogImageURL = new URL(image, siteUrl).href
 const pageUrl = canonicalURL.href
@@ -192,7 +193,31 @@ const structuredData = {
 }
 ---
 
-<!doctype html>
+<script is:inline>
+  const getThemePreference = () => {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme')
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light'
+  }
+
+  const isDark = getThemePreference() === 'dark'
+  document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
+
+  if (typeof localStorage !== 'undefined') {
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains('dark')
+      localStorage.setItem('theme', isDark ? 'dark' : 'light')
+    })
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    })
+  }
+</script>
+
 <html lang='en' dir='ltr'>
   <head>
     <meta charset='UTF-8' />
@@ -252,16 +277,39 @@ const structuredData = {
     />
 
     <!-- Theme & icons -->
-    <meta name='theme-color' content='#0099ff' media='(prefers-color-scheme: light)' />
-    <meta name='theme-color' content='#050505' media='(prefers-color-scheme: dark)' />
+    <meta
+      name='theme-color'
+      content='#0099ff'
+      media='(prefers-color-scheme: light)'
+    />
+    <meta
+      name='theme-color'
+      content='#050505'
+      media='(prefers-color-scheme: dark)'
+    />
     <meta name='msapplication-TileColor' content='#0099ff' />
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <link rel='mask-icon' href='/favicon.svg' color='#0099ff' />
     <link rel='apple-touch-icon' href='/favicon.svg' />
     <link rel='manifest' href='/site.webmanifest' />
-    <link rel='sitemap' type='application/xml' title='Sitemap' href='/sitemap-index.xml' />
-    <link rel='alternate' type='text/plain' title='LLM information' href='/llms.txt' />
-    <link rel='alternate' type='text/markdown' title='LLM full documentation' href='/llms-full.md' />
+    <link
+      rel='sitemap'
+      type='application/xml'
+      title='Sitemap'
+      href='/sitemap-index.xml'
+    />
+    <link
+      rel='alternate'
+      type='text/plain'
+      title='LLM information'
+      href='/llms.txt'
+    />
+    <link
+      rel='alternate'
+      type='text/markdown'
+      title='LLM full documentation'
+      href='/llms-full.md'
+    />
 
     <!-- Performance hints -->
     <link rel='dns-prefetch' href='https://github.com' />
@@ -273,24 +321,12 @@ const structuredData = {
       set:html={JSON.stringify(structuredData)}
     />
 
-    <script is:inline>
-      const getThemePreference = () => {
-        if (
-          typeof localStorage !== 'undefined' &&
-          localStorage.getItem('theme')
-        ) {
-          return localStorage.getItem('theme')
-        }
-        return 'dark'
-      }
-
-      const isDark = getThemePreference() === 'dark'
-      document.documentElement.classList.toggle('dark', isDark)
-    </script>
+    <Font cssVariable='--font-sans' />
+    <Font cssVariable='--font-mono' />
   </head>
   <body
     id='top'
-    class='relative h-fit w-full bg-white text-slate-900 transition-colors duration-300 dark:bg-[#050505] dark:text-slate-50'
+    class='w-full bg-white text-slate-900 dark:bg-[#050505] dark:text-slate-50'
   >
     <slot />
   </body>
