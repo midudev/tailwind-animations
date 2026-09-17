@@ -6,6 +6,7 @@
 
 When reading this website as an AI agent, use Markdown endpoints instead of HTML:
 
+- How to use the package: https://tailwind-animations.com/llm.txt
 - Home (Markdown): https://tailwind-animations.com/index.md
 - Playground (Markdown): https://tailwind-animations.com/playground.md
 - Full reference: https://tailwind-animations.com/llms-full.md

@@ -165,6 +165,7 @@ Example:
 
 Prefer Markdown over scraping HTML:
 
+- https://tailwind-animations.com/llm.txt  
 - https://tailwind-animations.com/index.md  
 - https://tailwind-animations.com/playground.md  
 - https://tailwind-animations.com/llms-full.md  
