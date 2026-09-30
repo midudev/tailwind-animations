@@ -432,14 +432,14 @@ Compose after the animation class. Arbitrary values work: \`animate-duration-[1.
 
 | Goal | Classes |
 |------|---------|
-| Duration | \`animate-duration-{${durations.join('|')}}\` or \`animate-duration-[777ms]\` |
-| Delay | \`animate-delay-{${delays.join('|')}}\` or \`animate-delay-[250ms]\` |
-| Steps | \`animate-steps-{${steps.join('|')}}\` |
-| Iteration | \`animate-iteration-count-{${iterations.join('|')}}\` |
-| Fill mode | \`animate-fill-mode-{${fills.join('|')}}\` |
+| Duration | \`animate-duration-{${durations.join('\\|')}}\` or \`animate-duration-[777ms]\` |
+| Delay | \`animate-delay-{${delays.join('\\|')}}\` or \`animate-delay-[250ms]\` |
+| Steps | \`animate-steps-{${steps.join('\\|')}}\` |
+| Iteration | \`animate-iteration-count-{${iterations.join('\\|')}}\` |
+| Fill mode | \`animate-fill-mode-{${fills.join('\\|')}}\` |
 | Easing | \`animate-ease\`, \`animate-ease-in\`, \`animate-ease-out\`, \`animate-ease-in-out\`, \`animate-linear\` |
-| Bezier | \`animate-bezier-{${beziers.join('|')}}\` |
-| Direction | \`animate-direction-normal\|reverse\|alternate\|alternate-reverse\` |
+| Bezier | \`animate-bezier-{${beziers.join('\\|')}}\` |
+| Direction | \`animate-direction-normal\\|reverse\\|alternate\\|alternate-reverse\` |
 | Play state | \`animate-play-running\`, \`animate-play-paused\` |
 | Slide distance | \`animate-slide-distance-[50%]\`, \`animate-slide-distance-[6rem]\` (default travel is \`20px\`) |
 
