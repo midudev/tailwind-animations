@@ -265,7 +265,7 @@ const dialogModifierExamples = [
       <!-- Main Hero: Two columns — bottoms of config + demo align on lg -->
       <div class='grid items-start gap-14 lg:grid-cols-2 lg:items-end lg:gap-12 xl:gap-16'>
         <!-- Left: copy + install -->
-        <div class='text-left'>
+        <div class='min-w-0 text-left'>
           <div
             class='animate-fade-in-up animate-delay-100 mb-5 flex items-center gap-3 sm:mb-6 sm:gap-4'
           >
@@ -275,7 +275,7 @@ const dialogModifierExamples = [
             />
             <div class='min-w-0'>
               <h1
-                class='text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1] dark:text-white'
+                class='text-3xl font-pixel font-normal text-slate-900 sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1] dark:text-white'
               >
                 Tailwind CSS
                 <span class='text-blue-500'>Animations</span>
@@ -300,7 +300,7 @@ const dialogModifierExamples = [
           >
             <a
               href='/playground'
-              class='group inline-flex min-h-11 items-center gap-2 rounded-full bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 transition-all hover:bg-blue-600 hover:shadow-blue-500/40 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:focus-visible:ring-offset-slate-950'
+              class='font-pixel group inline-flex min-h-11 items-center gap-2 rounded-full bg-blue-500 px-5 py-2.5 text-sm text-white shadow-lg shadow-blue-500/25 transition-all hover:bg-blue-600 hover:shadow-blue-500/40 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:focus-visible:ring-offset-slate-950'
             >
               Open Playground
               <svg
@@ -323,7 +323,7 @@ const dialogModifierExamples = [
             <button
               type='button'
               id='copy-agent-prompt'
-              class='group inline-flex min-h-11 items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:border-blue-500/40 hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-blue-400/40 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950'
+              class='font-pixel group inline-flex min-h-11 items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-5 py-2.5 text-sm text-slate-700 shadow-sm transition-all hover:border-blue-500/40 hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-blue-400/40 dark:hover:text-blue-300 dark:focus-visible:ring-offset-slate-950'
               aria-label='Copy install prompt for Claude Code and similar agents'
             >
               <svg
@@ -411,7 +411,7 @@ Please install the package, wire the CSS imports, and use the skill + Markdown d
                     packageManagers.map((pm, index) => (
                       <button
                         type='button'
-                        class={`package-manager-btn flex min-h-8 items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none ${index === 0 ? 'bg-slate-100 text-slate-900 dark:bg-white/10 dark:text-white' : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'}`}
+                        class={`font-pixel package-manager-btn flex min-h-8 items-center gap-1.5 rounded-full px-2.5 py-1 text-xs transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none ${index === 0 ? 'bg-slate-100 text-slate-900 dark:bg-white/10 dark:text-white' : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'}`}
                         data-pm={pm.name}
                         data-command={pm.command}
                         aria-pressed={index === 0 ? 'true' : 'false'}
@@ -459,7 +459,7 @@ Please install the package, wire the CSS imports, and use the skill + Markdown d
                 >
                   <button
                     type='button'
-                    class='version-tab min-h-8 rounded-full bg-slate-100 px-3 py-1 text-[11px] font-medium tracking-wide text-slate-900 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:bg-white/10 dark:text-white'
+                    class='font-pixel version-tab min-h-8 rounded-full bg-slate-100 px-3 py-1 text-[11px] tracking-wide text-slate-900 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:bg-white/10 dark:text-white'
                     data-version='v4'
                     role='tab'
                     aria-selected='true'
@@ -471,7 +471,7 @@ Please install the package, wire the CSS imports, and use the skill + Markdown d
                   </button>
                   <button
                     type='button'
-                    class='version-tab min-h-8 rounded-full px-3 py-1 text-[11px] font-medium tracking-wide text-slate-500 transition-colors hover:text-slate-800 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:text-slate-400 dark:hover:text-slate-200'
+                    class='font-pixel version-tab min-h-8 rounded-full px-3 py-1 text-[11px] tracking-wide text-slate-500 transition-colors hover:text-slate-800 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:text-slate-400 dark:hover:text-slate-200'
                     data-version='v3'
                     role='tab'
                     aria-selected='false'
@@ -540,88 +540,50 @@ export default {
         </div>
 
         <!-- Right: live demo (bottom-aligned with how-to-use card) -->
-        <div class='animate-fade-in-up animate-delay-500 relative w-full lg:pl-2'>
-          <div
-            class='relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-xl shadow-blue-500/10 dark:border-slate-700/50 dark:bg-slate-900 dark:shadow-black/40'
+        <div class='animate-fade-in-up animate-delay-500 w-full min-w-0 lg:pl-2'>
+          <figure
+            class='overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-white/10 dark:bg-black'
           >
             <div
-              class='flex items-center justify-between border-b border-slate-200 bg-slate-100/80 px-4 py-2.5 dark:border-slate-700/50 dark:bg-slate-800/40'
-            >
-              <div class='flex items-center gap-1.5' aria-hidden='true'>
-                <div class='size-2.5 rounded-full bg-red-500/90'></div>
-                <div class='size-2.5 rounded-full bg-yellow-500/90'></div>
-                <div class='size-2.5 rounded-full bg-green-500/90'></div>
-              </div>
-              <span class='font-mono text-[11px] text-slate-400'
-                >demo_preview.html</span
-              >
-              <div class='w-10' aria-hidden='true'></div>
-            </div>
-
-            <div
-              class='relative flex min-h-[260px] items-center justify-center overflow-hidden sm:min-h-[300px]'
-              aria-hidden='true'
-            >
-              <div
-                class='pointer-events-none absolute inset-0 opacity-25 dark:opacity-30'
-                style='background-image: linear-gradient(rgba(99, 102, 241, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.12) 1px, transparent 1px); background-size: 36px 36px;'
-              >
-              </div>
-
-              <div
-                id='hero-demo-box'
-                class='relative size-28 rounded-2xl bg-linear-to-br from-violet-500 via-purple-500 to-pink-500 shadow-2xl shadow-purple-500/40'
-              >
-                <div
-                  class='absolute -inset-1 -z-10 rounded-2xl bg-linear-to-br from-violet-500 via-purple-500 to-pink-500 opacity-50 blur-xl'
-                >
-                </div>
-              </div>
-            </div>
-
-            <div
-              class='border-t border-slate-200 bg-white px-4 py-4 dark:border-slate-700/50 dark:bg-slate-900/90'
+              class='min-h-[2lh] border-b border-slate-200 px-4 py-3 font-mono text-[13px] leading-6 sm:min-h-0 sm:text-sm dark:border-white/10'
               aria-live='polite'
               aria-atomic='true'
             >
               <p class='sr-only'>Example animation utility class in use:</p>
-              <div class='font-mono text-[13px] sm:text-sm' aria-hidden='true'>
-                <span class='text-slate-500'>&lt;</span><span
-                  class='text-pink-600 dark:text-pink-400'>div</span
-                >
-                <span class='text-slate-500'> class="</span><span
-                  id='hero-demo-classes'
-                  class='text-cyan-600 dark:text-cyan-400'></span><span
-                  class='text-slate-500'>"&gt;</span
-                >
-              </div>
-              <div
-                class='pl-4 font-mono text-[13px] text-slate-400 sm:text-sm dark:text-slate-600'
-                aria-hidden='true'
+              <span class='text-slate-400 dark:text-slate-500' aria-hidden='true'
+                >class="</span
+              ><span
+                id='hero-demo-classes'
+                class='text-slate-900 dark:text-white'
+                aria-hidden='true'></span
+              ><span class='hero-demo-caret' aria-hidden='true'></span><span
+                class='text-slate-400 dark:text-slate-500'
+                aria-hidden='true'>"</span
               >
-                &lt;!-- Applied animation --&gt;
-              </div>
-              <div class='font-mono text-[13px] sm:text-sm' aria-hidden='true'>
-                <span class='text-slate-500'>&lt;/</span><span
-                  class='text-pink-600 dark:text-pink-400'>div</span
-                ><span class='text-slate-500'>&gt;</span>
-              </div>
               <p class='sr-only'>
                 <span id='hero-demo-classes-sr'></span>
               </p>
             </div>
-          </div>
 
-          <div
-            class='pointer-events-none absolute -top-10 -right-10 size-40 rounded-full bg-blue-500/15 blur-3xl'
-            aria-hidden='true'
-          >
-          </div>
-          <div
-            class='pointer-events-none absolute -bottom-12 -left-8 size-36 rounded-full bg-purple-500/15 blur-3xl'
-            aria-hidden='true'
-          >
-          </div>
+            <div
+              class='relative flex h-64 items-center justify-center sm:h-72'
+              aria-hidden='true'
+            >
+              <span
+                class='absolute top-3 left-4 font-mono text-[11px] text-slate-400 dark:text-slate-500'
+                >Preview</span
+              >
+              <span
+                id='hero-demo-counter'
+                class='absolute right-4 bottom-3 font-mono text-[11px] text-slate-400 tabular-nums dark:text-slate-500'
+              ></span>
+              <div
+                id='hero-demo-box'
+                class='size-16 rounded-lg bg-slate-900 sm:size-20 dark:bg-white'
+              >
+              </div>
+            </div>
+          </figure>
         </div>
       </div>
     </header>
@@ -634,7 +596,7 @@ export default {
       <div class='mb-10 flex flex-col items-center px-4 sm:mb-12'>
         <h2
           id='animation-collection-heading'
-          class='animate-fade-in-up animate-delay-[600ms] mb-3 text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+          class='animate-fade-in-up animate-delay-[600ms] mb-3 text-center text-2xl font-pixel font-normal text-slate-900 sm:text-4xl dark:text-white'
         >
           Animation Collection
         </h2>
@@ -666,7 +628,7 @@ export default {
               class='flex items-center gap-1.5 rounded-full px-2 py-0.5 transition-colors hover:bg-slate-100/80 dark:hover:bg-white/5'
             >
               <span
-                class='text-[11px] font-medium tracking-wide text-slate-400 uppercase'
+                class='font-pixel text-[11px] tracking-wide text-slate-400 uppercase'
               >
                 <span class='sm:hidden'>Dur</span>
                 <span class='hidden sm:inline'>Duration</span>
@@ -698,7 +660,7 @@ export default {
               class='flex items-center gap-1.5 rounded-full px-2 py-0.5 transition-colors hover:bg-slate-100/80 dark:hover:bg-white/5'
             >
               <span
-                class='text-[11px] font-medium tracking-wide text-slate-400 uppercase'
+                class='font-pixel text-[11px] tracking-wide text-slate-400 uppercase'
               >
                 Delay
               </span>
@@ -725,7 +687,7 @@ export default {
               class='flex items-center gap-1.5 rounded-full px-2 py-0.5 transition-colors hover:bg-slate-100/80 dark:hover:bg-white/5'
             >
               <span
-                class='text-[11px] font-medium tracking-wide text-slate-400 uppercase'
+                class='font-pixel text-[11px] tracking-wide text-slate-400 uppercase'
               >
                 Steps
               </span>
@@ -829,7 +791,7 @@ export default {
               <button
                 id='load-more'
                 type='button'
-                class='group inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white'
+                class='font-pixel group inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white'
                 aria-controls='animation-collection'
               >
                 <span>Show all {sortedAnimations.length}</span>
@@ -862,13 +824,13 @@ export default {
       >
         <div class='mx-auto mb-12 max-w-3xl text-center'>
           <span
-            class='mb-3 inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-[10px] font-bold tracking-widest text-blue-600 uppercase dark:text-blue-300'
+            class='font-pixel mb-3 inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-[10px] tracking-widest text-blue-600 uppercase dark:text-blue-300'
           >
             New utility
           </span>
           <h2
             id='slide-distance-heading'
-            class='mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+            class='mb-4 text-2xl font-pixel font-normal text-slate-900 sm:text-4xl dark:text-white'
           >
             Customize slide distance
           </h2>
@@ -893,7 +855,7 @@ export default {
             <button
               id='replay-slide-distance'
               type='button'
-              class='inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center gap-2 self-start rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-800 shadow-sm transition hover:border-blue-500 hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-[0.98] dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:border-blue-400 dark:hover:text-blue-300'
+              class='font-pixel inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center gap-2 self-start rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 shadow-sm transition hover:border-blue-500 hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-[0.98] dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:border-blue-400 dark:hover:text-blue-300'
             >
               <svg
                 class='size-4'
@@ -934,7 +896,7 @@ export default {
                   </div>
                   <div class='flex flex-1 flex-col gap-3 p-5'>
                     <div class='flex items-center justify-between gap-3'>
-                      <h3 class='text-base font-bold text-slate-900 dark:text-white'>
+                      <h3 class='font-pixel text-base text-slate-900 dark:text-white'>
                         {example.label}
                       </h3>
                       <code class='rounded-md bg-blue-500/10 px-2 py-1 font-mono text-[10px] font-bold tracking-wide text-blue-600 dark:text-blue-300'>
@@ -966,7 +928,7 @@ export default {
                 id='copy-slide-distance-example'
                 type='button'
                 aria-label='Copy slide distance HTML example'
-                class='inline-flex items-center gap-2 rounded-full bg-sky-400/10 px-3 py-1.5 text-[10px] font-bold tracking-widest text-sky-300 uppercase transition hover:bg-sky-400/20 hover:text-sky-200 focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none'
+                class='font-pixel inline-flex items-center gap-2 rounded-full bg-sky-400/10 px-3 py-1.5 text-[10px] tracking-widest text-sky-300 uppercase transition hover:bg-sky-400/20 hover:text-sky-200 focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none'
               >
                 <CopyIcon />
                 Copy example
@@ -993,7 +955,7 @@ export default {
         <div class='mb-16 flex flex-col items-center px-4'>
           <h2
             id='scroll-animations-heading'
-            class='mb-4 text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+            class='mb-4 text-center text-2xl font-pixel font-normal text-slate-900 sm:text-4xl dark:text-white'
           >
             Scroll-Driven CSS Animations
           </h2>
@@ -1010,7 +972,7 @@ export default {
           class='mx-auto max-w-[800px] rounded-3xl border border-slate-200 bg-slate-50/50 p-8 backdrop-blur-sm sm:p-12 dark:border-slate-800 dark:bg-slate-900/50'
         >
           <div class='max-w-none'>
-            <h3 class='mb-6 text-center text-xl font-semibold dark:text-white'>
+            <h3 class='font-pixel mb-6 text-center text-xl dark:text-white'>
               Scroll down to see the magic
             </h3>
 
@@ -1153,7 +1115,7 @@ export default {
         <div class='mb-16 flex flex-col items-center px-4'>
           <h2
             id='scroll-view-timelines-heading'
-            class='mb-4 text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+            class='mb-4 text-center text-2xl font-pixel font-normal text-slate-900 sm:text-4xl dark:text-white'
           >
             Scroll & View Timeline Utilities
           </h2>
@@ -1171,7 +1133,7 @@ export default {
           <div class='grid grid-cols-1 gap-16'>
             <!-- Example 1: Vertical Scroll Progress -->
             <div class='flex flex-col gap-6'>
-              <h3 class='text-xl font-semibold dark:text-white'>
+              <h3 class='font-pixel text-xl dark:text-white'>
                 Vertical Scroll Progress
               </h3>
               <p class='text-slate-600 dark:text-slate-400'>
@@ -1208,7 +1170,7 @@ export default {
 
             <!-- Example 2: Horizontal Scroll Progress -->
             <div class='flex flex-col gap-6'>
-              <h3 class='text-xl font-semibold dark:text-white'>
+              <h3 class='font-pixel text-xl dark:text-white'>
                 Horizontal Scroll Progress
               </h3>
               <p class='text-slate-600 dark:text-slate-400'>
@@ -1246,7 +1208,7 @@ export default {
 
             <!-- Example 3: Entry vs Exit Ranges -->
             <div class='flex flex-col gap-6'>
-              <h3 class='text-xl font-semibold dark:text-white'>
+              <h3 class='font-pixel text-xl dark:text-white'>
                 Entry & Exit Animation Ranges
               </h3>
               <p class='text-slate-600 dark:text-slate-400'>
@@ -1304,7 +1266,7 @@ export default {
 
             <!-- Example 4: Staggered Reveal -->
             <div class='flex flex-col gap-6'>
-              <h3 class='text-xl font-semibold dark:text-white'>
+              <h3 class='font-pixel text-xl dark:text-white'>
                 Staggered Reveal Effect
               </h3>
               <p class='text-slate-600 dark:text-slate-400'>
@@ -1354,7 +1316,7 @@ export default {
 
             <!-- Example 5: View Timeline with Rotation -->
             <div class='flex flex-col gap-6'>
-              <h3 class='text-xl font-semibold dark:text-white'>
+              <h3 class='font-pixel text-xl dark:text-white'>
                 Rotation on Scroll
               </h3>
               <p class='text-slate-600 dark:text-slate-400'>
@@ -1409,7 +1371,7 @@ export default {
 
             <!-- Example 6: Timeline Axis Variants -->
             <div class='flex flex-col gap-6'>
-              <h3 class='text-xl font-semibold dark:text-white'>
+              <h3 class='font-pixel text-xl dark:text-white'>
                 Timeline Utilities Reference
               </h3>
               <p class='text-slate-600 dark:text-slate-400'>
@@ -1420,7 +1382,7 @@ export default {
                   class='flex flex-col gap-1 rounded-xl border border-slate-200 p-4 dark:border-slate-800'
                 >
                   <span
-                    class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                    class='font-pixel text-xs tracking-wide text-slate-400 uppercase'
                     >Scroll Timelines</span
                   >
                   <code class='text-xs text-blue-500'>timeline-scroll</code>
@@ -1439,7 +1401,7 @@ export default {
                   class='flex flex-col gap-1 rounded-xl border border-slate-200 p-4 dark:border-slate-800'
                 >
                   <span
-                    class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                    class='font-pixel text-xs tracking-wide text-slate-400 uppercase'
                     >View Timelines</span
                   >
                   <code class='text-xs text-emerald-500'>timeline-view</code>
@@ -1460,7 +1422,7 @@ export default {
                   class='flex flex-col gap-1 rounded-xl border border-slate-200 p-4 dark:border-slate-800'
                 >
                   <span
-                    class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                    class='font-pixel text-xs tracking-wide text-slate-400 uppercase'
                     >Animation Ranges</span
                   >
                   <code class='text-xs text-amber-500'>animate-range-cover</code
@@ -1476,7 +1438,7 @@ export default {
                   class='flex flex-col gap-1 rounded-xl border border-slate-200 p-4 dark:border-slate-800'
                 >
                   <span
-                    class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                    class='font-pixel text-xs tracking-wide text-slate-400 uppercase'
                     >Preset Ranges</span
                   >
                   <code class='text-xs text-purple-500'
@@ -1505,7 +1467,7 @@ export default {
 
             <!-- Example 7: Arbitrary Values -->
             <div class='flex flex-col gap-6'>
-              <h3 class='text-xl font-semibold dark:text-white'>
+              <h3 class='font-pixel text-xl dark:text-white'>
                 Arbitrary Values
               </h3>
               <p class='text-slate-600 dark:text-slate-400'>
@@ -1518,7 +1480,7 @@ export default {
                   class='flex flex-col gap-2 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900'
                 >
                   <span
-                    class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                    class='font-pixel text-xs tracking-wide text-slate-400 uppercase'
                     >Scroll with axis</span
                   >
                   <code class='text-xs text-blue-400'
@@ -1532,7 +1494,7 @@ export default {
                   class='flex flex-col gap-2 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900'
                 >
                   <span
-                    class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                    class='font-pixel text-xs tracking-wide text-slate-400 uppercase'
                     >View with inset</span
                   >
                   <code class='text-xs text-emerald-400'
@@ -1546,7 +1508,7 @@ export default {
                   class='col-span-full flex flex-col gap-2 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900'
                 >
                   <span
-                    class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                    class='font-pixel text-xs tracking-wide text-slate-400 uppercase'
                     >Custom animation ranges</span
                   >
                   <code class='text-xs text-amber-400'
@@ -1572,13 +1534,13 @@ export default {
       >
         <div class='mx-auto mb-16 flex max-w-3xl flex-col items-center'>
           <span
-            class='mb-4 rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-1 text-xs font-bold tracking-wider text-violet-600 uppercase dark:text-violet-300'
+            class='font-pixel mb-4 rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-1 text-xs tracking-wider text-violet-600 uppercase dark:text-violet-300'
           >
             Overflow polish
           </span>
           <h2
             id='scroll-mask-heading'
-            class='mb-4 text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+            class='mb-4 text-center text-2xl font-pixel font-normal text-slate-900 sm:text-4xl dark:text-white'
           >
             Scroll Mask Utilities
           </h2>
@@ -1598,7 +1560,7 @@ export default {
           <div class='grid grid-cols-1 gap-12 md:grid-cols-2'>
             <!-- Vertical axis -->
             <div class='flex flex-col gap-4'>
-              <h3 class='text-lg font-semibold dark:text-white'>
+              <h3 class='font-pixel text-lg dark:text-white'>
                 Vertical overflow
               </h3>
               <p class='text-sm text-slate-600 dark:text-slate-400'>
@@ -1643,7 +1605,7 @@ export default {
 
             <!-- Horizontal axis -->
             <div class='flex flex-col gap-4'>
-              <h3 class='text-lg font-semibold dark:text-white'>
+              <h3 class='font-pixel text-lg dark:text-white'>
                 Horizontal overflow
               </h3>
               <p class='text-sm text-slate-600 dark:text-slate-400'>
@@ -1685,7 +1647,7 @@ export default {
 
             <!-- Single edges -->
             <div class='flex flex-col gap-4 md:col-span-2'>
-              <h3 class='text-lg font-semibold dark:text-white'>
+              <h3 class='font-pixel text-lg dark:text-white'>
                 Single edges & custom stops
               </h3>
               <p class='text-sm text-slate-600 dark:text-slate-400'>
@@ -1766,12 +1728,12 @@ export default {
             <div
               class='grid grid-cols-1 gap-4 rounded-2xl border border-slate-200 bg-white p-5 md:col-span-2 dark:border-slate-800 dark:bg-slate-950'
             >
-              <h3 class='text-base font-semibold dark:text-white'>
+              <h3 class='font-pixel text-base dark:text-white'>
                 Utility reference
               </h3>
               <div class='grid grid-cols-1 gap-4 sm:grid-cols-3'>
                 <div class='flex flex-col gap-2'>
-                  <span class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                  <span class='font-pixel text-xs tracking-wide text-slate-400 uppercase'
                     >Axes</span
                   >
                   <code class='text-xs text-violet-500'>scroll-mask</code>
@@ -1779,7 +1741,7 @@ export default {
                   <code class='text-xs text-violet-500'>scroll-mask-x</code>
                 </div>
                 <div class='flex flex-col gap-2'>
-                  <span class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                  <span class='font-pixel text-xs tracking-wide text-slate-400 uppercase'
                     >Edges</span
                   >
                   <code class='text-xs text-emerald-500'>scroll-mask-t</code>
@@ -1788,7 +1750,7 @@ export default {
                   <code class='text-xs text-emerald-500'>scroll-mask-r</code>
                 </div>
                 <div class='flex flex-col gap-2'>
-                  <span class='text-xs font-bold tracking-wide text-slate-400 uppercase'
+                  <span class='font-pixel text-xs tracking-wide text-slate-400 uppercase'
                     >Custom stops</span
                   >
                   <code class='text-xs text-amber-500'>scroll-mask-y-from-90%</code>
@@ -1818,13 +1780,13 @@ export default {
       >
         <div class='mx-auto mb-16 flex max-w-3xl flex-col items-center'>
           <span
-            class='mb-4 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-bold tracking-wider text-emerald-600 uppercase dark:text-emerald-300'
+            class='font-pixel mb-4 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs tracking-wider text-emerald-600 uppercase dark:text-emerald-300'
           >
             Top layer patterns
           </span>
           <h2
             id='dialog-effects-heading'
-            class='mb-4 text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+            class='mb-4 text-center text-2xl font-pixel font-normal text-slate-900 sm:text-4xl dark:text-white'
           >
             Dialog Entry & Exit Effects
           </h2>
@@ -1855,12 +1817,12 @@ export default {
             <div class='relative flex min-h-[360px] flex-col justify-between'>
               <div>
                 <span
-                  class='text-xs font-bold tracking-widest text-slate-400 uppercase'
+                  class='font-pixel text-xs tracking-widest text-slate-400 uppercase'
                 >
                   Live demo
                 </span>
                 <h3
-                  class='mt-3 max-w-sm text-2xl font-bold text-slate-900 dark:text-white'
+                  class='font-pixel mt-3 max-w-sm text-2xl text-slate-900 dark:text-white'
                 >
                   Add <code class='text-emerald-500'>animate-dialog</code> and style
                   the rest with normal Tailwind utilities.
@@ -1880,7 +1842,7 @@ export default {
                   type='button'
                   commandfor='entry-exit-dialog'
                   command='show-modal'
-                  class='inline-flex items-center justify-center rounded-xl bg-slate-950 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-slate-950/20 transition hover:-translate-y-0.5 hover:bg-emerald-600 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-0 dark:bg-white dark:text-slate-950 dark:hover:bg-emerald-300 dark:focus-visible:ring-offset-slate-950'
+                  class='font-pixel inline-flex items-center justify-center rounded-xl bg-slate-950 px-5 py-3 text-sm text-white shadow-lg shadow-slate-950/20 transition hover:-translate-y-0.5 hover:bg-emerald-600 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-0 dark:bg-white dark:text-slate-950 dark:hover:bg-emerald-300 dark:focus-visible:ring-offset-slate-950'
                 >
                   Open dialog
                 </button>
@@ -1902,11 +1864,11 @@ export default {
                 class='border-b border-slate-200 px-5 py-4 dark:border-slate-800'
               >
                 <span
-                  class='text-xs font-bold tracking-widest text-emerald-600 uppercase dark:text-emerald-300'
+                  class='font-pixel text-xs tracking-widest text-emerald-600 uppercase dark:text-emerald-300'
                 >
                   Modal top layer
                 </span>
-                <h3 id='entry-exit-dialog-title' class='mt-2 text-xl font-bold'>
+                <h3 id='entry-exit-dialog-title' class='font-pixel mt-2 text-xl'>
                   Dialog motion without wrapper divs
                 </h3>
               </div>
@@ -1926,7 +1888,7 @@ export default {
                     class='rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-slate-800 dark:bg-slate-900'
                   >
                     <span
-                      class='block text-[10px] font-bold tracking-widest text-slate-400 uppercase'
+                      class='font-pixel block text-[10px] tracking-widest text-slate-400 uppercase'
                       >Entry</span
                     >
                     <code
@@ -1939,7 +1901,7 @@ export default {
                     class='rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-slate-800 dark:bg-slate-900'
                   >
                     <span
-                      class='block text-[10px] font-bold tracking-widest text-slate-400 uppercase'
+                      class='font-pixel block text-[10px] tracking-widest text-slate-400 uppercase'
                       >Exit</span
                     >
                     <code
@@ -1958,7 +1920,7 @@ export default {
                   type='button'
                   commandfor='entry-exit-dialog'
                   command='request-close'
-                  class='rounded-xl bg-slate-950 px-4 py-2 text-sm font-bold text-white transition hover:bg-emerald-600 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:bg-white dark:text-slate-950 dark:hover:bg-emerald-300 dark:focus-visible:ring-offset-slate-950'
+                  class='font-pixel rounded-xl bg-slate-950 px-4 py-2 text-sm text-white transition hover:bg-emerald-600 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:bg-white dark:text-slate-950 dark:hover:bg-emerald-300 dark:focus-visible:ring-offset-slate-950'
                 >
                   Close
                 </button>
@@ -1979,7 +1941,7 @@ export default {
                   id='copy-dialog-example'
                   type='button'
                   aria-label='Copy dialog HTML example'
-                  class='inline-flex items-center gap-2 rounded-full bg-sky-400/10 px-3 py-1.5 text-[10px] font-bold tracking-widest text-sky-300 uppercase transition hover:bg-sky-400/20 hover:text-sky-200 focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none'
+                  class='font-pixel inline-flex items-center gap-2 rounded-full bg-sky-400/10 px-3 py-1.5 text-[10px] tracking-widest text-sky-300 uppercase transition hover:bg-sky-400/20 hover:text-sky-200 focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none'
                 >
                   <CopyIcon />
                   Copy example
@@ -2005,12 +1967,12 @@ export default {
           >
             <div>
               <span
-                class='text-xs font-bold tracking-widest text-slate-400 uppercase'
+                class='font-pixel text-xs tracking-widest text-slate-400 uppercase'
               >
                 Modifier examples
               </span>
               <h3
-                class='mt-2 text-2xl font-bold text-slate-900 dark:text-white'
+                class='font-pixel mt-2 text-2xl text-slate-900 dark:text-white'
               >
                 Same utility, different dialog feel
               </h3>
@@ -2030,7 +1992,7 @@ export default {
                 <div class='dialog-example-card flex min-h-64 flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-lg shadow-slate-200/40 dark:border-slate-800 dark:bg-slate-950 dark:shadow-none'>
                   <div>
                     <div class='flex items-center justify-between gap-3'>
-                      <span class='text-[10px] font-bold tracking-widest text-emerald-600 uppercase dark:text-emerald-300'>
+                      <span class='font-pixel text-[10px] tracking-widest text-emerald-600 uppercase dark:text-emerald-300'>
                         {example.eyebrow}
                       </span>
                       <code class='rounded-md bg-slate-100 px-2 py-1 font-mono text-[10px] text-slate-500 dark:bg-slate-900 dark:text-slate-400'>
@@ -2049,7 +2011,7 @@ export default {
                     type='button'
                     commandfor={example.id}
                     command='show-modal'
-                    class='mt-6 inline-flex items-center justify-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-bold text-slate-900 transition hover:-translate-y-0.5 hover:border-emerald-400 hover:text-emerald-600 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-0 dark:border-slate-800 dark:text-white dark:hover:border-emerald-300 dark:hover:text-emerald-300 dark:focus-visible:ring-offset-slate-950'
+                    class='font-pixel mt-6 inline-flex items-center justify-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-900 transition hover:-translate-y-0.5 hover:border-emerald-400 hover:text-emerald-600 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-0 dark:border-slate-800 dark:text-white dark:hover:border-emerald-300 dark:hover:text-emerald-300 dark:focus-visible:ring-offset-slate-950'
                   >
                     {example.openLabel}
                   </button>
@@ -2061,7 +2023,7 @@ export default {
                     aria-describedby={`${example.id}-description`}
                   >
                     <div class='border-b border-slate-200 px-5 py-4 dark:border-slate-800'>
-                      <span class='text-xs font-bold tracking-widest text-emerald-600 uppercase dark:text-emerald-300'>
+                      <span class='font-pixel text-xs tracking-widest text-emerald-600 uppercase dark:text-emerald-300'>
                         {example.eyebrow}
                       </span>
                       <h4
@@ -2089,7 +2051,7 @@ export default {
                         type='button'
                         commandfor={example.id}
                         command='request-close'
-                        class='rounded-xl bg-slate-950 px-4 py-2 text-sm font-bold text-white transition hover:bg-emerald-600 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:bg-white dark:text-slate-950 dark:hover:bg-emerald-300 dark:focus-visible:ring-offset-slate-950'
+                        class='font-pixel rounded-xl bg-slate-950 px-4 py-2 text-sm text-white transition hover:bg-emerald-600 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:bg-white dark:text-slate-950 dark:hover:bg-emerald-300 dark:focus-visible:ring-offset-slate-950'
                       >
                         Close
                       </button>
@@ -2111,7 +2073,7 @@ export default {
       <div class='mx-auto mb-12 max-w-3xl text-center'>
         <h2
           id='faq-heading'
-          class='mb-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+          class='mb-4 text-2xl font-pixel font-normal text-slate-900 sm:text-4xl dark:text-white'
         >
           Frequently Asked Questions
         </h2>
@@ -2775,6 +2737,7 @@ export default {
     const $heroDemoBox = document.getElementById('hero-demo-box')
     const $heroDemoClasses = document.getElementById('hero-demo-classes')
     const $heroDemoClassesSr = document.getElementById('hero-demo-classes-sr')
+    const $heroDemoCounter = document.getElementById('hero-demo-counter')
 
     const setHeroDemoClassLabel = (text: string) => {
       if ($heroDemoClasses) $heroDemoClasses.textContent = text
@@ -2810,6 +2773,12 @@ export default {
       let currentDemoIndex = 0
       let isTyping = false
 
+      const setHeroDemoCounter = (index: number) => {
+        if (!$heroDemoCounter) return
+        const pad = (n: number) => String(n).padStart(2, '0')
+        $heroDemoCounter.textContent = `${pad(index + 1)} / ${pad(demoAnimations.length)}`
+      }
+
       // Typewriter effect function
       async function typeText(text: string): Promise<void> {
         setHeroDemoClassLabel('')
@@ -2839,6 +2808,7 @@ export default {
         const fullClass = demo.extras
           ? `${demo.animation} ${demo.extras}`
           : demo.animation
+        setHeroDemoCounter(currentDemoIndex)
 
         // Clear previous animation class
         demoAnimations.forEach((d) => {
@@ -2909,6 +2879,7 @@ export default {
           ? `${demo.animation} ${demo.extras}`
           : demo.animation
         setHeroDemoClassLabel(fullClass)
+        setHeroDemoCounter(0)
         $heroDemoBox.classList.add(demo.animation)
       } else {
         setTimeout(runDemoAnimation, 800)
@@ -2921,6 +2892,28 @@ export default {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 4.5 3 3 3-3'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 0.15rem center;
+    }
+
+    .hero-demo-caret {
+      display: inline-block;
+      width: 1px;
+      height: 1.1em;
+      margin-left: 1px;
+      vertical-align: text-bottom;
+      background: currentColor;
+      animation: hero-demo-caret 1s step-end infinite;
+    }
+
+    @keyframes hero-demo-caret {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-demo-caret {
+        animation: none;
+      }
     }
 
     .scrollbar-hide::-webkit-scrollbar {

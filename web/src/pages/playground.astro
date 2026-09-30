@@ -79,12 +79,12 @@ const playgroundData = {
   >
     <div class='mb-8 max-w-2xl'>
       <p
-        class='mb-2 text-xs font-semibold tracking-[0.18em] text-blue-500 uppercase'
+        class='font-pixel mb-2 text-xs tracking-[0.18em] text-blue-500 uppercase'
       >
         Playground
       </p>
       <h1
-        class='text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white'
+        class='text-3xl font-pixel font-normal text-slate-900 sm:text-4xl dark:text-white'
       >
         Compose animations live
       </h1>
@@ -124,7 +124,7 @@ const playgroundData = {
                   data-preset={preset.id}
                   aria-selected={preset.id === initialState.p ? 'true' : 'false'}
                   class:list={[
-                    'preset-tab min-h-8 rounded-full px-3 py-1 text-xs font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none',
+                    'font-pixel preset-tab min-h-8 rounded-full px-3 py-1 text-xs transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none',
                     preset.id === initialState.p
                       ? 'bg-slate-100 text-slate-900 dark:bg-white/10 dark:text-white'
                       : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
@@ -140,7 +140,7 @@ const playgroundData = {
             <button
               type='button'
               id='replay-btn'
-              class='inline-flex min-h-9 items-center gap-1.5 rounded-full border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 transition-colors hover:border-blue-500 hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-white/10 dark:text-slate-300 dark:hover:border-blue-400 dark:hover:text-blue-300'
+              class='font-pixel inline-flex min-h-9 items-center gap-1.5 rounded-full border border-slate-200 px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-blue-500 hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-white/10 dark:text-slate-300 dark:hover:border-blue-400 dark:hover:text-blue-300'
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -256,7 +256,7 @@ const playgroundData = {
           <div class='flex items-start justify-between gap-3'>
             <div class='min-w-0 flex-1'>
               <p
-                class='mb-1 text-[10px] font-semibold tracking-wider text-slate-400 uppercase'
+                class='font-pixel mb-1 text-[10px] tracking-wider text-slate-400 uppercase'
               >
                 Class list
               </p>
@@ -269,7 +269,7 @@ const playgroundData = {
               <button
                 type='button'
                 id='copy-classes'
-                class='inline-flex min-h-9 items-center justify-center gap-1.5 rounded-full bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:bg-white dark:text-slate-900 dark:hover:bg-blue-300'
+                class='font-pixel inline-flex min-h-9 items-center justify-center gap-1.5 rounded-full bg-slate-900 px-3 py-1.5 text-xs text-white transition-colors hover:bg-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:bg-white dark:text-slate-900 dark:hover:bg-blue-300'
               >
                 <CopyIcon class='size-3.5' />
                 <span data-label>Copy</span>
@@ -277,7 +277,7 @@ const playgroundData = {
               <button
                 type='button'
                 id='copy-url'
-                class='inline-flex min-h-9 items-center justify-center gap-1.5 rounded-full border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 transition-colors hover:border-blue-500 hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-white/10 dark:text-slate-300 dark:hover:border-blue-400 dark:hover:text-blue-300'
+                class='font-pixel inline-flex min-h-9 items-center justify-center gap-1.5 rounded-full border border-slate-200 px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-blue-500 hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-white/10 dark:text-slate-300 dark:hover:border-blue-400 dark:hover:text-blue-300'
               >
                 <span data-label>Share URL</span>
               </button>
@@ -295,7 +295,7 @@ const playgroundData = {
         <div>
           <label
             for='animation-search'
-            class='mb-1.5 block text-[11px] font-semibold tracking-wider text-slate-400 uppercase'
+            class='font-pixel mb-1.5 block text-[11px] tracking-wider text-slate-400 uppercase'
           >
             Animation
           </label>
@@ -336,7 +336,7 @@ const playgroundData = {
         <div class='grid grid-cols-2 gap-3'>
           <label class='block'>
             <span
-              class='mb-1.5 block text-[11px] font-semibold tracking-wider text-slate-400 uppercase'
+              class='font-pixel mb-1.5 block text-[11px] tracking-wider text-slate-400 uppercase'
             >
               Duration
             </span>
@@ -356,7 +356,7 @@ const playgroundData = {
 
           <label class='block'>
             <span
-              class='mb-1.5 block text-[11px] font-semibold tracking-wider text-slate-400 uppercase'
+              class='font-pixel mb-1.5 block text-[11px] tracking-wider text-slate-400 uppercase'
             >
               Delay
             </span>
@@ -376,7 +376,7 @@ const playgroundData = {
 
           <label class='block'>
             <span
-              class='mb-1.5 block text-[11px] font-semibold tracking-wider text-slate-400 uppercase'
+              class='font-pixel mb-1.5 block text-[11px] tracking-wider text-slate-400 uppercase'
             >
               Steps
             </span>
@@ -396,7 +396,7 @@ const playgroundData = {
 
           <label class='block'>
             <span
-              class='mb-1.5 block text-[11px] font-semibold tracking-wider text-slate-400 uppercase'
+              class='font-pixel mb-1.5 block text-[11px] tracking-wider text-slate-400 uppercase'
             >
               Iteration
             </span>
@@ -416,7 +416,7 @@ const playgroundData = {
 
           <label class='col-span-2 block'>
             <span
-              class='mb-1.5 block text-[11px] font-semibold tracking-wider text-slate-400 uppercase'
+              class='font-pixel mb-1.5 block text-[11px] tracking-wider text-slate-400 uppercase'
             >
               Fill mode
             </span>

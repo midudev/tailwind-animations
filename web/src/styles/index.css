@@ -24,6 +24,10 @@
 /* prettier-ignore */
 @source inline('scroll-mask scroll-mask-{y,x,t,b,l,r} scroll-mask-y-from-90% scroll-mask-x-from-90% scroll-mask-t-from-95% scroll-mask-b-from-80% scroll-mask-r-from-[calc(100%-2rem)]');
 
+@theme {
+  --font-pixel: 'Geist Pixel', var(--font-mono);
+}
+
 :root {
   --font-sans:
     'Geist Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
