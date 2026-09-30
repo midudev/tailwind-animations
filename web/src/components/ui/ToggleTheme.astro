@@ -34,11 +34,37 @@ import MoonIcon from '../icons/moon.astro'
     $toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false')
   }
 
-  const handleToggleClick = () => {
+  const applyTheme = () => {
     document.documentElement.classList.toggle('dark')
     const isDark = document.documentElement.classList.contains('dark')
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
     updateThemeLabel()
+  }
+
+  // Each element has its own color transition (or none), so without this
+  // sections repaint at different speeds. Freeze them all and crossfade the
+  // whole page at once instead.
+  const handleToggleClick = () => {
+    const $freeze = document.createElement('style')
+    $freeze.textContent =
+      '*,*::before,*::after{transition:none!important}'
+    document.head.appendChild($freeze)
+
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
+
+    if (!document.startViewTransition || prefersReducedMotion) {
+      applyTheme()
+      // Flush styles with transitions still disabled before restoring them
+      window.getComputedStyle(document.body).color
+      setTimeout(() => $freeze.remove(), 1)
+      return
+    }
+
+    document
+      .startViewTransition(applyTheme)
+      .finished.finally(() => $freeze.remove())
   }
 
   if ($toggle) {
